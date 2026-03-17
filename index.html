@@ -6,100 +6,99 @@
   <title>Trader Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="bg-black text-white">
 
-<div class="p-4 space-y-4">
+  <div class="p-4 space-y-4 max-w-3xl mx-auto">
 
-  <!-- TOP BAR -->
-  <div class="bg-zinc-900 p-4 rounded-xl flex justify-between text-sm">
-    <div>London: coming soon</div>
-    <div>NY: coming soon</div>
-    <div class="text-red-400">⚠️ Red Folder: CPI</div>
+    <!-- TOP BAR -->
+    <div class="bg-zinc-900 p-4 rounded-xl flex justify-between text-sm">
+      <div>London: coming soon</div>
+      <div>NY: coming soon</div>
+      <div class="text-red-400">⚠️ Red Folder: CPI</div>
+    </div>
+
+    <!-- BIAS -->
+    <div class="bg-zinc-900 p-4 rounded-xl">
+      <h2 class="text-yellow-400 mb-2 text-2xl font-semibold">USDJPY</h2>
+      <p>Bias: <span class="text-red-400">Bearish</span></p>
+      <p>State: Wait</p>
+      <p>PDH: 159.49</p>
+      <p>PDL: 158.85</p>
+    </div>
+
+    <!-- CHART -->
+    <div class="bg-zinc-900 p-2 rounded-xl">
+      <iframe
+        src="https://s.tradingview.com/widgetembed/?symbol=OANDA%3AUSDJPY&interval=15&theme=dark"
+        style="width:100%; height:400px; border:none;"
+      ></iframe>
+    </div>
+
+    <!-- RED FOLDER -->
+    <div class="bg-zinc-900 p-4 rounded-xl">
+      <h2 class="text-red-400 mb-2 text-xl font-semibold">Red Folder</h2>
+      <p>USD CPI</p>
+      <p>08:30 ET</p>
+      <p class="text-sm mt-2">No trades before release</p>
+    </div>
+
+    <!-- NEWS -->
+    <div class="bg-zinc-900 p-4 rounded-xl">
+      <h2 class="text-green-400 mb-3 text-xl font-semibold">News</h2>
+      <ul id="news" class="space-y-3 text-sm text-zinc-300">
+        <li>Loading news...</li>
+      </ul>
+    </div>
+
   </div>
 
-  <!-- BIAS -->
-  <div class="bg-zinc-900 p-4 rounded-xl">
-    <h2 class="text-yellow-400 mb-2">USDJPY</h2>
-    <p>Bias: <span class="text-red-400">Bearish</span></p>
-    <p>State: Wait</p>
-    <p>PDH: 159.49</p>
-    <p>PDL: 158.85</p>
-  </div>
+  <script>
+    async function loadNews() {
+      const feeds = [
+        {
+          name: "ZeroHedge",
+          url: "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/zerohedge/feed"
+        },
+        {
+          name: "Coin Bureau",
+          url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.coinbureau.com/feed/"
+        }
+      ];
 
-  <!-- CHART -->
-  <div class="bg-zinc-900 p-2 rounded-xl">
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=OANDA%3AUSDJPY&interval=15&theme=dark"
-      style="width:100%; height:400px; border:none;">
-    </iframe>
-  </div>
+      const newsContainer = document.getElementById("news");
+      newsContainer.innerHTML = "";
 
-  <!-- RED FOLDER -->
-  <div class="bg-zinc-900 p-4 rounded-xl">
-    <h2 class="text-red-400 mb-2">Red Folder</h2>
-    <p>USD CPI</p>
-    <p>08:30 ET</p>
-    <p class="text-sm mt-2">No trades before release</p>
-  </div>
+      for (const feed of feeds) {
+        try {
+          const res = await fetch(feed.url);
+          const data = await res.json();
 
-  <ul id="news"></ul>
-<!-- NEWS -->
-<div class="bg-zinc-900 p-4 rounded-xl">
-  <h2 class="text-green-400 mb-2">News</h2>
-  <ul id="news" class="space-y-2 text-sm text-zinc-300">
-    <li>Loading news...</li>
-  </ul>
-</div>
+          if (!data.items || !data.items.length) {
+            const li = document.createElement("li");
+            li.textContent = `${feed.name}: no items returned`;
+            newsContainer.appendChild(li);
+            continue;
+          }
 
-<script>
-async function loadNews() {
-  const feeds = [
-    {
-      name: "ZeroHedge",
-      url: "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/zerohedge/feed"
-    },
-    {
-      name: "Coin Bureau",
-      url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.coinbureau.com/feed/"
-    }
-  ];
-
-  const newsContainer = document.getElementById("news");
-  newsContainer.innerHTML = "";
-
-  for (const feed of feeds) {
-    try {
-      const res = await fetch(feed.url);
-      const data = await res.json();
-
-      if (!data.items || !data.items.length) {
-        const li = document.createElement("li");
-        li.textContent = `${feed.name}: no items returned`;
-        newsContainer.appendChild(li);
-        continue;
+          data.items.slice(0, 3).forEach(item => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+              <a href="${item.link}" target="_blank" class="text-blue-400 underline">
+                ${feed.name}: ${item.title}
+              </a>
+            `;
+            newsContainer.appendChild(li);
+          });
+        } catch (err) {
+          const li = document.createElement("li");
+          li.textContent = `${feed.name}: failed to load`;
+          newsContainer.appendChild(li);
+        }
       }
-
-      data.items.slice(0, 3).forEach(item => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <a href="${item.link}" target="_blank" class="text-blue-400 underline">
-            ${feed.name}: ${item.title}
-          </a>
-        `;
-        newsContainer.appendChild(li);
-      });
-    } catch (err) {
-      const li = document.createElement("li");
-      li.textContent = `${feed.name}: failed to load`;
-      newsContainer.appendChild(li);
     }
-  }
-}
 
-loadNews();
-</script>
-</div>
+    loadNews();
+  </script>
 
 </body>
 </html>
