@@ -26,7 +26,7 @@
         </div>
         <div>
           <div class="text-zinc-400">Red Folder</div>
-          <div class="text-red-400 font-semibold mt-1">⚠️ CPI</div>
+          <div id="redFolderTop" class="text-red-400 font-semibold mt-1">⚠️ CPI</div>
         </div>
       </div>
       <div class="text-xs text-zinc-500 mt-3">
@@ -34,13 +34,78 @@
       </div>
     </div>
 
-    <!-- BIAS -->
+    <!-- RED FOLDER -->
+    <div class="bg-zinc-900 p-4 rounded-xl">
+      <h2 class="text-red-400 mb-2 text-xl font-semibold">Red Folder</h2>
+      <p id="redFolderEvent">USD CPI</p>
+      <p id="redFolderTime">08:30 ET</p>
+      <p id="redFolderStatus" class="text-sm mt-2">No trades before release</p>
+    </div>
+
+    <!-- DECISION BOX -->
+    <div class="bg-zinc-900 p-4 rounded-xl">
+      <h2 class="text-cyan-400 mb-3 text-xl font-semibold">Decision Engine</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+        <div>
+          <div class="text-zinc-400">Market State</div>
+          <div id="marketState" class="font-semibold mt-1">Loading...</div>
+        </div>
+        <div>
+          <div class="text-zinc-400">Event Risk</div>
+          <div id="eventRisk" class="font-semibold mt-1">Loading...</div>
+        </div>
+        <div>
+          <div class="text-zinc-400">Bias Engine</div>
+          <div id="biasEngine" class="font-semibold mt-1">Loading...</div>
+        </div>
+        <div>
+          <div class="text-zinc-400">Verdict</div>
+          <div id="verdict" class="font-semibold mt-1">Loading...</div>
+        </div>
+      </div>
+      <div class="mt-3 pt-3 border-t border-zinc-800 text-sm space-y-1">
+        <div><span class="text-zinc-400">Reason:</span> <span id="decisionReason">Loading...</span></div>
+        <div><span class="text-zinc-400">Plan:</span> <span id="decisionPlan">Loading...</span></div>
+      </div>
+    </div>
+
+    <!-- ASSET CARD -->
     <div class="bg-zinc-900 p-4 rounded-xl">
       <h2 class="text-yellow-400 mb-2 text-2xl font-semibold">USDJPY</h2>
-      <p>Bias: <span class="text-red-400">Bearish</span></p>
-      <p>State: Wait</p>
-      <p>PDH: 159.49</p>
-      <p>PDL: 158.85</p>
+      <div class="space-y-1">
+        <p>Bias: <span id="assetBias" class="text-red-400">Bearish</span></p>
+        <p>State: <span id="assetState">Wait</span></p>
+        <p>PDH: <span id="pdhDisplay">159.49</span></p>
+        <p>PDL: <span id="pdlDisplay">158.85</span></p>
+        <p>Current Price: <span id="currentPriceText">159.09</span></p>
+      </div>
+    </div>
+
+    <!-- TRADE PLAN -->
+    <div class="bg-zinc-900 p-4 rounded-xl">
+      <h2 class="text-orange-400 mb-3 text-xl font-semibold">Trade Plan</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+        <div>
+          <div class="text-zinc-400">Entry Zone</div>
+          <div id="entryZone" class="font-semibold mt-1">Loading...</div>
+        </div>
+        <div>
+          <div class="text-zinc-400">Invalidation</div>
+          <div id="invalidation" class="font-semibold mt-1">Loading...</div>
+        </div>
+        <div>
+          <div class="text-zinc-400">Target 1</div>
+          <div id="target1" class="font-semibold mt-1">Loading...</div>
+        </div>
+        <div>
+          <div class="text-zinc-400">Target 2</div>
+          <div id="target2" class="font-semibold mt-1">Loading...</div>
+        </div>
+      </div>
+      <div class="mt-3 pt-3 border-t border-zinc-800 text-sm">
+        <span class="text-zinc-400">Risk Note:</span>
+        <span id="riskNote">Loading...</span>
+      </div>
     </div>
 
     <!-- CHART -->
@@ -49,14 +114,6 @@
         src="https://s.tradingview.com/widgetembed/?symbol=OANDA%3AUSDJPY&interval=15&theme=dark"
         style="width:100%; height:400px; border:none;"
       ></iframe>
-    </div>
-
-    <!-- RED FOLDER -->
-    <div class="bg-zinc-900 p-4 rounded-xl">
-      <h2 class="text-red-400 mb-2 text-xl font-semibold">Red Folder</h2>
-      <p>USD CPI</p>
-      <p>08:30 ET</p>
-      <p class="text-sm mt-2">No trades before release</p>
     </div>
 
     <!-- NEWS -->
@@ -70,6 +127,24 @@
   </div>
 
   <script>
+    // =========================
+    // USER-EDITABLE CORE INPUTS
+    // =========================
+    const DASHBOARD = {
+      asset: "USDJPY",
+      currentPrice: 159.09,
+      pdh: 159.49,
+      pdl: 158.85,
+      redFolderEvent: "USD CPI",
+      redFolderHourET: 8,
+      redFolderMinuteET: 30,
+      blackoutMinutesBefore: 5,
+      waitMinutesAfter: 15
+    };
+
+    // =========================
+    // CLOCK / SESSION LOGIC
+    // =========================
     function getNYParts() {
       const now = new Date();
       const formatter = new Intl.DateTimeFormat("en-US", {
@@ -108,37 +183,32 @@
       return `${String(h).padStart(2, "0")}h ${String(m).padStart(2, "0")}m ${String(s).padStart(2, "0")}s`;
     }
 
+    function getSessionState(nowParts) {
+      const totalMinutes = nowParts.hour * 60 + nowParts.minute;
+
+      const isLondon = totalMinutes >= 180 && totalMinutes < 480;   // 03:00 - 07:59 ET
+      const isNY = totalMinutes >= 480 && totalMinutes < 1020;      // 08:00 - 16:59 ET
+      const isAsia = totalMinutes >= 1140 || totalMinutes < 180;    // 19:00 - 02:59 ET
+
+      let label = "Reset / Between Sessions";
+      if (isLondon) label = "London Session";
+      else if (isNY) label = "New York Session";
+      else if (isAsia) label = "Asia Session";
+
+      return { isLondon, isNY, isAsia, label };
+    }
+
     function updateSessionBar() {
       const nowParts = getNYParts();
+      const session = getSessionState(nowParts);
 
       const londonEl = document.getElementById("londonCountdown");
       const nyEl = document.getElementById("nyCountdown");
       const currentSession = document.getElementById("currentSession");
 
-      const totalMinutes = nowParts.hour * 60 + nowParts.minute;
+      currentSession.textContent = session.label;
 
-      // Session ranges in New York time
-      // Asia: 19:00 - 02:59
-      // London: 03:00 - 07:59
-      // New York: 08:00 - 16:59
-      // Reset / Between Sessions: 17:00 - 18:59
-
-      const isLondon = totalMinutes >= 180 && totalMinutes < 480;
-      const isNY = totalMinutes >= 480 && totalMinutes < 1020;
-      const isAsia = totalMinutes >= 1140 || totalMinutes < 180;
-
-      let sessionLabel = "Reset / Between Sessions";
-      if (isLondon) {
-        sessionLabel = "London Session";
-      } else if (isNY) {
-        sessionLabel = "New York Session";
-      } else if (isAsia) {
-        sessionLabel = "Asia Session";
-      }
-
-      currentSession.textContent = sessionLabel;
-
-      if (isLondon) {
+      if (session.isLondon) {
         londonEl.textContent = "LIVE";
         londonEl.className = "text-green-400 font-semibold mt-1";
       } else {
@@ -146,7 +216,7 @@
         londonEl.className = "font-semibold mt-1";
       }
 
-      if (isNY) {
+      if (session.isNY) {
         nyEl.textContent = "LIVE";
         nyEl.className = "text-green-400 font-semibold mt-1";
       } else {
@@ -155,48 +225,304 @@
       }
     }
 
-    async function loadNews() {
-      const feeds = [
-        {
-          name: "ZeroHedge",
-          url: "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/zerohedge/feed"
-        },
-        {
-          name: "Coin Bureau",
-          url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.coinbureau.com/feed/"
-        }
-      ];
+    // =========================
+    // RED FOLDER LOGIC
+    // =========================
+    function getEventRisk(nowParts) {
+      const nowMinutes = nowParts.hour * 60 + nowParts.minute;
+      const eventMinutes = DASHBOARD.redFolderHourET * 60 + DASHBOARD.redFolderMinuteET;
 
-      const newsContainer = document.getElementById("news");
-      newsContainer.innerHTML = "";
+      const minutesToEvent = eventMinutes - nowMinutes;
+      const minutesSinceEvent = nowMinutes - eventMinutes;
 
-      for (const feed of feeds) {
-        try {
-          const res = await fetch(feed.url);
-          const data = await res.json();
+      if (minutesToEvent >= 0 && minutesToEvent <= DASHBOARD.blackoutMinutesBefore) {
+        return {
+          level: "HIGH",
+          text: "High risk: blackout window before red-folder event",
+          color: "text-red-400"
+        };
+      }
 
-          if (!data.items || !data.items.length) {
-            const li = document.createElement("li");
-            li.textContent = `${feed.name}: no items returned`;
-            newsContainer.appendChild(li);
-            continue;
-          }
+      if (minutesSinceEvent >= 0 && minutesSinceEvent <= DASHBOARD.waitMinutesAfter) {
+        return {
+          level: "HIGH",
+          text: "High risk: post-event wait window active",
+          color: "text-red-400"
+        };
+      }
 
-          data.items.slice(0, 3).forEach(item => {
-            const li = document.createElement("li");
-            li.innerHTML = `<a href="${item.link}" target="_blank" class="text-blue-400 underline">${feed.name}: ${item.title}</a>`;
-            newsContainer.appendChild(li);
-          });
-        } catch (err) {
+      if (minutesToEvent > DASHBOARD.blackoutMinutesBefore && minutesToEvent <= 60) {
+        return {
+          level: "CAUTION",
+          text: "Caution: major event within the next hour",
+          color: "text-yellow-400"
+        };
+      }
+
+      return {
+        level: "NORMAL",
+        text: "Normal: no immediate red-folder restriction",
+        color: "text-green-400"
+      };
+    }
+
+    function updateRedFolderPanel() {
+      document.getElementById("redFolderEvent").textContent = DASHBOARD.redFolderEvent;
+      document.getElementById("redFolderTime").textContent =
+        `${String(DASHBOARD.redFolderHourET).padStart(2, "0")}:${String(DASHBOARD.redFolderMinuteET).padStart(2, "0")} ET`;
+
+      const nowParts = getNYParts();
+      const risk = getEventRisk(nowParts);
+
+      let statusText = "No trades before release";
+      if (risk.level === "HIGH") {
+        statusText = risk.text;
+      } else if (risk.level === "CAUTION") {
+        statusText = risk.text;
+      } else {
+        statusText = "Event risk currently acceptable";
+      }
+
+      const statusEl = document.getElementById("redFolderStatus");
+      statusEl.textContent = statusText;
+      statusEl.className = `text-sm mt-2 ${risk.color}`;
+
+      const topEl = document.getElementById("redFolderTop");
+      topEl.textContent = `⚠️ ${DASHBOARD.redFolderEvent}`;
+      topEl.className = `font-semibold mt-1 ${risk.color}`;
+    }
+
+    // =========================
+    // DECISION ENGINE
+    // =========================
+    function evaluateBias() {
+      const price = DASHBOARD.currentPrice;
+      const pdh = DASHBOARD.pdh;
+      const pdl = DASHBOARD.pdl;
+      const buffer = 0.03;
+
+      if (price > pdh) {
+        return {
+          bias: "Bullish Continuation",
+          biasColor: "text-green-400",
+          state: "Expansion",
+          marketState: "Above PDH",
+          reason: "Price is trading above prior day high, favoring bullish continuation.",
+          plan: `Buy pullbacks above ${pdh.toFixed(2)} if session and news risk align.`,
+          entryZone: `${pdh.toFixed(2)} - ${(pdh + buffer).toFixed(2)}`,
+          invalidation: `Back below ${(pdh - buffer).toFixed(2)}`,
+          target1: (pdh + 0.20).toFixed(2),
+          target2: (pdh + 0.40).toFixed(2)
+        };
+      }
+
+      if (price < pdl) {
+        return {
+          bias: "Bearish Continuation",
+          biasColor: "text-red-400",
+          state: "Expansion",
+          marketState: "Below PDL",
+          reason: "Price is trading below prior day low, favoring bearish continuation.",
+          plan: `Sell rallies below ${pdl.toFixed(2)} if session and news risk align.`,
+          entryZone: `${(pdl - buffer).toFixed(2)} - ${pdl.toFixed(2)}`,
+          invalidation: `Back above ${(pdl + buffer).toFixed(2)}`,
+          target1: (pdl - 0.20).toFixed(2),
+          target2: (pdl - 0.40).toFixed(2)
+        };
+      }
+
+      const rangeMid = (pdh + pdl) / 2;
+
+      if (price >= rangeMid) {
+        return {
+          bias: "Range / Upper Half",
+          biasColor: "text-yellow-400",
+          state: "Range",
+          marketState: "Inside Day Range",
+          reason: "Price is inside the prior day range and in the upper half, so breakout confirmation is still needed.",
+          plan: `Prefer sell setups near ${pdh.toFixed(2)} unless price cleanly accepts above it.`,
+          entryZone: `${(pdh - 0.08).toFixed(2)} - ${pdh.toFixed(2)}`,
+          invalidation: `Clean acceptance above ${(pdh + 0.03).toFixed(2)}`,
+          target1: rangeMid.toFixed(2),
+          target2: pdl.toFixed(2)
+        };
+      }
+
+      return {
+        bias: "Range / Lower Half",
+        biasColor: "text-yellow-400",
+        state: "Range",
+        marketState: "Inside Day Range",
+        reason: "Price is inside the prior day range and in the lower half, so breakout confirmation is still needed.",
+        plan: `Prefer buy setups near ${pdl.toFixed(2)} unless price cleanly accepts below it.`,
+        entryZone: `${pdl.toFixed(2)} - ${(pdl + 0.08).toFixed(2)}`,
+        invalidation: `Clean acceptance below ${(pdl - 0.03).toFixed(2)}`,
+        target1: rangeMid.toFixed(2),
+        target2: pdh.toFixed(2)
+      };
+    }
+
+    function buildDecisionTool() {
+      const nowParts = getNYParts();
+      const session = getSessionState(nowParts);
+      const risk = getEventRisk(nowParts);
+      const bias = evaluateBias();
+
+      document.getElementById("currentPriceText").textContent = DASHBOARD.currentPrice.toFixed(2);
+      document.getElementById("pdhDisplay").textContent = DASHBOARD.pdh.toFixed(2);
+      document.getElementById("pdlDisplay").textContent = DASHBOARD.pdl.toFixed(2);
+
+      const assetBias = document.getElementById("assetBias");
+      assetBias.textContent = bias.bias;
+      assetBias.className = bias.biasColor;
+
+      document.getElementById("assetState").textContent = bias.state;
+      document.getElementById("marketState").textContent = bias.marketState;
+
+      const eventRisk = document.getElementById("eventRisk");
+      eventRisk.textContent = risk.level;
+      eventRisk.className = `${risk.color} font-semibold mt-1`;
+
+      const biasEngine = document.getElementById("biasEngine");
+      biasEngine.textContent = bias.bias;
+      biasEngine.className = `${bias.biasColor} font-semibold mt-1`;
+
+      let verdictText = "WAIT";
+      let verdictColor = "text-yellow-400";
+      let planText = bias.plan;
+
+      if (risk.level === "HIGH") {
+        verdictText = "AVOID";
+        verdictColor = "text-red-400";
+        planText = "Stand aside until the red-folder window clears.";
+      } else if ((session.isLondon || session.isNY) && (bias.bias === "Bullish Continuation" || bias.bias === "Bearish Continuation")) {
+        verdictText = "TRADE";
+        verdictColor = "text-green-400";
+      } else if (session.isAsia || session.label === "Reset / Between Sessions") {
+        verdictText = "WAIT";
+        verdictColor = "text-yellow-400";
+        planText = "Outside primary execution window. Wait for London or New York conditions.";
+      }
+
+      const verdict = document.getElementById("verdict");
+      verdict.textContent = verdictText;
+      verdict.className = `${verdictColor} font-semibold mt-1`;
+
+      document.getElementById("decisionReason").textContent = bias.reason;
+      document.getElementById("decisionPlan").textContent = planText;
+
+      document.getElementById("entryZone").textContent = bias.entryZone;
+      document.getElementById("invalidation").textContent = bias.invalidation;
+      document.getElementById("target1").textContent = bias.target1;
+      document.getElementById("target2").textContent = bias.target2;
+
+      let riskNote = "Normal conditions.";
+      if (risk.level === "HIGH") riskNote = "High-impact event risk. New entries should be avoided.";
+      else if (risk.level === "CAUTION") riskNote = "Major event within the hour. Reduce aggression.";
+      else if (!(session.isLondon || session.isNY)) riskNote = "Session quality is weaker outside London/NY.";
+      else riskNote = "Primary session active and no immediate event blackout.";
+
+      document.getElementById("riskNote").textContent = riskNote;
+    }
+
+    // =========================
+    // NEWS
+    // =========================
+    function addNewsItem(container, label, title, link) {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${link}" target="_blank" class="text-blue-400 underline">${label}: ${title}</a>`;
+      container.appendChild(li);
+    }
+
+    async function loadZeroHedge(container) {
+      try {
+        const url = "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/zerohedge/feed";
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (!data.items || !data.items.length) {
           const li = document.createElement("li");
-          li.textContent = `${feed.name}: failed to load`;
-          newsContainer.appendChild(li);
+          li.textContent = "ZeroHedge: no items returned";
+          container.appendChild(li);
+          return;
         }
+
+        data.items.slice(0, 3).forEach(item => {
+          addNewsItem(container, "ZeroHedge", item.title, item.link);
+        });
+      } catch (err) {
+        const li = document.createElement("li");
+        li.textContent = "ZeroHedge: failed to load";
+        container.appendChild(li);
       }
     }
 
-    updateSessionBar();
-    setInterval(updateSessionBar, 1000);
+    async function loadCoinBureau(container) {
+      try {
+        const proxiedUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://coinbureau.com/");
+        const res = await fetch(proxiedUrl);
+        const html = await res.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+
+        const anchors = Array.from(doc.querySelectorAll("a[href]"));
+        const seen = new Set();
+        let count = 0;
+
+        for (const a of anchors) {
+          const href = a.getAttribute("href") || "";
+          const text = (a.textContent || "").replace(/\s+/g, " ").trim();
+
+          const looksLikeArticle =
+            href.includes("coinbureau.com/") &&
+            !href.includes("/contact") &&
+            !href.includes("/about") &&
+            !href.includes("/careers") &&
+            !href.includes("/newsletter") &&
+            text.length > 20;
+
+          if (!looksLikeArticle) continue;
+          if (seen.has(href)) continue;
+
+          seen.add(href);
+          addNewsItem(container, "Coin Bureau", text, href);
+          count++;
+
+          if (count >= 3) break;
+        }
+
+        if (count === 0) {
+          const li = document.createElement("li");
+          li.innerHTML = `<a href="https://coinbureau.com/" target="_blank" class="text-blue-400 underline">Coin Bureau: open homepage</a>`;
+          container.appendChild(li);
+        }
+      } catch (err) {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="https://coinbureau.com/" target="_blank" class="text-blue-400 underline">Coin Bureau: open homepage</a>`;
+        container.appendChild(li);
+      }
+    }
+
+    async function loadNews() {
+      const newsContainer = document.getElementById("news");
+      newsContainer.innerHTML = "";
+
+      await loadZeroHedge(newsContainer);
+      await loadCoinBureau(newsContainer);
+    }
+
+    // =========================
+    // START
+    // =========================
+    function refreshDashboard() {
+      updateSessionBar();
+      updateRedFolderPanel();
+      buildDecisionTool();
+    }
+
+    refreshDashboard();
+    setInterval(refreshDashboard, 1000);
     loadNews();
   </script>
 </body>
