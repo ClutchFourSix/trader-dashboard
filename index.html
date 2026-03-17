@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trader Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white">
-
   <div class="p-4 space-y-4 max-w-3xl mx-auto">
 
     <!-- TOP BAR -->
-    <div class="bg-zinc-900 p-4 rounded-xl flex justify-between text-sm">
-      <div>London: coming soon</div>
-      <div>NY: coming soon</div>
-      <div class="text-red-400">⚠️ Red Folder: CPI</div>
+    <div class="bg-zinc-900 p-4 rounded-xl">
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-sm">
+        <div>
+          <div class="text-zinc-400">Current Session</div>
+          <div id="currentSession" class="text-yellow-400 font-semibold mt-1">Loading...</div>
+        </div>
+        <div>
+          <div class="text-zinc-400">London Opens In</div>
+          <div id="londonCountdown" class="font-semibold mt-1">Loading...</div>
+        </div>
+        <div>
+          <div class="text-zinc-400">NY Opens In</div>
+          <div id="nyCountdown" class="font-semibold mt-1">Loading...</div>
+        </div>
+        <div>
+          <div class="text-zinc-400">Red Folder</div>
+          <div class="text-red-400 font-semibold mt-1">⚠️ CPI</div>
+        </div>
+      </div>
+      <div class="text-xs text-zinc-500 mt-3">
+        Session clock uses America/New_York time.
+      </div>
     </div>
 
     <!-- BIAS -->
@@ -53,6 +70,69 @@
   </div>
 
   <script>
+    function getNYParts() {
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false
+      });
+
+      const parts = formatter.formatToParts(now);
+      const map = {};
+      for (const part of parts) {
+        if (part.type !== "literal") map[part.type] = parseInt(part.value, 10);
+      }
+      return map;
+    }
+
+    function secondsUntil(targetHour, targetMinute, nowParts) {
+      const nowSec = nowParts.hour * 3600 + nowParts.minute * 60 + nowParts.second;
+      const targetSec = targetHour * 3600 + targetMinute * 60;
+      let diff = targetSec - nowSec;
+      if (diff < 0) diff += 24 * 3600;
+      return diff;
+    }
+
+    function formatDuration(totalSeconds) {
+      const h = Math.floor(totalSeconds / 3600);
+      const m = Math.floor((totalSeconds % 3600) / 60);
+      const s = totalSeconds % 60;
+      return `${String(h).padStart(2, "0")}h ${String(m).padStart(2, "0")}m ${String(s).padStart(2, "0")}s`;
+    }
+
+    function getCurrentSessionLabel(nowParts) {
+      const totalMinutes = nowParts.hour * 60 + nowParts.minute;
+
+      // ET session windows
+      // Asia:    19:00 - 02:59
+      // London:  03:00 - 07:59
+      // New York:08:00 - 16:59
+      // Reset:   17:00 - 18:59
+
+      if (totalMinutes >= 180 && totalMinutes < 480) return "London Session";
+      if (totalMinutes >= 480 && totalMinutes < 1020) return "New York Session";
+      if (totalMinutes >= 1140 || totalMinutes < 180) return "Asia Session";
+      return "Reset / Between Sessions";
+    }
+
+    function updateSessionBar() {
+      const nowParts = getNYParts();
+
+      const londonCountdown = document.getElementById("londonCountdown");
+      const nyCountdown = document.getElementById("nyCountdown");
+      const currentSession = document.getElementById("currentSession");
+
+      currentSession.textContent = getCurrentSessionLabel(nowParts);
+      londonCountdown.textContent = formatDuration(secondsUntil(3, 0, nowParts));
+      nyCountdown.textContent = formatDuration(secondsUntil(8, 0, nowParts));
+    }
+
     async function loadNews() {
       const feeds = [
         {
@@ -97,8 +177,9 @@
       }
     }
 
+    updateSessionBar();
+    setInterval(updateSessionBar, 1000);
     loadNews();
   </script>
-
 </body>
 </html>
