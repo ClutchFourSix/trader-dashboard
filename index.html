@@ -44,25 +44,56 @@
   </div>
 
   <ul id="news"></ul>
+<!-- NEWS -->
+<div class="bg-zinc-900 p-4 rounded-xl">
+  <h2 class="text-green-400 mb-2">News</h2>
+  <ul id="news" class="space-y-2 text-sm text-zinc-300">
+    <li>Loading news...</li>
+  </ul>
+</div>
 
 <script>
 async function loadNews() {
   const feeds = [
-    "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/zerohedge/feed",
-    "https://api.rss2json.com/v1/api.json?rss_url=https://coinbureau.com/feed/"
+    {
+      name: "ZeroHedge",
+      url: "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/zerohedge/feed"
+    },
+    {
+      name: "Coin Bureau",
+      url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.coinbureau.com/feed/"
+    }
   ];
 
   const newsContainer = document.getElementById("news");
+  newsContainer.innerHTML = "";
 
-  for (let feed of feeds) {
-    const res = await fetch(feed);
-    const data = await res.json();
+  for (const feed of feeds) {
+    try {
+      const res = await fetch(feed.url);
+      const data = await res.json();
 
-    data.items.slice(0, 3).forEach(item => {
+      if (!data.items || !data.items.length) {
+        const li = document.createElement("li");
+        li.textContent = `${feed.name}: no items returned`;
+        newsContainer.appendChild(li);
+        continue;
+      }
+
+      data.items.slice(0, 3).forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <a href="${item.link}" target="_blank" class="text-blue-400 underline">
+            ${feed.name}: ${item.title}
+          </a>
+        `;
+        newsContainer.appendChild(li);
+      });
+    } catch (err) {
       const li = document.createElement("li");
-      li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+      li.textContent = `${feed.name}: failed to load`;
       newsContainer.appendChild(li);
-    });
+    }
   }
 }
 
