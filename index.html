@@ -17,11 +17,11 @@
           <div id="currentSession" class="text-yellow-400 font-semibold mt-1">Loading...</div>
         </div>
         <div>
-          <div class="text-zinc-400">London Opens In</div>
+          <div class="text-zinc-400">London</div>
           <div id="londonCountdown" class="font-semibold mt-1">Loading...</div>
         </div>
         <div>
-          <div class="text-zinc-400">NY Opens In</div>
+          <div class="text-zinc-400">New York</div>
           <div id="nyCountdown" class="font-semibold mt-1">Loading...</div>
         </div>
         <div>
@@ -86,7 +86,9 @@
       const parts = formatter.formatToParts(now);
       const map = {};
       for (const part of parts) {
-        if (part.type !== "literal") map[part.type] = parseInt(part.value, 10);
+        if (part.type !== "literal") {
+          map[part.type] = parseInt(part.value, 10);
+        }
       }
       return map;
     }
@@ -106,54 +108,52 @@
       return `${String(h).padStart(2, "0")}h ${String(m).padStart(2, "0")}m ${String(s).padStart(2, "0")}s`;
     }
 
-    function getCurrentSessionLabel(nowParts) {
+    function updateSessionBar() {
+      const nowParts = getNYParts();
+
+      const londonEl = document.getElementById("londonCountdown");
+      const nyEl = document.getElementById("nyCountdown");
+      const currentSession = document.getElementById("currentSession");
+
       const totalMinutes = nowParts.hour * 60 + nowParts.minute;
 
-      // ET session windows
-      // Asia:    19:00 - 02:59
-      // London:  03:00 - 07:59
-      // New York:08:00 - 16:59
-      // Reset:   17:00 - 18:59
+      // Session ranges in New York time
+      // Asia: 19:00 - 02:59
+      // London: 03:00 - 07:59
+      // New York: 08:00 - 16:59
+      // Reset / Between Sessions: 17:00 - 18:59
 
-      if (totalMinutes >= 180 && totalMinutes < 480) return "London Session";
-      if (totalMinutes >= 480 && totalMinutes < 1020) return "New York Session";
-      if (totalMinutes >= 1140 || totalMinutes < 180) return "Asia Session";
-      return "Reset / Between Sessions";
+      const isLondon = totalMinutes >= 180 && totalMinutes < 480;
+      const isNY = totalMinutes >= 480 && totalMinutes < 1020;
+      const isAsia = totalMinutes >= 1140 || totalMinutes < 180;
+
+      let sessionLabel = "Reset / Between Sessions";
+      if (isLondon) {
+        sessionLabel = "London Session";
+      } else if (isNY) {
+        sessionLabel = "New York Session";
+      } else if (isAsia) {
+        sessionLabel = "Asia Session";
+      }
+
+      currentSession.textContent = sessionLabel;
+
+      if (isLondon) {
+        londonEl.textContent = "LIVE";
+        londonEl.className = "text-green-400 font-semibold mt-1";
+      } else {
+        londonEl.textContent = formatDuration(secondsUntil(3, 0, nowParts));
+        londonEl.className = "font-semibold mt-1";
+      }
+
+      if (isNY) {
+        nyEl.textContent = "LIVE";
+        nyEl.className = "text-green-400 font-semibold mt-1";
+      } else {
+        nyEl.textContent = formatDuration(secondsUntil(8, 0, nowParts));
+        nyEl.className = "font-semibold mt-1";
+      }
     }
-
-    function updateSessionBar() {
-  const nowParts = getNYParts();
-
-  const londonEl = document.getElementById("londonCountdown");
-  const nyEl = document.getElementById("nyCountdown");
-  const currentSession = document.getElementById("currentSession");
-
-  const totalMinutes = nowParts.hour * 60 + nowParts.minute;
-
-  // Session ranges (ET)
-  const isLondon = totalMinutes >= 180 && totalMinutes < 480;
-  const isNY = totalMinutes >= 480 && totalMinutes < 1020;
-
-  currentSession.textContent = getCurrentSessionLabel(nowParts);
-
-  // LONDON
-  if (isLondon) {
-    londonEl.textContent = "LIVE";
-    londonEl.className = "text-green-400 font-semibold mt-1";
-  } else {
-    londonEl.textContent = formatDuration(secondsUntil(3, 0, nowParts));
-    londonEl.className = "font-semibold mt-1";
-  }
-
-  // NEW YORK
-  if (isNY) {
-    nyEl.textContent = "LIVE";
-    nyEl.className = "text-green-400 font-semibold mt-1";
-  } else {
-    nyEl.textContent = formatDuration(secondsUntil(8, 0, nowParts));
-    nyEl.className = "font-semibold mt-1";
-  }
-}
 
     async function loadNews() {
       const feeds = [
@@ -184,11 +184,7 @@
 
           data.items.slice(0, 3).forEach(item => {
             const li = document.createElement("li");
-            li.innerHTML = `
-              <a href="${item.link}" target="_blank" class="text-blue-400 underline">
-                ${feed.name}: ${item.title}
-              </a>
-            `;
+            li.innerHTML = `<a href="${item.link}" target="_blank" class="text-blue-400 underline">${feed.name}: ${item.title}</a>`;
             newsContainer.appendChild(li);
           });
         } catch (err) {
