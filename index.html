@@ -3,15 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trader Dashboard</title>
+  <title>Trader Decision Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white">
-  <div class="p-4 space-y-4 max-w-3xl mx-auto">
+  <div class="p-4 space-y-4 max-w-5xl mx-auto">
+
+    <!-- HEADER -->
+    <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
+      <div class="flex items-center justify-between gap-3">
+        <div>
+          <h1 class="text-xl font-bold">Trader Decision Dashboard</h1>
+          <p class="text-xs text-zinc-500 mt-1">Multi-asset • Mobile-first • Collapsible cards • Saved locally</p>
+        </div>
+        <button id="notifyBtn" class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-xl">
+          Enable Alerts
+        </button>
+      </div>
+    </div>
+
+    <!-- ALERT BANNER -->
+    <div id="alertBanner" class="hidden bg-red-900/40 border border-red-700 text-red-200 p-4 rounded-2xl">
+      <div class="font-semibold">Alert</div>
+      <div id="alertBannerText" class="text-sm mt-1">Waiting...</div>
+    </div>
 
     <!-- TOP BAR -->
-    <div class="bg-zinc-900 p-4 rounded-xl">
-      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-sm">
+    <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-sm">
         <div>
           <div class="text-zinc-400">Current Session</div>
           <div id="currentSession" class="text-yellow-400 font-semibold mt-1">Loading...</div>
@@ -34,90 +53,95 @@
       </div>
     </div>
 
-    <!-- RED FOLDER -->
-    <div class="bg-zinc-900 p-4 rounded-xl">
+    <!-- GLOBAL CONTROLS -->
+    <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
+      <h2 class="text-cyan-400 mb-3 text-xl font-semibold">Global Controls</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+        <div>
+          <label class="block text-zinc-400 mb-1">Red Folder Event</label>
+          <input id="inputEventName" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">Event Hour ET</label>
+          <input id="inputEventHour" type="number" min="0" max="23" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">Event Minute ET</label>
+          <input id="inputEventMinute" type="number" min="0" max="59" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">Blackout Before (min)</label>
+          <input id="inputBlackoutBefore" type="number" min="0" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">Wait After (min)</label>
+          <input id="inputWaitAfter" type="number" min="0" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-4">
+        <button id="saveGlobalBtn" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-xl">Save Global Settings</button>
+      </div>
+    </div>
+
+    <!-- WATCHLIST CONTROLS -->
+    <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
+      <h2 class="text-orange-400 mb-3 text-xl font-semibold">Watchlist Controls</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+        <div>
+          <label class="block text-zinc-400 mb-1">Symbol</label>
+          <input id="newSymbol" placeholder="USDJPY" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">Current Price</label>
+          <input id="newCurrentPrice" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">Previous Price</label>
+          <input id="newPreviousPrice" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">PDH</label>
+          <input id="newPDH" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">PDL</label>
+          <input id="newPDL" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">Retest Buffer</label>
+          <input id="newRetestBuffer" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-4">
+        <button id="addAssetBtn" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl">Add Asset</button>
+        <button id="resetAssetsBtn" class="bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-xl">Reset Watchlist</button>
+      </div>
+      <div class="text-xs text-zinc-500 mt-3">
+        Each asset card is collapsible. Use the summary row to scan quickly, then expand only what matters.
+      </div>
+    </div>
+
+    <!-- RED FOLDER PANEL -->
+    <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
       <h2 class="text-red-400 mb-2 text-xl font-semibold">Red Folder</h2>
       <p id="redFolderEvent">USD CPI</p>
       <p id="redFolderTime">08:30 ET</p>
       <p id="redFolderStatus" class="text-sm mt-2">No trades before release</p>
     </div>
 
-    <!-- DECISION BOX -->
-    <div class="bg-zinc-900 p-4 rounded-xl">
-      <h2 class="text-cyan-400 mb-3 text-xl font-semibold">Decision Engine</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-        <div>
-          <div class="text-zinc-400">Market State</div>
-          <div id="marketState" class="font-semibold mt-1">Loading...</div>
-        </div>
-        <div>
-          <div class="text-zinc-400">Event Risk</div>
-          <div id="eventRisk" class="font-semibold mt-1">Loading...</div>
-        </div>
-        <div>
-          <div class="text-zinc-400">Bias Engine</div>
-          <div id="biasEngine" class="font-semibold mt-1">Loading...</div>
-        </div>
-        <div>
-          <div class="text-zinc-400">Verdict</div>
-          <div id="verdict" class="font-semibold mt-1">Loading...</div>
-        </div>
-      </div>
-      <div class="mt-3 pt-3 border-t border-zinc-800 text-sm space-y-1">
-        <div><span class="text-zinc-400">Reason:</span> <span id="decisionReason">Loading...</span></div>
-        <div><span class="text-zinc-400">Plan:</span> <span id="decisionPlan">Loading...</span></div>
+    <!-- WATCHLIST SUMMARY -->
+    <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
+      <h2 class="text-lime-400 mb-3 text-xl font-semibold">Watchlist Summary</h2>
+      <div id="watchlistSummary" class="space-y-2 text-sm text-zinc-300">
+        <div>Loading...</div>
       </div>
     </div>
 
-    <!-- ASSET CARD -->
-    <div class="bg-zinc-900 p-4 rounded-xl">
-      <h2 class="text-yellow-400 mb-2 text-2xl font-semibold">USDJPY</h2>
-      <div class="space-y-1">
-        <p>Bias: <span id="assetBias" class="text-red-400">Bearish</span></p>
-        <p>State: <span id="assetState">Wait</span></p>
-        <p>PDH: <span id="pdhDisplay">159.49</span></p>
-        <p>PDL: <span id="pdlDisplay">158.85</span></p>
-        <p>Current Price: <span id="currentPriceText">159.09</span></p>
-      </div>
-    </div>
-
-    <!-- TRADE PLAN -->
-    <div class="bg-zinc-900 p-4 rounded-xl">
-      <h2 class="text-orange-400 mb-3 text-xl font-semibold">Trade Plan</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-        <div>
-          <div class="text-zinc-400">Entry Zone</div>
-          <div id="entryZone" class="font-semibold mt-1">Loading...</div>
-        </div>
-        <div>
-          <div class="text-zinc-400">Invalidation</div>
-          <div id="invalidation" class="font-semibold mt-1">Loading...</div>
-        </div>
-        <div>
-          <div class="text-zinc-400">Target 1</div>
-          <div id="target1" class="font-semibold mt-1">Loading...</div>
-        </div>
-        <div>
-          <div class="text-zinc-400">Target 2</div>
-          <div id="target2" class="font-semibold mt-1">Loading...</div>
-        </div>
-      </div>
-      <div class="mt-3 pt-3 border-t border-zinc-800 text-sm">
-        <span class="text-zinc-400">Risk Note:</span>
-        <span id="riskNote">Loading...</span>
-      </div>
-    </div>
-
-    <!-- CHART -->
-    <div class="bg-zinc-900 p-2 rounded-xl">
-      <iframe
-        src="https://s.tradingview.com/widgetembed/?symbol=OANDA%3AUSDJPY&interval=15&theme=dark"
-        style="width:100%; height:400px; border:none;"
-      ></iframe>
-    </div>
+    <!-- ASSET CARDS -->
+    <div id="assetGrid" class="grid grid-cols-1 gap-4"></div>
 
     <!-- NEWS -->
-    <div class="bg-zinc-900 p-4 rounded-xl">
+    <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
       <h2 class="text-green-400 mb-3 text-xl font-semibold">News</h2>
       <ul id="news" class="space-y-3 text-sm text-zinc-300">
         <li>Loading news...</li>
@@ -127,14 +151,7 @@
   </div>
 
   <script>
-    // =========================
-    // USER-EDITABLE CORE INPUTS
-    // =========================
-    const DASHBOARD = {
-      asset: "USDJPY",
-      currentPrice: 159.09,
-      pdh: 159.49,
-      pdl: 158.85,
+    const DEFAULT_GLOBALS = {
       redFolderEvent: "USD CPI",
       redFolderHourET: 8,
       redFolderMinuteET: 30,
@@ -142,9 +159,62 @@
       waitMinutesAfter: 15
     };
 
-    // =========================
-    // CLOCK / SESSION LOGIC
-    // =========================
+    const DEFAULT_ASSETS = [
+      {
+        id: crypto.randomUUID(),
+        symbol: "USDJPY",
+        currentPrice: 159.155,
+        previousPrice: 159.120,
+        pdh: 159.490,
+        pdl: 158.850,
+        retestBuffer: 0.030,
+        expanded: true
+      },
+      {
+        id: crypto.randomUUID(),
+        symbol: "EURUSD",
+        currentPrice: 1.089,
+        previousPrice: 1.091,
+        pdh: 1.095,
+        pdl: 1.086,
+        retestBuffer: 0.001,
+        expanded: false
+      }
+    ];
+
+    let GLOBALS = loadGlobals();
+    let ASSETS = loadAssets();
+    let lastTradeAlerts = {};
+
+    function loadGlobals() {
+      const saved = localStorage.getItem("traderGlobals");
+      if (!saved) return { ...DEFAULT_GLOBALS };
+      try {
+        return { ...DEFAULT_GLOBALS, ...JSON.parse(saved) };
+      } catch {
+        return { ...DEFAULT_GLOBALS };
+      }
+    }
+
+    function loadAssets() {
+      const saved = localStorage.getItem("traderAssets");
+      if (!saved) return [...DEFAULT_ASSETS];
+      try {
+        const parsed = JSON.parse(saved);
+        return parsed.length ? parsed : [...DEFAULT_ASSETS];
+      } catch {
+        return [...DEFAULT_ASSETS];
+      }
+    }
+
+    function saveGlobals() {
+      localStorage.setItem("traderGlobals", JSON.stringify(GLOBALS));
+    }
+
+    function saveAssets() {
+      localStorage.setItem("traderAssets", JSON.stringify(ASSETS));
+    }
+
     function getNYParts() {
       const now = new Date();
       const formatter = new Intl.DateTimeFormat("en-US", {
@@ -161,9 +231,7 @@
       const parts = formatter.formatToParts(now);
       const map = {};
       for (const part of parts) {
-        if (part.type !== "literal") {
-          map[part.type] = parseInt(part.value, 10);
-        }
+        if (part.type !== "literal") map[part.type] = parseInt(part.value, 10);
       }
       return map;
     }
@@ -185,10 +253,9 @@
 
     function getSessionState(nowParts) {
       const totalMinutes = nowParts.hour * 60 + nowParts.minute;
-
-      const isLondon = totalMinutes >= 180 && totalMinutes < 480;   // 03:00 - 07:59 ET
-      const isNY = totalMinutes >= 480 && totalMinutes < 1020;      // 08:00 - 16:59 ET
-      const isAsia = totalMinutes >= 1140 || totalMinutes < 180;    // 19:00 - 02:59 ET
+      const isLondon = totalMinutes >= 180 && totalMinutes < 480;
+      const isNY = totalMinutes >= 480 && totalMinutes < 1020;
+      const isAsia = totalMinutes >= 1140 || totalMinutes < 180;
 
       let label = "Reset / Between Sessions";
       if (isLondon) label = "London Session";
@@ -225,17 +292,14 @@
       }
     }
 
-    // =========================
-    // RED FOLDER LOGIC
-    // =========================
     function getEventRisk(nowParts) {
       const nowMinutes = nowParts.hour * 60 + nowParts.minute;
-      const eventMinutes = DASHBOARD.redFolderHourET * 60 + DASHBOARD.redFolderMinuteET;
+      const eventMinutes = GLOBALS.redFolderHourET * 60 + GLOBALS.redFolderMinuteET;
 
       const minutesToEvent = eventMinutes - nowMinutes;
       const minutesSinceEvent = nowMinutes - eventMinutes;
 
-      if (minutesToEvent >= 0 && minutesToEvent <= DASHBOARD.blackoutMinutesBefore) {
+      if (minutesToEvent >= 0 && minutesToEvent <= GLOBALS.blackoutMinutesBefore) {
         return {
           level: "HIGH",
           text: "High risk: blackout window before red-folder event",
@@ -243,7 +307,7 @@
         };
       }
 
-      if (minutesSinceEvent >= 0 && minutesSinceEvent <= DASHBOARD.waitMinutesAfter) {
+      if (minutesSinceEvent >= 0 && minutesSinceEvent <= GLOBALS.waitMinutesAfter) {
         return {
           level: "HIGH",
           text: "High risk: post-event wait window active",
@@ -251,7 +315,7 @@
         };
       }
 
-      if (minutesToEvent > DASHBOARD.blackoutMinutesBefore && minutesToEvent <= 60) {
+      if (minutesToEvent > GLOBALS.blackoutMinutesBefore && minutesToEvent <= 60) {
         return {
           level: "CAUTION",
           text: "Caution: major event within the next hour",
@@ -267,167 +331,454 @@
     }
 
     function updateRedFolderPanel() {
-      document.getElementById("redFolderEvent").textContent = DASHBOARD.redFolderEvent;
+      document.getElementById("redFolderEvent").textContent = GLOBALS.redFolderEvent;
       document.getElementById("redFolderTime").textContent =
-        `${String(DASHBOARD.redFolderHourET).padStart(2, "0")}:${String(DASHBOARD.redFolderMinuteET).padStart(2, "0")} ET`;
+        `${String(GLOBALS.redFolderHourET).padStart(2, "0")}:${String(GLOBALS.redFolderMinuteET).padStart(2, "0")} ET`;
 
       const nowParts = getNYParts();
       const risk = getEventRisk(nowParts);
 
-      let statusText = "No trades before release";
-      if (risk.level === "HIGH") {
-        statusText = risk.text;
-      } else if (risk.level === "CAUTION") {
-        statusText = risk.text;
-      } else {
-        statusText = "Event risk currently acceptable";
-      }
-
       const statusEl = document.getElementById("redFolderStatus");
-      statusEl.textContent = statusText;
+      statusEl.textContent = risk.text;
       statusEl.className = `text-sm mt-2 ${risk.color}`;
 
       const topEl = document.getElementById("redFolderTop");
-      topEl.textContent = `⚠️ ${DASHBOARD.redFolderEvent}`;
+      topEl.textContent = `⚠️ ${GLOBALS.redFolderEvent}`;
       topEl.className = `font-semibold mt-1 ${risk.color}`;
     }
 
-    // =========================
-    // DECISION ENGINE
-    // =========================
-    function evaluateBias() {
-      const price = DASHBOARD.currentPrice;
-      const pdh = DASHBOARD.pdh;
-      const pdl = DASHBOARD.pdl;
-      const buffer = 0.03;
-
-      if (price > pdh) {
-        return {
-          bias: "Bullish Continuation",
-          biasColor: "text-green-400",
-          state: "Expansion",
-          marketState: "Above PDH",
-          reason: "Price is trading above prior day high, favoring bullish continuation.",
-          plan: `Buy pullbacks above ${pdh.toFixed(2)} if session and news risk align.`,
-          entryZone: `${pdh.toFixed(2)} - ${(pdh + buffer).toFixed(2)}`,
-          invalidation: `Back below ${(pdh - buffer).toFixed(2)}`,
-          target1: (pdh + 0.20).toFixed(2),
-          target2: (pdh + 0.40).toFixed(2)
-        };
-      }
-
-      if (price < pdl) {
-        return {
-          bias: "Bearish Continuation",
-          biasColor: "text-red-400",
-          state: "Expansion",
-          marketState: "Below PDL",
-          reason: "Price is trading below prior day low, favoring bearish continuation.",
-          plan: `Sell rallies below ${pdl.toFixed(2)} if session and news risk align.`,
-          entryZone: `${(pdl - buffer).toFixed(2)} - ${pdl.toFixed(2)}`,
-          invalidation: `Back above ${(pdl + buffer).toFixed(2)}`,
-          target1: (pdl - 0.20).toFixed(2),
-          target2: (pdl - 0.40).toFixed(2)
-        };
-      }
-
-      const rangeMid = (pdh + pdl) / 2;
-
-      if (price >= rangeMid) {
-        return {
-          bias: "Range / Upper Half",
-          biasColor: "text-yellow-400",
-          state: "Range",
-          marketState: "Inside Day Range",
-          reason: "Price is inside the prior day range and in the upper half, so breakout confirmation is still needed.",
-          plan: `Prefer sell setups near ${pdh.toFixed(2)} unless price cleanly accepts above it.`,
-          entryZone: `${(pdh - 0.08).toFixed(2)} - ${pdh.toFixed(2)}`,
-          invalidation: `Clean acceptance above ${(pdh + 0.03).toFixed(2)}`,
-          target1: rangeMid.toFixed(2),
-          target2: pdl.toFixed(2)
-        };
-      }
-
-      return {
-        bias: "Range / Lower Half",
-        biasColor: "text-yellow-400",
-        state: "Range",
-        marketState: "Inside Day Range",
-        reason: "Price is inside the prior day range and in the lower half, so breakout confirmation is still needed.",
-        plan: `Prefer buy setups near ${pdl.toFixed(2)} unless price cleanly accepts below it.`,
-        entryZone: `${pdl.toFixed(2)} - ${(pdl + 0.08).toFixed(2)}`,
-        invalidation: `Clean acceptance below ${(pdl - 0.03).toFixed(2)}`,
-        target1: rangeMid.toFixed(2),
-        target2: pdh.toFixed(2)
-      };
+    function formatPrice(value) {
+      const num = Number(value);
+      if (Math.abs(num) >= 100) return num.toFixed(3);
+      if (Math.abs(num) >= 10) return num.toFixed(3);
+      if (Math.abs(num) >= 1) return num.toFixed(3);
+      return num.toFixed(5);
     }
 
-    function buildDecisionTool() {
+    function evaluateAsset(asset) {
       const nowParts = getNYParts();
       const session = getSessionState(nowParts);
       const risk = getEventRisk(nowParts);
-      const bias = evaluateBias();
 
-      document.getElementById("currentPriceText").textContent = DASHBOARD.currentPrice.toFixed(2);
-      document.getElementById("pdhDisplay").textContent = DASHBOARD.pdh.toFixed(2);
-      document.getElementById("pdlDisplay").textContent = DASHBOARD.pdl.toFixed(2);
+      const price = Number(asset.currentPrice);
+      const prev = Number(asset.previousPrice);
+      const pdh = Number(asset.pdh);
+      const pdl = Number(asset.pdl);
+      const buffer = Number(asset.retestBuffer);
 
-      const assetBias = document.getElementById("assetBias");
-      assetBias.textContent = bias.bias;
-      assetBias.className = bias.biasColor;
+      const brokeAbove = prev <= pdh && price > pdh;
+      const brokeBelow = prev >= pdl && price < pdl;
 
-      document.getElementById("assetState").textContent = bias.state;
-      document.getElementById("marketState").textContent = bias.marketState;
+      const retestBull = price >= pdh - buffer && price <= pdh + buffer;
+      const retestBear = price >= pdl - buffer && price <= pdl + buffer;
 
-      const eventRisk = document.getElementById("eventRisk");
-      eventRisk.textContent = risk.level;
-      eventRisk.className = `${risk.color} font-semibold mt-1`;
+      let bias = "Range";
+      let biasColor = "text-yellow-400";
+      let state = "No Trade Zone";
+      let marketState = "Inside Range";
+      let reason = "Price is still inside PDH/PDL. Expansion has not confirmed.";
+      let plan = "Wait for expansion outside PDH or PDL.";
+      let entryZone = "-";
+      let invalidation = "-";
+      let target1 = "-";
+      let target2 = "-";
+      let tradeReady = false;
 
-      const biasEngine = document.getElementById("biasEngine");
-      biasEngine.textContent = bias.bias;
-      biasEngine.className = `${bias.biasColor} font-semibold mt-1`;
-
-      let verdictText = "WAIT";
-      let verdictColor = "text-yellow-400";
-      let planText = bias.plan;
-
-      if (risk.level === "HIGH") {
-        verdictText = "AVOID";
-        verdictColor = "text-red-400";
-        planText = "Stand aside until the red-folder window clears.";
-      } else if ((session.isLondon || session.isNY) && (bias.bias === "Bullish Continuation" || bias.bias === "Bearish Continuation")) {
-        verdictText = "TRADE";
-        verdictColor = "text-green-400";
-      } else if (session.isAsia || session.label === "Reset / Between Sessions") {
-        verdictText = "WAIT";
-        verdictColor = "text-yellow-400";
-        planText = "Outside primary execution window. Wait for London or New York conditions.";
+      if (price > pdh) {
+        bias = "Bullish Confirmed";
+        biasColor = "text-green-400";
+        state = brokeAbove ? "Break Confirmed" : "Above PDH";
+        marketState = "Above PDH";
+        reason = brokeAbove
+          ? "Price has broken above PDH from below."
+          : "Price remains above PDH and bullish continuation is possible.";
+        plan = retestBull
+          ? `Price is near PDH retest zone. Watch for hold above ${formatPrice(pdh)}.`
+          : `Wait for pullback toward ${formatPrice(pdh)} for a possible long.`;
+        entryZone = `${formatPrice(pdh - buffer)} - ${formatPrice(pdh + buffer)}`;
+        invalidation = `${formatPrice(pdh - buffer - 0.02)}`;
+        target1 = formatPrice(pdh + 0.20);
+        target2 = formatPrice(pdh + 0.40);
+        tradeReady = retestBull;
+      } else if (price < pdl) {
+        bias = "Bearish Confirmed";
+        biasColor = "text-red-400";
+        state = brokeBelow ? "Break Confirmed" : "Below PDL";
+        marketState = "Below PDL";
+        reason = brokeBelow
+          ? "Price has broken below PDL from above."
+          : "Price remains below PDL and bearish continuation is possible.";
+        plan = retestBear
+          ? `Price is near PDL retest zone. Watch for rejection below ${formatPrice(pdl)}.`
+          : `Wait for rally back toward ${formatPrice(pdl)} for a possible short.`;
+        entryZone = `${formatPrice(pdl - buffer)} - ${formatPrice(pdl + buffer)}`;
+        invalidation = `${formatPrice(pdl + buffer + 0.02)}`;
+        target1 = formatPrice(pdl - 0.20);
+        target2 = formatPrice(pdl - 0.40);
+        tradeReady = retestBear;
       }
 
-      const verdict = document.getElementById("verdict");
-      verdict.textContent = verdictText;
-      verdict.className = `${verdictColor} font-semibold mt-1`;
-
-      document.getElementById("decisionReason").textContent = bias.reason;
-      document.getElementById("decisionPlan").textContent = planText;
-
-      document.getElementById("entryZone").textContent = bias.entryZone;
-      document.getElementById("invalidation").textContent = bias.invalidation;
-      document.getElementById("target1").textContent = bias.target1;
-      document.getElementById("target2").textContent = bias.target2;
-
+      let verdict = "WAIT";
+      let verdictColor = "text-yellow-400";
       let riskNote = "Normal conditions.";
-      if (risk.level === "HIGH") riskNote = "High-impact event risk. New entries should be avoided.";
-      else if (risk.level === "CAUTION") riskNote = "Major event within the hour. Reduce aggression.";
-      else if (!(session.isLondon || session.isNY)) riskNote = "Session quality is weaker outside London/NY.";
-      else riskNote = "Primary session active and no immediate event blackout.";
 
-      document.getElementById("riskNote").textContent = riskNote;
+      if (risk.level === "HIGH") {
+        verdict = "NO TRADE";
+        verdictColor = "text-red-400";
+        plan = "Stand aside until the red-folder risk window clears.";
+        riskNote = "High-impact event risk. New entries should be avoided.";
+      } else if (!(session.isLondon || session.isNY)) {
+        verdict = "NO TRADE";
+        verdictColor = "text-red-400";
+        plan = "Outside primary execution session.";
+        riskNote = "Session quality is weaker outside London/NY.";
+      } else if (marketState === "Inside Range") {
+        verdict = "NO TRADE";
+        verdictColor = "text-red-400";
+        riskNote = "No directional edge while price remains inside PDH/PDL.";
+      } else if (tradeReady) {
+        verdict = "TRADE";
+        verdictColor = "text-green-400";
+        riskNote = "Primary session active. Level interaction is actionable.";
+      } else {
+        verdict = "WAIT";
+        verdictColor = "text-yellow-400";
+        riskNote = "Directional bias exists, but better location is still needed.";
+      }
+
+      return {
+        symbol: asset.symbol,
+        price,
+        prev,
+        pdh,
+        pdl,
+        bias,
+        biasColor,
+        state,
+        marketState,
+        reason,
+        plan,
+        entryZone,
+        invalidation,
+        target1,
+        target2,
+        verdict,
+        verdictColor,
+        riskLevel: risk.level,
+        riskColor: risk.color,
+        riskNote,
+        sessionLabel: session.label
+      };
     }
 
-    // =========================
-    // NEWS
-    // =========================
+    function verdictBadgeClass(verdict) {
+      if (verdict === "TRADE") return "bg-green-900/50 text-green-300 border border-green-700";
+      if (verdict === "WAIT") return "bg-yellow-900/50 text-yellow-300 border border-yellow-700";
+      return "bg-red-900/50 text-red-300 border border-red-700";
+    }
+
+    function renderWatchlistSummary() {
+      const container = document.getElementById("watchlistSummary");
+      container.innerHTML = "";
+
+      if (!ASSETS.length) {
+        container.innerHTML = "<div>No assets in watchlist.</div>";
+        return;
+      }
+
+      ASSETS.forEach(asset => {
+        const evalResult = evaluateAsset(asset);
+        const row = document.createElement("div");
+        row.className = "flex items-center justify-between gap-3 bg-zinc-800 rounded-xl px-3 py-3";
+
+        row.innerHTML = `
+          <div class="min-w-0">
+            <div class="font-semibold">${evalResult.symbol}</div>
+            <div class="text-xs text-zinc-400 truncate">${evalResult.bias}</div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm">${formatPrice(evalResult.price)}</div>
+            <div class="text-xs ${evalResult.verdictColor.replace("text-", "text-")}">${evalResult.verdict}</div>
+          </div>
+        `;
+
+        row.addEventListener("click", () => {
+          toggleAssetExpanded(asset.id);
+        });
+
+        container.appendChild(row);
+      });
+    }
+
+    function renderAssets() {
+      const grid = document.getElementById("assetGrid");
+      grid.innerHTML = "";
+
+      ASSETS.forEach(asset => {
+        const result = evaluateAsset(asset);
+
+        if (lastTradeAlerts[asset.id] !== result.verdict && result.verdict === "TRADE") {
+          sendTradeAlert(`${asset.symbol}: TRADE — ${result.plan}`);
+        }
+        lastTradeAlerts[asset.id] = result.verdict;
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden";
+
+        wrapper.innerHTML = `
+          <button class="w-full text-left p-4 flex items-center justify-between gap-3 asset-toggle">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xl font-bold text-yellow-400">${asset.symbol}</span>
+                <span class="px-2 py-1 rounded-full text-xs ${verdictBadgeClass(result.verdict)}">${result.verdict}</span>
+              </div>
+              <div class="text-sm mt-1 ${result.biasColor}">${result.bias}</div>
+              <div class="text-xs text-zinc-400 mt-1">Price: ${formatPrice(result.price)} | Session: ${result.sessionLabel}</div>
+            </div>
+            <div class="text-zinc-400 text-xl">${asset.expanded ? "−" : "+"}</div>
+          </button>
+
+          <div class="${asset.expanded ? "block" : "hidden"} asset-body border-t border-zinc-800 p-4 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              <div>
+                <div class="text-zinc-400">Market State</div>
+                <div class="font-semibold mt-1">${result.marketState}</div>
+              </div>
+              <div>
+                <div class="text-zinc-400">Event Risk</div>
+                <div class="${result.riskColor} font-semibold mt-1">${result.riskLevel}</div>
+              </div>
+              <div>
+                <div class="text-zinc-400">Bias Engine</div>
+                <div class="${result.biasColor} font-semibold mt-1">${result.bias}</div>
+              </div>
+              <div>
+                <div class="text-zinc-400">State</div>
+                <div class="font-semibold mt-1">${result.state}</div>
+              </div>
+            </div>
+
+            <div class="bg-zinc-800 rounded-xl p-3 text-sm space-y-1">
+              <div><span class="text-zinc-400">Reason:</span> ${result.reason}</div>
+              <div><span class="text-zinc-400">Plan:</span> ${result.plan}</div>
+              <div><span class="text-zinc-400">Risk Note:</span> ${result.riskNote}</div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+              <div class="bg-zinc-800 rounded-xl p-3">
+                <div class="text-zinc-400">Current Price</div>
+                <div class="font-semibold mt-1">${formatPrice(asset.currentPrice)}</div>
+              </div>
+              <div class="bg-zinc-800 rounded-xl p-3">
+                <div class="text-zinc-400">Previous Price</div>
+                <div class="font-semibold mt-1">${formatPrice(asset.previousPrice)}</div>
+              </div>
+              <div class="bg-zinc-800 rounded-xl p-3">
+                <div class="text-zinc-400">PDH</div>
+                <div class="font-semibold mt-1">${formatPrice(asset.pdh)}</div>
+              </div>
+              <div class="bg-zinc-800 rounded-xl p-3">
+                <div class="text-zinc-400">PDL</div>
+                <div class="font-semibold mt-1">${formatPrice(asset.pdl)}</div>
+              </div>
+              <div class="bg-zinc-800 rounded-xl p-3">
+                <div class="text-zinc-400">Entry Zone</div>
+                <div class="font-semibold mt-1">${result.entryZone}</div>
+              </div>
+              <div class="bg-zinc-800 rounded-xl p-3">
+                <div class="text-zinc-400">Invalidation</div>
+                <div class="font-semibold mt-1">${result.invalidation}</div>
+              </div>
+              <div class="bg-zinc-800 rounded-xl p-3">
+                <div class="text-zinc-400">Target 1</div>
+                <div class="font-semibold mt-1">${result.target1}</div>
+              </div>
+              <div class="bg-zinc-800 rounded-xl p-3">
+                <div class="text-zinc-400">Target 2</div>
+                <div class="font-semibold mt-1">${result.target2}</div>
+              </div>
+            </div>
+
+            <div class="bg-zinc-800 rounded-xl p-3">
+              <div class="text-zinc-400 text-sm mb-3">Edit Asset</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+                <input data-field="symbol" data-id="${asset.id}" value="${asset.symbol}" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+                <input data-field="currentPrice" data-id="${asset.id}" value="${asset.currentPrice}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+                <input data-field="previousPrice" data-id="${asset.id}" value="${asset.previousPrice}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+                <input data-field="pdh" data-id="${asset.id}" value="${asset.pdh}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+                <input data-field="pdl" data-id="${asset.id}" value="${asset.pdl}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+                <input data-field="retestBuffer" data-id="${asset.id}" value="${asset.retestBuffer}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+              </div>
+              <div class="flex flex-wrap gap-3 mt-3">
+                <button class="save-asset-btn bg-green-600 hover:bg-green-500 text-white px-3 py-2 rounded-xl" data-id="${asset.id}">Save Asset</button>
+                <button class="copy-prev-btn bg-zinc-700 hover:bg-zinc-600 text-white px-3 py-2 rounded-xl" data-id="${asset.id}">Copy Current → Previous</button>
+                <button class="delete-asset-btn bg-red-700 hover:bg-red-600 text-white px-3 py-2 rounded-xl" data-id="${asset.id}">Delete Asset</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        wrapper.querySelector(".asset-toggle").addEventListener("click", () => {
+          toggleAssetExpanded(asset.id);
+        });
+
+        grid.appendChild(wrapper);
+      });
+
+      attachAssetButtons();
+    }
+
+    function attachAssetButtons() {
+      document.querySelectorAll(".save-asset-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.id;
+          saveSingleAsset(id);
+        });
+      });
+
+      document.querySelectorAll(".copy-prev-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.id;
+          copyCurrentToPrevious(id);
+        });
+      });
+
+      document.querySelectorAll(".delete-asset-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.id;
+          deleteAsset(id);
+        });
+      });
+    }
+
+    function toggleAssetExpanded(id) {
+      ASSETS = ASSETS.map(asset =>
+        asset.id === id ? { ...asset, expanded: !asset.expanded } : asset
+      );
+      saveAssets();
+      refreshDashboard();
+    }
+
+    function saveSingleAsset(id) {
+      const inputs = document.querySelectorAll(`.asset-input[data-id="${id}"]`);
+      const updated = {};
+
+      inputs.forEach(input => {
+        const field = input.dataset.field;
+        if (field === "symbol") updated[field] = input.value;
+        else updated[field] = parseFloat(input.value);
+      });
+
+      ASSETS = ASSETS.map(asset =>
+        asset.id === id ? { ...asset, ...updated } : asset
+      );
+
+      saveAssets();
+      refreshDashboard();
+    }
+
+    function copyCurrentToPrevious(id) {
+      ASSETS = ASSETS.map(asset =>
+        asset.id === id ? { ...asset, previousPrice: asset.currentPrice } : asset
+      );
+      saveAssets();
+      refreshDashboard();
+    }
+
+    function deleteAsset(id) {
+      ASSETS = ASSETS.filter(asset => asset.id !== id);
+      saveAssets();
+      refreshDashboard();
+    }
+
+    function addAsset() {
+      const symbol = document.getElementById("newSymbol").value.trim();
+      const currentPrice = parseFloat(document.getElementById("newCurrentPrice").value);
+      const previousPrice = parseFloat(document.getElementById("newPreviousPrice").value);
+      const pdh = parseFloat(document.getElementById("newPDH").value);
+      const pdl = parseFloat(document.getElementById("newPDL").value);
+      const retestBuffer = parseFloat(document.getElementById("newRetestBuffer").value);
+
+      if (!symbol || Number.isNaN(currentPrice) || Number.isNaN(previousPrice) || Number.isNaN(pdh) || Number.isNaN(pdl) || Number.isNaN(retestBuffer)) {
+        alert("Fill out all new asset fields first.");
+        return;
+      }
+
+      ASSETS.push({
+        id: crypto.randomUUID(),
+        symbol,
+        currentPrice,
+        previousPrice,
+        pdh,
+        pdl,
+        retestBuffer,
+        expanded: true
+      });
+
+      saveAssets();
+      clearNewAssetForm();
+      refreshDashboard();
+    }
+
+    function clearNewAssetForm() {
+      document.getElementById("newSymbol").value = "";
+      document.getElementById("newCurrentPrice").value = "";
+      document.getElementById("newPreviousPrice").value = "";
+      document.getElementById("newPDH").value = "";
+      document.getElementById("newPDL").value = "";
+      document.getElementById("newRetestBuffer").value = "";
+    }
+
+    function populateGlobals() {
+      document.getElementById("inputEventName").value = GLOBALS.redFolderEvent;
+      document.getElementById("inputEventHour").value = GLOBALS.redFolderHourET;
+      document.getElementById("inputEventMinute").value = GLOBALS.redFolderMinuteET;
+      document.getElementById("inputBlackoutBefore").value = GLOBALS.blackoutMinutesBefore;
+      document.getElementById("inputWaitAfter").value = GLOBALS.waitMinutesAfter;
+    }
+
+    function readGlobals() {
+      GLOBALS.redFolderEvent = document.getElementById("inputEventName").value || DEFAULT_GLOBALS.redFolderEvent;
+      GLOBALS.redFolderHourET = parseInt(document.getElementById("inputEventHour").value || DEFAULT_GLOBALS.redFolderHourET, 10);
+      GLOBALS.redFolderMinuteET = parseInt(document.getElementById("inputEventMinute").value || DEFAULT_GLOBALS.redFolderMinuteET, 10);
+      GLOBALS.blackoutMinutesBefore = parseInt(document.getElementById("inputBlackoutBefore").value || DEFAULT_GLOBALS.blackoutMinutesBefore, 10);
+      GLOBALS.waitMinutesAfter = parseInt(document.getElementById("inputWaitAfter").value || DEFAULT_GLOBALS.waitMinutesAfter, 10);
+      saveGlobals();
+    }
+
+    function updateAlertBanner() {
+      const banner = document.getElementById("alertBanner");
+      const text = document.getElementById("alertBannerText");
+
+      const tradeAssets = ASSETS
+        .map(asset => ({ asset, result: evaluateAsset(asset) }))
+        .filter(x => x.result.verdict === "TRADE");
+
+      if (tradeAssets.length) {
+        const names = tradeAssets.map(x => x.asset.symbol).join(", ");
+        banner.classList.remove("hidden");
+        text.textContent = `TRADE condition active on: ${names}`;
+      } else {
+        banner.classList.add("hidden");
+      }
+    }
+
+    async function sendTradeAlert(message) {
+      if ("Notification" in window && Notification.permission === "granted") {
+        new Notification("Trader Dashboard", { body: message });
+      }
+    }
+
+    function checkTradeAlerts() {
+      ASSETS.forEach(asset => {
+        const result = evaluateAsset(asset);
+        if (lastTradeAlerts[asset.id] !== result.verdict && result.verdict === "TRADE") {
+          sendTradeAlert(`${asset.symbol}: TRADE — ${result.plan}`);
+        }
+        lastTradeAlerts[asset.id] = result.verdict;
+      });
+    }
+
     function addNewsItem(container, label, title, link) {
       const li = document.createElement("li");
       li.innerHTML = `<a href="${link}" target="_blank" class="text-blue-400 underline">${label}: ${title}</a>`;
@@ -450,7 +801,7 @@
         data.items.slice(0, 3).forEach(item => {
           addNewsItem(container, "ZeroHedge", item.title, item.link);
         });
-      } catch (err) {
+      } catch {
         const li = document.createElement("li");
         li.textContent = "ZeroHedge: failed to load";
         container.appendChild(li);
@@ -465,7 +816,6 @@
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
-
         const anchors = Array.from(doc.querySelectorAll("a[href]"));
         const seen = new Set();
         let count = 0;
@@ -488,7 +838,6 @@
           seen.add(href);
           addNewsItem(container, "Coin Bureau", text, href);
           count++;
-
           if (count >= 3) break;
         }
 
@@ -497,7 +846,7 @@
           li.innerHTML = `<a href="https://coinbureau.com/" target="_blank" class="text-blue-400 underline">Coin Bureau: open homepage</a>`;
           container.appendChild(li);
         }
-      } catch (err) {
+      } catch {
         const li = document.createElement("li");
         li.innerHTML = `<a href="https://coinbureau.com/" target="_blank" class="text-blue-400 underline">Coin Bureau: open homepage</a>`;
         container.appendChild(li);
@@ -507,22 +856,55 @@
     async function loadNews() {
       const newsContainer = document.getElementById("news");
       newsContainer.innerHTML = "";
-
       await loadZeroHedge(newsContainer);
       await loadCoinBureau(newsContainer);
     }
 
-    // =========================
-    // START
-    // =========================
     function refreshDashboard() {
       updateSessionBar();
       updateRedFolderPanel();
-      buildDecisionTool();
+      renderWatchlistSummary();
+      renderAssets();
+      updateAlertBanner();
+      checkTradeAlerts();
     }
 
+    document.getElementById("saveGlobalBtn").addEventListener("click", () => {
+      readGlobals();
+      refreshDashboard();
+    });
+
+    document.getElementById("addAssetBtn").addEventListener("click", addAsset);
+
+    document.getElementById("resetAssetsBtn").addEventListener("click", () => {
+      ASSETS = [...DEFAULT_ASSETS];
+      saveAssets();
+      refreshDashboard();
+    });
+
+    document.getElementById("notifyBtn").addEventListener("click", async () => {
+      if (!("Notification" in window)) {
+        alert("Notifications are not supported on this browser.");
+        return;
+      }
+      const permission = await Notification.requestPermission();
+      if (permission === "granted") {
+        alert("Alerts enabled.");
+      } else {
+        alert("Alerts not enabled.");
+      }
+    });
+
+    populateGlobals();
     refreshDashboard();
-    setInterval(refreshDashboard, 1000);
+    setInterval(() => {
+      updateSessionBar();
+      updateRedFolderPanel();
+      renderWatchlistSummary();
+      renderAssets();
+      updateAlertBanner();
+      checkTradeAlerts();
+    }, 1000);
     loadNews();
   </script>
 </body>
