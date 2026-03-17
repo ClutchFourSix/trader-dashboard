@@ -43,14 +43,31 @@
     <p class="text-sm mt-2">No trades before release</p>
   </div>
 
-  <!-- NEWS -->
-  <div class="bg-zinc-900 p-4 rounded-xl">
-    <h2 class="text-green-400 mb-2">News</h2>
-    <p>• ZeroHedge: Add headline</p>
-    <p>• Macro Compass: Add headline</p>
-    <p>• Coin Bureau: Add headline</p>
-  </div>
+  <ul id="news"></ul>
 
+<script>
+async function loadNews() {
+  const feeds = [
+    "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/zerohedge/feed",
+    "https://api.rss2json.com/v1/api.json?rss_url=https://coinbureau.com/feed/"
+  ];
+
+  const newsContainer = document.getElementById("news");
+
+  for (let feed of feeds) {
+    const res = await fetch(feed);
+    const data = await res.json();
+
+    data.items.slice(0, 3).forEach(item => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+      newsContainer.appendChild(li);
+    });
+  }
+}
+
+loadNews();
+</script>
 </div>
 
 </body>
