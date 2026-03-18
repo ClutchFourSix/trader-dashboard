@@ -7,14 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{
-      --bg-overlay-top: rgba(0,0,0,0.60);
-      --bg-overlay-bottom: rgba(0,0,0,0.72);
-
-      --panel-opacity: 0.70;
-      --panel-border: rgba(103,232,249,0.24);
-      --panel-grad-1: rgba(10,18,30,0.82);
-      --panel-grad-2: rgba(6,12,22,0.88);
-
       --cyan:#67e8f9;
       --blue:#38bdf8;
       --green:#4ade80;
@@ -22,8 +14,10 @@
       --amber:#fbbf24;
       --text:#e6f7ff;
       --muted:#8aa5bf;
-      --slate:#94a3b8;
-      --shadow: rgba(0,0,0,0.28);
+      --panel-opacity:0.68;
+      --panel-grad-1:rgba(10,18,30,.82);
+      --panel-grad-2:rgba(6,12,22,.88);
+      --panel-border:rgba(103,232,249,.24);
     }
 
     * { box-sizing: border-box; }
@@ -31,9 +25,9 @@
     body{
       margin:0;
       color:var(--text);
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        linear-gradient(var(--bg-overlay-top), var(--bg-overlay-bottom)),
+        linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.72)),
         url("./world-map.jpg") center/cover no-repeat fixed,
         #060b12;
       min-height:100vh;
@@ -56,9 +50,9 @@
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
       box-shadow:
-        0 0 0 1px rgba(255,255,255,0.02),
-        0 10px 30px var(--shadow),
-        inset 0 0 18px rgba(56,189,248,0.03);
+        0 0 0 1px rgba(103,232,249,0.04),
+        0 10px 30px rgba(0,0,0,0.24),
+        inset 0 0 16px rgba(56,189,248,0.03);
       overflow:hidden;
     }
 
@@ -67,18 +61,17 @@
       position:absolute;
       inset:0;
       pointer-events:none;
-      background:
-        linear-gradient(90deg, transparent, rgba(103,232,249,0.03), transparent);
-      opacity:0.9;
+      background:linear-gradient(90deg, transparent, rgba(103,232,249,0.03), transparent);
+      opacity:.9;
     }
 
     .panel:hover{
       border-color:rgba(103,232,249,0.42);
       box-shadow:
         0 0 0 1px rgba(103,232,249,0.08),
-        0 12px 34px rgba(0,0,0,0.32),
+        0 12px 34px rgba(0,0,0,0.28),
         0 0 22px rgba(56,189,248,0.10),
-        inset 0 0 18px rgba(56,189,248,0.05);
+        inset 0 0 16px rgba(56,189,248,0.04);
     }
 
     .inner{
@@ -123,7 +116,7 @@
       letter-spacing:.08em;
       text-transform:uppercase;
       color:#effbff;
-      text-shadow:0 0 12px rgba(103,232,249,.14);
+      text-shadow:0 0 14px rgba(103,232,249,.18);
     }
 
     .hero p{
@@ -152,13 +145,12 @@
       font-weight:800;
       cursor:pointer;
       transition:.15s ease;
-      box-shadow:0 0 10px rgba(56,189,248,.05);
     }
 
     .btn:hover{
       transform:translateY(-1px);
       border-color:rgba(103,232,249,0.52);
-      box-shadow:0 0 18px rgba(56,189,248,.14);
+      box-shadow:0 0 20px rgba(56,189,248,.14);
     }
 
     .btn.green{ border-color:rgba(74,222,128,.32); }
@@ -176,7 +168,7 @@
       border:1px solid rgba(103,232,249,.12);
       background:linear-gradient(180deg, rgba(12,21,35,.78), rgba(8,13,22,.84));
       padding:14px;
-      min-height:126px;
+      min-height:118px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
@@ -198,46 +190,13 @@
       letter-spacing:.12em;
     }
 
-    .flip-wrap{
-      display:flex;
-      align-items:center;
-      gap:6px;
-      margin-top:4px;
-    }
-
-    .flip-group{
-      display:flex;
-      gap:4px;
-    }
-
-    .flip-digit{
-      width:26px;
-      height:36px;
-      border-radius:6px;
-      border:1px solid rgba(255,255,255,0.08);
-      background:
-        linear-gradient(180deg, rgba(46,46,50,0.98) 0 47%, rgba(10,10,12,1) 48% 52%, rgba(18,18,22,0.98) 53% 100%);
-      color:#f8fafc;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:"Courier New", ui-monospace, monospace;
-      font-size:22px;
+    .clock-time{
+      font-size:26px;
       font-weight:900;
-      letter-spacing:.02em;
-      text-shadow:0 1px 0 rgba(255,255,255,0.08), 0 0 8px rgba(255,255,255,0.08);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.04),
-        inset 0 -1px 0 rgba(0,0,0,0.5),
-        0 4px 10px rgba(0,0,0,0.28);
-    }
-
-    .flip-colon{
-      font-family:"Courier New", ui-monospace, monospace;
-      font-size:24px;
-      font-weight:900;
-      color:#d9f7ff;
-      text-shadow:0 0 6px rgba(103,232,249,.12);
+      letter-spacing:.06em;
+      color:#eefbff;
+      text-shadow:0 0 12px rgba(103,232,249,.14);
+      font-family: "Courier New", ui-monospace, monospace;
     }
 
     .clock-status{
@@ -282,7 +241,7 @@
       letter-spacing:.15em;
       color:var(--muted);
       font-weight:800;
-      margin-bottom:6px;
+      margin-bottom:4px;
     }
 
     .ribbon-value{
@@ -865,10 +824,6 @@
   </div>
 
   <script>
-    function makeId() {
-      return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
-    }
-
     async function safeTextFetch(url, timeoutMs = 4500) {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -892,104 +847,6 @@
         return null;
       }
     }
-
-    const DEFAULT_GLOBALS = {
-      finnhubToken: "",
-      weeklyEventsText:
-`2026-03-18 08:30|USD CPI|USD
-2026-03-19 08:30|US Initial Jobless Claims|USD
-2026-03-19 10:00|US Existing Home Sales|USD
-2026-03-20 08:30|Canada Retail Sales|CAD`
-    };
-
-    const DEFAULT_SETTINGS = {
-      panelOpacity: 0.68,
-      refreshSeconds: 60,
-      newsSeconds: 300,
-      chartInterval: "15",
-      gradientStyle: "blue",
-      autoPD: true,
-      refreshPD: false
-    };
-
-    const DEFAULT_ASSETS = [
-      {
-        id: makeId(),
-        symbol: "USDJPY",
-        assetClass: "forex",
-        currentPrice: 149.500,
-        previousPrice: 149.450,
-        pdh: 149.800,
-        pdl: 149.100,
-        retestBuffer: 0.050,
-        expanded: true,
-        autoPrice: false,
-        lastSource: "Manual",
-        priceStatus: "Manual"
-      },
-      {
-        id: makeId(),
-        symbol: "BTCUSD",
-        assetClass: "crypto",
-        currentPrice: 80000,
-        previousPrice: 79800,
-        pdh: 81200,
-        pdl: 78500,
-        retestBuffer: 120,
-        expanded: true,
-        autoPrice: true,
-        lastSource: "CoinGecko",
-        priceStatus: "Pending"
-      }
-    ];
-
-    const CRYPTO_CG_MAP = {
-      BTCUSD: "bitcoin",
-      ETHUSD: "ethereum",
-      SOLUSD: "solana",
-      BNBUSD: "binancecoin",
-      XRPUSD: "ripple",
-      ADAUSD: "cardano",
-      DOGEUSD: "dogecoin",
-      AVAXUSD: "avalanche-2",
-      LINKUSD: "chainlink",
-      TONUSD: "the-open-network"
-    };
-
-    const FUTURES_PROXY_MAP = {
-      ES:  { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       note: "Using SPY as ES proxy." },
-      MES: { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       note: "Using SPY as MES proxy." },
-      NQ:  { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     note: "Using QQQ as NQ proxy." },
-      MNQ: { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     note: "Using QQQ as MNQ proxy." },
-      YM:  { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       note: "Using DIA as YM proxy." },
-      MYM: { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       note: "Using DIA as MYM proxy." },
-      GC:  { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   note: "Using XAUUSD as GC proxy." },
-      MGC: { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   note: "Using XAUUSD as MGC proxy." },
-      SI:  { proxySymbol: "XAGUSD", assetClass: "forex",  chartSymbol: "OANDA:XAGUSD",   note: "Using XAGUSD as SI proxy." },
-      SIL: { proxySymbol: "XAGUSD", assetClass: "forex",  chartSymbol: "OANDA:XAGUSD",   note: "Using XAGUSD as SIL proxy." },
-      CL:  { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", note: "Using WTI proxy for CL." },
-      MCL: { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", note: "Using WTI proxy for MCL." },
-      "6E": { proxySymbol: "EURUSD", assetClass: "forex", chartSymbol: "OANDA:EURUSD",   note: "Using EURUSD as 6E proxy." },
-      "6J": { proxySymbol: "USDJPY", assetClass: "forex", chartSymbol: "OANDA:USDJPY",   note: "Using USDJPY as 6J proxy." },
-      "6B": { proxySymbol: "GBPUSD", assetClass: "forex", chartSymbol: "OANDA:GBPUSD",   note: "Using GBPUSD as 6B proxy." }
-    };
-
-    const CLOCKS = [
-      { city: "New York",  tz: "America/New_York", label: "NYSE / Nasdaq", open: 9, close: 16 },
-      { city: "Chicago",   tz: "America/Chicago",  label: "CME", open: 8, close: 16 },
-      { city: "London",    tz: "Europe/London",    label: "LSE", open: 8, close: 16.5 },
-      { city: "Frankfurt", tz: "Europe/Berlin",    label: "Xetra", open: 9, close: 17.5 },
-      { city: "Tokyo",     tz: "Asia/Tokyo",       label: "TSE", open: 9, close: 15 },
-      { city: "Hong Kong", tz: "Asia/Hong_Kong",   label: "HKEX", open: 9.5, close: 16 }
-    ];
-
-    let GLOBALS = loadGlobals();
-    let SETTINGS = loadSettings();
-    let ASSETS = loadAssets();
-
-    let monitorTimer = null;
-    let lastPriceRefresh = 0;
-    let lastNewsRefresh = 0;
 
     function loadGlobals() {
       const saved = localStorage.getItem("td_hud_globals_v3");
@@ -1028,29 +885,6 @@
       localStorage.setItem("td_hud_assets_v3", JSON.stringify(ASSETS));
     }
 
-    function formatPrice(value) {
-      const n = Number(value);
-      if (!Number.isFinite(n)) return "-";
-      if (Math.abs(n) >= 1000) return n.toFixed(2);
-      if (Math.abs(n) >= 100) return n.toFixed(3);
-      if (Math.abs(n) >= 1) return n.toFixed(3);
-      return n.toFixed(5);
-    }
-
-    function verdictRank(v) {
-      if (v === "TRADE") return 0;
-      if (v === "WAIT") return 1;
-      return 2;
-    }
-
-    function escapeHtml(s) {
-      return String(s)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;");
-    }
-
     function applySettingsToUI() {
       document.documentElement.style.setProperty("--panel-opacity", String(SETTINGS.panelOpacity));
 
@@ -1073,6 +907,50 @@
       }
     }
 
+    function populateGlobals() {
+      document.getElementById("finnhubToken").value = GLOBALS.finnhubToken;
+      document.getElementById("weeklyEvents").value = GLOBALS.weeklyEventsText;
+    }
+
+    function readGlobals() {
+      GLOBALS.finnhubToken = document.getElementById("finnhubToken").value.trim();
+      GLOBALS.weeklyEventsText = document.getElementById("weeklyEvents").value;
+      saveGlobals();
+    }
+
+    function populateSettings() {
+      document.getElementById("settingOpacity").value = SETTINGS.panelOpacity;
+      document.getElementById("settingRefreshSeconds").value = String(SETTINGS.refreshSeconds);
+      document.getElementById("settingNewsSeconds").value = String(SETTINGS.newsSeconds);
+      document.getElementById("settingChartInterval").value = SETTINGS.chartInterval;
+      document.getElementById("settingGradientStyle").value = SETTINGS.gradientStyle;
+      document.getElementById("settingAutoPD").value = SETTINGS.autoPD ? "true" : "false";
+      document.getElementById("settingRefreshPD").value = SETTINGS.refreshPD ? "true" : "false";
+    }
+
+    function openSettings() {
+      populateSettings();
+      document.getElementById("settingsBackdrop").style.display = "flex";
+    }
+
+    function closeSettings() {
+      document.getElementById("settingsBackdrop").style.display = "none";
+    }
+
+    function saveSettingsFromModal() {
+      SETTINGS.panelOpacity = parseFloat(document.getElementById("settingOpacity").value || "0.68");
+      SETTINGS.refreshSeconds = parseInt(document.getElementById("settingRefreshSeconds").value || "60", 10);
+      SETTINGS.newsSeconds = parseInt(document.getElementById("settingNewsSeconds").value || "300", 10);
+      SETTINGS.chartInterval = document.getElementById("settingChartInterval").value || "15";
+      SETTINGS.gradientStyle = document.getElementById("settingGradientStyle").value || "blue";
+      SETTINGS.autoPD = document.getElementById("settingAutoPD").value === "true";
+      SETTINGS.refreshPD = document.getElementById("settingRefreshPD").value === "true";
+      saveSettings();
+      applySettingsToUI();
+      closeSettings();
+      renderAll();
+    }
+
     function getTimePartsForZone(timeZone) {
       const now = new Date();
       const formatter = new Intl.DateTimeFormat("en-US", {
@@ -1093,13 +971,14 @@
       return out;
     }
 
-    function getTimeStringParts(timeZone) {
-      const p = getTimePartsForZone(timeZone);
-      return {
-        hh: String(p.hour).padStart(2, "0"),
-        mm: String(p.minute).padStart(2, "0"),
-        ss: String(p.second).padStart(2, "0")
-      };
+    function getTimeString(timeZone) {
+      return new Intl.DateTimeFormat("en-US", {
+        timeZone,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }).format(new Date());
     }
 
     function marketStatus(parts, openHour, closeHour) {
@@ -1109,22 +988,12 @@
       return "CLOSED";
     }
 
-    function makeFlipGroup(str) {
-      return `
-        <div class="flip-group">
-          <div class="flip-digit">${escapeHtml(str[0])}</div>
-          <div class="flip-digit">${escapeHtml(str[1])}</div>
-        </div>
-      `;
-    }
-
     function renderClocks() {
       const grid = document.getElementById("clockGrid");
       grid.innerHTML = "";
 
       CLOCKS.forEach(c => {
         const parts = getTimePartsForZone(c.tz);
-        const t = getTimeStringParts(c.tz);
         const status = marketStatus(parts, c.open, c.close);
         const cls = status === "OPEN" ? "open" : status === "PRE" ? "pre" : "closed";
 
@@ -1135,13 +1004,7 @@
             <div class="clock-city">${escapeHtml(c.city)}</div>
             <div class="clock-label">${escapeHtml(c.label)}</div>
           </div>
-          <div class="flip-wrap">
-            ${makeFlipGroup(t.hh)}
-            <div class="flip-colon">:</div>
-            ${makeFlipGroup(t.mm)}
-            <div class="flip-colon">:</div>
-            ${makeFlipGroup(t.ss)}
-          </div>
+          <div class="clock-time">${escapeHtml(getTimeString(c.tz))}</div>
           <div class="clock-status ${cls}">
             <span class="dot"></span>${escapeHtml(status)}
           </div>
@@ -1532,8 +1395,6 @@
       const pdl = Number(a.pdl);
       const buffer = Number(a.retestBuffer);
 
-      const brokeAbove = prev <= pdh && price > pdh;
-      const brokeBelow = prev >= pdl && price < pdl;
       const failedHigh = prev > pdh && price < pdh;
       const failedLow = prev < pdl && price > pdl;
       const nearPDH = price >= pdh - buffer && price <= pdh + buffer;
@@ -1940,17 +1801,6 @@
       document.getElementById("newRetestBuffer").value = "";
     }
 
-    function populateGlobals() {
-      document.getElementById("finnhubToken").value = GLOBALS.finnhubToken;
-      document.getElementById("weeklyEvents").value = GLOBALS.weeklyEventsText;
-    }
-
-    function readGlobals() {
-      GLOBALS.finnhubToken = document.getElementById("finnhubToken").value.trim();
-      GLOBALS.weeklyEventsText = document.getElementById("weeklyEvents").value;
-      saveGlobals();
-    }
-
     function scoreHeadline(title, label, watchSymbols) {
       const t = title.toLowerCase();
       let score = 0;
@@ -2053,39 +1903,6 @@
 
       items.forEach(item => addNewsItem(news, item.label, item.title, item.link));
       lastNewsRefresh = Date.now();
-    }
-
-    function populateSettings() {
-      document.getElementById("settingOpacity").value = SETTINGS.panelOpacity;
-      document.getElementById("settingRefreshSeconds").value = String(SETTINGS.refreshSeconds);
-      document.getElementById("settingNewsSeconds").value = String(SETTINGS.newsSeconds);
-      document.getElementById("settingChartInterval").value = SETTINGS.chartInterval;
-      document.getElementById("settingGradientStyle").value = SETTINGS.gradientStyle;
-      document.getElementById("settingAutoPD").value = SETTINGS.autoPD ? "true" : "false";
-      document.getElementById("settingRefreshPD").value = SETTINGS.refreshPD ? "true" : "false";
-    }
-
-    function openSettings() {
-      populateSettings();
-      document.getElementById("settingsBackdrop").style.display = "flex";
-    }
-
-    function closeSettings() {
-      document.getElementById("settingsBackdrop").style.display = "none";
-    }
-
-    function saveSettingsFromModal() {
-      SETTINGS.panelOpacity = parseFloat(document.getElementById("settingOpacity").value || "0.68");
-      SETTINGS.refreshSeconds = parseInt(document.getElementById("settingRefreshSeconds").value || "60", 10);
-      SETTINGS.newsSeconds = parseInt(document.getElementById("settingNewsSeconds").value || "300", 10);
-      SETTINGS.chartInterval = document.getElementById("settingChartInterval").value || "15";
-      SETTINGS.gradientStyle = document.getElementById("settingGradientStyle").value || "blue";
-      SETTINGS.autoPD = document.getElementById("settingAutoPD").value === "true";
-      SETTINGS.refreshPD = document.getElementById("settingRefreshPD").value === "true";
-      saveSettings();
-      applySettingsToUI();
-      closeSettings();
-      renderAll();
     }
 
     async function maybeReleaseRefresh() {
