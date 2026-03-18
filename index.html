@@ -3,164 +3,698 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trader Desk</title>
+  <title>Trader Desk HUD</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    :root {
+      --bg: #060b12;
+      --panel: rgba(8, 16, 28, 0.78);
+      --panel-2: rgba(12, 24, 40, 0.72);
+      --line: rgba(80, 190, 255, 0.18);
+      --cyan: #67e8f9;
+      --blue: #38bdf8;
+      --amber: #fbbf24;
+      --red: #f87171;
+      --green: #4ade80;
+      --text: #e5f3ff;
+      --muted: #89a6bf;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.76)),
-        url("./world-map.jpg") center center / cover no-repeat fixed;
-      color: white;
+        radial-gradient(circle at top, rgba(56,189,248,0.08), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(103,232,249,0.07), transparent 20%),
+        linear-gradient(rgba(2,6,12,0.78), rgba(2,6,12,0.86)),
+        url("./world-map.jpg") center center / cover no-repeat fixed,
+        var(--bg);
+      min-height: 100vh;
+      letter-spacing: 0.01em;
     }
-    .tile {
-      background: rgba(24, 24, 27, 0.90);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+
+    .hud-shell {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 14px;
     }
-    .tile-soft {
-      background: rgba(39, 39, 42, 0.78);
+
+    .hud-grid {
+      display: grid;
+      gap: 14px;
     }
-    .pill-trade { background: rgba(22,163,74,.22); color: #86efac; border: 1px solid rgba(22,163,74,.45); }
-    .pill-wait { background: rgba(234,179,8,.18); color: #fde68a; border: 1px solid rgba(234,179,8,.45); }
-    .pill-no   { background: rgba(220,38,38,.20); color: #fca5a5; border: 1px solid rgba(220,38,38,.45); }
+
+    .hud-panel {
+      position: relative;
+      background: linear-gradient(180deg, rgba(10,18,30,0.86), rgba(8,14,24,0.82));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.02),
+        0 0 0 1px rgba(103,232,249,0.03),
+        0 18px 50px rgba(0,0,0,0.28);
+      overflow: hidden;
+    }
+
+    .hud-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, transparent, rgba(103,232,249,0.035), transparent);
+      opacity: 0.8;
+    }
+
+    .panel-inner {
+      position: relative;
+      padding: 16px;
+      z-index: 1;
+    }
+
+    .hud-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--cyan);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .hud-subtle {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #dff7ff;
+      text-shadow: 0 0 12px rgba(103,232,249,0.18);
+    }
+
+    .hero p {
+      margin: 6px 0 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hud-btn {
+      border: 1px solid rgba(103,232,249,0.22);
+      background: linear-gradient(180deg, rgba(16,30,49,0.92), rgba(10,18,30,0.92));
+      color: #d9f9ff;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+      box-shadow: 0 0 18px rgba(56,189,248,0.08);
+    }
+
+    .hud-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(103,232,249,0.45);
+      box-shadow: 0 0 22px rgba(56,189,248,0.14);
+    }
+
+    .hud-btn.green {
+      border-color: rgba(74,222,128,0.24);
+      box-shadow: 0 0 18px rgba(74,222,128,0.08);
+    }
+
+    .hud-btn.red {
+      border-color: rgba(248,113,113,0.24);
+      box-shadow: 0 0 18px rgba(248,113,113,0.08);
+    }
+
+    .hud-btn.blue {
+      border-color: rgba(56,189,248,0.28);
+    }
+
+    .clock-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .clock-card {
+      position: relative;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(103,232,249,0.12);
+      background: linear-gradient(180deg, rgba(9,18,30,0.74), rgba(5,11,19,0.8));
+      min-height: 118px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+
+    .clock-city {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .clock-time {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #e8fbff;
+      text-shadow: 0 0 14px rgba(103,232,249,0.14);
+    }
+
+    .clock-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      box-shadow: 0 0 12px currentColor;
+      display: inline-block;
+    }
+
+    .status-open { color: var(--green); }
+    .status-pre { color: var(--amber); }
+    .status-closed { color: var(--red); }
+
+    .status-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .status-box {
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(103,232,249,0.12);
+      background: linear-gradient(180deg, rgba(12,21,36,0.72), rgba(7,13,22,0.82));
+    }
+
+    .status-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .status-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ebfbff;
+    }
+
+    .split-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(15,24,38,0.68), rgba(8,14,22,0.8));
+      border: 1px solid rgba(103,232,249,0.08);
+      cursor: pointer;
+    }
+
+    .summary-left {
+      min-width: 0;
+    }
+
+    .summary-symbol {
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .summary-meta {
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .summary-price {
+      text-align: right;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .summary-verdict {
+      font-size: 11px;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .asset-card {
+      border-radius: 22px;
+      border: 1px solid rgba(103,232,249,0.14);
+      background: linear-gradient(180deg, rgba(10,18,30,0.88), rgba(6,12,22,0.88));
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+    }
+
+    .asset-head {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      text-align: left;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .asset-left {
+      min-width: 0;
+    }
+
+    .asset-symbol {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .asset-symbol strong {
+      font-size: 22px;
+      letter-spacing: 0.06em;
+      color: #f0fbff;
+    }
+
+    .asset-bias {
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .asset-meta {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .asset-expand {
+      font-size: 22px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .asset-body {
+      border-top: 1px solid rgba(103,232,249,0.08);
+      padding: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .info-box {
+      border-radius: 16px;
+      padding: 12px;
+      background: linear-gradient(180deg, rgba(15,24,38,0.68), rgba(8,14,22,0.8));
+      border: 1px solid rgba(103,232,249,0.08);
+    }
+
+    .info-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .info-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ecfbff;
+    }
+
+    .note-box {
+      border-radius: 16px;
+      padding: 12px;
+      background: linear-gradient(180deg, rgba(14,22,35,0.76), rgba(8,13,21,0.82));
+      border: 1px solid rgba(103,232,249,0.08);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .proxy-note {
+      background: rgba(251,191,36,0.12);
+      border: 1px solid rgba(251,191,36,0.28);
+      color: #fde68a;
+      border-radius: 16px;
+      padding: 12px;
+      font-size: 13px;
+    }
+
+    .chart-frame {
+      border-radius: 18px;
+      padding: 8px;
+      background: linear-gradient(180deg, rgba(6,11,18,0.88), rgba(5,9,16,0.92));
+      border: 1px solid rgba(103,232,249,0.10);
+    }
+
+    .chart-frame iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+      border-radius: 12px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .hud-input,
+    .hud-select,
+    .hud-textarea {
+      width: 100%;
+      background: rgba(3, 8, 15, 0.88);
+      border: 1px solid rgba(103,232,249,0.14);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 10px 12px;
+      outline: none;
+      font-size: 13px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.01);
+    }
+
+    .hud-textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .news-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .news-item {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(15,24,38,0.68), rgba(8,14,22,0.8));
+      border: 1px solid rgba(103,232,249,0.08);
+      font-size: 13px;
+    }
+
+    .news-item a {
+      color: #93c5fd;
+      text-decoration: none;
+    }
+
+    .news-item a:hover {
+      text-decoration: underline;
+    }
+
+    .tiny-muted {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .glow-cyan { color: var(--cyan); text-shadow: 0 0 10px rgba(103,232,249,0.18); }
+    .glow-blue { color: var(--blue); text-shadow: 0 0 10px rgba(56,189,248,0.18); }
+    .glow-green { color: var(--green); text-shadow: 0 0 10px rgba(74,222,128,0.18); }
+    .glow-red { color: var(--red); text-shadow: 0 0 10px rgba(248,113,113,0.18); }
+    .glow-amber { color: var(--amber); text-shadow: 0 0 10px rgba(251,191,36,0.18); }
+
+    @media (max-width: 1200px) {
+      .clock-grid,
+      .status-ribbon,
+      .asset-grid,
+      .split-2,
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .clock-grid,
+      .status-ribbon,
+      .asset-grid,
+      .split-2,
+      .form-grid,
+      .mini-grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 23px;
+      }
+
+      .clock-time {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="p-3 space-y-4 max-w-6xl mx-auto">
+  <div class="hud-shell hud-grid">
 
-    <!-- HEADER -->
-    <div class="tile p-4 rounded-2xl border border-zinc-800">
-      <div class="flex items-center justify-between gap-3 flex-wrap">
+    <!-- HERO -->
+    <section class="hud-panel">
+      <div class="panel-inner hero">
         <div>
-          <h1 class="text-xl font-bold">Trader Desk</h1>
-          <div class="text-xs text-zinc-400 mt-1">Stable build • Multi-asset • Two models • Charts per asset</div>
+          <h1>Trader Desk // Arc Reactor HUD</h1>
+          <p>Global session intelligence • expansion + failure models • live dashboard shell</p>
         </div>
-        <div class="flex gap-2 flex-wrap">
-          <button id="refreshBtn" class="bg-blue-600 hover:bg-blue-500 px-3 py-2 rounded-xl text-sm">Refresh</button>
-          <button id="saveGlobalsBtn" class="bg-green-600 hover:bg-green-500 px-3 py-2 rounded-xl text-sm">Save Globals</button>
+        <div class="hero-actions">
+          <button id="refreshBtn" class="hud-btn blue">Refresh</button>
+          <button id="saveGlobalsBtn" class="hud-btn green">Save Globals</button>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- TOP BAR -->
-    <div class="tile p-4 rounded-2xl border border-zinc-800">
-      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-sm">
-        <div>
-          <div class="text-zinc-400">Current Session</div>
-          <div id="currentSession" class="text-yellow-400 font-semibold mt-1">Loading...</div>
-        </div>
-        <div>
-          <div class="text-zinc-400">London</div>
-          <div id="londonStatus" class="font-semibold mt-1">Loading...</div>
-        </div>
-        <div>
-          <div class="text-zinc-400">New York</div>
-          <div id="nyStatus" class="font-semibold mt-1">Loading...</div>
-        </div>
-        <div>
-          <div class="text-zinc-400">Red Folder (24h)</div>
-          <div id="redFolderBadge" class="font-semibold mt-1">Loading...</div>
+    <!-- CLOCKS -->
+    <section class="hud-panel">
+      <div class="panel-inner">
+        <div class="hud-title">Global Exchange Clocks</div>
+        <div class="clock-grid" id="clockGrid"></div>
+      </div>
+    </section>
+
+    <!-- STATUS RIBBON -->
+    <section class="hud-panel">
+      <div class="panel-inner">
+        <div class="status-ribbon">
+          <div class="status-box">
+            <div class="status-label">Current Session</div>
+            <div id="currentSession" class="status-value glow-cyan">Loading...</div>
+          </div>
+          <div class="status-box">
+            <div class="status-label">Red Folder (24H)</div>
+            <div id="redFolderBadge" class="status-value glow-red">Loading...</div>
+          </div>
+          <div class="status-box">
+            <div class="status-label">Watchlist State</div>
+            <div id="watchlistState" class="status-value glow-blue">Loading...</div>
+          </div>
+          <div class="status-box">
+            <div class="status-label">System Status</div>
+            <div id="systemStatus" class="status-value glow-green">ONLINE</div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- GLOBALS -->
-    <div class="tile p-4 rounded-2xl border border-zinc-800">
-      <h2 class="text-cyan-400 text-lg font-semibold mb-3">Global Controls</h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 text-sm">
-        <div>
-          <label class="block text-zinc-400 mb-1">Finnhub Token (optional for forex/stocks)</label>
-          <input id="finnhubToken" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
-        </div>
-        <div>
-          <label class="block text-zinc-400 mb-1">Weekly Red Folder Events</label>
-          <textarea id="weeklyEvents" rows="6" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white"></textarea>
-          <div class="text-xs text-zinc-500 mt-2">Format: YYYY-MM-DD HH:MM|Event Name</div>
+    <!-- RED FOLDER + WEEK -->
+    <section class="split-2">
+      <div class="hud-panel">
+        <div class="panel-inner">
+          <div class="hud-title">Red Folder // Next 24 Hours</div>
+          <div id="redFolderNow" class="note-box">Loading...</div>
         </div>
       </div>
-    </div>
-
-    <!-- RED FOLDER -->
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-      <div class="tile p-4 rounded-2xl border border-zinc-800">
-        <h2 class="text-red-400 text-lg font-semibold mb-2">Red Folder (Next 24 Hours)</h2>
-        <div id="redFolderNow" class="text-sm text-zinc-300">Loading...</div>
+      <div class="hud-panel">
+        <div class="panel-inner">
+          <div class="hud-title">Red Folder // This Week</div>
+          <div id="redFolderWeek" class="summary-list">Loading...</div>
+        </div>
       </div>
-      <div class="tile p-4 rounded-2xl border border-zinc-800">
-        <h2 class="text-red-400 text-lg font-semibold mb-2">Red Folder (This Week)</h2>
-        <div id="redFolderWeek" class="space-y-2 text-sm text-zinc-300">Loading...</div>
-      </div>
-    </div>
+    </section>
 
-    <!-- NEWS -->
-    <div class="tile p-4 rounded-2xl border border-zinc-800">
-      <h2 class="text-green-400 text-lg font-semibold mb-2">Highest-Impact Headlines</h2>
-      <ul id="news" class="space-y-2 text-sm text-zinc-300">
-        <li>Loading...</li>
-      </ul>
-    </div>
+    <!-- NEWS + GLOBALS -->
+    <section class="split-2">
+      <div class="hud-panel">
+        <div class="panel-inner">
+          <div class="hud-title">Intel Feed // Highest Impact</div>
+          <div id="news" class="news-list">
+            <div class="news-item">Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-panel">
+        <div class="panel-inner">
+          <div class="hud-title">Global Controls</div>
+          <div class="hud-grid">
+            <div>
+              <label class="field-label">Finnhub Token (optional)</label>
+              <input id="finnhubToken" class="hud-input" />
+            </div>
+            <div>
+              <label class="field-label">Weekly Red Folder Events</label>
+              <textarea id="weeklyEvents" class="hud-textarea"></textarea>
+              <div class="tiny-muted" style="margin-top:8px;">Format: YYYY-MM-DD HH:MM|Event Name</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SUMMARY -->
-    <div class="tile p-4 rounded-2xl border border-zinc-800">
-      <h2 class="text-lime-400 text-lg font-semibold mb-2">Watchlist Summary</h2>
-      <div id="summary" class="space-y-2 text-sm text-zinc-300">Loading...</div>
-    </div>
+    <section class="hud-panel">
+      <div class="panel-inner">
+        <div class="hud-title">Watchlist Command Summary</div>
+        <div id="summary" class="summary-list">Loading...</div>
+      </div>
+    </section>
 
-    <!-- ASSET GRID -->
-    <div id="assetGrid" class="grid grid-cols-1 xl:grid-cols-2 gap-4"></div>
+    <!-- ASSETS -->
+    <section class="hud-panel">
+      <div class="panel-inner">
+        <div class="hud-title">Tracked Assets</div>
+        <div id="assetGrid" class="asset-grid"></div>
+      </div>
+    </section>
 
-    <!-- ADD ASSET BELOW ASSETS -->
-    <div class="tile p-4 rounded-2xl border border-zinc-800">
-      <h2 class="text-orange-400 text-lg font-semibold mb-3">Add Asset</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-        <div>
-          <label class="block text-zinc-400 mb-1">Symbol</label>
-          <input id="newSymbol" placeholder="USDJPY, BTCUSD, GC, NQ..." class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+    <!-- ADD ASSET -->
+    <section class="hud-panel">
+      <div class="panel-inner">
+        <div class="hud-title">Add Asset</div>
+        <div class="form-grid">
+          <div>
+            <label class="field-label">Symbol</label>
+            <input id="newSymbol" class="hud-input" placeholder="USDJPY, BTCUSD, GC, NQ..." />
+          </div>
+          <div>
+            <label class="field-label">Asset Class</label>
+            <select id="newAssetClass" class="hud-select">
+              <option value="auto">Auto Detect</option>
+              <option value="forex">Forex</option>
+              <option value="crypto">Crypto</option>
+              <option value="futures">Futures</option>
+              <option value="stock">Stock</option>
+              <option value="index">Index</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label">PDH</label>
+            <input id="newPDH" type="number" step="0.001" class="hud-input" />
+          </div>
+          <div>
+            <label class="field-label">PDL</label>
+            <input id="newPDL" type="number" step="0.001" class="hud-input" />
+          </div>
+          <div>
+            <label class="field-label">Current Price (fallback)</label>
+            <input id="newCurrentPrice" type="number" step="0.001" class="hud-input" />
+          </div>
+          <div>
+            <label class="field-label">Previous Price</label>
+            <input id="newPreviousPrice" type="number" step="0.001" class="hud-input" />
+          </div>
+          <div>
+            <label class="field-label">Retest Buffer</label>
+            <input id="newRetestBuffer" type="number" step="0.001" class="hud-input" />
+          </div>
         </div>
-        <div>
-          <label class="block text-zinc-400 mb-1">Asset Class</label>
-          <select id="newAssetClass" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white">
-            <option value="auto">Auto Detect</option>
-            <option value="forex">Forex</option>
-            <option value="crypto">Crypto</option>
-            <option value="futures">Futures</option>
-            <option value="stock">Stock</option>
-            <option value="index">Index</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-zinc-400 mb-1">PDH</label>
-          <input id="newPDH" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
-        </div>
-        <div>
-          <label class="block text-zinc-400 mb-1">PDL</label>
-          <input id="newPDL" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
-        </div>
-        <div>
-          <label class="block text-zinc-400 mb-1">Current Price (fallback)</label>
-          <input id="newCurrentPrice" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
-        </div>
-        <div>
-          <label class="block text-zinc-400 mb-1">Previous Price</label>
-          <input id="newPreviousPrice" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
-        </div>
-        <div>
-          <label class="block text-zinc-400 mb-1">Retest Buffer</label>
-          <input id="newRetestBuffer" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        <div class="hero-actions" style="margin-top:14px;">
+          <button id="addAssetBtn" class="hud-btn blue">Add Asset</button>
+          <button id="resetAssetsBtn" class="hud-btn red">Reset Watchlist</button>
         </div>
       </div>
-      <div class="flex gap-2 mt-4 flex-wrap">
-        <button id="addAssetBtn" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-xl">Add Asset</button>
-        <button id="resetAssetsBtn" class="bg-red-700 hover:bg-red-600 px-4 py-2 rounded-xl">Reset Watchlist</button>
-      </div>
-    </div>
+    </section>
 
   </div>
 
   <script>
-    // ----------------------------
-    // SAFE HELPERS
-    // ----------------------------
     function makeId() {
       return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
     }
@@ -194,9 +728,6 @@
         .replaceAll('"', "&quot;");
     }
 
-    // ----------------------------
-    // DEFAULTS
-    // ----------------------------
     const DEFAULT_GLOBALS = {
       finnhubToken: "",
       weeklyEventsText:
@@ -268,22 +799,27 @@
       "6B": { proxySymbol: "GBPUSD", assetClass: "forex", chartSymbol: "OANDA:GBPUSD",   note: "Using GBPUSD as 6B proxy." }
     };
 
-    // ----------------------------
-    // STATE
-    // ----------------------------
+    const CLOCKS = [
+      { city: "New York",  tz: "America/New_York", label: "NYSE / Nasdaq", open: 9,  close: 16 },
+      { city: "Chicago",   tz: "America/Chicago",  label: "CME",           open: 8,  close: 16 },
+      { city: "London",    tz: "Europe/London",    label: "LSE",           open: 8,  close: 16.5 },
+      { city: "Frankfurt", tz: "Europe/Berlin",    label: "Xetra",         open: 9,  close: 17.5 },
+      { city: "Tokyo",     tz: "Asia/Tokyo",       label: "TSE",           open: 9,  close: 15 },
+      { city: "Hong Kong", tz: "Asia/Hong_Kong",   label: "HKEX",          open: 9.5,close: 16 }
+    ];
+
     let GLOBALS = loadGlobals();
     let ASSETS = loadAssets();
-    let lastVerdicts = {};
 
     function loadGlobals() {
-      const saved = localStorage.getItem("td_globals_final");
+      const saved = localStorage.getItem("td_stark_globals");
       if (!saved) return { ...DEFAULT_GLOBALS };
       try { return { ...DEFAULT_GLOBALS, ...JSON.parse(saved) }; }
       catch { return { ...DEFAULT_GLOBALS }; }
     }
 
     function loadAssets() {
-      const saved = localStorage.getItem("td_assets_final");
+      const saved = localStorage.getItem("td_stark_assets");
       if (!saved) return [...DEFAULT_ASSETS];
       try {
         const parsed = JSON.parse(saved);
@@ -294,20 +830,17 @@
     }
 
     function saveGlobals() {
-      localStorage.setItem("td_globals_final", JSON.stringify(GLOBALS));
+      localStorage.setItem("td_stark_globals", JSON.stringify(GLOBALS));
     }
 
     function saveAssets() {
-      localStorage.setItem("td_assets_final", JSON.stringify(ASSETS));
+      localStorage.setItem("td_stark_assets", JSON.stringify(ASSETS));
     }
 
-    // ----------------------------
-    // TIME / SESSION
-    // ----------------------------
-    function getNYParts() {
+    function getTimePartsForZone(timeZone) {
       const now = new Date();
       const formatter = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/New_York",
+        timeZone,
         year: "numeric",
         month: "numeric",
         day: "numeric",
@@ -322,6 +855,53 @@
         if (p.type !== "literal") out[p.type] = parseInt(p.value, 10);
       }
       return out;
+    }
+
+    function getTimeString(timeZone) {
+      return new Intl.DateTimeFormat("en-US", {
+        timeZone,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }).format(new Date());
+    }
+
+    function marketStatus(parts, openHour, closeHour) {
+      const now = parts.hour + (parts.minute / 60);
+      if (now >= openHour && now < closeHour) return "OPEN";
+      if (now >= openHour - 1 && now < openHour) return "PRE";
+      return "CLOSED";
+    }
+
+    function renderClocks() {
+      const grid = document.getElementById("clockGrid");
+      grid.innerHTML = "";
+
+      CLOCKS.forEach(c => {
+        const parts = getTimePartsForZone(c.tz);
+        const status = marketStatus(parts, c.open, c.close);
+        const cls = status === "OPEN" ? "status-open" : status === "PRE" ? "status-pre" : "status-closed";
+
+        const card = document.createElement("div");
+        card.className = "clock-card";
+        card.innerHTML = `
+          <div>
+            <div class="clock-city">${escapeHtml(c.city)}</div>
+            <div class="tiny-muted" style="margin-top:4px;">${escapeHtml(c.label)}</div>
+          </div>
+          <div class="clock-time">${escapeHtml(getTimeString(c.tz))}</div>
+          <div class="clock-status ${cls}">
+            <span class="dot" style="color: currentColor;"></span>
+            ${escapeHtml(status)}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function getNYParts() {
+      return getTimePartsForZone("America/New_York");
     }
 
     function getNYWallClockDate() {
@@ -350,9 +930,9 @@
 
     function getSessionState(nowParts) {
       const totalMinutes = nowParts.hour * 60 + nowParts.minute;
-      const isLondon = totalMinutes >= 180 && totalMinutes < 480;  // 03:00-07:59 ET
-      const isNY     = totalMinutes >= 480 && totalMinutes < 1020; // 08:00-16:59 ET
-      const isAsia   = totalMinutes >= 1140 || totalMinutes < 180; // 19:00-02:59 ET
+      const isLondon = totalMinutes >= 180 && totalMinutes < 480;
+      const isNY = totalMinutes >= 480 && totalMinutes < 1020;
+      const isAsia = totalMinutes >= 1140 || totalMinutes < 180;
 
       let label = "Reset / Between Sessions";
       if (isLondon) label = "London Session";
@@ -362,34 +942,28 @@
       return { isLondon, isNY, isAsia, label };
     }
 
-    function renderSessionBar() {
+    function renderStatusRibbon() {
       const nowParts = getNYParts();
       const session = getSessionState(nowParts);
-
       document.getElementById("currentSession").textContent = session.label;
 
-      const london = document.getElementById("londonStatus");
-      if (session.isLondon) {
-        london.textContent = "LIVE";
-        london.className = "text-green-400 font-semibold mt-1";
+      const { next24h } = getRedFolderStatus();
+      const rf = document.getElementById("redFolderBadge");
+      if (next24h.length) {
+        rf.textContent = next24h[0].name;
+        rf.className = "status-value glow-red";
       } else {
-        london.textContent = formatDuration(secondsUntil(3, 0, nowParts));
-        london.className = "font-semibold mt-1";
+        rf.textContent = "CLEAR";
+        rf.className = "status-value glow-green";
       }
 
-      const ny = document.getElementById("nyStatus");
-      if (session.isNY) {
-        ny.textContent = "LIVE";
-        ny.className = "text-green-400 font-semibold mt-1";
-      } else {
-        ny.textContent = formatDuration(secondsUntil(8, 0, nowParts));
-        ny.className = "font-semibold mt-1";
-      }
+      const evals = ASSETS.map(a => evaluateAsset(a));
+      const trades = evals.filter(e => e.verdict === "TRADE").length;
+      const waits = evals.filter(e => e.verdict === "WAIT").length;
+      const noTrades = evals.filter(e => e.verdict === "NO TRADE").length;
+      document.getElementById("watchlistState").textContent = `T:${trades}  W:${waits}  N:${noTrades}`;
     }
 
-    // ----------------------------
-    // EVENTS
-    // ----------------------------
     function parseWeeklyEvents(text) {
       const lines = text.split("\n").map(x => x.trim()).filter(Boolean);
       const events = [];
@@ -435,44 +1009,39 @@
 
     function renderRedFolder() {
       const { next24h, week } = getRedFolderStatus();
-      const badge = document.getElementById("redFolderBadge");
       const nowBox = document.getElementById("redFolderNow");
       const weekBox = document.getElementById("redFolderWeek");
 
       if (next24h.length) {
         const e = next24h[0];
-        badge.textContent = `⚠️ ${e.name} • ${e.timeText}`;
-        badge.className = "text-red-400 font-semibold mt-1";
         nowBox.innerHTML = `
-          <div class="font-semibold text-red-300">${escapeHtml(e.name)}</div>
-          <div>${escapeHtml(e.dateText)} • ${escapeHtml(e.timeText)}</div>
-          <div class="text-zinc-400 mt-1">Showing because it is within the next 24 hours.</div>
+          <div class="glow-red" style="font-weight:800; font-size:18px;">${escapeHtml(e.name)}</div>
+          <div style="margin-top:6px;">${escapeHtml(e.dateText)} • ${escapeHtml(e.timeText)}</div>
+          <div class="hud-subtle" style="margin-top:8px;">Mission-critical event inside the 24-hour window.</div>
         `;
       } else {
-        badge.textContent = "No red folder within 24h";
-        badge.className = "text-green-400 font-semibold mt-1";
-        nowBox.innerHTML = `<div class="text-green-300">No red-folder event is within the next 24 hours.</div>`;
+        nowBox.innerHTML = `<div class="glow-green" style="font-weight:800;">No red-folder event inside the next 24 hours.</div>`;
       }
 
       if (week.length) {
         weekBox.innerHTML = "";
         week.forEach(e => {
           const row = document.createElement("div");
-          row.className = "tile-soft rounded-xl p-3";
+          row.className = "summary-row";
           row.innerHTML = `
-            <div class="font-semibold">${escapeHtml(e.name)}</div>
-            <div class="text-zinc-400">${escapeHtml(e.dateText)} • ${escapeHtml(e.timeText)}</div>
+            <div class="summary-left">
+              <div class="summary-symbol">${escapeHtml(e.name)}</div>
+              <div class="summary-meta">${escapeHtml(e.dateText)}</div>
+            </div>
+            <div class="summary-price">${escapeHtml(e.timeText)}</div>
           `;
           weekBox.appendChild(row);
         });
       } else {
-        weekBox.innerHTML = `<div>No weekly events listed.</div>`;
+        weekBox.innerHTML = `<div class="hud-subtle">No weekly events listed.</div>`;
       }
     }
 
-    // ----------------------------
-    // SYMBOL / PROXY / CHART
-    // ----------------------------
     function detectAssetClass(symbol) {
       if (CRYPTO_CG_MAP[symbol]) return "crypto";
       if (FUTURES_PROXY_MAP[symbol]) return "futures";
@@ -522,9 +1091,6 @@
       };
     }
 
-    // ----------------------------
-    // PRICES
-    // ----------------------------
     async function fetchCryptoPrices(ids) {
       if (!ids.length) return {};
       const uniqueIds = [...new Set(ids)].join(",");
@@ -553,7 +1119,6 @@
     async function refreshPrices() {
       const normalized = ASSETS.map(normalizeAsset);
 
-      // crypto
       const cryptoAssets = normalized.filter(a => a.effectiveClass === "crypto" && a.autoPrice);
       const cryptoIds = cryptoAssets.map(a => CRYPTO_CG_MAP[a.normalizedSymbol]).filter(Boolean);
 
@@ -576,16 +1141,11 @@
               priceStatus: "Live"
             };
           }
-          return {
-            ...asset,
-            lastSource: "Manual",
-            priceStatus: "Fallback"
-          };
+          return { ...asset, lastSource: "Manual", priceStatus: "Fallback" };
         }
         return asset;
       });
 
-      // non-crypto via Finnhub if token exists
       for (let i = 0; i < ASSETS.length; i++) {
         const asset = ASSETS[i];
         const n = normalizeAsset(asset);
@@ -601,33 +1161,18 @@
               priceStatus: "Live"
             };
           } else {
-            ASSETS[i] = {
-              ...ASSETS[i],
-              lastSource: "Manual",
-              priceStatus: "Fallback"
-            };
+            ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Fallback" };
           }
         } else if (!asset.autoPrice) {
-          ASSETS[i] = {
-            ...ASSETS[i],
-            lastSource: "Manual",
-            priceStatus: "Manual"
-          };
+          ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Manual" };
         } else if (n.effectiveClass !== "crypto" && !GLOBALS.finnhubToken) {
-          ASSETS[i] = {
-            ...ASSETS[i],
-            lastSource: "Manual",
-            priceStatus: "Need token"
-          };
+          ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Need token" };
         }
       }
 
       saveAssets();
     }
 
-    // ----------------------------
-    // STRATEGY ENGINE
-    // ----------------------------
     function evaluateAsset(asset) {
       const a = normalizeAsset(asset);
       const nowParts = getNYParts();
@@ -648,7 +1193,7 @@
 
       let setupModel = "None";
       let bias = "Range";
-      let biasColor = "text-yellow-400";
+      let biasColor = "glow-amber";
       let state = "No Trade Zone";
       let marketState = "Inside Range";
       let reason = "Price is still inside PDH/PDL.";
@@ -662,7 +1207,7 @@
       if (price > pdh) {
         setupModel = "Expansion";
         bias = "Bullish Confirmed";
-        biasColor = "text-green-400";
+        biasColor = "glow-green";
         state = brokeAbove ? "Break Confirmed" : "Above PDH";
         marketState = "Above PDH";
         reason = "Expansion model: price is above PDH.";
@@ -675,7 +1220,7 @@
       } else if (price < pdl) {
         setupModel = "Expansion";
         bias = "Bearish Confirmed";
-        biasColor = "text-red-400";
+        biasColor = "glow-red";
         state = brokeBelow ? "Break Confirmed" : "Below PDL";
         marketState = "Below PDL";
         reason = "Expansion model: price is below PDL.";
@@ -688,7 +1233,7 @@
       } else if (failedHigh) {
         setupModel = "High/Low Failure";
         bias = "High Failure";
-        biasColor = "text-red-400";
+        biasColor = "glow-red";
         state = "Failed Break Back Inside Range";
         marketState = "Failed Above PDH";
         reason = "Failure model: price failed above PDH and returned inside range.";
@@ -701,7 +1246,7 @@
       } else if (failedLow) {
         setupModel = "High/Low Failure";
         bias = "Low Failure";
-        biasColor = "text-green-400";
+        biasColor = "glow-green";
         state = "Failed Break Back Inside Range";
         marketState = "Failed Below PDL";
         reason = "Failure model: price failed below PDL and returned inside range.";
@@ -714,7 +1259,7 @@
       }
 
       let verdict = "WAIT";
-      let verdictColor = "text-yellow-400";
+      let verdictColor = "glow-amber";
       let riskNote = "Normal conditions.";
 
       const { next24h } = getRedFolderStatus();
@@ -724,17 +1269,17 @@
 
       if (!(session.isLondon || session.isNY)) {
         verdict = "NO TRADE";
-        verdictColor = "text-red-400";
+        verdictColor = "glow-red";
         riskNote = "Outside primary execution session.";
       } else if (setupModel === "None") {
         verdict = "NO TRADE";
-        verdictColor = "text-red-400";
+        verdictColor = "glow-red";
       } else if (actionable) {
         verdict = "TRADE";
-        verdictColor = "text-green-400";
+        verdictColor = "glow-green";
       } else {
         verdict = "WAIT";
-        verdictColor = "text-yellow-400";
+        verdictColor = "glow-amber";
       }
 
       return {
@@ -746,30 +1291,27 @@
       };
     }
 
-    // ----------------------------
-    // RENDER
-    // ----------------------------
     function renderSummary() {
       const summary = document.getElementById("summary");
       const results = ASSETS.map(a => evaluateAsset(a)).sort((a, b) => verdictRank(a.verdict) - verdictRank(b.verdict));
 
       if (!results.length) {
-        summary.innerHTML = "<div>No assets in watchlist.</div>";
+        summary.innerHTML = `<div class="hud-subtle">No assets in watchlist.</div>`;
         return;
       }
 
       summary.innerHTML = "";
       results.forEach(r => {
         const row = document.createElement("div");
-        row.className = "tile-soft rounded-xl px-3 py-3 flex items-center justify-between gap-3";
+        row.className = "summary-row";
         row.innerHTML = `
-          <div class="min-w-0">
-            <div class="font-semibold">${escapeHtml(r.symbol)}</div>
-            <div class="text-xs text-zinc-400">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
+          <div class="summary-left">
+            <div class="summary-symbol">${escapeHtml(r.symbol)}</div>
+            <div class="summary-meta">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
           </div>
-          <div class="text-right">
-            <div class="text-sm">${formatPrice(r.price)}</div>
-            <div class="text-xs ${r.verdictColor}">${escapeHtml(r.verdict)}</div>
+          <div class="summary-price">
+            ${formatPrice(r.price)}
+            <div class="summary-verdict ${r.verdictColor}">${escapeHtml(r.verdict)}</div>
           </div>
         `;
         row.addEventListener("click", () => toggleAsset(r.id));
@@ -785,104 +1327,115 @@
 
       sorted.forEach(asset => {
         const r = evaluateAsset(asset);
-        const box = document.createElement("div");
-        box.className = "tile rounded-2xl border border-zinc-800 overflow-hidden";
+        const card = document.createElement("div");
+        card.className = "asset-card";
 
-        box.innerHTML = `
-          <button class="w-full text-left p-4 flex items-center justify-between gap-3 asset-toggle">
-            <div class="min-w-0">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-xl font-bold text-yellow-400">${escapeHtml(r.symbol)}</span>
+        card.innerHTML = `
+          <button class="asset-head">
+            <div class="asset-left">
+              <div class="asset-symbol">
+                <strong>${escapeHtml(r.symbol)}</strong>
                 <span class="px-2 py-1 rounded-full text-xs ${badgeClass(r.verdict)}">${escapeHtml(r.verdict)}</span>
               </div>
-              <div class="text-sm mt-1 ${r.biasColor}">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
-              <div class="text-xs text-zinc-400 mt-1">
+              <div class="asset-bias ${r.biasColor}">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
+              <div class="asset-meta">
                 Price: ${formatPrice(r.price)} • Source: ${escapeHtml(asset.lastSource || "Manual")} • Status: ${escapeHtml(asset.priceStatus || "Manual")}
               </div>
             </div>
-            <div class="text-zinc-400 text-xl">${asset.expanded ? "−" : "+"}</div>
+            <div class="asset-expand">${asset.expanded ? "−" : "+"}</div>
           </button>
 
-          <div class="${asset.expanded ? "block" : "hidden"} border-t border-zinc-800 p-4 space-y-4">
-            ${r.proxyNote ? `<div class="bg-yellow-900/30 border border-yellow-700 text-yellow-200 text-sm p-3 rounded-xl">${escapeHtml(r.proxyNote)}</div>` : ""}
+          <div class="${asset.expanded ? "asset-body" : "asset-body hidden"}">
+            ${r.proxyNote ? `<div class="proxy-note">${escapeHtml(r.proxyNote)}</div>` : ""}
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <div>
-                <div class="text-zinc-400">Market State</div>
-                <div class="font-semibold mt-1">${escapeHtml(r.marketState)}</div>
-              </div>
-              <div>
-                <div class="text-zinc-400">Session</div>
-                <div class="font-semibold mt-1">${escapeHtml(r.sessionLabel)}</div>
-              </div>
-              <div>
-                <div class="text-zinc-400">Bias</div>
-                <div class="${r.biasColor} font-semibold mt-1">${escapeHtml(r.bias)}</div>
-              </div>
-              <div>
-                <div class="text-zinc-400">Strategy Model</div>
-                <div class="font-semibold mt-1">${escapeHtml(r.setupModel)}</div>
-              </div>
+            <div class="mini-grid-2">
+              <div class="info-box"><div class="info-label">Market State</div><div class="info-value">${escapeHtml(r.marketState)}</div></div>
+              <div class="info-box"><div class="info-label">Session</div><div class="info-value">${escapeHtml(r.sessionLabel)}</div></div>
+              <div class="info-box"><div class="info-label">Bias</div><div class="info-value ${r.biasColor}">${escapeHtml(r.bias)}</div></div>
+              <div class="info-box"><div class="info-label">Strategy Model</div><div class="info-value">${escapeHtml(r.setupModel)}</div></div>
             </div>
 
-            <div class="tile-soft rounded-xl p-3 text-sm space-y-1">
-              <div><span class="text-zinc-400">Reason:</span> ${escapeHtml(r.reason)}</div>
-              <div><span class="text-zinc-400">Plan:</span> ${escapeHtml(r.plan)}</div>
-              <div><span class="text-zinc-400">Risk Note:</span> ${escapeHtml(r.riskNote)}</div>
+            <div class="note-box">
+              <div><span class="hud-subtle">Reason:</span> ${escapeHtml(r.reason)}</div>
+              <div style="margin-top:6px;"><span class="hud-subtle">Plan:</span> ${escapeHtml(r.plan)}</div>
+              <div style="margin-top:6px;"><span class="hud-subtle">Risk Note:</span> ${escapeHtml(r.riskNote)}</div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <div class="tile-soft rounded-xl p-3"><div class="text-zinc-400">Current Price</div><div class="font-semibold mt-1">${formatPrice(asset.currentPrice)}</div></div>
-              <div class="tile-soft rounded-xl p-3"><div class="text-zinc-400">Previous Price</div><div class="font-semibold mt-1">${formatPrice(asset.previousPrice)}</div></div>
-              <div class="tile-soft rounded-xl p-3"><div class="text-zinc-400">PDH</div><div class="font-semibold mt-1">${formatPrice(asset.pdh)}</div></div>
-              <div class="tile-soft rounded-xl p-3"><div class="text-zinc-400">PDL</div><div class="font-semibold mt-1">${formatPrice(asset.pdl)}</div></div>
-              <div class="tile-soft rounded-xl p-3"><div class="text-zinc-400">Entry Zone</div><div class="font-semibold mt-1">${escapeHtml(r.entryZone)}</div></div>
-              <div class="tile-soft rounded-xl p-3"><div class="text-zinc-400">Invalidation</div><div class="font-semibold mt-1">${escapeHtml(r.invalidation)}</div></div>
-              <div class="tile-soft rounded-xl p-3"><div class="text-zinc-400">Target 1</div><div class="font-semibold mt-1">${escapeHtml(r.target1)}</div></div>
-              <div class="tile-soft rounded-xl p-3"><div class="text-zinc-400">Target 2</div><div class="font-semibold mt-1">${escapeHtml(r.target2)}</div></div>
+            <div class="mini-grid-2">
+              <div class="info-box"><div class="info-label">Current Price</div><div class="info-value">${formatPrice(asset.currentPrice)}</div></div>
+              <div class="info-box"><div class="info-label">Previous Price</div><div class="info-value">${formatPrice(asset.previousPrice)}</div></div>
+              <div class="info-box"><div class="info-label">PDH</div><div class="info-value">${formatPrice(asset.pdh)}</div></div>
+              <div class="info-box"><div class="info-label">PDL</div><div class="info-value">${formatPrice(asset.pdl)}</div></div>
+              <div class="info-box"><div class="info-label">Entry Zone</div><div class="info-value">${escapeHtml(r.entryZone)}</div></div>
+              <div class="info-box"><div class="info-label">Invalidation</div><div class="info-value">${escapeHtml(r.invalidation)}</div></div>
+              <div class="info-box"><div class="info-label">Target 1</div><div class="info-value">${escapeHtml(r.target1)}</div></div>
+              <div class="info-box"><div class="info-label">Target 2</div><div class="info-value">${escapeHtml(r.target2)}</div></div>
             </div>
 
-            <div class="tile-soft rounded-xl p-2">
+            <div class="chart-frame">
               <iframe
                 src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(r.chartSymbol)}&interval=15&theme=dark&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&style=1&timezone=Etc%2FUTC&withdateranges=1&hidevolume=1&allow_symbol_change=0"
-                style="width:100%; height:320px; border:none;"
               ></iframe>
             </div>
 
-            <div class="tile-soft rounded-xl p-3">
-              <div class="text-zinc-400 text-sm mb-3">Edit Asset</div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
-                <input data-id="${asset.id}" data-field="symbol" value="${escapeHtml(asset.symbol)}" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
-                <select data-id="${asset.id}" data-field="assetClass" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
-                  <option value="auto" ${asset.assetClass === "auto" ? "selected" : ""}>Auto Detect</option>
-                  <option value="forex" ${asset.assetClass === "forex" ? "selected" : ""}>Forex</option>
-                  <option value="crypto" ${asset.assetClass === "crypto" ? "selected" : ""}>Crypto</option>
-                  <option value="futures" ${asset.assetClass === "futures" ? "selected" : ""}>Futures</option>
-                  <option value="stock" ${asset.assetClass === "stock" ? "selected" : ""}>Stock</option>
-                  <option value="index" ${asset.assetClass === "index" ? "selected" : ""}>Index</option>
-                </select>
-                <input data-id="${asset.id}" data-field="currentPrice" value="${asset.currentPrice}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
-                <input data-id="${asset.id}" data-field="previousPrice" value="${asset.previousPrice}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
-                <input data-id="${asset.id}" data-field="pdh" value="${asset.pdh}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
-                <input data-id="${asset.id}" data-field="pdl" value="${asset.pdl}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
-                <input data-id="${asset.id}" data-field="retestBuffer" value="${asset.retestBuffer}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
-                <select data-id="${asset.id}" data-field="autoPrice" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
-                  <option value="true" ${asset.autoPrice ? "selected" : ""}>Auto Price ON</option>
-                  <option value="false" ${!asset.autoPrice ? "selected" : ""}>Auto Price OFF</option>
-                </select>
+            <div class="note-box">
+              <div class="hud-title" style="margin-bottom:8px;">Edit Asset</div>
+              <div class="form-grid">
+                <div>
+                  <label class="field-label">Symbol</label>
+                  <input data-id="${asset.id}" data-field="symbol" value="${escapeHtml(asset.symbol)}" class="asset-input hud-input">
+                </div>
+                <div>
+                  <label class="field-label">Asset Class</label>
+                  <select data-id="${asset.id}" data-field="assetClass" class="asset-input hud-select">
+                    <option value="auto" ${asset.assetClass === "auto" ? "selected" : ""}>Auto Detect</option>
+                    <option value="forex" ${asset.assetClass === "forex" ? "selected" : ""}>Forex</option>
+                    <option value="crypto" ${asset.assetClass === "crypto" ? "selected" : ""}>Crypto</option>
+                    <option value="futures" ${asset.assetClass === "futures" ? "selected" : ""}>Futures</option>
+                    <option value="stock" ${asset.assetClass === "stock" ? "selected" : ""}>Stock</option>
+                    <option value="index" ${asset.assetClass === "index" ? "selected" : ""}>Index</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label">Current Price</label>
+                  <input data-id="${asset.id}" data-field="currentPrice" value="${asset.currentPrice}" type="number" step="0.001" class="asset-input hud-input">
+                </div>
+                <div>
+                  <label class="field-label">Previous Price</label>
+                  <input data-id="${asset.id}" data-field="previousPrice" value="${asset.previousPrice}" type="number" step="0.001" class="asset-input hud-input">
+                </div>
+                <div>
+                  <label class="field-label">PDH</label>
+                  <input data-id="${asset.id}" data-field="pdh" value="${asset.pdh}" type="number" step="0.001" class="asset-input hud-input">
+                </div>
+                <div>
+                  <label class="field-label">PDL</label>
+                  <input data-id="${asset.id}" data-field="pdl" value="${asset.pdl}" type="number" step="0.001" class="asset-input hud-input">
+                </div>
+                <div>
+                  <label class="field-label">Retest Buffer</label>
+                  <input data-id="${asset.id}" data-field="retestBuffer" value="${asset.retestBuffer}" type="number" step="0.001" class="asset-input hud-input">
+                </div>
+                <div>
+                  <label class="field-label">Auto Price</label>
+                  <select data-id="${asset.id}" data-field="autoPrice" class="asset-input hud-select">
+                    <option value="true" ${asset.autoPrice ? "selected" : ""}>ON</option>
+                    <option value="false" ${!asset.autoPrice ? "selected" : ""}>OFF</option>
+                  </select>
+                </div>
               </div>
 
-              <div class="flex flex-wrap gap-3 mt-3">
-                <button class="save-asset-btn bg-green-600 hover:bg-green-500 px-3 py-2 rounded-xl" data-id="${asset.id}">Save Asset</button>
-                <button class="copy-prev-btn bg-zinc-700 hover:bg-zinc-600 px-3 py-2 rounded-xl" data-id="${asset.id}">Copy Current → Previous</button>
-                <button class="delete-asset-btn bg-red-700 hover:bg-red-600 px-3 py-2 rounded-xl" data-id="${asset.id}">Delete Asset</button>
+              <div class="hero-actions" style="margin-top:12px;">
+                <button class="save-asset-btn hud-btn green" data-id="${asset.id}">Save Asset</button>
+                <button class="copy-prev-btn hud-btn" data-id="${asset.id}">Copy Current → Previous</button>
+                <button class="delete-asset-btn hud-btn red" data-id="${asset.id}">Delete Asset</button>
               </div>
             </div>
           </div>
         `;
 
-        box.querySelector(".asset-toggle").addEventListener("click", () => toggleAsset(asset.id));
-        grid.appendChild(box);
+        card.querySelector(".asset-head").addEventListener("click", () => toggleAsset(asset.id));
+        grid.appendChild(card);
       });
 
       attachAssetButtons();
@@ -900,9 +1453,6 @@
       });
     }
 
-    // ----------------------------
-    // ASSET ACTIONS
-    // ----------------------------
     function toggleAsset(id) {
       ASSETS = ASSETS.map(a => a.id === id ? { ...a, expanded: !a.expanded } : a);
       saveAssets();
@@ -981,9 +1531,6 @@
       document.getElementById("newRetestBuffer").value = "";
     }
 
-    // ----------------------------
-    // GLOBAL ACTIONS
-    // ----------------------------
     function populateGlobals() {
       document.getElementById("finnhubToken").value = GLOBALS.finnhubToken;
       document.getElementById("weeklyEvents").value = GLOBALS.weeklyEventsText;
@@ -995,9 +1542,6 @@
       saveGlobals();
     }
 
-    // ----------------------------
-    // NEWS
-    // ----------------------------
     function scoreHeadline(title) {
       const t = title.toLowerCase();
       let score = 0;
@@ -1012,9 +1556,10 @@
     }
 
     function addNewsItem(container, label, title, link) {
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="${link}" target="_blank" class="text-blue-400 underline">${escapeHtml(label)}: ${escapeHtml(title)}</a>`;
-      container.appendChild(li);
+      const item = document.createElement("div");
+      item.className = "news-item";
+      item.innerHTML = `<a href="${link}" target="_blank">${escapeHtml(label)}: ${escapeHtml(title)}</a>`;
+      container.appendChild(item);
     }
 
     async function loadBestZeroHedge(container) {
@@ -1081,19 +1626,14 @@
       await loadBestCoinBureau(news);
     }
 
-    // ----------------------------
-    // RENDER ALL
-    // ----------------------------
     async function renderAll() {
-      renderSessionBar();
+      renderClocks();
+      renderStatusRibbon();
       renderRedFolder();
       renderSummary();
       renderAssets();
     }
 
-    // ----------------------------
-    // EVENTS
-    // ----------------------------
     document.getElementById("saveGlobalsBtn").addEventListener("click", async () => {
       readGlobals();
       await refreshPrices();
@@ -1120,16 +1660,14 @@
       await renderAll();
     });
 
-    // ----------------------------
-    // INIT
-    // ----------------------------
     (async function init() {
       populateGlobals();
       await refreshPrices();
       await renderNews();
       await renderAll();
 
-      setInterval(renderSessionBar, 1000);
+      setInterval(renderClocks, 1000);
+      setInterval(renderStatusRibbon, 1000);
       setInterval(renderRedFolder, 60000);
       setInterval(async () => { await refreshPrices(); await renderAll(); }, 60000);
       setInterval(renderNews, 300000);
