@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trader Desk // Command Center</title>
+  <title>Trader Desk // Decision Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{
@@ -14,25 +14,32 @@
       --amber:#fbbf24;
       --text:#e6f7ff;
       --muted:#8aa5bf;
-
-      --panel-opacity:0.68;
       --panel-grad-1:rgba(10,18,30,.82);
       --panel-grad-2:rgba(6,12,22,.88);
       --panel-border:rgba(103,232,249,.24);
       --shadow:rgba(0,0,0,.28);
+      --blur:10px;
     }
 
-    * { box-sizing: border-box; }
-
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
     body{
-      margin:0;
       color:var(--text);
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.72)),
+        linear-gradient(rgba(0,0,0,.60), rgba(0,0,0,.74)),
         url("./world-map.jpg") center/cover no-repeat fixed,
         #060b12;
       min-height:100vh;
+    }
+
+    body.lite{
+      --panel-grad-1:#0b1220;
+      --panel-grad-2:#0b1220;
+      --panel-border:rgba(103,232,249,.12);
+      --shadow:rgba(0,0,0,.10);
+      --blur:0px;
+      background:#060b12;
     }
 
     .shell{
@@ -48,39 +55,24 @@
       background:linear-gradient(180deg, var(--panel-grad-1), var(--panel-grad-2));
       border:1px solid var(--panel-border);
       border-radius:22px;
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(var(--blur));
+      -webkit-backdrop-filter:blur(var(--blur));
       box-shadow:
-        0 0 0 1px rgba(103,232,249,0.04),
+        0 0 0 1px rgba(103,232,249,.04),
         0 10px 30px var(--shadow),
-        inset 0 0 16px rgba(56,189,248,0.03);
+        inset 0 0 16px rgba(56,189,248,.03);
       overflow:hidden;
     }
 
-    .panel::before{
+    body:not(.lite) .panel::before{
       content:"";
       position:absolute;
       inset:0;
       pointer-events:none;
-      background:linear-gradient(90deg, transparent, rgba(103,232,249,0.03), transparent);
-      opacity:.9;
+      background:linear-gradient(90deg, transparent, rgba(103,232,249,.03), transparent);
     }
 
-    .panel:hover{
-      border-color:rgba(103,232,249,0.42);
-      box-shadow:
-        0 0 0 1px rgba(103,232,249,0.08),
-        0 12px 34px rgba(0,0,0,0.30),
-        0 0 22px rgba(56,189,248,0.10),
-        inset 0 0 16px rgba(56,189,248,0.04);
-    }
-
-    .inner{
-      position:relative;
-      z-index:1;
-      padding:16px;
-    }
-
+    .inner{ position:relative; padding:16px; z-index:1; }
     .title{
       font-size:12px;
       text-transform:uppercase;
@@ -89,18 +81,8 @@
       font-weight:800;
       margin-bottom:10px;
     }
-
-    .muted{
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    .tiny{
-      font-size:11px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-    }
+    .muted{ color:var(--muted); font-size:12px; }
+    .tiny{ color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.12em; }
 
     .hero{
       display:flex;
@@ -128,14 +110,10 @@
       color:var(--muted);
     }
 
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; }
 
     .btn{
-      border:1px solid rgba(103,232,249,0.28);
+      border:1px solid rgba(103,232,249,.28);
       background:linear-gradient(180deg, rgba(14,24,39,.95), rgba(8,14,24,.95));
       color:#def8ff;
       padding:10px 14px;
@@ -148,9 +126,11 @@
       transition:.15s ease;
     }
 
+    body.lite .btn{ background:#111827; }
+
     .btn:hover{
       transform:translateY(-1px);
-      border-color:rgba(103,232,249,0.52);
+      border-color:rgba(103,232,249,.52);
       box-shadow:0 0 20px rgba(56,189,248,.14);
     }
 
@@ -175,6 +155,8 @@
       justify-content:space-between;
     }
 
+    body.lite .clock-card{ background:#0f172a; }
+
     .clock-city{
       font-size:11px;
       text-transform:uppercase;
@@ -192,7 +174,7 @@
     }
 
     .clock-time{
-      font-size:26px;
+      font-size:25px;
       font-weight:900;
       letter-spacing:.06em;
       color:#eefbff;
@@ -225,7 +207,7 @@
 
     .ribbon{
       display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
+      grid-template-columns:repeat(5,minmax(0,1fr));
       gap:10px;
     }
 
@@ -235,6 +217,8 @@
       border:1px solid rgba(103,232,249,.12);
       background:linear-gradient(180deg, rgba(13,21,35,.76), rgba(8,13,22,.84));
     }
+
+    body.lite .ribbon-box{ background:#0f172a; }
 
     .ribbon-label{
       font-size:11px;
@@ -251,13 +235,7 @@
       color:#eefbff;
     }
 
-    .chip-row{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
+    .chip-row{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
     .state-chip{
       white-space:nowrap;
       font-size:12px;
@@ -269,22 +247,19 @@
       letter-spacing:.03em;
     }
 
-    .split-2{
+    .grid-2{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px;
     }
 
-    .summary-list,
-    .week-list,
-    .news-list{
+    .grid-3{
       display:grid;
-      gap:10px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
     }
 
-    .summary-list.desktop-two{
-      grid-template-columns:repeat(2,minmax(0,1fr));
-    }
+    .summary-list, .week-list, .news-list{ display:grid; gap:10px; }
 
     .summary-row{
       display:flex;
@@ -298,11 +273,9 @@
       cursor:pointer;
     }
 
-    .summary-symbol{
-      font-weight:900;
-      letter-spacing:.05em;
-    }
+    body.lite .summary-row{ background:#0f172a; }
 
+    .summary-symbol{ font-weight:900; letter-spacing:.05em; }
     .summary-meta{
       margin-top:4px;
       font-size:11px;
@@ -310,14 +283,7 @@
       text-transform:uppercase;
       letter-spacing:.12em;
     }
-
-    .summary-price{
-      text-align:right;
-      font-size:14px;
-      font-weight:800;
-      min-width:90px;
-    }
-
+    .summary-price{ text-align:right; font-size:14px; font-weight:800; min-width:90px; }
     .summary-verdict{
       margin-top:4px;
       font-size:11px;
@@ -340,6 +306,8 @@
       box-shadow:0 12px 30px rgba(0,0,0,.20);
     }
 
+    body.lite .asset-card{ background:#0f172a; box-shadow:none; }
+
     .asset-head{
       width:100%;
       background:transparent;
@@ -361,10 +329,7 @@
       flex-wrap:wrap;
     }
 
-    .asset-symbol strong{
-      font-size:22px;
-      letter-spacing:.06em;
-    }
+    .asset-symbol strong{ font-size:22px; letter-spacing:.06em; }
 
     .pill{
       padding:5px 9px;
@@ -375,30 +340,11 @@
       font-weight:900;
     }
 
-    .pill-trade{
-      background:rgba(74,222,128,.16);
-      color:#9ff7ba;
-      border:1px solid rgba(74,222,128,.36);
-    }
+    .pill-trade{ background:rgba(74,222,128,.16); color:#9ff7ba; border:1px solid rgba(74,222,128,.36); }
+    .pill-wait{ background:rgba(251,191,36,.16); color:#fde08b; border:1px solid rgba(251,191,36,.36); }
+    .pill-no{ background:rgba(248,113,113,.16); color:#fbb2b2; border:1px solid rgba(248,113,113,.36); }
 
-    .pill-wait{
-      background:rgba(251,191,36,.16);
-      color:#fde08b;
-      border:1px solid rgba(251,191,36,.36);
-    }
-
-    .pill-no{
-      background:rgba(248,113,113,.16);
-      color:#fbb2b2;
-      border:1px solid rgba(248,113,113,.36);
-    }
-
-    .asset-bias{
-      margin-top:6px;
-      font-size:13px;
-      font-weight:800;
-    }
-
+    .asset-bias{ margin-top:6px; font-size:13px; font-weight:800; }
     .asset-meta{
       margin-top:6px;
       font-size:11px;
@@ -407,11 +353,7 @@
       letter-spacing:.12em;
     }
 
-    .asset-expand{
-      font-size:22px;
-      color:var(--muted);
-      font-weight:900;
-    }
+    .asset-expand{ font-size:22px; color:var(--muted); font-weight:900; }
 
     .asset-body{
       border-top:1px solid rgba(103,232,249,.08);
@@ -426,12 +368,20 @@
       gap:10px;
     }
 
+    .mini-grid-4{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+
     .info-box{
       border-radius:16px;
       padding:12px;
       background:linear-gradient(180deg, rgba(14,22,35,.74), rgba(8,13,21,.84));
       border:1px solid rgba(103,232,249,.08);
     }
+
+    body.lite .info-box{ background:#0f172a; }
 
     .info-label{
       font-size:11px;
@@ -442,10 +392,7 @@
       font-weight:800;
     }
 
-    .info-value{
-      font-size:14px;
-      font-weight:800;
-    }
+    .info-value{ font-size:14px; font-weight:800; }
 
     .note-box{
       border-radius:16px;
@@ -455,6 +402,8 @@
       font-size:13px;
       line-height:1.5;
     }
+
+    body.lite .note-box{ background:#0f172a; }
 
     .proxy-note{
       background:rgba(251,191,36,.10);
@@ -478,6 +427,8 @@
       border:0;
       border-radius:12px;
     }
+
+    body.lite .chart-frame{ display:none; }
 
     .form-grid{
       display:grid;
@@ -508,10 +459,13 @@
       font-size:13px;
     }
 
-    .hud-textarea{
-      min-height:132px;
-      resize:vertical;
+    body.lite .hud-input,
+    body.lite .hud-select,
+    body.lite .hud-textarea{
+      background:#111827;
     }
+
+    .hud-textarea{ min-height:132px; resize:vertical; }
 
     .news-item{
       padding:12px 14px;
@@ -521,14 +475,10 @@
       font-size:13px;
     }
 
-    .news-item a{
-      color:#93c5fd;
-      text-decoration:none;
-    }
+    body.lite .news-item{ background:#0f172a; }
 
-    .news-item a:hover{
-      text-decoration:underline;
-    }
+    .news-item a{ color:#93c5fd; text-decoration:none; }
+    .news-item a:hover{ text-decoration:underline; }
 
     .glow-cyan{ color:var(--cyan); text-shadow:0 0 10px rgba(103,232,249,.18); }
     .glow-blue{ color:var(--blue); text-shadow:0 0 10px rgba(56,189,248,.18); }
@@ -550,7 +500,7 @@
     }
 
     .settings-modal{
-      width:min(960px, 100%);
+      width:min(1020px, 100%);
       max-height:90vh;
       overflow:auto;
       border-radius:22px;
@@ -560,44 +510,34 @@
       padding:18px;
     }
 
+    body.lite .settings-modal{ background:#0f172a; }
+
     @media (max-width:1200px){
       .clock-grid,
       .ribbon,
       .asset-grid,
-      .split-2,
-      .form-grid{
+      .grid-2,
+      .grid-3,
+      .form-grid,
+      .mini-grid-4{
         grid-template-columns:1fr 1fr;
-      }
-
-      .summary-list.desktop-two{
-        grid-template-columns:1fr;
       }
     }
 
     @media (max-width:760px){
       body{ background-attachment:scroll; }
-
       .clock-grid,
       .ribbon,
       .asset-grid,
-      .split-2,
+      .grid-2,
+      .grid-3,
       .form-grid,
-      .mini-grid-2{
+      .mini-grid-2,
+      .mini-grid-4{
         grid-template-columns:1fr;
       }
-
-      .summary-list.desktop-two{
-        grid-template-columns:1fr;
-      }
-
-      .hero h1{
-        font-size:23px;
-      }
-
-      .chip-row{
-        flex-direction:column;
-        align-items:flex-start;
-      }
+      .hero h1{ font-size:23px; }
+      .chip-row{ flex-direction:column; align-items:flex-start; }
     }
   </style>
 </head>
@@ -607,12 +547,13 @@
     <section class="panel">
       <div class="inner hero">
         <div>
-          <h1>Trader Desk // Command Center</h1>
-          <p>Global session intelligence • expansion + failure models • live dashboard shell</p>
+          <h1>Trader Desk // Decision Dashboard</h1>
+          <p>Session • event risk • bias • actionability • data trust</p>
         </div>
         <div class="actions">
           <button id="refreshBtn" class="btn">Refresh</button>
           <button id="saveGlobalsBtn" class="btn green">Save Globals</button>
+          <button id="toggleLiteBtn" class="btn amber">Lite Mode</button>
           <button id="openSettingsBtn" class="btn">Settings</button>
         </div>
       </div>
@@ -641,6 +582,10 @@
             <div id="watchlistState" class="chip-row"></div>
           </div>
           <div class="ribbon-box">
+            <div class="ribbon-label">Bias</div>
+            <div id="biasBadge" class="ribbon-value glow-amber">Mixed</div>
+          </div>
+          <div class="ribbon-box">
             <div class="ribbon-label">System Status</div>
             <div id="systemStatus" class="ribbon-value glow-green">ONLINE</div>
           </div>
@@ -648,7 +593,27 @@
       </div>
     </section>
 
-    <section class="split-2">
+    <section class="panel">
+      <div class="inner">
+        <div class="title">Data Status</div>
+        <div class="grid-3">
+          <div class="info-box">
+            <div class="info-label">Prices</div>
+            <div id="priceStatus" class="info-value">Unknown</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">News</div>
+            <div id="newsStatus" class="info-value">Unknown</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Last Refresh</div>
+            <div id="lastRefreshStatus" class="info-value">-</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2">
       <div class="panel">
         <div class="inner">
           <div class="title">Red Folder // Next 24 Hours</div>
@@ -663,7 +628,22 @@
       </div>
     </section>
 
-    <section class="split-2">
+    <section class="grid-2">
+      <div class="panel">
+        <div class="inner">
+          <div class="title">Red Folder // Today</div>
+          <div id="redFolderToday" class="week-list"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="inner">
+          <div class="title">Red Folder // Result / Reaction</div>
+          <div id="redFolderResult" class="note-box">No released event to evaluate.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2">
       <div class="panel">
         <div class="inner">
           <div class="title">Intel Feed // Highest Impact</div>
@@ -686,6 +666,11 @@
               <textarea id="weeklyEvents" class="hud-textarea"></textarea>
               <div class="tiny" style="margin-top:8px;">Format: YYYY-MM-DD HH:MM|Event Name|Currency</div>
             </div>
+            <div>
+              <label class="field-label">Manual Result Notes</label>
+              <textarea id="manualResultNotes" class="hud-textarea"></textarea>
+              <div class="tiny" style="margin-top:8px;">Optional: actual / forecast / prior / reaction notes</div>
+            </div>
           </div>
         </div>
       </div>
@@ -694,7 +679,7 @@
     <section class="panel">
       <div class="inner">
         <div class="title">Watchlist Command Summary</div>
-        <div id="summary" class="summary-list desktop-two"></div>
+        <div id="summary" class="summary-list"></div>
       </div>
     </section>
 
@@ -725,6 +710,15 @@
             </select>
           </div>
           <div>
+            <label class="field-label">Price Source</label>
+            <select id="newPriceSource" class="hud-select">
+              <option value="auto">Auto</option>
+              <option value="manual">Manual</option>
+              <option value="finnhub">Finnhub</option>
+              <option value="coingecko">CoinGecko</option>
+            </select>
+          </div>
+          <div>
             <label class="field-label">PDH</label>
             <input id="newPDH" type="number" step="0.001" class="hud-input" />
           </div>
@@ -733,7 +727,7 @@
             <input id="newPDL" type="number" step="0.001" class="hud-input" />
           </div>
           <div>
-            <label class="field-label">Current Price (fallback)</label>
+            <label class="field-label">Current Price</label>
             <input id="newCurrentPrice" type="number" step="0.001" class="hud-input" />
           </div>
           <div>
@@ -759,7 +753,7 @@
       <div class="hero" style="margin-bottom:12px;">
         <div>
           <div class="title" style="margin-bottom:4px;">Settings</div>
-          <div class="muted">Visual and timing controls</div>
+          <div class="muted">Performance, visuals, refresh, data behavior</div>
         </div>
         <div class="actions">
           <button id="saveSettingsBtn" class="btn green">Save Settings</button>
@@ -820,6 +814,13 @@
             <option value="false">OFF</option>
           </select>
         </div>
+        <div>
+          <label class="field-label">Lite Mode Default</label>
+          <select id="settingLiteDefault" class="hud-select">
+            <option value="false">OFF</option>
+            <option value="true">ON</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -829,13 +830,36 @@
       return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
     }
 
+    function escapeHtml(s) {
+      return String(s ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function formatPrice(value) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return "-";
+      if (Math.abs(n) >= 1000) return n.toFixed(2);
+      if (Math.abs(n) >= 100) return n.toFixed(3);
+      if (Math.abs(n) >= 1) return n.toFixed(3);
+      return n.toFixed(5);
+    }
+
+    function formatTs(ts) {
+      if (!ts) return "-";
+      try { return new Date(ts).toLocaleTimeString(); } catch { return "-"; }
+    }
+
     const DEFAULT_GLOBALS = {
       finnhubToken: "",
       weeklyEventsText:
 `2026-03-18 08:30|USD CPI|USD
 2026-03-19 08:30|US Initial Jobless Claims|USD
 2026-03-19 10:00|US Existing Home Sales|USD
-2026-03-20 08:30|Canada Retail Sales|CAD`
+2026-03-20 08:30|Canada Retail Sales|CAD`,
+      manualResultNotes: ""
     };
 
     const DEFAULT_SETTINGS = {
@@ -845,7 +869,8 @@
       chartInterval: "15",
       gradientStyle: "blue",
       autoPD: true,
-      refreshPD: false
+      refreshPD: false,
+      liteDefault: false
     };
 
     const CRYPTO_CG_MAP = {
@@ -862,21 +887,19 @@
     };
 
     const FUTURES_PROXY_MAP = {
-      ES:  { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       note: "Using SPY as ES proxy." },
-      MES: { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       note: "Using SPY as MES proxy." },
-      NQ:  { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     note: "Using QQQ as NQ proxy." },
-      MNQ: { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     note: "Using QQQ as MNQ proxy." },
-      YM:  { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       note: "Using DIA as YM proxy." },
-      MYM: { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       note: "Using DIA as MYM proxy." },
-      GC:  { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   note: "Using XAUUSD as GC proxy." },
-      MGC: { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   note: "Using XAUUSD as MGC proxy." },
-      SI:  { proxySymbol: "XAGUSD", assetClass: "forex",  chartSymbol: "OANDA:XAGUSD",   note: "Using XAGUSD as SI proxy." },
-      SIL: { proxySymbol: "XAGUSD", assetClass: "forex",  chartSymbol: "OANDA:XAGUSD",   note: "Using XAGUSD as SIL proxy." },
-      CL:  { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", note: "Using WTI proxy for CL." },
-      MCL: { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", note: "Using WTI proxy for MCL." },
-      "6E": { proxySymbol: "EURUSD", assetClass: "forex", chartSymbol: "OANDA:EURUSD",   note: "Using EURUSD as 6E proxy." },
-      "6J": { proxySymbol: "USDJPY", assetClass: "forex", chartSymbol: "OANDA:USDJPY",   note: "Using USDJPY as 6J proxy." },
-      "6B": { proxySymbol: "GBPUSD", assetClass: "forex", chartSymbol: "OANDA:GBPUSD",   note: "Using GBPUSD as 6B proxy." }
+      ES:  { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       quoteSymbol: "SPY", note: "Using SPY as ES proxy." },
+      MES: { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       quoteSymbol: "SPY", note: "Using SPY as MES proxy." },
+      NQ:  { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     quoteSymbol: "QQQ", note: "Using QQQ as NQ proxy." },
+      MNQ: { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     quoteSymbol: "QQQ", note: "Using QQQ as MNQ proxy." },
+      YM:  { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       quoteSymbol: "DIA", note: "Using DIA as YM proxy." },
+      MYM: { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       quoteSymbol: "DIA", note: "Using DIA as MYM proxy." },
+      GC:  { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   quoteSymbol: "XAUUSD", note: "Using XAUUSD as GC proxy." },
+      MGC: { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   quoteSymbol: "XAUUSD", note: "Using XAUUSD as MGC proxy." },
+      CL:  { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", quoteSymbol: "USOIL", note: "Using WTI proxy for CL." },
+      MCL: { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", quoteSymbol: "USOIL", note: "Using WTI proxy for MCL." },
+      "6E": { proxySymbol: "EURUSD", assetClass: "forex", chartSymbol: "OANDA:EURUSD",   quoteSymbol: "EURUSD", note: "Using EURUSD as 6E proxy." },
+      "6J": { proxySymbol: "USDJPY", assetClass: "forex", chartSymbol: "OANDA:USDJPY",   quoteSymbol: "USDJPY", note: "Using USDJPY as 6J proxy." },
+      "6B": { proxySymbol: "GBPUSD", assetClass: "forex", chartSymbol: "OANDA:GBPUSD",   quoteSymbol: "GBPUSD", note: "Using GBPUSD as 6B proxy." }
     };
 
     const DEFAULT_ASSETS = [
@@ -884,6 +907,7 @@
         id: makeId(),
         symbol: "USDJPY",
         assetClass: "forex",
+        priceSource: "manual",
         currentPrice: 149.500,
         previousPrice: 149.450,
         pdh: 149.800,
@@ -892,12 +916,14 @@
         expanded: true,
         autoPrice: false,
         lastSource: "Manual",
-        priceStatus: "Manual"
+        priceStatus: "Manual",
+        updatedAt: null
       },
       {
         id: makeId(),
         symbol: "BTCUSD",
         assetClass: "crypto",
+        priceSource: "coingecko",
         currentPrice: 80000,
         previousPrice: 79800,
         pdh: 81200,
@@ -906,7 +932,8 @@
         expanded: true,
         autoPrice: true,
         lastSource: "CoinGecko",
-        priceStatus: "Pending"
+        priceStatus: "Pending",
+        updatedAt: null
       }
     ];
 
@@ -922,9 +949,47 @@
     let GLOBALS = loadGlobals();
     let SETTINGS = loadSettings();
     let ASSETS = loadAssets();
-    let monitorTimer = null;
     let lastPriceRefresh = 0;
     let lastNewsRefresh = 0;
+    let priceHealth = "Unknown";
+    let newsHealth = "Unknown";
+
+    function loadGlobals() {
+      const saved = localStorage.getItem("td_globals_v7");
+      if (!saved) return { ...DEFAULT_GLOBALS };
+      try { return { ...DEFAULT_GLOBALS, ...JSON.parse(saved) }; }
+      catch { return { ...DEFAULT_GLOBALS }; }
+    }
+
+    function loadSettings() {
+      const saved = localStorage.getItem("td_settings_v7");
+      if (!saved) return { ...DEFAULT_SETTINGS };
+      try { return { ...DEFAULT_SETTINGS, ...JSON.parse(saved) }; }
+      catch { return { ...DEFAULT_SETTINGS }; }
+    }
+
+    function loadAssets() {
+      const saved = localStorage.getItem("td_assets_v7");
+      if (!saved) return [...DEFAULT_ASSETS];
+      try {
+        const parsed = JSON.parse(saved);
+        return parsed.length ? parsed : [...DEFAULT_ASSETS];
+      } catch {
+        return [...DEFAULT_ASSETS];
+      }
+    }
+
+    function saveGlobals() {
+      localStorage.setItem("td_globals_v7", JSON.stringify(GLOBALS));
+    }
+
+    function saveSettings() {
+      localStorage.setItem("td_settings_v7", JSON.stringify(SETTINGS));
+    }
+
+    function saveAssets() {
+      localStorage.setItem("td_assets_v7", JSON.stringify(ASSETS));
+    }
 
     async function safeTextFetch(url, timeoutMs = 5000) {
       const controller = new AbortController();
@@ -943,75 +1008,12 @@
     async function safeJsonFetch(url, timeoutMs = 5000) {
       const txt = await safeTextFetch(url, timeoutMs);
       if (!txt) return null;
-      try {
-        return JSON.parse(txt);
-      } catch {
-        return null;
-      }
-    }
-
-    function loadGlobals() {
-      const saved = localStorage.getItem("td_hud_globals_v6");
-      if (!saved) return { ...DEFAULT_GLOBALS };
-      try { return { ...DEFAULT_GLOBALS, ...JSON.parse(saved) }; }
-      catch { return { ...DEFAULT_GLOBALS }; }
-    }
-
-    function loadSettings() {
-      const saved = localStorage.getItem("td_hud_settings_v6");
-      if (!saved) return { ...DEFAULT_SETTINGS };
-      try { return { ...DEFAULT_SETTINGS, ...JSON.parse(saved) }; }
-      catch { return { ...DEFAULT_SETTINGS }; }
-    }
-
-    function loadAssets() {
-      const saved = localStorage.getItem("td_hud_assets_v6");
-      if (!saved) return [...DEFAULT_ASSETS];
-      try {
-        const parsed = JSON.parse(saved);
-        return parsed.length ? parsed : [...DEFAULT_ASSETS];
-      } catch {
-        return [...DEFAULT_ASSETS];
-      }
-    }
-
-    function saveGlobals() {
-      localStorage.setItem("td_hud_globals_v6", JSON.stringify(GLOBALS));
-    }
-
-    function saveSettings() {
-      localStorage.setItem("td_hud_settings_v6", JSON.stringify(SETTINGS));
-    }
-
-    function saveAssets() {
-      localStorage.setItem("td_hud_assets_v6", JSON.stringify(ASSETS));
-    }
-
-    function formatPrice(value) {
-      const n = Number(value);
-      if (!Number.isFinite(n)) return "-";
-      if (Math.abs(n) >= 1000) return n.toFixed(2);
-      if (Math.abs(n) >= 100) return n.toFixed(3);
-      if (Math.abs(n) >= 1) return n.toFixed(3);
-      return n.toFixed(5);
-    }
-
-    function verdictRank(v) {
-      if (v === "TRADE") return 0;
-      if (v === "WAIT") return 1;
-      return 2;
-    }
-
-    function escapeHtml(s) {
-      return String(s)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;");
+      try { return JSON.parse(txt); } catch { return null; }
     }
 
     function applySettingsToUI() {
-      document.documentElement.style.setProperty("--panel-opacity", String(SETTINGS.panelOpacity));
+      if (SETTINGS.liteDefault) document.body.classList.add("lite");
+      else document.body.classList.remove("lite");
 
       if (SETTINGS.gradientStyle === "blue") {
         document.documentElement.style.setProperty("--panel-grad-1", "rgba(10,18,30,.82)");
@@ -1035,11 +1037,13 @@
     function populateGlobals() {
       document.getElementById("finnhubToken").value = GLOBALS.finnhubToken;
       document.getElementById("weeklyEvents").value = GLOBALS.weeklyEventsText;
+      document.getElementById("manualResultNotes").value = GLOBALS.manualResultNotes;
     }
 
     function readGlobals() {
       GLOBALS.finnhubToken = document.getElementById("finnhubToken").value.trim();
       GLOBALS.weeklyEventsText = document.getElementById("weeklyEvents").value;
+      GLOBALS.manualResultNotes = document.getElementById("manualResultNotes").value;
       saveGlobals();
     }
 
@@ -1051,6 +1055,7 @@
       document.getElementById("settingGradientStyle").value = SETTINGS.gradientStyle;
       document.getElementById("settingAutoPD").value = SETTINGS.autoPD ? "true" : "false";
       document.getElementById("settingRefreshPD").value = SETTINGS.refreshPD ? "true" : "false";
+      document.getElementById("settingLiteDefault").value = SETTINGS.liteDefault ? "true" : "false";
     }
 
     function openSettings() {
@@ -1070,10 +1075,15 @@
       SETTINGS.gradientStyle = document.getElementById("settingGradientStyle").value || "blue";
       SETTINGS.autoPD = document.getElementById("settingAutoPD").value === "true";
       SETTINGS.refreshPD = document.getElementById("settingRefreshPD").value === "true";
+      SETTINGS.liteDefault = document.getElementById("settingLiteDefault").value === "true";
       saveSettings();
       applySettingsToUI();
       closeSettings();
       renderAll();
+    }
+
+    function toggleLiteMode() {
+      document.body.classList.toggle("lite");
     }
 
     function getTimePartsForZone(timeZone) {
@@ -1115,9 +1125,7 @@
 
     function renderClocks() {
       const grid = document.getElementById("clockGrid");
-      if (!grid) return;
       grid.innerHTML = "";
-
       CLOCKS.forEach(c => {
         const parts = getTimePartsForZone(c.tz);
         const status = marketStatus(parts, c.open, c.close);
@@ -1169,31 +1177,23 @@
     function parseWeeklyEvents(text) {
       const lines = text.split("\n").map(x => x.trim()).filter(Boolean);
       const events = [];
-
       for (const line of lines) {
         const parts = line.split("|");
         if (parts.length < 2) continue;
-
-        const left = parts[0];
-        const name = parts[1];
-        const currency = parts[2] ? parts[2].trim().toUpperCase() : "";
-
-        const [datePart, timePart] = left.trim().split(" ");
+        const [datePart, timePart] = parts[0].trim().split(" ");
         if (!datePart || !timePart) continue;
-
         const [yy, mm, dd] = datePart.split("-").map(Number);
         const [hh, mi] = timePart.split(":").map(Number);
         if (![yy, mm, dd, hh, mi].every(Number.isFinite)) continue;
 
         events.push({
-          name: name.trim(),
-          currency,
+          name: parts[1].trim(),
+          currency: parts[2] ? parts[2].trim().toUpperCase() : "",
           date: buildWallClockDate(yy, mm, dd, hh, mi),
           dateText: `${yy}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`,
           timeText: `${String(hh).padStart(2, "0")}:${String(mi).padStart(2, "0")} ET`
         });
       }
-
       return events.sort((a, b) => a.date - b.date);
     }
 
@@ -1211,7 +1211,15 @@
         return diffMin >= -10 && diffMin <= 10080;
       });
 
-      return { next24h, week };
+      const today = events.filter(e => {
+        const y = e.dateText;
+        const p = getNYParts();
+        const todayText = `${p.year}-${String(p.month).padStart(2, "0")}-${String(p.day).padStart(2, "0")}`;
+        return y === todayText;
+      });
+
+      const releasedToday = today.filter(e => e.date <= now);
+      return { next24h, week, today, releasedToday };
     }
 
     function getAssetMovePct(symbol) {
@@ -1225,80 +1233,54 @@
 
     function inferResolutionBias(currency) {
       if (!currency) return "Awaiting release.";
-
       if (currency === "USD") {
         const uj = getAssetMovePct("USDJPY");
         const eu = getAssetMovePct("EURUSD");
-        const xu = getAssetMovePct("XAUUSD");
+        const xau = getAssetMovePct("XAUUSD");
         if (uj !== null && eu !== null) {
           if (uj > 0 && eu < 0) return "USD bullish reaction";
           if (uj < 0 && eu > 0) return "USD bearish reaction";
         }
-        if (xu !== null) {
-          if (xu < 0) return "Possible USD-firm / gold-soft reaction";
-          if (xu > 0) return "Possible USD-soft / gold-firm reaction";
+        if (xau !== null) {
+          if (xau < 0) return "Possible USD-firm / gold-soft reaction";
+          if (xau > 0) return "Possible USD-soft / gold-firm reaction";
         }
         return "Mixed / insufficient reaction data";
       }
-
-      if (currency === "JPY") {
-        const uj = getAssetMovePct("USDJPY");
-        if (uj !== null) {
-          if (uj < 0) return "JPY bullish reaction";
-          if (uj > 0) return "JPY bearish reaction";
-        }
-        return "Mixed / insufficient reaction data";
-      }
-
       if (currency === "CAD") {
         const uc = getAssetMovePct("USDCAD");
-        if (uc !== null) {
-          if (uc < 0) return "CAD bullish reaction";
-          if (uc > 0) return "CAD bearish reaction";
-        }
-        return "Mixed / insufficient reaction data";
+        if (uc !== null) return uc < 0 ? "CAD bullish reaction" : "CAD bearish reaction";
       }
-
-      if (currency === "CRYPTO" || currency === "BTC") {
+      if (currency === "JPY") {
+        const uj = getAssetMovePct("USDJPY");
+        if (uj !== null) return uj < 0 ? "JPY bullish reaction" : "JPY bearish reaction";
+      }
+      if (currency === "BTC" || currency === "CRYPTO") {
         const btc = getAssetMovePct("BTCUSD");
-        if (btc !== null) {
-          if (btc > 0) return "Crypto bullish reaction";
-          if (btc < 0) return "Crypto bearish reaction";
-        }
-        return "Mixed / insufficient reaction data";
+        if (btc !== null) return btc > 0 ? "Crypto bullish reaction" : "Crypto bearish reaction";
       }
-
       return "Reaction model unavailable for this currency";
     }
 
-    function isReleaseWindow(eventDate) {
-      const now = getNYWallClockDate();
-      const diffSec = (eventDate - now) / 1000;
-      return diffSec >= -600 && diffSec <= 120;
-    }
-
     function renderRedFolder() {
-      const { next24h, week } = getRedFolderStatus();
+      const { next24h, week, today, releasedToday } = getRedFolderStatus();
       const nowBox = document.getElementById("redFolderNow");
       const weekBox = document.getElementById("redFolderWeek");
+      const todayBox = document.getElementById("redFolderToday");
+      const resultBox = document.getElementById("redFolderResult");
       const badge = document.getElementById("redFolderBadge");
-
-      if (!nowBox || !weekBox || !badge) return;
 
       if (next24h.length) {
         const e = next24h[0];
-        badge.textContent = e.name;
-        badge.className = "ribbon-value glow-red";
-
         const now = getNYWallClockDate();
         const diffSec = Math.floor((e.date - now) / 1000);
 
+        badge.textContent = e.name;
+        badge.className = "ribbon-value glow-red";
+
         let statusText = "Inside the 24-hour window.";
-        if (diffSec > 0) {
-          statusText = `Release in ${Math.floor(diffSec / 60)}m ${Math.abs(diffSec % 60)}s.`;
-        } else if (diffSec >= -600) {
-          statusText = "Resolution window active. Monitoring reaction.";
-        }
+        if (diffSec > 0) statusText = `Release in ${Math.floor(diffSec / 60)}m ${Math.abs(diffSec % 60)}s.`;
+        else if (diffSec >= -600) statusText = "Resolution window active. Monitoring reaction.";
 
         const quickFeel = diffSec <= 0 ? inferResolutionBias(e.currency) : "Awaiting release.";
 
@@ -1314,22 +1296,43 @@
         nowBox.innerHTML = `<div class="glow-green" style="font-weight:900;">No red-folder event inside the next 24 hours.</div>`;
       }
 
-      if (week.length) {
-        weekBox.innerHTML = "";
-        week.forEach(e => {
-          const row = document.createElement("div");
-          row.className = "summary-row";
-          row.innerHTML = `
-            <div>
-              <div class="summary-symbol">${escapeHtml(e.name)}</div>
-              <div class="summary-meta">${escapeHtml(e.dateText)}${e.currency ? " • " + escapeHtml(e.currency) : ""}</div>
-            </div>
-            <div class="summary-price">${escapeHtml(e.timeText)}</div>
-          `;
-          weekBox.appendChild(row);
-        });
+      weekBox.innerHTML = week.length ? "" : `<div class="muted">No weekly events listed.</div>`;
+      week.forEach(e => {
+        const row = document.createElement("div");
+        row.className = "summary-row";
+        row.innerHTML = `
+          <div>
+            <div class="summary-symbol">${escapeHtml(e.name)}</div>
+            <div class="summary-meta">${escapeHtml(e.dateText)}${e.currency ? " • " + escapeHtml(e.currency) : ""}</div>
+          </div>
+          <div class="summary-price">${escapeHtml(e.timeText)}</div>
+        `;
+        weekBox.appendChild(row);
+      });
+
+      todayBox.innerHTML = today.length ? "" : `<div class="muted">No events today.</div>`;
+      today.forEach(e => {
+        const row = document.createElement("div");
+        row.className = "summary-row";
+        row.innerHTML = `
+          <div>
+            <div class="summary-symbol">${escapeHtml(e.name)}</div>
+            <div class="summary-meta">${escapeHtml(e.currency || "Macro")}</div>
+          </div>
+          <div class="summary-price">${escapeHtml(e.timeText)}</div>
+        `;
+        todayBox.appendChild(row);
+      });
+
+      if (releasedToday.length) {
+        const latest = releasedToday[releasedToday.length - 1];
+        resultBox.innerHTML = `
+          <div class="glow-cyan" style="font-weight:900;font-size:17px;">${escapeHtml(latest.name)}</div>
+          <div style="margin-top:8px;"><span class="muted">Reaction:</span> ${escapeHtml(inferResolutionBias(latest.currency))}</div>
+          <div style="margin-top:8px;"><span class="muted">Manual notes:</span> ${escapeHtml(GLOBALS.manualResultNotes || "None entered.")}</div>
+        `;
       } else {
-        weekBox.innerHTML = `<div class="muted">No weekly events listed.</div>`;
+        resultBox.innerHTML = `No released event to evaluate.${GLOBALS.manualResultNotes ? "<br><br><span class='muted'>Manual notes:</span> " + escapeHtml(GLOBALS.manualResultNotes) : ""}`;
       }
     }
 
@@ -1359,7 +1362,6 @@
     function normalizeAsset(asset) {
       const raw = (asset.symbol || "").toUpperCase().trim();
       const fut = FUTURES_PROXY_MAP[raw];
-
       if (fut) {
         return {
           ...asset,
@@ -1367,10 +1369,10 @@
           normalizedSymbol: fut.proxySymbol,
           effectiveClass: fut.assetClass,
           chartSymbol: fut.chartSymbol,
+          quoteSymbol: fut.quoteSymbol,
           proxyNote: fut.note
         };
       }
-
       const cls = asset.assetClass === "auto" ? detectAssetClass(raw) : asset.assetClass;
       return {
         ...asset,
@@ -1378,6 +1380,7 @@
         normalizedSymbol: raw,
         effectiveClass: cls,
         chartSymbol: getChartSymbol(raw, cls),
+        quoteSymbol: raw,
         proxyNote: ""
       };
     }
@@ -1389,9 +1392,7 @@
       const data = await safeJsonFetch(url, 4500);
       if (!data) return {};
       const out = {};
-      Object.keys(data).forEach(id => {
-        out[id] = data[id]?.usd;
-      });
+      Object.keys(data).forEach(id => { out[id] = data[id]?.usd; });
       return out;
     }
 
@@ -1412,16 +1413,14 @@
       const timestamps = result?.timestamp || [];
       const highs = quote?.high || [];
       const lows = quote?.low || [];
-
       if (!timestamps.length || !highs.length || !lows.length) return null;
 
       const usable = [];
       for (let i = 0; i < timestamps.length; i++) {
         if (typeof highs[i] === "number" && typeof lows[i] === "number") {
-          usable.push({ ts: timestamps[i], high: highs[i], low: lows[i] });
+          usable.push({ high: highs[i], low: lows[i] });
         }
       }
-
       if (!usable.length) return null;
       const pick = usable.length >= 2 ? usable[usable.length - 2] : usable[usable.length - 1];
       return { high: pick.high, low: pick.low };
@@ -1429,7 +1428,7 @@
 
     async function refreshPDHPDLForAsset(asset) {
       const n = normalizeAsset(asset);
-      const yahoo = await fetchYahooPDHPDL(n.normalizedSymbol);
+      const yahoo = await fetchYahooPDHPDL(n.quoteSymbol);
       if (yahoo && Number.isFinite(yahoo.high) && Number.isFinite(yahoo.low)) {
         asset.pdh = yahoo.high;
         asset.pdl = yahoo.low;
@@ -1438,60 +1437,73 @@
     }
 
     async function refreshPrices() {
-      const normalized = ASSETS.map(normalizeAsset);
+      let liveCount = 0;
+      let fallbackCount = 0;
 
-      const cryptoAssets = normalized.filter(a => a.effectiveClass === "crypto" && a.autoPrice);
+      const normalized = ASSETS.map(normalizeAsset);
+      const cryptoAssets = normalized.filter(a => (a.priceSource === "auto" || a.priceSource === "coingecko") && a.effectiveClass === "crypto");
       const cryptoIds = cryptoAssets.map(a => CRYPTO_CG_MAP[a.normalizedSymbol]).filter(Boolean);
       const cgPrices = await fetchCryptoPrices(cryptoIds);
 
       ASSETS = ASSETS.map(asset => {
         const n = normalizeAsset(asset);
-        if (n.effectiveClass === "crypto" && asset.autoPrice) {
+        if ((asset.priceSource === "auto" || asset.priceSource === "coingecko") && n.effectiveClass === "crypto") {
           const cgId = CRYPTO_CG_MAP[n.normalizedSymbol];
           const px = cgId ? cgPrices[cgId] : null;
           if (typeof px === "number" && px > 0) {
+            liveCount++;
             return {
               ...asset,
               previousPrice: asset.currentPrice,
               currentPrice: px,
               lastSource: "CoinGecko",
-              priceStatus: "Live"
+              priceStatus: "Live",
+              updatedAt: Date.now()
             };
           }
+          fallbackCount++;
           return { ...asset, lastSource: "Manual", priceStatus: "Fallback" };
         }
         return asset;
       });
 
-      const updates = [];
       for (let i = 0; i < ASSETS.length; i++) {
         const asset = ASSETS[i];
         const n = normalizeAsset(asset);
 
-        if (n.effectiveClass !== "crypto" && asset.autoPrice && GLOBALS.finnhubToken) {
-          updates.push(
-            fetchFinnhubQuote(n.normalizedSymbol).then(px => {
-              if (typeof px === "number" && px > 0) {
-                ASSETS[i] = {
-                  ...ASSETS[i],
-                  previousPrice: ASSETS[i].currentPrice,
-                  currentPrice: px,
-                  lastSource: "Finnhub",
-                  priceStatus: "Live"
-                };
-              } else {
-                ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Fallback" };
-              }
-            })
-          );
-        } else if (!asset.autoPrice) {
+        if ((asset.priceSource === "auto" || asset.priceSource === "finnhub") && n.effectiveClass !== "crypto" && GLOBALS.finnhubToken) {
+          const px = await fetchFinnhubQuote(n.quoteSymbol);
+          if (typeof px === "number" && px > 0) {
+            liveCount++;
+            ASSETS[i] = {
+              ...ASSETS[i],
+              previousPrice: ASSETS[i].currentPrice,
+              currentPrice: px,
+              lastSource: "Finnhub",
+              priceStatus: "Live",
+              updatedAt: Date.now()
+            };
+          } else {
+            fallbackCount++;
+            ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Fallback" };
+          }
+        } else if (asset.priceSource === "manual" || !asset.autoPrice) {
           ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Manual" };
-        } else if (n.effectiveClass !== "crypto" && !GLOBALS.finnhubToken) {
+        } else if ((asset.priceSource === "auto" || asset.priceSource === "finnhub") && n.effectiveClass !== "crypto" && !GLOBALS.finnhubToken) {
+          fallbackCount++;
           ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Need token" };
         }
       }
 
-      await Promise.allSettled(updates);
+      if (SETTINGS.autoPD) {
+        for (let i = 0; i < ASSETS.length; i++) {
+          if (!ASSETS[i].pdh || !ASSETS[i].pdl) {
+            ASSETS[i] = await refreshPDHPDLForAsset(ASSETS[i]);
+          }
+        }
+      }
+
+      priceHealth = liveCount > 0 ? (fallbackCount > 0 ? "Partial Live" : "Live") : "Fallback / Manual";
       saveAssets();
       lastPriceRefresh = Date.now();
     }
@@ -1506,8 +1518,7 @@
         pdl: 0,
         retestBuffer: 0.03
       });
-
-      const yahoo = await fetchYahooPDHPDL(mapped.normalizedSymbol);
+      const yahoo = await fetchYahooPDHPDL(mapped.quoteSymbol);
       if (yahoo) return yahoo;
       return { high: 0, low: 0 };
     }
@@ -1595,9 +1606,7 @@
       let riskNote = "Normal conditions.";
 
       const { next24h } = getRedFolderStatus();
-      if (next24h.length) {
-        riskNote = "A red-folder event is within 24 hours. Use extra caution.";
-      }
+      if (next24h.length) riskNote = "A red-folder event is within 24 hours. Use extra caution.";
 
       if (!(session.isLondon || session.isNY)) {
         verdict = "NO TRADE";
@@ -1609,9 +1618,6 @@
       } else if (actionable) {
         verdict = "TRADE";
         verdictColor = "glow-green";
-      } else {
-        verdict = "WAIT";
-        verdictColor = "glow-amber";
       }
 
       return {
@@ -1636,20 +1642,19 @@
       };
     }
 
+    function computeBias() {
+      const evals = ASSETS.map(a => evaluateAsset(a));
+      const longs = evals.filter(e => e.bias.includes("Bullish") || e.bias.includes("Low Failure")).length;
+      const shorts = evals.filter(e => e.bias.includes("Bearish") || e.bias.includes("High Failure")).length;
+      if (longs > shorts) return { text: "Risk-On", cls: "glow-green" };
+      if (shorts > longs) return { text: "Risk-Off", cls: "glow-red" };
+      return { text: "Mixed", cls: "glow-amber" };
+    }
+
     function renderStatusRibbon() {
       const nowParts = getNYParts();
       const session = getSessionState(nowParts);
       document.getElementById("currentSession").textContent = session.label;
-
-      const { next24h } = getRedFolderStatus();
-      const rf = document.getElementById("redFolderBadge");
-      if (next24h.length) {
-        rf.textContent = next24h[0].name;
-        rf.className = "ribbon-value glow-red";
-      } else {
-        rf.textContent = "Clear";
-        rf.className = "ribbon-value glow-green";
-      }
 
       const evals = ASSETS.map(a => evaluateAsset(a));
       const trades = evals.filter(e => e.verdict === "TRADE").length;
@@ -1661,13 +1666,23 @@
         <span class="state-chip">Wait: ${waits}</span>
         <span class="state-chip">No Trade: ${noTrades}</span>
       `;
+
+      const bias = computeBias();
+      const biasBadge = document.getElementById("biasBadge");
+      biasBadge.textContent = bias.text;
+      biasBadge.className = `ribbon-value ${bias.cls}`;
+
+      document.getElementById("priceStatus").textContent = priceHealth;
+      document.getElementById("newsStatus").textContent = newsHealth;
+      document.getElementById("lastRefreshStatus").textContent = lastPriceRefresh ? new Date(lastPriceRefresh).toLocaleTimeString() : "-";
     }
 
     function renderSummary() {
       const summary = document.getElementById("summary");
-      if (!summary) return;
-
-      const results = ASSETS.map(a => evaluateAsset(a)).sort((a, b) => verdictRank(a.verdict) - verdictRank(b.verdict));
+      const results = ASSETS.map(a => evaluateAsset(a)).sort((a, b) => {
+        const rank = { TRADE: 0, WAIT: 1, "NO TRADE": 2 };
+        return rank[a.verdict] - rank[b.verdict];
+      });
 
       if (!results.length) {
         summary.innerHTML = `<div class="muted">No assets in watchlist.</div>`;
@@ -1695,18 +1710,19 @@
 
     function renderAssets() {
       const grid = document.getElementById("assetGrid");
-      if (!grid) return;
       grid.innerHTML = "";
 
-      const sorted = [...ASSETS].sort((a, b) => verdictRank(evaluateAsset(a).verdict) - verdictRank(evaluateAsset(b).verdict));
+      const sorted = [...ASSETS].sort((a, b) => {
+        const rank = { TRADE: 0, WAIT: 1, "NO TRADE": 2 };
+        return rank[evaluateAsset(a).verdict] - rank[evaluateAsset(b).verdict];
+      });
 
       sorted.forEach(asset => {
         const r = evaluateAsset(asset);
-        const card = document.createElement("div");
-        card.className = "asset-card";
-
         const chartInterval = SETTINGS.chartInterval || "15";
 
+        const card = document.createElement("div");
+        card.className = "asset-card";
         card.innerHTML = `
           <button class="asset-head">
             <div>
@@ -1715,7 +1731,7 @@
                 <span class="pill ${r.verdict === "TRADE" ? "pill-trade" : r.verdict === "WAIT" ? "pill-wait" : "pill-no"}">${escapeHtml(r.verdict)}</span>
               </div>
               <div class="asset-bias ${r.biasColor}">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
-              <div class="asset-meta">Price: ${formatPrice(r.price)} • Source: ${escapeHtml(asset.lastSource || "Manual")} • Status: ${escapeHtml(asset.priceStatus || "Manual")}</div>
+              <div class="asset-meta">Price: ${formatPrice(r.price)} • Source: ${escapeHtml(asset.lastSource || "Manual")} • Status: ${escapeHtml(asset.priceStatus || "Manual")} • Updated: ${escapeHtml(formatTs(asset.updatedAt))}</div>
             </div>
             <div class="asset-expand">${asset.expanded ? "−" : "+"}</div>
           </button>
@@ -1723,28 +1739,26 @@
           <div class="${asset.expanded ? "asset-body" : "asset-body hidden"}">
             ${r.proxyNote ? `<div class="proxy-note">${escapeHtml(r.proxyNote)}</div>` : ""}
 
+            <div class="mini-grid-4">
+              <div class="info-box"><div class="info-label">Current</div><div class="info-value">${formatPrice(asset.currentPrice)}</div></div>
+              <div class="info-box"><div class="info-label">Previous</div><div class="info-value">${formatPrice(asset.previousPrice)}</div></div>
+              <div class="info-box"><div class="info-label">PDH</div><div class="info-value">${formatPrice(asset.pdh)}</div></div>
+              <div class="info-box"><div class="info-label">PDL</div><div class="info-value">${formatPrice(asset.pdl)}</div></div>
+            </div>
+
             <div class="mini-grid-2">
               <div class="info-box"><div class="info-label">Market State</div><div class="info-value">${escapeHtml(r.marketState)}</div></div>
               <div class="info-box"><div class="info-label">Session</div><div class="info-value">${escapeHtml(r.sessionLabel)}</div></div>
-              <div class="info-box"><div class="info-label">Bias</div><div class="info-value ${r.biasColor}">${escapeHtml(r.bias)}</div></div>
-              <div class="info-box"><div class="info-label">Strategy Model</div><div class="info-value">${escapeHtml(r.setupModel)}</div></div>
+              <div class="info-box"><div class="info-label">Entry Zone</div><div class="info-value">${escapeHtml(r.entryZone)}</div></div>
+              <div class="info-box"><div class="info-label">Invalidation</div><div class="info-value">${escapeHtml(r.invalidation)}</div></div>
+              <div class="info-box"><div class="info-label">Target 1</div><div class="info-value">${escapeHtml(r.target1)}</div></div>
+              <div class="info-box"><div class="info-label">Target 2</div><div class="info-value">${escapeHtml(r.target2)}</div></div>
             </div>
 
             <div class="note-box">
               <div><span class="muted">Reason:</span> ${escapeHtml(r.reason)}</div>
               <div style="margin-top:6px;"><span class="muted">Plan:</span> ${escapeHtml(r.plan)}</div>
               <div style="margin-top:6px;"><span class="muted">Risk Note:</span> ${escapeHtml(r.riskNote)}</div>
-            </div>
-
-            <div class="mini-grid-2">
-              <div class="info-box"><div class="info-label">Current Price</div><div class="info-value">${formatPrice(asset.currentPrice)}</div></div>
-              <div class="info-box"><div class="info-label">Previous Price</div><div class="info-value">${formatPrice(asset.previousPrice)}</div></div>
-              <div class="info-box"><div class="info-label">PDH</div><div class="info-value">${formatPrice(asset.pdh)}</div></div>
-              <div class="info-box"><div class="info-label">PDL</div><div class="info-value">${formatPrice(asset.pdl)}</div></div>
-              <div class="info-box"><div class="info-label">Entry Zone</div><div class="info-value">${escapeHtml(r.entryZone)}</div></div>
-              <div class="info-box"><div class="info-label">Invalidation</div><div class="info-value">${escapeHtml(r.invalidation)}</div></div>
-              <div class="info-box"><div class="info-label">Target 1</div><div class="info-value">${escapeHtml(r.target1)}</div></div>
-              <div class="info-box"><div class="info-label">Target 2</div><div class="info-value">${escapeHtml(r.target2)}</div></div>
             </div>
 
             <div class="chart-frame">
@@ -1770,31 +1784,33 @@
                   </select>
                 </div>
                 <div>
-                  <label class="field-label">Current Price</label>
-                  <input data-id="${asset.id}" data-field="currentPrice" value="${asset.currentPrice}" type="number" step="0.001" class="asset-input hud-input">
+                  <label class="field-label">Price Source</label>
+                  <select data-id="${asset.id}" data-field="priceSource" class="asset-input hud-select">
+                    <option value="auto" ${asset.priceSource === "auto" ? "selected" : ""}>Auto</option>
+                    <option value="manual" ${asset.priceSource === "manual" ? "selected" : ""}>Manual</option>
+                    <option value="finnhub" ${asset.priceSource === "finnhub" ? "selected" : ""}>Finnhub</option>
+                    <option value="coingecko" ${asset.priceSource === "coingecko" ? "selected" : ""}>CoinGecko</option>
+                  </select>
                 </div>
                 <div>
-                  <label class="field-label">Previous Price</label>
-                  <input data-id="${asset.id}" data-field="previousPrice" value="${asset.previousPrice}" type="number" step="0.001" class="asset-input hud-input">
+                  <label class="field-label">Current</label>
+                  <input data-id="${asset.id}" data-field="currentPrice" value="${asset.currentPrice ?? ""}" type="number" step="0.001" class="asset-input hud-input">
+                </div>
+                <div>
+                  <label class="field-label">Previous</label>
+                  <input data-id="${asset.id}" data-field="previousPrice" value="${asset.previousPrice ?? ""}" type="number" step="0.001" class="asset-input hud-input">
                 </div>
                 <div>
                   <label class="field-label">PDH</label>
-                  <input data-id="${asset.id}" data-field="pdh" value="${asset.pdh}" type="number" step="0.001" class="asset-input hud-input">
+                  <input data-id="${asset.id}" data-field="pdh" value="${asset.pdh ?? ""}" type="number" step="0.001" class="asset-input hud-input">
                 </div>
                 <div>
                   <label class="field-label">PDL</label>
-                  <input data-id="${asset.id}" data-field="pdl" value="${asset.pdl}" type="number" step="0.001" class="asset-input hud-input">
+                  <input data-id="${asset.id}" data-field="pdl" value="${asset.pdl ?? ""}" type="number" step="0.001" class="asset-input hud-input">
                 </div>
                 <div>
                   <label class="field-label">Retest Buffer</label>
-                  <input data-id="${asset.id}" data-field="retestBuffer" value="${asset.retestBuffer}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">Auto Price</label>
-                  <select data-id="${asset.id}" data-field="autoPrice" class="asset-input hud-select">
-                    <option value="true" ${asset.autoPrice ? "selected" : ""}>ON</option>
-                    <option value="false" ${!asset.autoPrice ? "selected" : ""}>OFF</option>
-                  </select>
+                  <input data-id="${asset.id}" data-field="retestBuffer" value="${asset.retestBuffer ?? ""}" type="number" step="0.001" class="asset-input hud-input">
                 </div>
               </div>
 
@@ -1816,20 +1832,10 @@
     }
 
     function attachAssetButtons() {
-      document.querySelectorAll(".save-asset-btn").forEach(btn => {
-        btn.addEventListener("click", () => saveSingleAsset(btn.dataset.id));
-      });
-      document.querySelectorAll(".copy-prev-btn").forEach(btn => {
-        btn.addEventListener("click", () => copyCurrentToPrevious(btn.dataset.id));
-      });
-      document.querySelectorAll(".delete-asset-btn").forEach(btn => {
-        btn.addEventListener("click", () => deleteAsset(btn.dataset.id));
-      });
-      document.querySelectorAll(".auto-pd-btn").forEach(btn => {
-        btn.addEventListener("click", async () => {
-          await autoPDForAsset(btn.dataset.id);
-        });
-      });
+      document.querySelectorAll(".save-asset-btn").forEach(btn => btn.addEventListener("click", () => saveSingleAsset(btn.dataset.id)));
+      document.querySelectorAll(".copy-prev-btn").forEach(btn => btn.addEventListener("click", () => copyCurrentToPrevious(btn.dataset.id)));
+      document.querySelectorAll(".auto-pd-btn").forEach(btn => btn.addEventListener("click", async () => autoPDForAsset(btn.dataset.id)));
+      document.querySelectorAll(".delete-asset-btn").forEach(btn => btn.addEventListener("click", () => deleteAsset(btn.dataset.id)));
     }
 
     function toggleAsset(id) {
@@ -1841,14 +1847,11 @@
     function saveSingleAsset(id) {
       const inputs = document.querySelectorAll(`.asset-input[data-id="${id}"]`);
       const updated = {};
-
       inputs.forEach(input => {
         const field = input.dataset.field;
-        if (field === "symbol" || field === "assetClass") updated[field] = input.value.toUpperCase();
-        else if (field === "autoPrice") updated[field] = input.value === "true";
-        else updated[field] = parseFloat(input.value);
+        if (["symbol","assetClass","priceSource"].includes(field)) updated[field] = input.value.toUpperCase ? input.value.toUpperCase() : input.value;
+        else updated[field] = input.value === "" ? null : parseFloat(input.value);
       });
-
       ASSETS = ASSETS.map(a => a.id === id ? { ...a, ...updated } : a);
       saveAssets();
       renderAll();
@@ -1877,16 +1880,14 @@
     async function addAsset() {
       const symbol = document.getElementById("newSymbol").value.trim().toUpperCase();
       const assetClass = document.getElementById("newAssetClass").value;
+      const priceSource = document.getElementById("newPriceSource").value;
       let pdh = parseFloat(document.getElementById("newPDH").value);
       let pdl = parseFloat(document.getElementById("newPDL").value);
       const currentPrice = parseFloat(document.getElementById("newCurrentPrice").value || "0");
       const previousPrice = parseFloat(document.getElementById("newPreviousPrice").value || "0");
       const retestBuffer = parseFloat(document.getElementById("newRetestBuffer").value || "0.03");
 
-      if (!symbol) {
-        alert("Please enter a symbol.");
-        return;
-      }
+      if (!symbol) return;
 
       if ((!Number.isFinite(pdh) || !Number.isFinite(pdl)) && SETTINGS.autoPD) {
         const yahoo = await autofillPDHPDLForNewSymbol(symbol);
@@ -1896,24 +1897,21 @@
         }
       }
 
-      if (!Number.isFinite(pdh) || !Number.isFinite(pdl)) {
-        alert("Please enter PDH and PDL, or use Auto PDH/PDL on a symbol Yahoo can resolve.");
-        return;
-      }
-
       ASSETS.push({
         id: makeId(),
         symbol,
         assetClass,
+        priceSource,
         currentPrice: Number.isFinite(currentPrice) ? currentPrice : null,
         previousPrice: Number.isFinite(previousPrice) ? previousPrice : (Number.isFinite(currentPrice) ? currentPrice : null),
-        pdh,
-        pdl,
+        pdh: Number.isFinite(pdh) ? pdh : null,
+        pdl: Number.isFinite(pdl) ? pdl : null,
         retestBuffer,
         expanded: true,
-        autoPrice: true,
-        lastSource: "Manual",
-        priceStatus: "Pending"
+        autoPrice: priceSource !== "manual",
+        lastSource: priceSource === "manual" ? "Manual" : "Pending",
+        priceStatus: priceSource === "manual" ? "Manual" : "Pending",
+        updatedAt: null
       });
 
       saveAssets();
@@ -1925,6 +1923,7 @@
     function clearNewAssetForm() {
       document.getElementById("newSymbol").value = "";
       document.getElementById("newAssetClass").value = "auto";
+      document.getElementById("newPriceSource").value = "auto";
       document.getElementById("newPDH").value = "";
       document.getElementById("newPDL").value = "";
       document.getElementById("newCurrentPrice").value = "";
@@ -1935,31 +1934,21 @@
     function scoreHeadline(title, label, watchSymbols) {
       const t = (title || "").toLowerCase();
       let score = 0;
-      const keys = [
-        "cpi","inflation","fed","fomc","rates","yield","yields","jobs","nfp",
-        "recession","treasury","dollar","boj","ecb","bitcoin","etf","oil","gold",
-        "crypto","liquidity","bank","tariff","pce","ppi","hawkish","dovish"
-      ];
+      const keys = ["cpi","inflation","fed","fomc","rates","yield","yields","jobs","nfp","recession","treasury","dollar","boj","ecb","bitcoin","etf","oil","gold","crypto","liquidity","bank","tariff","pce","ppi","hawkish","dovish"];
       keys.forEach(k => { if (t.includes(k)) score += 3; });
-
       watchSymbols.forEach(sym => {
-        const s = sym.toLowerCase();
-        const base = s.replace("usd", "");
+        const base = sym.toLowerCase().replace("usd", "");
         if (base && t.includes(base)) score += 1;
       });
-
-      if (label === "Coin Bureau" || label === "Cointelegraph") {
-        if (watchSymbols.some(sym => CRYPTO_CG_MAP[sym])) score += 2;
-      }
-
-      if (t.includes("surge") || t.includes("crash") || t.includes("plunge") || t.includes("spike")) score += 2;
+      if (["Coin Bureau","Cointelegraph"].includes(label) && watchSymbols.some(sym => CRYPTO_CG_MAP[sym])) score += 2;
+      if (["surge","crash","plunge","spike"].some(k => t.includes(k))) score += 2;
       return score;
     }
 
-    function addNewsItem(container, label, title, link) {
+    function addNewsItem(container, label, title, link, quality) {
       const item = document.createElement("div");
       item.className = "news-item";
-      item.innerHTML = `<a href="${link}" target="_blank">${escapeHtml(label)}: ${escapeHtml(title)}</a>`;
+      item.innerHTML = `<a href="${link}" target="_blank">${escapeHtml(label)} (${escapeHtml(quality)}): ${escapeHtml(title)}</a>`;
       container.appendChild(item);
     }
 
@@ -1967,9 +1956,8 @@
       const url = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feedUrl);
       const data = await safeJsonFetch(url, 5000);
       if (!data?.items?.length) return null;
-
       const ranked = [...data.items].sort((a, b) => scoreHeadline(b.title, label, watchSymbols) - scoreHeadline(a.title, label, watchSymbols));
-      return { label, title: ranked[0].title, link: ranked[0].link };
+      return { label, title: ranked[0].title, link: ranked[0].link, quality: "direct feed" };
     }
 
     async function loadBestCoinBureauItem(watchSymbols) {
@@ -1978,8 +1966,7 @@
       if (!html) return null;
 
       try {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
+        const doc = new DOMParser().parseFromString(html, "text/html");
         const anchors = Array.from(doc.querySelectorAll("a[href]"));
         const candidates = [];
         const seen = new Set();
@@ -1987,16 +1974,7 @@
         for (const a of anchors) {
           const href = a.getAttribute("href") || "";
           const text = (a.textContent || "").replace(/\s+/g, " ").trim();
-
-          const ok =
-            href.includes("coinbureau.com/") &&
-            !href.includes("/about") &&
-            !href.includes("/contact") &&
-            !href.includes("/careers") &&
-            !href.includes("/newsletter") &&
-            !href.includes("#") &&
-            text.length > 20;
-
+          const ok = href.includes("coinbureau.com/") && !href.includes("/about") && !href.includes("/contact") && !href.includes("/careers") && !href.includes("/newsletter") && !href.includes("#") && text.length > 20;
           if (!ok || seen.has(href)) continue;
           seen.add(href);
           candidates.push({ title: text, link: href });
@@ -2004,7 +1982,7 @@
 
         if (!candidates.length) return null;
         candidates.sort((a, b) => scoreHeadline(b.title, "Coin Bureau", watchSymbols) - scoreHeadline(a.title, "Coin Bureau", watchSymbols));
-        return { label: "Coin Bureau", title: candidates[0].title, link: candidates[0].link };
+        return { label: "Coin Bureau", title: candidates[0].title, link: candidates[0].link, quality: "scraped" };
       } catch {
         return null;
       }
@@ -2012,9 +1990,7 @@
 
     async function renderNews() {
       const news = document.getElementById("news");
-      if (!news) return;
       news.innerHTML = "";
-
       const watchSymbols = ASSETS.map(a => (a.symbol || "").toUpperCase());
 
       const results = await Promise.allSettled([
@@ -2024,38 +2000,34 @@
         loadBestCoinBureauItem(watchSymbols)
       ]);
 
-      const items = results
-        .map(r => r.status === "fulfilled" ? r.value : null)
-        .filter(Boolean);
+      const items = results.map(r => r.status === "fulfilled" ? r.value : null).filter(Boolean);
 
       if (!items.length) {
-        news.innerHTML = `
-          <div class="news-item"><a href="https://www.zerohedge.com/" target="_blank">ZeroHedge: Open site</a></div>
-          <div class="news-item"><a href="https://www.fxstreet.com/news" target="_blank">FXStreet: Open site</a></div>
-          <div class="news-item"><a href="https://coinbureau.com/" target="_blank">Coin Bureau: Open site</a></div>
-          <div class="news-item"><a href="https://cointelegraph.com/" target="_blank">Cointelegraph: Open site</a></div>
-        `;
+        newsHealth = "Fallback";
+        [
+          ["ZeroHedge","https://www.zerohedge.com/"],
+          ["FXStreet","https://www.fxstreet.com/news"],
+          ["Coin Bureau","https://coinbureau.com/"],
+          ["Cointelegraph","https://cointelegraph.com/"]
+        ].forEach(([label, link]) => addNewsItem(news, label, "Open site", link, "fallback link"));
         lastNewsRefresh = Date.now();
         return;
       }
 
-      items.forEach(item => addNewsItem(news, item.label, item.title, item.link));
+      newsHealth = "Live";
+      items.forEach(item => addNewsItem(news, item.label, item.title, item.link, item.quality));
       lastNewsRefresh = Date.now();
     }
 
     async function maybeReleaseRefresh() {
       const { next24h } = getRedFolderStatus();
       if (!next24h.length) return;
-
       const event = next24h[0];
-      if (isReleaseWindow(event.date)) {
-        const now = Date.now();
-        if (now - lastPriceRefresh > 10000) {
-          await refreshPrices();
-        }
-        if (now - lastNewsRefresh > 10000) {
-          await renderNews();
-        }
+      const now = Date.now();
+      const eventMs = event.date.getTime();
+      if (now >= eventMs - 10000 && now <= eventMs + 120000) {
+        await refreshPrices();
+        await renderNews();
         renderAll();
       }
     }
@@ -2064,9 +2036,9 @@
       readGlobals();
 
       if (SETTINGS.refreshPD) {
-        const jobs = ASSETS.map(a => refreshPDHPDLForAsset(a));
-        const refreshed = await Promise.allSettled(jobs);
-        ASSETS = refreshed.map((r, i) => r.status === "fulfilled" ? r.value : ASSETS[i]);
+        for (let i = 0; i < ASSETS.length; i++) {
+          ASSETS[i] = await refreshPDHPDLForAsset(ASSETS[i]);
+        }
         saveAssets();
       }
 
@@ -2085,9 +2057,9 @@
         await refreshPrices();
         renderAll();
       }
-
       if (now - lastNewsRefresh > SETTINGS.newsSeconds * 1000) {
         await renderNews();
+        renderStatusRibbon();
       }
     }
 
@@ -2099,27 +2071,21 @@
       renderAssets();
     }
 
-    document.getElementById("saveGlobalsBtn").addEventListener("click", async () => {
-      readGlobals();
-      await refreshPrices();
-      renderAll();
-    });
-
     document.getElementById("refreshBtn").addEventListener("click", manualRefresh);
+    document.getElementById("saveGlobalsBtn").addEventListener("click", () => { readGlobals(); renderRedFolder(); });
+    document.getElementById("toggleLiteBtn").addEventListener("click", toggleLiteMode);
+    document.getElementById("openSettingsBtn").addEventListener("click", openSettings);
+    document.getElementById("closeSettingsBtn").addEventListener("click", closeSettings);
+    document.getElementById("saveSettingsBtn").addEventListener("click", saveSettingsFromModal);
+    document.getElementById("settingsBackdrop").addEventListener("click", e => {
+      if (e.target.id === "settingsBackdrop") closeSettings();
+    });
     document.getElementById("addAssetBtn").addEventListener("click", addAsset);
-
     document.getElementById("resetAssetsBtn").addEventListener("click", async () => {
       ASSETS = [...DEFAULT_ASSETS];
       saveAssets();
       await Promise.allSettled([refreshPrices(), renderNews()]);
       renderAll();
-    });
-
-    document.getElementById("openSettingsBtn").addEventListener("click", openSettings);
-    document.getElementById("closeSettingsBtn").addEventListener("click", closeSettings);
-    document.getElementById("saveSettingsBtn").addEventListener("click", saveSettingsFromModal);
-    document.getElementById("settingsBackdrop").addEventListener("click", (e) => {
-      if (e.target.id === "settingsBackdrop") closeSettings();
     });
 
     (async function init() {
@@ -2128,7 +2094,8 @@
       renderAll();
       await Promise.allSettled([refreshPrices(), renderNews()]);
       renderAll();
-      monitorTimer = setInterval(monitorLoop, 10000);
+      setInterval(renderClocks, 1000);
+      setInterval(monitorLoop, 10000);
     })();
   </script>
 </body>
