@@ -6,614 +6,617 @@
   <title>Trader Desk HUD</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --bg: #060b12;
-      --panel: rgba(8, 16, 28, 0.78);
-      --panel-2: rgba(12, 24, 40, 0.72);
-      --line: rgba(80, 190, 255, 0.18);
-      --cyan: #67e8f9;
-      --blue: #38bdf8;
-      --amber: #fbbf24;
-      --red: #f87171;
-      --green: #4ade80;
-      --text: #e5f3ff;
-      --muted: #89a6bf;
+    :root{
+      --cyan:#67e8f9;
+      --blue:#38bdf8;
+      --green:#4ade80;
+      --red:#f87171;
+      --amber:#fbbf24;
+      --text:#e6f7ff;
+      --muted:#8aa5bf;
+      --panel-opacity:0.72;
     }
 
     * { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at top, rgba(56,189,248,0.08), transparent 28%),
-        radial-gradient(circle at 85% 15%, rgba(103,232,249,0.07), transparent 20%),
-        linear-gradient(rgba(2,6,12,0.78), rgba(2,6,12,0.86)),
-        url("./world-map.jpg") center center / cover no-repeat fixed,
-        var(--bg);
-      min-height: 100vh;
-      letter-spacing: 0.01em;
+        linear-gradient(rgba(0,0,0,0.64), rgba(0,0,0,0.70)),
+        url("./world-map.jpg") center/cover no-repeat fixed,
+        #060b12;
+      min-height:100vh;
     }
 
-    .hud-shell {
-      max-width: 1500px;
-      margin: 0 auto;
-      padding: 14px;
+    .shell{
+      max-width:1500px;
+      margin:0 auto;
+      padding:14px;
+      display:grid;
+      gap:14px;
     }
 
-    .hud-grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .hud-panel {
-      position: relative;
-      background: linear-gradient(180deg, rgba(10,18,30,0.86), rgba(8,14,24,0.82));
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+    .panel{
+      position:relative;
+      background:rgba(10,18,30,var(--panel-opacity));
+      border:1px solid rgba(103,232,249,0.22);
+      border-radius:22px;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.02),
-        0 0 0 1px rgba(103,232,249,0.03),
-        0 18px 50px rgba(0,0,0,0.28);
-      overflow: hidden;
+        0 0 0 1px rgba(103,232,249,0.04),
+        0 10px 30px rgba(0,0,0,0.24),
+        inset 0 0 16px rgba(56,189,248,0.03);
+      overflow:hidden;
     }
 
-    .hud-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(90deg, transparent, rgba(103,232,249,0.035), transparent);
-      opacity: 0.8;
+    .panel:hover{
+      border-color:rgba(103,232,249,0.42);
+      box-shadow:
+        0 0 0 1px rgba(103,232,249,0.08),
+        0 12px 34px rgba(0,0,0,0.28),
+        0 0 22px rgba(56,189,248,0.10),
+        inset 0 0 16px rgba(56,189,248,0.04);
     }
 
-    .panel-inner {
-      position: relative;
-      padding: 16px;
-      z-index: 1;
+    .inner{ padding:16px; }
+
+    .title{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--cyan);
+      font-weight:800;
+      margin-bottom:10px;
     }
 
-    .hud-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--cyan);
-      margin-bottom: 10px;
-      font-weight: 700;
+    .muted{
+      color:var(--muted);
+      font-size:12px;
     }
 
-    .hud-subtle {
-      color: var(--muted);
-      font-size: 12px;
+    .hero{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+    .hero h1{
+      margin:0;
+      font-size:28px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#effbff;
+      text-shadow:0 0 14px rgba(103,232,249,.18);
     }
 
-    .hero h1 {
-      margin: 0;
-      font-size: 28px;
-      line-height: 1;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 800;
-      color: #dff7ff;
-      text-shadow: 0 0 12px rgba(103,232,249,0.18);
+    .hero p{
+      margin:6px 0 0;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
     }
 
-    .hero p {
-      margin: 6px 0 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    .btn{
+      border:1px solid rgba(103,232,249,0.28);
+      background:linear-gradient(180deg, rgba(14,24,39,.95), rgba(8,14,24,.95));
+      color:#def8ff;
+      padding:10px 14px;
+      border-radius:14px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-weight:800;
+      cursor:pointer;
+      transition:.15s ease;
     }
 
-    .hud-btn {
-      border: 1px solid rgba(103,232,249,0.22);
-      background: linear-gradient(180deg, rgba(16,30,49,0.92), rgba(10,18,30,0.92));
-      color: #d9f9ff;
-      padding: 10px 14px;
-      border-radius: 14px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-      box-shadow: 0 0 18px rgba(56,189,248,0.08);
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(103,232,249,0.52);
+      box-shadow:0 0 20px rgba(56,189,248,.14);
     }
 
-    .hud-btn:hover {
-      transform: translateY(-1px);
-      border-color: rgba(103,232,249,0.45);
-      box-shadow: 0 0 22px rgba(56,189,248,0.14);
+    .btn.green{ border-color:rgba(74,222,128,.32); }
+    .btn.red{ border-color:rgba(248,113,113,.32); }
+
+    .clock-grid{
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:10px;
     }
 
-    .hud-btn.green {
-      border-color: rgba(74,222,128,0.24);
-      box-shadow: 0 0 18px rgba(74,222,128,0.08);
+    .clock-card{
+      border-radius:18px;
+      border:1px solid rgba(103,232,249,.12);
+      background:linear-gradient(180deg, rgba(12,21,35,.78), rgba(8,13,22,.84));
+      padding:14px;
+      min-height:118px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
     }
 
-    .hud-btn.red {
-      border-color: rgba(248,113,113,0.24);
-      box-shadow: 0 0 18px rgba(248,113,113,0.08);
+    .clock-city{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--muted);
+      font-weight:800;
     }
 
-    .hud-btn.blue {
-      border-color: rgba(56,189,248,0.28);
+    .clock-label{
+      font-size:11px;
+      color:var(--muted);
+      margin-top:4px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
     }
 
-    .clock-grid {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 10px;
+    .clock-time{
+      font-size:26px;
+      font-weight:900;
+      letter-spacing:.06em;
+      color:#eefbff;
+      text-shadow:0 0 12px rgba(103,232,249,.14);
     }
 
-    .clock-card {
-      position: relative;
-      padding: 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(103,232,249,0.12);
-      background: linear-gradient(180deg, rgba(9,18,30,0.74), rgba(5,11,19,0.8));
-      min-height: 118px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    .clock-status{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
-    .clock-city {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      font-weight: 700;
+    .dot{
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      background:currentColor;
+      box-shadow:0 0 10px currentColor;
+      display:inline-block;
     }
 
-    .clock-time {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      color: #e8fbff;
-      text-shadow: 0 0 14px rgba(103,232,249,0.14);
+    .open{ color:var(--green); }
+    .pre{ color:var(--amber); }
+    .closed{ color:var(--red); }
+
+    .ribbon{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
     }
 
-    .clock-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 700;
+    .ribbon-box{
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(103,232,249,.12);
+      background:linear-gradient(180deg, rgba(13,21,35,.76), rgba(8,13,22,.84));
     }
 
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      box-shadow: 0 0 12px currentColor;
-      display: inline-block;
+    .ribbon-label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      color:var(--muted);
+      font-weight:800;
+      margin-bottom:4px;
     }
 
-    .status-open { color: var(--green); }
-    .status-pre { color: var(--amber); }
-    .status-closed { color: var(--red); }
-
-    .status-ribbon {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
+    .ribbon-value{
+      font-size:18px;
+      font-weight:900;
+      color:#eefbff;
     }
 
-    .status-box {
-      padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(103,232,249,0.12);
-      background: linear-gradient(180deg, rgba(12,21,36,0.72), rgba(7,13,22,0.82));
+    .split-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
     }
 
-    .status-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin-bottom: 4px;
-      font-weight: 700;
+    .summary-list,
+    .week-list,
+    .news-list{
+      display:grid;
+      gap:10px;
     }
 
-    .status-value {
-      font-size: 18px;
-      font-weight: 800;
-      color: #ebfbff;
+    .summary-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(15,24,38,.70), rgba(8,14,22,.82));
+      border:1px solid rgba(103,232,249,.08);
+      cursor:pointer;
     }
 
-    .split-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+    .summary-symbol{
+      font-weight:900;
+      letter-spacing:.05em;
     }
 
-    .summary-list {
-      display: grid;
-      gap: 10px;
+    .summary-meta{
+      margin-top:4px;
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
     }
 
-    .summary-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(15,24,38,0.68), rgba(8,14,22,0.8));
-      border: 1px solid rgba(103,232,249,0.08);
-      cursor: pointer;
+    .summary-price{
+      text-align:right;
+      font-size:14px;
+      font-weight:800;
     }
 
-    .summary-left {
-      min-width: 0;
+    .summary-verdict{
+      margin-top:4px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-weight:900;
     }
 
-    .summary-symbol {
-      font-weight: 800;
-      letter-spacing: 0.06em;
+    .asset-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
     }
 
-    .summary-meta {
-      margin-top: 4px;
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    .asset-card{
+      border-radius:22px;
+      border:1px solid rgba(103,232,249,.14);
+      background:linear-gradient(180deg, rgba(10,18,30,.86), rgba(6,12,22,.88));
+      overflow:hidden;
+      box-shadow:0 12px 30px rgba(0,0,0,.20);
     }
 
-    .summary-price {
-      text-align: right;
-      font-size: 14px;
-      font-weight: 700;
+    .asset-head{
+      width:100%;
+      background:transparent;
+      border:0;
+      color:inherit;
+      text-align:left;
+      padding:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      cursor:pointer;
     }
 
-    .summary-verdict {
-      font-size: 11px;
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 800;
+    .asset-symbol{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
     }
 
-    .asset-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+    .asset-symbol strong{
+      font-size:22px;
+      letter-spacing:.06em;
     }
 
-    .asset-card {
-      border-radius: 22px;
-      border: 1px solid rgba(103,232,249,0.14);
-      background: linear-gradient(180deg, rgba(10,18,30,0.88), rgba(6,12,22,0.88));
-      overflow: hidden;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+    .pill{
+      padding:5px 9px;
+      border-radius:999px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:900;
     }
 
-    .asset-head {
-      width: 100%;
-      background: transparent;
-      border: 0;
-      color: inherit;
-      text-align: left;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      cursor: pointer;
+    .pill-trade{
+      background:rgba(74,222,128,.16);
+      color:#9ff7ba;
+      border:1px solid rgba(74,222,128,.36);
     }
 
-    .asset-left {
-      min-width: 0;
+    .pill-wait{
+      background:rgba(251,191,36,.16);
+      color:#fde08b;
+      border:1px solid rgba(251,191,36,.36);
     }
 
-    .asset-symbol {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
+    .pill-no{
+      background:rgba(248,113,113,.16);
+      color:#fbb2b2;
+      border:1px solid rgba(248,113,113,.36);
     }
 
-    .asset-symbol strong {
-      font-size: 22px;
-      letter-spacing: 0.06em;
-      color: #f0fbff;
+    .asset-bias{
+      margin-top:6px;
+      font-size:13px;
+      font-weight:800;
     }
 
-    .asset-bias {
-      margin-top: 6px;
-      font-size: 13px;
-      font-weight: 700;
+    .asset-meta{
+      margin-top:6px;
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
     }
 
-    .asset-meta {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    .asset-expand{
+      font-size:22px;
+      color:var(--muted);
+      font-weight:900;
     }
 
-    .asset-expand {
-      font-size: 22px;
-      color: var(--muted);
-      font-weight: 700;
+    .asset-body{
+      border-top:1px solid rgba(103,232,249,.08);
+      padding:16px;
+      display:grid;
+      gap:14px;
     }
 
-    .asset-body {
-      border-top: 1px solid rgba(103,232,249,0.08);
-      padding: 16px;
-      display: grid;
-      gap: 14px;
+    .mini-grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
     }
 
-    .mini-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .info-box{
+      border-radius:16px;
+      padding:12px;
+      background:linear-gradient(180deg, rgba(14,22,35,.74), rgba(8,13,21,.84));
+      border:1px solid rgba(103,232,249,.08);
     }
 
-    .info-box {
-      border-radius: 16px;
-      padding: 12px;
-      background: linear-gradient(180deg, rgba(15,24,38,0.68), rgba(8,14,22,0.8));
-      border: 1px solid rgba(103,232,249,0.08);
+    .info-label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+      margin-bottom:4px;
+      font-weight:800;
     }
 
-    .info-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      margin-bottom: 4px;
-      font-weight: 700;
+    .info-value{
+      font-size:14px;
+      font-weight:800;
     }
 
-    .info-value {
-      font-size: 14px;
-      font-weight: 700;
-      color: #ecfbff;
+    .note-box{
+      border-radius:16px;
+      padding:12px;
+      background:linear-gradient(180deg, rgba(14,22,35,.74), rgba(8,13,21,.84));
+      border:1px solid rgba(103,232,249,.08);
+      font-size:13px;
+      line-height:1.5;
     }
 
-    .note-box {
-      border-radius: 16px;
-      padding: 12px;
-      background: linear-gradient(180deg, rgba(14,22,35,0.76), rgba(8,13,21,0.82));
-      border: 1px solid rgba(103,232,249,0.08);
-      font-size: 13px;
-      line-height: 1.5;
+    .proxy-note{
+      background:rgba(251,191,36,.10);
+      border:1px solid rgba(251,191,36,.24);
+      color:#fce08c;
+      border-radius:16px;
+      padding:12px;
+      font-size:13px;
     }
 
-    .proxy-note {
-      background: rgba(251,191,36,0.12);
-      border: 1px solid rgba(251,191,36,0.28);
-      color: #fde68a;
-      border-radius: 16px;
-      padding: 12px;
-      font-size: 13px;
+    .chart-frame{
+      border-radius:18px;
+      padding:8px;
+      background:linear-gradient(180deg, rgba(6,11,18,.90), rgba(5,9,16,.94));
+      border:1px solid rgba(103,232,249,.10);
     }
 
-    .chart-frame {
-      border-radius: 18px;
-      padding: 8px;
-      background: linear-gradient(180deg, rgba(6,11,18,0.88), rgba(5,9,16,0.92));
-      border: 1px solid rgba(103,232,249,0.10);
+    .chart-frame iframe{
+      width:100%;
+      height:320px;
+      border:0;
+      border-radius:12px;
     }
 
-    .chart-frame iframe {
-      width: 100%;
-      height: 320px;
-      border: 0;
-      border-radius: 12px;
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .field-label {
-      display: block;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      margin-bottom: 5px;
-      font-weight: 700;
+    .field-label{
+      display:block;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+      margin-bottom:5px;
+      font-weight:800;
     }
 
     .hud-input,
     .hud-select,
-    .hud-textarea {
-      width: 100%;
-      background: rgba(3, 8, 15, 0.88);
-      border: 1px solid rgba(103,232,249,0.14);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 10px 12px;
-      outline: none;
-      font-size: 13px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.01);
+    .hud-textarea{
+      width:100%;
+      background:rgba(3,8,15,.88);
+      border:1px solid rgba(103,232,249,.15);
+      color:var(--text);
+      border-radius:14px;
+      padding:10px 12px;
+      outline:none;
+      font-size:13px;
     }
 
-    .hud-textarea {
-      min-height: 132px;
-      resize: vertical;
+    .hud-textarea{
+      min-height:132px;
+      resize:vertical;
     }
 
-    .news-list {
-      display: grid;
-      gap: 10px;
+    .news-item{
+      padding:12px 14px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(15,24,38,.70), rgba(8,14,22,.82));
+      border:1px solid rgba(103,232,249,.08);
+      font-size:13px;
     }
 
-    .news-item {
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(15,24,38,0.68), rgba(8,14,22,0.8));
-      border: 1px solid rgba(103,232,249,0.08);
-      font-size: 13px;
+    .news-item a{
+      color:#93c5fd;
+      text-decoration:none;
     }
 
-    .news-item a {
-      color: #93c5fd;
-      text-decoration: none;
+    .news-item a:hover{
+      text-decoration:underline;
     }
 
-    .news-item a:hover {
-      text-decoration: underline;
+    .tiny{
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
     }
 
-    .tiny-muted {
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    .glow-cyan{ color:var(--cyan); text-shadow:0 0 10px rgba(103,232,249,.18); }
+    .glow-blue{ color:var(--blue); text-shadow:0 0 10px rgba(56,189,248,.18); }
+    .glow-green{ color:var(--green); text-shadow:0 0 10px rgba(74,222,128,.18); }
+    .glow-red{ color:var(--red); text-shadow:0 0 10px rgba(248,113,113,.18); }
+    .glow-amber{ color:var(--amber); text-shadow:0 0 10px rgba(251,191,36,.18); }
+
+    .hidden{ display:none !important; }
+
+    .settings-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.62);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:60;
+      padding:16px;
     }
 
-    .glow-cyan { color: var(--cyan); text-shadow: 0 0 10px rgba(103,232,249,0.18); }
-    .glow-blue { color: var(--blue); text-shadow: 0 0 10px rgba(56,189,248,0.18); }
-    .glow-green { color: var(--green); text-shadow: 0 0 10px rgba(74,222,128,0.18); }
-    .glow-red { color: var(--red); text-shadow: 0 0 10px rgba(248,113,113,0.18); }
-    .glow-amber { color: var(--amber); text-shadow: 0 0 10px rgba(251,191,36,0.18); }
+    .settings-modal{
+      width:min(760px, 100%);
+      max-height:90vh;
+      overflow:auto;
+      border-radius:22px;
+      border:1px solid rgba(103,232,249,.18);
+      background:linear-gradient(180deg, rgba(10,18,30,.96), rgba(6,12,22,.96));
+      box-shadow:0 18px 40px rgba(0,0,0,.42), 0 0 30px rgba(56,189,248,.08);
+      padding:18px;
+    }
 
-    @media (max-width: 1200px) {
+    @media (max-width:1200px){
       .clock-grid,
-      .status-ribbon,
+      .ribbon,
       .asset-grid,
       .split-2,
-      .form-grid {
-        grid-template-columns: 1fr 1fr;
+      .form-grid{
+        grid-template-columns:1fr 1fr;
       }
     }
 
-    @media (max-width: 760px) {
-      body {
-        background-attachment: scroll;
-      }
-
+    @media (max-width:760px){
+      body{ background-attachment:scroll; }
       .clock-grid,
-      .status-ribbon,
+      .ribbon,
       .asset-grid,
       .split-2,
       .form-grid,
-      .mini-grid-2 {
-        grid-template-columns: 1fr;
+      .mini-grid-2{
+        grid-template-columns:1fr;
       }
-
-      .hero h1 {
-        font-size: 23px;
-      }
-
-      .clock-time {
-        font-size: 24px;
-      }
+      .hero h1{ font-size:23px; }
     }
   </style>
 </head>
 <body>
-  <div class="hud-shell hud-grid">
+  <div class="shell">
 
-    <!-- HERO -->
-    <section class="hud-panel">
-      <div class="panel-inner hero">
+    <section class="panel">
+      <div class="inner hero">
         <div>
           <h1>Trader Desk // Arc Reactor HUD</h1>
           <p>Global session intelligence • expansion + failure models • live dashboard shell</p>
         </div>
-        <div class="hero-actions">
-          <button id="refreshBtn" class="hud-btn blue">Refresh</button>
-          <button id="saveGlobalsBtn" class="hud-btn green">Save Globals</button>
+        <div class="actions">
+          <button id="refreshBtn" class="btn">Refresh</button>
+          <button id="saveGlobalsBtn" class="btn green">Save Globals</button>
+          <button id="openSettingsBtn" class="btn">Settings</button>
         </div>
       </div>
     </section>
 
-    <!-- CLOCKS -->
-    <section class="hud-panel">
-      <div class="panel-inner">
-        <div class="hud-title">Global Exchange Clocks</div>
-        <div class="clock-grid" id="clockGrid"></div>
+    <section class="panel">
+      <div class="inner">
+        <div class="title">Global Exchange Clocks</div>
+        <div id="clockGrid" class="clock-grid"></div>
       </div>
     </section>
 
-    <!-- STATUS RIBBON -->
-    <section class="hud-panel">
-      <div class="panel-inner">
-        <div class="status-ribbon">
-          <div class="status-box">
-            <div class="status-label">Current Session</div>
-            <div id="currentSession" class="status-value glow-cyan">Loading...</div>
+    <section class="panel">
+      <div class="inner">
+        <div class="ribbon">
+          <div class="ribbon-box">
+            <div class="ribbon-label">Current Session</div>
+            <div id="currentSession" class="ribbon-value glow-cyan">Loading...</div>
           </div>
-          <div class="status-box">
-            <div class="status-label">Red Folder (24H)</div>
-            <div id="redFolderBadge" class="status-value glow-red">Loading...</div>
+          <div class="ribbon-box">
+            <div class="ribbon-label">Red Folder (24H)</div>
+            <div id="redFolderBadge" class="ribbon-value glow-red">Loading...</div>
           </div>
-          <div class="status-box">
-            <div class="status-label">Watchlist State</div>
-            <div id="watchlistState" class="status-value glow-blue">Loading...</div>
+          <div class="ribbon-box">
+            <div class="ribbon-label">Watchlist State</div>
+            <div id="watchlistState" class="ribbon-value glow-blue">Loading...</div>
           </div>
-          <div class="status-box">
-            <div class="status-label">System Status</div>
-            <div id="systemStatus" class="status-value glow-green">ONLINE</div>
+          <div class="ribbon-box">
+            <div class="ribbon-label">System Status</div>
+            <div id="systemStatus" class="ribbon-value glow-green">ONLINE</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- RED FOLDER + WEEK -->
     <section class="split-2">
-      <div class="hud-panel">
-        <div class="panel-inner">
-          <div class="hud-title">Red Folder // Next 24 Hours</div>
+      <div class="panel">
+        <div class="inner">
+          <div class="title">Red Folder // Next 24 Hours</div>
           <div id="redFolderNow" class="note-box">Loading...</div>
         </div>
       </div>
-      <div class="hud-panel">
-        <div class="panel-inner">
-          <div class="hud-title">Red Folder // This Week</div>
-          <div id="redFolderWeek" class="summary-list">Loading...</div>
+      <div class="panel">
+        <div class="inner">
+          <div class="title">Red Folder // This Week</div>
+          <div id="redFolderWeek" class="week-list">Loading...</div>
         </div>
       </div>
     </section>
 
-    <!-- NEWS + GLOBALS -->
     <section class="split-2">
-      <div class="hud-panel">
-        <div class="panel-inner">
-          <div class="hud-title">Intel Feed // Highest Impact</div>
+      <div class="panel">
+        <div class="inner">
+          <div class="title">Intel Feed // Highest Impact</div>
           <div id="news" class="news-list">
             <div class="news-item">Loading...</div>
           </div>
         </div>
       </div>
 
-      <div class="hud-panel">
-        <div class="panel-inner">
-          <div class="hud-title">Global Controls</div>
-          <div class="hud-grid">
+      <div class="panel">
+        <div class="inner">
+          <div class="title">Global Controls</div>
+          <div class="form-grid" style="grid-template-columns:1fr;">
             <div>
               <label class="field-label">Finnhub Token (optional)</label>
               <input id="finnhubToken" class="hud-input" />
@@ -621,33 +624,30 @@
             <div>
               <label class="field-label">Weekly Red Folder Events</label>
               <textarea id="weeklyEvents" class="hud-textarea"></textarea>
-              <div class="tiny-muted" style="margin-top:8px;">Format: YYYY-MM-DD HH:MM|Event Name</div>
+              <div class="tiny" style="margin-top:8px;">Format: YYYY-MM-DD HH:MM|Event Name</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SUMMARY -->
-    <section class="hud-panel">
-      <div class="panel-inner">
-        <div class="hud-title">Watchlist Command Summary</div>
+    <section class="panel">
+      <div class="inner">
+        <div class="title">Watchlist Command Summary</div>
         <div id="summary" class="summary-list">Loading...</div>
       </div>
     </section>
 
-    <!-- ASSETS -->
-    <section class="hud-panel">
-      <div class="panel-inner">
-        <div class="hud-title">Tracked Assets</div>
+    <section class="panel">
+      <div class="inner">
+        <div class="title">Tracked Assets</div>
         <div id="assetGrid" class="asset-grid"></div>
       </div>
     </section>
 
-    <!-- ADD ASSET -->
-    <section class="hud-panel">
-      <div class="panel-inner">
-        <div class="hud-title">Add Asset</div>
+    <section class="panel">
+      <div class="inner">
+        <div class="title">Add Asset</div>
         <div class="form-grid">
           <div>
             <label class="field-label">Symbol</label>
@@ -685,13 +685,61 @@
             <input id="newRetestBuffer" type="number" step="0.001" class="hud-input" />
           </div>
         </div>
-        <div class="hero-actions" style="margin-top:14px;">
-          <button id="addAssetBtn" class="hud-btn blue">Add Asset</button>
-          <button id="resetAssetsBtn" class="hud-btn red">Reset Watchlist</button>
+        <div class="actions" style="margin-top:14px;">
+          <button id="addAssetBtn" class="btn">Add Asset</button>
+          <button id="resetAssetsBtn" class="btn red">Reset Watchlist</button>
         </div>
       </div>
     </section>
 
+  </div>
+
+  <!-- SETTINGS -->
+  <div id="settingsBackdrop" class="settings-backdrop">
+    <div class="settings-modal">
+      <div class="hero" style="margin-bottom:12px;">
+        <div>
+          <div class="title" style="margin-bottom:4px;">Settings</div>
+          <div class="muted">Visual and timing controls</div>
+        </div>
+        <div class="actions">
+          <button id="saveSettingsBtn" class="btn green">Save Settings</button>
+          <button id="closeSettingsBtn" class="btn red">Close</button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div>
+          <label class="field-label">Panel Opacity</label>
+          <input id="settingOpacity" type="range" min="0.60" max="0.90" step="0.01" class="hud-input" />
+        </div>
+        <div>
+          <label class="field-label">Auto Refresh (seconds)</label>
+          <select id="settingRefreshSeconds" class="hud-select">
+            <option value="30">30</option>
+            <option value="60">60</option>
+            <option value="300">300</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">News Refresh (seconds)</label>
+          <select id="settingNewsSeconds" class="hud-select">
+            <option value="300">300</option>
+            <option value="600">600</option>
+            <option value="900">900</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Default Chart Interval</label>
+          <select id="settingChartInterval" class="hud-select">
+            <option value="5">5</option>
+            <option value="15">15</option>
+            <option value="60">60</option>
+            <option value="240">240</option>
+          </select>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -714,12 +762,6 @@
       return 2;
     }
 
-    function badgeClass(v) {
-      if (v === "TRADE") return "pill-trade";
-      if (v === "WAIT") return "pill-wait";
-      return "pill-no";
-    }
-
     function escapeHtml(s) {
       return String(s)
         .replaceAll("&", "&amp;")
@@ -735,6 +777,13 @@
 2026-03-19 08:30|US Initial Jobless Claims
 2026-03-19 10:00|US Existing Home Sales
 2026-03-20 08:30|Canada Retail Sales`
+    };
+
+    const DEFAULT_SETTINGS = {
+      panelOpacity: 0.72,
+      refreshSeconds: 60,
+      newsSeconds: 300,
+      chartInterval: "15"
     };
 
     const DEFAULT_ASSETS = [
@@ -800,26 +849,37 @@
     };
 
     const CLOCKS = [
-      { city: "New York",  tz: "America/New_York", label: "NYSE / Nasdaq", open: 9,  close: 16 },
-      { city: "Chicago",   tz: "America/Chicago",  label: "CME",           open: 8,  close: 16 },
-      { city: "London",    tz: "Europe/London",    label: "LSE",           open: 8,  close: 16.5 },
-      { city: "Frankfurt", tz: "Europe/Berlin",    label: "Xetra",         open: 9,  close: 17.5 },
-      { city: "Tokyo",     tz: "Asia/Tokyo",       label: "TSE",           open: 9,  close: 15 },
-      { city: "Hong Kong", tz: "Asia/Hong_Kong",   label: "HKEX",          open: 9.5,close: 16 }
+      { city: "New York",  tz: "America/New_York", label: "NYSE / Nasdaq", open: 9, close: 16 },
+      { city: "Chicago",   tz: "America/Chicago",  label: "CME", open: 8, close: 16 },
+      { city: "London",    tz: "Europe/London",    label: "LSE", open: 8, close: 16.5 },
+      { city: "Frankfurt", tz: "Europe/Berlin",    label: "Xetra", open: 9, close: 17.5 },
+      { city: "Tokyo",     tz: "Asia/Tokyo",       label: "TSE", open: 9, close: 15 },
+      { city: "Hong Kong", tz: "Asia/Hong_Kong",   label: "HKEX", open: 9.5, close: 16 }
     ];
 
     let GLOBALS = loadGlobals();
+    let SETTINGS = loadSettings();
     let ASSETS = loadAssets();
 
+    let refreshTimer = null;
+    let newsTimer = null;
+
     function loadGlobals() {
-      const saved = localStorage.getItem("td_stark_globals");
+      const saved = localStorage.getItem("td_hud_globals_full");
       if (!saved) return { ...DEFAULT_GLOBALS };
       try { return { ...DEFAULT_GLOBALS, ...JSON.parse(saved) }; }
       catch { return { ...DEFAULT_GLOBALS }; }
     }
 
+    function loadSettings() {
+      const saved = localStorage.getItem("td_hud_settings_full");
+      if (!saved) return { ...DEFAULT_SETTINGS };
+      try { return { ...DEFAULT_SETTINGS, ...JSON.parse(saved) }; }
+      catch { return { ...DEFAULT_SETTINGS }; }
+    }
+
     function loadAssets() {
-      const saved = localStorage.getItem("td_stark_assets");
+      const saved = localStorage.getItem("td_hud_assets_full");
       if (!saved) return [...DEFAULT_ASSETS];
       try {
         const parsed = JSON.parse(saved);
@@ -830,11 +890,23 @@
     }
 
     function saveGlobals() {
-      localStorage.setItem("td_stark_globals", JSON.stringify(GLOBALS));
+      localStorage.setItem("td_hud_globals_full", JSON.stringify(GLOBALS));
+    }
+
+    function saveSettings() {
+      localStorage.setItem("td_hud_settings_full", JSON.stringify(SETTINGS));
     }
 
     function saveAssets() {
-      localStorage.setItem("td_stark_assets", JSON.stringify(ASSETS));
+      localStorage.setItem("td_hud_assets_full", JSON.stringify(ASSETS));
+    }
+
+    function applySettingsToUI() {
+      document.documentElement.style.setProperty("--panel-opacity", SETTINGS.panelOpacity);
+      document.getElementById("settingOpacity").value = SETTINGS.panelOpacity;
+      document.getElementById("settingRefreshSeconds").value = String(SETTINGS.refreshSeconds);
+      document.getElementById("settingNewsSeconds").value = String(SETTINGS.newsSeconds);
+      document.getElementById("settingChartInterval").value = SETTINGS.chartInterval;
     }
 
     function getTimePartsForZone(timeZone) {
@@ -881,19 +953,18 @@
       CLOCKS.forEach(c => {
         const parts = getTimePartsForZone(c.tz);
         const status = marketStatus(parts, c.open, c.close);
-        const cls = status === "OPEN" ? "status-open" : status === "PRE" ? "status-pre" : "status-closed";
+        const cls = status === "OPEN" ? "open" : status === "PRE" ? "pre" : "closed";
 
         const card = document.createElement("div");
         card.className = "clock-card";
         card.innerHTML = `
           <div>
             <div class="clock-city">${escapeHtml(c.city)}</div>
-            <div class="tiny-muted" style="margin-top:4px;">${escapeHtml(c.label)}</div>
+            <div class="clock-label">${escapeHtml(c.label)}</div>
           </div>
           <div class="clock-time">${escapeHtml(getTimeString(c.tz))}</div>
           <div class="clock-status ${cls}">
-            <span class="dot" style="color: currentColor;"></span>
-            ${escapeHtml(status)}
+            <span class="dot"></span>${escapeHtml(status)}
           </div>
         `;
         grid.appendChild(card);
@@ -913,21 +984,6 @@
       return new Date(Date.UTC(year, month - 1, day, hour, minute, 0));
     }
 
-    function secondsUntil(targetHour, targetMinute, nowParts) {
-      const nowSec = nowParts.hour * 3600 + nowParts.minute * 60 + nowParts.second;
-      const targetSec = targetHour * 3600 + targetMinute * 60;
-      let diff = targetSec - nowSec;
-      if (diff < 0) diff += 24 * 3600;
-      return diff;
-    }
-
-    function formatDuration(totalSeconds) {
-      const h = Math.floor(totalSeconds / 3600);
-      const m = Math.floor((totalSeconds % 3600) / 60);
-      const s = totalSeconds % 60;
-      return `${String(h).padStart(2, "0")}h ${String(m).padStart(2, "0")}m ${String(s).padStart(2, "0")}s`;
-    }
-
     function getSessionState(nowParts) {
       const totalMinutes = nowParts.hour * 60 + nowParts.minute;
       const isLondon = totalMinutes >= 180 && totalMinutes < 480;
@@ -942,28 +998,6 @@
       return { isLondon, isNY, isAsia, label };
     }
 
-    function renderStatusRibbon() {
-      const nowParts = getNYParts();
-      const session = getSessionState(nowParts);
-      document.getElementById("currentSession").textContent = session.label;
-
-      const { next24h } = getRedFolderStatus();
-      const rf = document.getElementById("redFolderBadge");
-      if (next24h.length) {
-        rf.textContent = next24h[0].name;
-        rf.className = "status-value glow-red";
-      } else {
-        rf.textContent = "CLEAR";
-        rf.className = "status-value glow-green";
-      }
-
-      const evals = ASSETS.map(a => evaluateAsset(a));
-      const trades = evals.filter(e => e.verdict === "TRADE").length;
-      const waits = evals.filter(e => e.verdict === "WAIT").length;
-      const noTrades = evals.filter(e => e.verdict === "NO TRADE").length;
-      document.getElementById("watchlistState").textContent = `T:${trades}  W:${waits}  N:${noTrades}`;
-    }
-
     function parseWeeklyEvents(text) {
       const lines = text.split("\n").map(x => x.trim()).filter(Boolean);
       const events = [];
@@ -971,7 +1005,6 @@
       for (const line of lines) {
         const [left, name] = line.split("|");
         if (!left || !name) continue;
-
         const [datePart, timePart] = left.trim().split(" ");
         if (!datePart || !timePart) continue;
 
@@ -1015,12 +1048,12 @@
       if (next24h.length) {
         const e = next24h[0];
         nowBox.innerHTML = `
-          <div class="glow-red" style="font-weight:800; font-size:18px;">${escapeHtml(e.name)}</div>
+          <div class="glow-red" style="font-weight:900;font-size:18px;">${escapeHtml(e.name)}</div>
           <div style="margin-top:6px;">${escapeHtml(e.dateText)} • ${escapeHtml(e.timeText)}</div>
-          <div class="hud-subtle" style="margin-top:8px;">Mission-critical event inside the 24-hour window.</div>
+          <div class="muted" style="margin-top:8px;">Mission-critical event inside the 24-hour window.</div>
         `;
       } else {
-        nowBox.innerHTML = `<div class="glow-green" style="font-weight:800;">No red-folder event inside the next 24 hours.</div>`;
+        nowBox.innerHTML = `<div class="glow-green" style="font-weight:900;">No red-folder event inside the next 24 hours.</div>`;
       }
 
       if (week.length) {
@@ -1029,7 +1062,7 @@
           const row = document.createElement("div");
           row.className = "summary-row";
           row.innerHTML = `
-            <div class="summary-left">
+            <div>
               <div class="summary-symbol">${escapeHtml(e.name)}</div>
               <div class="summary-meta">${escapeHtml(e.dateText)}</div>
             </div>
@@ -1038,7 +1071,7 @@
           weekBox.appendChild(row);
         });
       } else {
-        weekBox.innerHTML = `<div class="hud-subtle">No weekly events listed.</div>`;
+        weekBox.innerHTML = `<div class="muted">No weekly events listed.</div>`;
       }
     }
 
@@ -1116,6 +1149,28 @@
       return null;
     }
 
+    async function fetchYahooPDHPDL(symbol) {
+      try {
+        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=2d&interval=1d`;
+        const res = await fetch(url);
+        const data = await res.json();
+        const result = data?.chart?.result?.[0];
+        const quote = result?.indicators?.quote?.[0];
+        if (!quote) return null;
+
+        const highs = quote.high || [];
+        const lows = quote.low || [];
+
+        const high = highs.find(v => typeof v === "number");
+        const low = lows.find(v => typeof v === "number");
+
+        if (typeof high === "number" && typeof low === "number") {
+          return { high, low };
+        }
+      } catch {}
+      return null;
+    }
+
     async function refreshPrices() {
       const normalized = ASSETS.map(normalizeAsset);
 
@@ -1173,6 +1228,24 @@
       saveAssets();
     }
 
+    async function autofillPDHPDLForNewSymbol(symbol) {
+      const mapped = normalizeAsset({
+        symbol,
+        assetClass: "auto",
+        currentPrice: 0,
+        previousPrice: 0,
+        pdh: 0,
+        pdl: 0,
+        retestBuffer: 0.03
+      });
+
+      const yahoo = await fetchYahooPDHPDL(mapped.normalizedSymbol);
+      if (yahoo) {
+        return yahoo;
+      }
+      return { high: 0, low: 0 };
+    }
+
     function evaluateAsset(asset) {
       const a = normalizeAsset(asset);
       const nowParts = getNYParts();
@@ -1194,7 +1267,6 @@
       let setupModel = "None";
       let bias = "Range";
       let biasColor = "glow-amber";
-      let state = "No Trade Zone";
       let marketState = "Inside Range";
       let reason = "Price is still inside PDH/PDL.";
       let plan = "Wait for expansion or clear high/low failure.";
@@ -1208,7 +1280,6 @@
         setupModel = "Expansion";
         bias = "Bullish Confirmed";
         biasColor = "glow-green";
-        state = brokeAbove ? "Break Confirmed" : "Above PDH";
         marketState = "Above PDH";
         reason = "Expansion model: price is above PDH.";
         plan = nearPDH ? `Watch for PDH hold at ${formatPrice(pdh)}.` : `Wait for pullback toward ${formatPrice(pdh)}.`;
@@ -1221,7 +1292,6 @@
         setupModel = "Expansion";
         bias = "Bearish Confirmed";
         biasColor = "glow-red";
-        state = brokeBelow ? "Break Confirmed" : "Below PDL";
         marketState = "Below PDL";
         reason = "Expansion model: price is below PDL.";
         plan = nearPDL ? `Watch for PDL rejection at ${formatPrice(pdl)}.` : `Wait for rally toward ${formatPrice(pdl)}.`;
@@ -1234,7 +1304,6 @@
         setupModel = "High/Low Failure";
         bias = "High Failure";
         biasColor = "glow-red";
-        state = "Failed Break Back Inside Range";
         marketState = "Failed Above PDH";
         reason = "Failure model: price failed above PDH and returned inside range.";
         plan = `Short bias while price stays back below ${formatPrice(pdh)}.`;
@@ -1247,7 +1316,6 @@
         setupModel = "High/Low Failure";
         bias = "Low Failure";
         biasColor = "glow-green";
-        state = "Failed Break Back Inside Range";
         marketState = "Failed Below PDL";
         reason = "Failure model: price failed below PDL and returned inside range.";
         plan = `Long bias while price stays back above ${formatPrice(pdl)}.`;
@@ -1284,11 +1352,46 @@
 
       return {
         ...a,
-        price, prev, pdh, pdl,
-        setupModel, bias, biasColor, state, marketState,
-        reason, plan, entryZone, invalidation, target1, target2,
-        verdict, verdictColor, riskNote, sessionLabel: session.label
+        price,
+        pdh,
+        pdl,
+        setupModel,
+        bias,
+        biasColor,
+        marketState,
+        reason,
+        plan,
+        entryZone,
+        invalidation,
+        target1,
+        target2,
+        verdict,
+        verdictColor,
+        riskNote,
+        sessionLabel: session.label
       };
+    }
+
+    function renderStatusRibbon() {
+      const nowParts = getNYParts();
+      const session = getSessionState(nowParts);
+      document.getElementById("currentSession").textContent = session.label;
+
+      const { next24h } = getRedFolderStatus();
+      const rf = document.getElementById("redFolderBadge");
+      if (next24h.length) {
+        rf.textContent = next24h[0].name;
+        rf.className = "ribbon-value glow-red";
+      } else {
+        rf.textContent = "Clear";
+        rf.className = "ribbon-value glow-green";
+      }
+
+      const evals = ASSETS.map(a => evaluateAsset(a));
+      const trades = evals.filter(e => e.verdict === "TRADE").length;
+      const waits = evals.filter(e => e.verdict === "WAIT").length;
+      const noTrades = evals.filter(e => e.verdict === "NO TRADE").length;
+      document.getElementById("watchlistState").textContent = `Trade: ${trades} | Wait: ${waits} | No Trade: ${noTrades}`;
     }
 
     function renderSummary() {
@@ -1296,7 +1399,7 @@
       const results = ASSETS.map(a => evaluateAsset(a)).sort((a, b) => verdictRank(a.verdict) - verdictRank(b.verdict));
 
       if (!results.length) {
-        summary.innerHTML = `<div class="hud-subtle">No assets in watchlist.</div>`;
+        summary.innerHTML = `<div class="muted">No assets in watchlist.</div>`;
         return;
       }
 
@@ -1305,7 +1408,7 @@
         const row = document.createElement("div");
         row.className = "summary-row";
         row.innerHTML = `
-          <div class="summary-left">
+          <div>
             <div class="summary-symbol">${escapeHtml(r.symbol)}</div>
             <div class="summary-meta">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
           </div>
@@ -1330,17 +1433,17 @@
         const card = document.createElement("div");
         card.className = "asset-card";
 
+        const chartInterval = SETTINGS.chartInterval || "15";
+
         card.innerHTML = `
           <button class="asset-head">
-            <div class="asset-left">
+            <div>
               <div class="asset-symbol">
                 <strong>${escapeHtml(r.symbol)}</strong>
-                <span class="px-2 py-1 rounded-full text-xs ${badgeClass(r.verdict)}">${escapeHtml(r.verdict)}</span>
+                <span class="pill ${r.verdict === "TRADE" ? "pill-trade" : r.verdict === "WAIT" ? "pill-wait" : "pill-no"}">${escapeHtml(r.verdict)}</span>
               </div>
               <div class="asset-bias ${r.biasColor}">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
-              <div class="asset-meta">
-                Price: ${formatPrice(r.price)} • Source: ${escapeHtml(asset.lastSource || "Manual")} • Status: ${escapeHtml(asset.priceStatus || "Manual")}
-              </div>
+              <div class="asset-meta">Price: ${formatPrice(r.price)} • Source: ${escapeHtml(asset.lastSource || "Manual")} • Status: ${escapeHtml(asset.priceStatus || "Manual")}</div>
             </div>
             <div class="asset-expand">${asset.expanded ? "−" : "+"}</div>
           </button>
@@ -1356,9 +1459,9 @@
             </div>
 
             <div class="note-box">
-              <div><span class="hud-subtle">Reason:</span> ${escapeHtml(r.reason)}</div>
-              <div style="margin-top:6px;"><span class="hud-subtle">Plan:</span> ${escapeHtml(r.plan)}</div>
-              <div style="margin-top:6px;"><span class="hud-subtle">Risk Note:</span> ${escapeHtml(r.riskNote)}</div>
+              <div><span class="muted">Reason:</span> ${escapeHtml(r.reason)}</div>
+              <div style="margin-top:6px;"><span class="muted">Plan:</span> ${escapeHtml(r.plan)}</div>
+              <div style="margin-top:6px;"><span class="muted">Risk Note:</span> ${escapeHtml(r.riskNote)}</div>
             </div>
 
             <div class="mini-grid-2">
@@ -1373,13 +1476,11 @@
             </div>
 
             <div class="chart-frame">
-              <iframe
-                src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(r.chartSymbol)}&interval=15&theme=dark&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&style=1&timezone=Etc%2FUTC&withdateranges=1&hidevolume=1&allow_symbol_change=0"
-              ></iframe>
+              <iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(r.chartSymbol)}&interval=${encodeURIComponent(chartInterval)}&theme=dark&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&style=1&timezone=Etc%2FUTC&withdateranges=1&hidevolume=1&allow_symbol_change=0"></iframe>
             </div>
 
             <div class="note-box">
-              <div class="hud-title" style="margin-bottom:8px;">Edit Asset</div>
+              <div class="title" style="margin-bottom:8px;">Edit Asset</div>
               <div class="form-grid">
                 <div>
                   <label class="field-label">Symbol</label>
@@ -1425,10 +1526,10 @@
                 </div>
               </div>
 
-              <div class="hero-actions" style="margin-top:12px;">
-                <button class="save-asset-btn hud-btn green" data-id="${asset.id}">Save Asset</button>
-                <button class="copy-prev-btn hud-btn" data-id="${asset.id}">Copy Current → Previous</button>
-                <button class="delete-asset-btn hud-btn red" data-id="${asset.id}">Delete Asset</button>
+              <div class="actions" style="margin-top:12px;">
+                <button class="save-asset-btn btn green" data-id="${asset.id}">Save Asset</button>
+                <button class="copy-prev-btn btn" data-id="${asset.id}">Copy Current → Previous</button>
+                <button class="delete-asset-btn btn red" data-id="${asset.id}">Delete Asset</button>
               </div>
             </div>
           </div>
@@ -1487,17 +1588,30 @@
       renderAll();
     }
 
-    function addAsset() {
+    async function addAsset() {
       const symbol = document.getElementById("newSymbol").value.trim().toUpperCase();
       const assetClass = document.getElementById("newAssetClass").value;
-      const pdh = parseFloat(document.getElementById("newPDH").value);
-      const pdl = parseFloat(document.getElementById("newPDL").value);
+      let pdh = parseFloat(document.getElementById("newPDH").value);
+      let pdl = parseFloat(document.getElementById("newPDL").value);
       const currentPrice = parseFloat(document.getElementById("newCurrentPrice").value || "0");
       const previousPrice = parseFloat(document.getElementById("newPreviousPrice").value || "0");
       const retestBuffer = parseFloat(document.getElementById("newRetestBuffer").value || "0.03");
 
-      if (!symbol || Number.isNaN(pdh) || Number.isNaN(pdl)) {
-        alert("Please enter at least symbol, PDH, and PDL.");
+      if (!symbol) {
+        alert("Please enter a symbol.");
+        return;
+      }
+
+      if (!Number.isFinite(pdh) || !Number.isFinite(pdl)) {
+        const yahoo = await autofillPDHPDLForNewSymbol(symbol);
+        if (Number.isFinite(yahoo.high) && Number.isFinite(yahoo.low) && yahoo.high > 0 && yahoo.low > 0) {
+          pdh = yahoo.high;
+          pdl = yahoo.low;
+        }
+      }
+
+      if (!Number.isFinite(pdh) || !Number.isFinite(pdl)) {
+        alert("Please enter PDH and PDL, or use a symbol Yahoo can resolve.");
         return;
       }
 
@@ -1518,6 +1632,7 @@
 
       saveAssets();
       clearNewAssetForm();
+      await refreshPrices();
       renderAll();
     }
 
@@ -1626,7 +1741,47 @@
       await loadBestCoinBureau(news);
     }
 
-    async function renderAll() {
+    function populateSettings() {
+      document.getElementById("settingOpacity").value = SETTINGS.panelOpacity;
+      document.getElementById("settingRefreshSeconds").value = String(SETTINGS.refreshSeconds);
+      document.getElementById("settingNewsSeconds").value = String(SETTINGS.newsSeconds);
+      document.getElementById("settingChartInterval").value = SETTINGS.chartInterval;
+    }
+
+    function openSettings() {
+      populateSettings();
+      document.getElementById("settingsBackdrop").style.display = "flex";
+    }
+
+    function closeSettings() {
+      document.getElementById("settingsBackdrop").style.display = "none";
+    }
+
+    function saveSettingsFromModal() {
+      SETTINGS.panelOpacity = parseFloat(document.getElementById("settingOpacity").value || "0.72");
+      SETTINGS.refreshSeconds = parseInt(document.getElementById("settingRefreshSeconds").value || "60", 10);
+      SETTINGS.newsSeconds = parseInt(document.getElementById("settingNewsSeconds").value || "300", 10);
+      SETTINGS.chartInterval = document.getElementById("settingChartInterval").value || "15";
+      saveSettings();
+      applySettingsToUI();
+      setupTimers();
+      closeSettings();
+      renderAll();
+    }
+
+    function setupTimers() {
+      if (refreshTimer) clearInterval(refreshTimer);
+      if (newsTimer) clearInterval(newsTimer);
+
+      refreshTimer = setInterval(async () => {
+        await refreshPrices();
+        renderAll();
+      }, SETTINGS.refreshSeconds * 1000);
+
+      newsTimer = setInterval(renderNews, SETTINGS.newsSeconds * 1000);
+    }
+
+    function renderAll() {
       renderClocks();
       renderStatusRibbon();
       renderRedFolder();
@@ -1637,40 +1792,44 @@
     document.getElementById("saveGlobalsBtn").addEventListener("click", async () => {
       readGlobals();
       await refreshPrices();
-      await renderAll();
+      renderAll();
     });
 
     document.getElementById("refreshBtn").addEventListener("click", async () => {
       readGlobals();
       await refreshPrices();
       await renderNews();
-      await renderAll();
+      renderAll();
     });
 
-    document.getElementById("addAssetBtn").addEventListener("click", async () => {
-      addAsset();
-      await refreshPrices();
-      await renderAll();
-    });
+    document.getElementById("addAssetBtn").addEventListener("click", addAsset);
 
     document.getElementById("resetAssetsBtn").addEventListener("click", async () => {
       ASSETS = [...DEFAULT_ASSETS];
       saveAssets();
       await refreshPrices();
-      await renderAll();
+      renderAll();
+    });
+
+    document.getElementById("openSettingsBtn").addEventListener("click", openSettings);
+    document.getElementById("closeSettingsBtn").addEventListener("click", closeSettings);
+    document.getElementById("saveSettingsBtn").addEventListener("click", saveSettingsFromModal);
+    document.getElementById("settingsBackdrop").addEventListener("click", (e) => {
+      if (e.target.id === "settingsBackdrop") closeSettings();
     });
 
     (async function init() {
+      applySettingsToUI();
       populateGlobals();
       await refreshPrices();
       await renderNews();
-      await renderAll();
-
-      setInterval(renderClocks, 1000);
-      setInterval(renderStatusRibbon, 1000);
+      renderAll();
+      setupTimers();
+      setInterval(() => {
+        renderClocks();
+        renderStatusRibbon();
+      }, 1000);
       setInterval(renderRedFolder, 60000);
-      setInterval(async () => { await refreshPrices(); await renderAll(); }, 60000);
-      setInterval(renderNews, 300000);
     })();
   </script>
 </body>
