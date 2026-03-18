@@ -7,14 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{
-      --bg-overlay-top: rgba(0,0,0,0.60);
-      --bg-overlay-bottom: rgba(0,0,0,0.72);
-
-      --panel-opacity: 0.70;
-      --panel-border: rgba(103,232,249,0.24);
-      --panel-grad-1: rgba(10,18,30,0.82);
-      --panel-grad-2: rgba(6,12,22,0.88);
-
       --cyan:#67e8f9;
       --blue:#38bdf8;
       --green:#4ade80;
@@ -22,18 +14,21 @@
       --amber:#fbbf24;
       --text:#e6f7ff;
       --muted:#8aa5bf;
-      --slate:#94a3b8;
-      --shadow: rgba(0,0,0,0.28);
+      --panel-opacity:0.68;
+      --panel-grad-1:rgba(10,18,30,.82);
+      --panel-grad-2:rgba(6,12,22,.88);
+      --panel-border:rgba(103,232,249,.24);
+      --shadow:rgba(0,0,0,.26);
     }
 
-    * { box-sizing: border-box; }
+    *{ box-sizing:border-box; }
 
     body{
       margin:0;
       color:var(--text);
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        linear-gradient(var(--bg-overlay-top), var(--bg-overlay-bottom)),
+        linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.72)),
         url("./world-map.jpg") center/cover no-repeat fixed,
         #060b12;
       min-height:100vh;
@@ -49,16 +44,15 @@
 
     .panel{
       position:relative;
-      background:
-        linear-gradient(180deg, var(--panel-grad-1), var(--panel-grad-2));
+      background:linear-gradient(180deg, var(--panel-grad-1), var(--panel-grad-2));
       border:1px solid var(--panel-border);
       border-radius:22px;
       backdrop-filter:blur(10px);
       -webkit-backdrop-filter:blur(10px);
       box-shadow:
-        0 0 0 1px rgba(255,255,255,0.02),
+        0 0 0 1px rgba(103,232,249,0.04),
         0 10px 30px var(--shadow),
-        inset 0 0 18px rgba(56,189,248,0.03);
+        inset 0 0 16px rgba(56,189,248,0.03);
       overflow:hidden;
     }
 
@@ -67,18 +61,17 @@
       position:absolute;
       inset:0;
       pointer-events:none;
-      background:
-        linear-gradient(90deg, transparent, rgba(103,232,249,0.03), transparent);
-      opacity:0.9;
+      background:linear-gradient(90deg, transparent, rgba(103,232,249,0.03), transparent);
+      opacity:.9;
     }
 
     .panel:hover{
       border-color:rgba(103,232,249,0.42);
       box-shadow:
         0 0 0 1px rgba(103,232,249,0.08),
-        0 12px 34px rgba(0,0,0,0.32),
+        0 12px 34px rgba(0,0,0,0.30),
         0 0 22px rgba(56,189,248,0.10),
-        inset 0 0 18px rgba(56,189,248,0.05);
+        inset 0 0 16px rgba(56,189,248,0.04);
     }
 
     .inner{
@@ -123,7 +116,7 @@
       letter-spacing:.08em;
       text-transform:uppercase;
       color:#effbff;
-      text-shadow:0 0 12px rgba(103,232,249,.14);
+      text-shadow:0 0 14px rgba(103,232,249,.18);
     }
 
     .hero p{
@@ -152,13 +145,12 @@
       font-weight:800;
       cursor:pointer;
       transition:.15s ease;
-      box-shadow:0 0 10px rgba(56,189,248,.05);
     }
 
     .btn:hover{
       transform:translateY(-1px);
       border-color:rgba(103,232,249,0.52);
-      box-shadow:0 0 18px rgba(56,189,248,.14);
+      box-shadow:0 0 20px rgba(56,189,248,.14);
     }
 
     .btn.green{ border-color:rgba(74,222,128,.32); }
@@ -168,96 +160,61 @@
     .clock-grid{
       display:grid;
       grid-template-columns:repeat(6,minmax(0,1fr));
-      gap:12px;
+      gap:10px;
     }
 
     .clock-card{
-      position:relative;
       border-radius:18px;
-      border:1px solid rgba(103,232,249,.18);
-      background:
-        radial-gradient(circle at top left, rgba(56,189,248,.10), transparent 35%),
-        linear-gradient(180deg, rgba(9,18,30,.88), rgba(5,11,20,.92));
+      border:1px solid rgba(103,232,249,.12);
+      background:linear-gradient(180deg, rgba(12,21,35,.78), rgba(8,13,22,.84));
       padding:14px;
-      min-height:124px;
+      min-height:118px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
-      box-shadow:
-        inset 0 0 18px rgba(56,189,248,.04),
-        0 0 18px rgba(56,189,248,.05);
     }
 
-    .clock-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      border-radius:18px;
-      background:
-        linear-gradient(90deg, transparent, rgba(103,232,249,.03), transparent);
-    }
-
-    .clock-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-    }  
-  
     .clock-city{
       font-size:11px;
       text-transform:uppercase;
-      letter-spacing:.18em;
-      color:#b7ecff;
-      font-weight:900;
+      letter-spacing:.16em;
+      color:var(--muted);
+      font-weight:800;
     }
 
     .clock-label{
-      font-size:10px;
+      font-size:11px;
       color:var(--muted);
       margin-top:4px;
       text-transform:uppercase;
-      letter-spacing:.14em;
-    }
-
-    .clock-ring{
-        width:10px;
-        height:10px;
-        border-radius:999px;
-        margin-top:2px;
-        background:currentColor;
-        box-shadow:0 0 10px currentColor, 0 0 18px currentColor;
-        flex:0 0 auto;
+      letter-spacing:.12em;
     }
 
     .clock-time{
-      font-size:28px;
+      font-size:26px;
       font-weight:900;
-      letter-spacing:.08em;
-      color:#eafcff;
-      text-shadow:
-        0 0 8px rgba(103,232,249,.14),
-        0 0 18px rgba(56,189,248,.10);
-      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      letter-spacing:.06em;
+      color:#eefbff;
+      text-shadow:0 0 12px rgba(103,232,249,.14);
+      font-family:"Courier New",ui-monospace,monospace;
     }
 
     .clock-status{
-      font-size:10px;
+      font-size:11px;
       text-transform:uppercase;
-      letter-spacing:.18em;
-      font-weight:900;
+      letter-spacing:.14em;
+      font-weight:800;
       display:flex;
       align-items:center;
       gap:8px;
     }
 
     .dot{
-      width:8px;
-      height:8px;
+      width:9px;
+      height:9px;
       border-radius:999px;
       background:currentColor;
-      box-shadow:0 0 8px currentColor, 0 0 14px currentColor;
+      box-shadow:0 0 10px currentColor;
       display:inline-block;
     }
 
@@ -284,7 +241,7 @@
       letter-spacing:.15em;
       color:var(--muted);
       font-weight:800;
-      margin-bottom:6px;
+      margin-bottom:4px;
     }
 
     .ribbon-value{
@@ -632,9 +589,7 @@
         grid-template-columns:1fr;
       }
 
-      .hero h1{
-        font-size:23px;
-      }
+      .hero h1{ font-size:23px; }
 
       .chip-row{
         flex-direction:column;
@@ -867,1072 +822,292 @@
   </div>
 
   <script>
-    function makeId() {
-      return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+// ================================
+    // GLOBAL STATE + SAFE STORAGE
+    // ================================
+    const STORAGE_KEY = "traderDesk_v5";
+    const SETTINGS_KEY = "traderDesk_settings_v5";
+
+    function safeParse(json, fallback){
+      try{ return JSON.parse(json); } catch(e){ return fallback; }
     }
 
-    async function safeTextFetch(url, timeoutMs = 4500) {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), timeoutMs);
-      try {
-        const res = await fetch(url, { signal: controller.signal, cache: "no-store" });
-        clearTimeout(timer);
-        if (!res.ok) return null;
-        return await res.text();
-      } catch {
-        clearTimeout(timer);
-        return null;
-      }
+    function loadState(){
+      return safeParse(localStorage.getItem(STORAGE_KEY), { assets:[] });
     }
 
-    async function safeJsonFetch(url, timeoutMs = 4500) {
-      const txt = await safeTextFetch(url, timeoutMs);
-      if (!txt) return null;
-      try {
-        return JSON.parse(txt);
-      } catch {
-        return null;
-      }
+    function saveState(state){
+      try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+      catch(e){ console.warn("Save failed", e); }
     }
 
-    const DEFAULT_GLOBALS = {
-      finnhubToken: "",
-      weeklyEventsText:
-`2026-03-18 08:30|USD CPI|USD
-2026-03-19 08:30|US Initial Jobless Claims|USD
-2026-03-19 10:00|US Existing Home Sales|USD
-2026-03-20 08:30|Canada Retail Sales|CAD`
-    };
-
-    const DEFAULT_SETTINGS = {
-      panelOpacity: 0.68,
-      refreshSeconds: 60,
-      newsSeconds: 300,
-      chartInterval: "15",
-      gradientStyle: "blue",
-      autoPD: true,
-      refreshPD: false
-    };
-
-    const DEFAULT_ASSETS = [
-      {
-        id: makeId(),
-        symbol: "USDJPY",
-        assetClass: "forex",
-        currentPrice: 149.500,
-        previousPrice: 149.450,
-        pdh: 149.800,
-        pdl: 149.100,
-        retestBuffer: 0.050,
-        expanded: true,
-        autoPrice: false,
-        lastSource: "Manual",
-        priceStatus: "Manual"
-      },
-      {
-        id: makeId(),
-        symbol: "BTCUSD",
-        assetClass: "crypto",
-        currentPrice: 80000,
-        previousPrice: 79800,
-        pdh: 81200,
-        pdl: 78500,
-        retestBuffer: 120,
-        expanded: true,
-        autoPrice: true,
-        lastSource: "CoinGecko",
-        priceStatus: "Pending"
-      }
-    ];
-
-    const CRYPTO_CG_MAP = {
-      BTCUSD: "bitcoin",
-      ETHUSD: "ethereum",
-      SOLUSD: "solana",
-      BNBUSD: "binancecoin",
-      XRPUSD: "ripple",
-      ADAUSD: "cardano",
-      DOGEUSD: "dogecoin",
-      AVAXUSD: "avalanche-2",
-      LINKUSD: "chainlink",
-      TONUSD: "the-open-network"
-    };
-
-    const FUTURES_PROXY_MAP = {
-      ES:  { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       note: "Using SPY as ES proxy." },
-      MES: { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       note: "Using SPY as MES proxy." },
-      NQ:  { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     note: "Using QQQ as NQ proxy." },
-      MNQ: { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     note: "Using QQQ as MNQ proxy." },
-      YM:  { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       note: "Using DIA as YM proxy." },
-      MYM: { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       note: "Using DIA as MYM proxy." },
-      GC:  { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   note: "Using XAUUSD as GC proxy." },
-      MGC: { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   note: "Using XAUUSD as MGC proxy." },
-      SI:  { proxySymbol: "XAGUSD", assetClass: "forex",  chartSymbol: "OANDA:XAGUSD",   note: "Using XAGUSD as SI proxy." },
-      SIL: { proxySymbol: "XAGUSD", assetClass: "forex",  chartSymbol: "OANDA:XAGUSD",   note: "Using XAGUSD as SIL proxy." },
-      CL:  { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", note: "Using WTI proxy for CL." },
-      MCL: { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", note: "Using WTI proxy for MCL." },
-      "6E": { proxySymbol: "EURUSD", assetClass: "forex", chartSymbol: "OANDA:EURUSD",   note: "Using EURUSD as 6E proxy." },
-      "6J": { proxySymbol: "USDJPY", assetClass: "forex", chartSymbol: "OANDA:USDJPY",   note: "Using USDJPY as 6J proxy." },
-      "6B": { proxySymbol: "GBPUSD", assetClass: "forex", chartSymbol: "OANDA:GBPUSD",   note: "Using GBPUSD as 6B proxy." }
-    };
-
-    const CLOCKS = [
-      { city: "New York",  tz: "America/New_York", label: "NYSE / Nasdaq", open: 9, close: 16 },
-      { city: "Chicago",   tz: "America/Chicago",  label: "CME", open: 8, close: 16 },
-      { city: "London",    tz: "Europe/London",    label: "LSE", open: 8, close: 16.5 },
-      { city: "Frankfurt", tz: "Europe/Berlin",    label: "Xetra", open: 9, close: 17.5 },
-      { city: "Tokyo",     tz: "Asia/Tokyo",       label: "TSE", open: 9, close: 15 },
-      { city: "Hong Kong", tz: "Asia/Hong_Kong",   label: "HKEX", open: 9.5, close: 16 }
-    ];
-
-    let GLOBALS = loadGlobals();
-    let SETTINGS = loadSettings();
-    let ASSETS = loadAssets();
-
-    let monitorTimer = null;
-    let lastPriceRefresh = 0;
-    let lastNewsRefresh = 0;
-
-    function loadGlobals() {
-      const saved = localStorage.getItem("td_hud_globals_v3");
-      if (!saved) return { ...DEFAULT_GLOBALS };
-      try { return { ...DEFAULT_GLOBALS, ...JSON.parse(saved) }; }
-      catch { return { ...DEFAULT_GLOBALS }; }
-    }
-
-    function loadSettings() {
-      const saved = localStorage.getItem("td_hud_settings_v3");
-      if (!saved) return { ...DEFAULT_SETTINGS };
-      try { return { ...DEFAULT_SETTINGS, ...JSON.parse(saved) }; }
-      catch { return { ...DEFAULT_SETTINGS }; }
-    }
-
-    function loadAssets() {
-      const saved = localStorage.getItem("td_hud_assets_v3");
-      if (!saved) return [...DEFAULT_ASSETS];
-      try {
-        const parsed = JSON.parse(saved);
-        return parsed.length ? parsed : [...DEFAULT_ASSETS];
-      } catch {
-        return [...DEFAULT_ASSETS];
-      }
-    }
-
-    function saveGlobals() {
-      localStorage.setItem("td_hud_globals_v3", JSON.stringify(GLOBALS));
-    }
-
-    function saveSettings() {
-      localStorage.setItem("td_hud_settings_v3", JSON.stringify(SETTINGS));
-    }
-
-    function saveAssets() {
-      localStorage.setItem("td_hud_assets_v3", JSON.stringify(ASSETS));
-    }
-
-    function formatPrice(value) {
-      const n = Number(value);
-      if (!Number.isFinite(n)) return "-";
-      if (Math.abs(n) >= 1000) return n.toFixed(2);
-      if (Math.abs(n) >= 100) return n.toFixed(3);
-      if (Math.abs(n) >= 1) return n.toFixed(3);
-      return n.toFixed(5);
-    }
-
-    function verdictRank(v) {
-      if (v === "TRADE") return 0;
-      if (v === "WAIT") return 1;
-      return 2;
-    }
-
-    function escapeHtml(s) {
-      return String(s)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;");
-    }
-
-    function applySettingsToUI() {
-      document.documentElement.style.setProperty("--panel-opacity", String(SETTINGS.panelOpacity));
-
-      if (SETTINGS.gradientStyle === "blue") {
-        document.documentElement.style.setProperty("--panel-grad-1", "rgba(10,18,30,.82)");
-        document.documentElement.style.setProperty("--panel-grad-2", "rgba(6,12,22,.88)");
-        document.documentElement.style.setProperty("--panel-border", "rgba(103,232,249,.24)");
-      } else if (SETTINGS.gradientStyle === "cyan") {
-        document.documentElement.style.setProperty("--panel-grad-1", "rgba(8,24,34,.82)");
-        document.documentElement.style.setProperty("--panel-grad-2", "rgba(4,14,24,.88)");
-        document.documentElement.style.setProperty("--panel-border", "rgba(103,232,249,.32)");
-      } else if (SETTINGS.gradientStyle === "slate") {
-        document.documentElement.style.setProperty("--panel-grad-1", "rgba(18,18,24,.84)");
-        document.documentElement.style.setProperty("--panel-grad-2", "rgba(10,10,16,.88)");
-        document.documentElement.style.setProperty("--panel-border", "rgba(148,163,184,.22)");
-      } else {
-        document.documentElement.style.setProperty("--panel-grad-1", "rgba(10,14,20,.86)");
-        document.documentElement.style.setProperty("--panel-grad-2", "rgba(10,14,20,.86)");
-        document.documentElement.style.setProperty("--panel-border", "rgba(103,232,249,.14)");
-      }
-    }
-
-    function getTimePartsForZone(timeZone) {
-      const now = new Date();
-      const formatter = new Intl.DateTimeFormat("en-US", {
-        timeZone,
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        hour12: false
+    function loadSettings(){
+      return safeParse(localStorage.getItem(SETTINGS_KEY), {
+        opacity:0.68,
+        refreshSeconds:60,
+        newsSeconds:300,
+        chartInterval:"15",
+        gradient:"blue",
+        autoPD:true,
+        refreshPD:true
       });
-      const parts = formatter.formatToParts(now);
-      const out = {};
-      for (const p of parts) {
-        if (p.type !== "literal") out[p.type] = parseInt(p.value, 10);
-      }
-      return out;
     }
 
-    function getTimeStringParts(timeZone) {
-      const p = getTimePartsForZone(timeZone);
-      return {
-        hh: String(p.hour).padStart(2, "0"),
-        mm: String(p.minute).padStart(2, "0"),
-        ss: String(p.second).padStart(2, "0")
-      };
+    function saveSettings(s){
+      try{ localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); }
+      catch(e){ console.warn("Settings save failed"); }
     }
 
-    function marketStatus(parts, openHour, closeHour) {
-      const now = parts.hour + (parts.minute / 60);
-      if (now >= openHour && now < closeHour) return "OPEN";
-      if (now >= openHour - 1 && now < openHour) return "PRE";
+    let state = loadState();
+    let settings = loadSettings();
+
+    // ================================
+    // SESSION CLOCK ENGINE
+    // ================================
+    const SESSIONS = [
+      { name:"New York", tz:"America/New_York", open:9, close:16 },
+      { name:"Chicago", tz:"America/Chicago", open:8, close:15 },
+      { name:"London", tz:"Europe/London", open:8, close:16 },
+      { name:"Frankfurt", tz:"Europe/Berlin", open:9, close:17 },
+      { name:"Tokyo", tz:"Asia/Tokyo", open:9, close:15 },
+      { name:"Hong Kong", tz:"Asia/Hong_Kong", open:9, close:16 }
+    ];
+
+    function getSessionStatus(now, open, close){
+      const h = now.getHours();
+      if(h >= open && h < close) return "OPEN";
+      if(h >= open - 1 && h < open) return "PRE";
       return "CLOSED";
     }
 
-    function makeFlipGroup(str) {
-      return `
-        <div class="flip-group">
-          <div class="flip-digit">${escapeHtml(str[0])}</div>
-          <div class="flip-digit">${escapeHtml(str[1])}</div>
-        </div>
-      `;
-    }
-
-    function renderClocks() {
+    function renderClocks(){
       const grid = document.getElementById("clockGrid");
       grid.innerHTML = "";
 
-      CLOCKS.forEach(c => {
-        const parts = getTimePartsForZone(c.tz);
-        const t = getTimeStringParts(c.tz);
-        const status = marketStatus(parts, c.open, c.close);
-        const cls = status === "OPEN" ? "open" : status === "PRE" ? "pre" : "closed";
+      SESSIONS.forEach(s=>{
+        try{
+          const now = new Date().toLocaleString("en-US",{ timeZone:s.tz });
+          const d = new Date(now);
+          const status = getSessionStatus(d, s.open, s.close);
 
-        const card = document.createElement("div");
-        card.className = "clock-card";
-        card.innerHTML = `
-          <div>
-            <div class="clock-city">${escapeHtml(c.city)}</div>
-            <div class="clock-label">${escapeHtml(c.label)}</div>
-          </div>
-          <div class="flip-wrap">
-            ${makeFlipGroup(t.hh)}
-            <div class="flip-colon">:</div>
-            ${makeFlipGroup(t.mm)}
-            <div class="flip-colon">:</div>
-            ${makeFlipGroup(t.ss)}
-          </div>
-          <div class="clock-status ${cls}">
-            <span class="dot"></span>${escapeHtml(status)}
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
+          const el = document.createElement("div");
+          el.className = "clock-card";
 
-    function getNYParts() {
-      return getTimePartsForZone("America/New_York");
-    }
-
-    function getNYWallClockDate() {
-      const p = getNYParts();
-      return new Date(Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second));
-    }
-
-    function buildWallClockDate(year, month, day, hour, minute) {
-      return new Date(Date.UTC(year, month - 1, day, hour, minute, 0));
-    }
-
-    function getSessionState(nowParts) {
-      const totalMinutes = nowParts.hour * 60 + nowParts.minute;
-      const isLondon = totalMinutes >= 180 && totalMinutes < 480;
-      const isNY = totalMinutes >= 480 && totalMinutes < 1020;
-      const isAsia = totalMinutes >= 1140 || totalMinutes < 180;
-
-      let label = "Reset / Between Sessions";
-      if (isLondon) label = "London Session";
-      else if (isNY) label = "New York Session";
-      else if (isAsia) label = "Asia Session";
-
-      return { isLondon, isNY, isAsia, label };
-    }
-
-    function parseWeeklyEvents(text) {
-      const lines = text.split("\n").map(x => x.trim()).filter(Boolean);
-      const events = [];
-
-      for (const line of lines) {
-        const parts = line.split("|");
-        if (parts.length < 2) continue;
-
-        const left = parts[0];
-        const name = parts[1];
-        const currency = parts[2] ? parts[2].trim().toUpperCase() : "";
-
-        const [datePart, timePart] = left.trim().split(" ");
-        if (!datePart || !timePart) continue;
-
-        const [yy, mm, dd] = datePart.split("-").map(Number);
-        const [hh, mi] = timePart.split(":").map(Number);
-        if (![yy, mm, dd, hh, mi].every(Number.isFinite)) continue;
-
-        events.push({
-          name: name.trim(),
-          currency,
-          date: buildWallClockDate(yy, mm, dd, hh, mi),
-          dateText: `${yy}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`,
-          timeText: `${String(hh).padStart(2, "0")}:${String(mi).padStart(2, "0")} ET`
-        });
-      }
-
-      return events.sort((a, b) => a.date - b.date);
-    }
-
-    function getRedFolderStatus() {
-      const now = getNYWallClockDate();
-      const events = parseWeeklyEvents(GLOBALS.weeklyEventsText);
-
-      const next24h = events.filter(e => {
-        const diffMin = (e.date - now) / 60000;
-        return diffMin >= 0 && diffMin <= 1440;
-      });
-
-      const week = events.filter(e => {
-        const diffMin = (e.date - now) / 60000;
-        return diffMin >= -10 && diffMin <= 10080;
-      });
-
-      return { next24h, week };
-    }
-
-    function getAssetMovePct(symbol) {
-      const a = ASSETS.find(x => (x.symbol || "").toUpperCase() === symbol);
-      if (!a) return null;
-      const c = Number(a.currentPrice);
-      const p = Number(a.previousPrice);
-      if (!Number.isFinite(c) || !Number.isFinite(p) || p === 0) return null;
-      return ((c - p) / Math.abs(p)) * 100;
-    }
-
-    function inferResolutionBias(currency) {
-      if (!currency) return "Awaiting release.";
-
-      if (currency === "USD") {
-        const uj = getAssetMovePct("USDJPY");
-        const eu = getAssetMovePct("EURUSD");
-        const xu = getAssetMovePct("XAUUSD");
-        if (uj !== null && eu !== null) {
-          if (uj > 0 && eu < 0) return "USD bullish reaction";
-          if (uj < 0 && eu > 0) return "USD bearish reaction";
-        }
-        if (xu !== null) {
-          if (xu < 0) return "Possible USD-firm / gold-soft reaction";
-          if (xu > 0) return "Possible USD-soft / gold-firm reaction";
-        }
-        return "Mixed / insufficient reaction data";
-      }
-
-      if (currency === "JPY") {
-        const uj = getAssetMovePct("USDJPY");
-        if (uj !== null) {
-          if (uj < 0) return "JPY bullish reaction";
-          if (uj > 0) return "JPY bearish reaction";
-        }
-        return "Mixed / insufficient reaction data";
-      }
-
-      if (currency === "CAD") {
-        const uc = getAssetMovePct("USDCAD");
-        if (uc !== null) {
-          if (uc < 0) return "CAD bullish reaction";
-          if (uc > 0) return "CAD bearish reaction";
-        }
-        return "Mixed / insufficient reaction data";
-      }
-
-      if (currency === "CRYPTO" || currency === "BTC") {
-        const btc = getAssetMovePct("BTCUSD");
-        if (btc !== null) {
-          if (btc > 0) return "Crypto bullish reaction";
-          if (btc < 0) return "Crypto bearish reaction";
-        }
-        return "Mixed / insufficient reaction data";
-      }
-
-      return "Reaction model unavailable for this currency";
-    }
-
-    function isReleaseWindow(eventDate) {
-      const now = getNYWallClockDate();
-      const diffSec = (eventDate - now) / 1000;
-      return diffSec >= -600 && diffSec <= 120;
-    }
-
-    function renderRedFolder() {
-      const { next24h, week } = getRedFolderStatus();
-      const nowBox = document.getElementById("redFolderNow");
-      const weekBox = document.getElementById("redFolderWeek");
-      const badge = document.getElementById("redFolderBadge");
-
-      if (next24h.length) {
-        const e = next24h[0];
-        badge.textContent = e.name;
-        badge.className = "ribbon-value glow-red";
-
-        const now = getNYWallClockDate();
-        const diffSec = Math.floor((e.date - now) / 1000);
-
-        let statusText = "Inside the 24-hour window.";
-        if (diffSec > 0) {
-          statusText = `Release in ${Math.floor(diffSec / 60)}m ${Math.abs(diffSec % 60)}s.`;
-        } else if (diffSec >= -600) {
-          statusText = "Resolution window active. Monitoring reaction.";
-        }
-
-        const quickFeel = diffSec <= 0 ? inferResolutionBias(e.currency) : "Awaiting release.";
-
-        nowBox.innerHTML = `
-          <div class="glow-red" style="font-weight:900;font-size:18px;">${escapeHtml(e.name)}</div>
-          <div style="margin-top:6px;">${escapeHtml(e.dateText)} • ${escapeHtml(e.timeText)}${e.currency ? " • " + escapeHtml(e.currency) : ""}</div>
-          <div class="muted" style="margin-top:8px;">${escapeHtml(statusText)}</div>
-          <div style="margin-top:10px;"><span class="muted">Quick feel:</span> ${escapeHtml(quickFeel)}</div>
-        `;
-      } else {
-        badge.textContent = "Clear";
-        badge.className = "ribbon-value glow-green";
-        nowBox.innerHTML = `<div class="glow-green" style="font-weight:900;">No red-folder event inside the next 24 hours.</div>`;
-      }
-
-      if (week.length) {
-        weekBox.innerHTML = "";
-        week.forEach(e => {
-          const row = document.createElement("div");
-          row.className = "summary-row";
-          row.innerHTML = `
+          el.innerHTML = `
             <div>
-              <div class="summary-symbol">${escapeHtml(e.name)}</div>
-              <div class="summary-meta">${escapeHtml(e.dateText)}${e.currency ? " • " + escapeHtml(e.currency) : ""}</div>
+              <div class="clock-city">${s.name}</div>
+              <div class="clock-label">${s.tz.split("/")[1]}</div>
             </div>
-            <div class="summary-price">${escapeHtml(e.timeText)}</div>
+            <div class="clock-time">${d.toLocaleTimeString()}</div>
+            <div class="clock-status ${status.toLowerCase()}">
+              <span class="dot"></span> ${status}
+            </div>
           `;
-          weekBox.appendChild(row);
-        });
-      } else {
-        weekBox.innerHTML = `<div class="muted">No weekly events listed.</div>`;
-      }
-    }
 
-    function detectAssetClass(symbol) {
-      if (CRYPTO_CG_MAP[symbol]) return "crypto";
-      if (FUTURES_PROXY_MAP[symbol]) return "futures";
-      if (["EURUSD","GBPUSD","USDJPY","AUDUSD","NZDUSD","USDCHF","USDCAD","XAUUSD","XAGUSD","USOIL"].includes(symbol)) return "forex";
-      if (["SPY","QQQ","DIA"].includes(symbol)) return "stock";
-      return "forex";
-    }
-
-    function getChartSymbol(symbol, cls) {
-      if (cls === "crypto") {
-        const base = symbol.replace("USD", "");
-        return `BINANCE:${base}USDT`;
-      }
-      if (cls === "forex") return `OANDA:${symbol}`;
-      if (cls === "stock") {
-        if (symbol === "SPY") return "AMEX:SPY";
-        if (symbol === "QQQ") return "NASDAQ:QQQ";
-        if (symbol === "DIA") return "AMEX:DIA";
-        return `NASDAQ:${symbol}`;
-      }
-      return `OANDA:${symbol}`;
-    }
-
-    function normalizeAsset(asset) {
-      const raw = (asset.symbol || "").toUpperCase().trim();
-      const fut = FUTURES_PROXY_MAP[raw];
-
-      if (fut) {
-        return {
-          ...asset,
-          symbol: raw,
-          normalizedSymbol: fut.proxySymbol,
-          effectiveClass: fut.assetClass,
-          chartSymbol: fut.chartSymbol,
-          proxyNote: fut.note
-        };
-      }
-
-      const cls = asset.assetClass === "auto" ? detectAssetClass(raw) : asset.assetClass;
-      return {
-        ...asset,
-        symbol: raw,
-        normalizedSymbol: raw,
-        effectiveClass: cls,
-        chartSymbol: getChartSymbol(raw, cls),
-        proxyNote: ""
-      };
-    }
-
-    async function fetchCryptoPrices(ids) {
-      if (!ids.length) return {};
-      const uniqueIds = [...new Set(ids)].join(",");
-      const url = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(uniqueIds)}&vs_currencies=usd`;
-      const data = await safeJsonFetch(url, 4500);
-      if (!data) return {};
-      const out = {};
-      Object.keys(data).forEach(id => {
-        out[id] = data[id]?.usd;
+          grid.appendChild(el);
+        }catch(e){}
       });
-      return out;
     }
 
-    async function fetchFinnhubQuote(symbol) {
-      if (!GLOBALS.finnhubToken) return null;
-      const url = `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(symbol)}&token=${encodeURIComponent(GLOBALS.finnhubToken)}`;
-      const data = await safeJsonFetch(url, 4500);
-      if (data && typeof data.c === "number" && data.c > 0) return data.c;
-      return null;
+    setInterval(renderClocks,1000);
+    renderClocks();
+
+    // ================================
+    // SESSION DETECTOR
+    // ================================
+    function detectSession(){
+      const now = new Date();
+      const h = now.getUTCHours();
+
+      if(h >= 7 && h < 15) return "London Session";
+      if(h >= 12 && h < 20) return "New York Session";
+      if(h >= 0 && h < 7) return "Asia Session";
+      return "Transition";
     }
 
-    async function fetchYahooPDHPDL(symbol) {
-      const target = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=5d&interval=1d`;
-      const proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(target);
-      const data = await safeJsonFetch(proxy, 5000);
-      const result = data?.chart?.result?.[0];
-      const quote = result?.indicators?.quote?.[0];
-      const timestamps = result?.timestamp || [];
-      const highs = quote?.high || [];
-      const lows = quote?.low || [];
-
-      if (!timestamps.length || !highs.length || !lows.length) return null;
-
-      const usable = [];
-      for (let i = 0; i < timestamps.length; i++) {
-        if (typeof highs[i] === "number" && typeof lows[i] === "number") {
-          usable.push({ ts: timestamps[i], high: highs[i], low: lows[i] });
-        }
-      }
-
-      if (!usable.length) return null;
-      const pick = usable.length >= 2 ? usable[usable.length - 2] : usable[usable.length - 1];
-      return { high: pick.high, low: pick.low };
+    function updateSessionBanner(){
+      document.getElementById("currentSession").textContent = detectSession();
     }
 
-    async function refreshPDHPDLForAsset(asset) {
-      const n = normalizeAsset(asset);
-      const yahoo = await fetchYahooPDHPDL(n.normalizedSymbol);
-      if (yahoo && Number.isFinite(yahoo.high) && Number.isFinite(yahoo.low)) {
-        asset.pdh = yahoo.high;
-        asset.pdl = yahoo.low;
-      }
-      return asset;
-    }
+    setInterval(updateSessionBanner,60000);
+    updateSessionBanner();
 
-    async function refreshPrices() {
-      const normalized = ASSETS.map(normalizeAsset);
+    // ================================
+    // WATCHLIST ENGINE
+    // ================================
+    function evaluateAsset(a){
+      try{
+        if(!a.current || !a.pdh || !a.pdl) return {state:"WAIT", verdict:"NO DATA"};
 
-      const cryptoAssets = normalized.filter(a => a.effectiveClass === "crypto" && a.autoPrice);
-      const cryptoIds = cryptoAssets.map(a => CRYPTO_CG_MAP[a.normalizedSymbol]).filter(Boolean);
-      const cgPrices = await fetchCryptoPrices(cryptoIds);
+        if(a.current > a.pdh) return {state:"TRADE", verdict:"Expansion Long"};
+        if(a.current < a.pdl) return {state:"TRADE", verdict:"Expansion Short"};
 
-      ASSETS = ASSETS.map(asset => {
-        const n = normalizeAsset(asset);
-        if (n.effectiveClass === "crypto" && asset.autoPrice) {
-          const cgId = CRYPTO_CG_MAP[n.normalizedSymbol];
-          const px = cgId ? cgPrices[cgId] : null;
-          if (typeof px === "number" && px > 0) {
-            return {
-              ...asset,
-              previousPrice: asset.currentPrice,
-              currentPrice: px,
-              lastSource: "CoinGecko",
-              priceStatus: "Live"
-            };
+        if(a.previous && a.current){
+          if(a.previous > a.pdh && a.current < a.pdh){
+            return {state:"TRADE", verdict:"High Failure Short"};
           }
-          return { ...asset, lastSource: "Manual", priceStatus: "Fallback" };
+          if(a.previous < a.pdl && a.current > a.pdl){
+            return {state:"TRADE", verdict:"Low Failure Long"};
+          }
         }
-        return asset;
-      });
 
-      const updates = [];
-      for (let i = 0; i < ASSETS.length; i++) {
-        const asset = ASSETS[i];
-        const n = normalizeAsset(asset);
-
-        if (n.effectiveClass !== "crypto" && asset.autoPrice && GLOBALS.finnhubToken) {
-          updates.push(
-            fetchFinnhubQuote(n.normalizedSymbol).then(px => {
-              if (typeof px === "number" && px > 0) {
-                ASSETS[i] = {
-                  ...ASSETS[i],
-                  previousPrice: ASSETS[i].currentPrice,
-                  currentPrice: px,
-                  lastSource: "Finnhub",
-                  priceStatus: "Live"
-                };
-              } else {
-                ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Fallback" };
-              }
-            })
-          );
-        } else if (!asset.autoPrice) {
-          ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Manual" };
-        } else if (n.effectiveClass !== "crypto" && !GLOBALS.finnhubToken) {
-          ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Need token" };
-        }
+        return {state:"WAIT", verdict:"Inside Range"};
+      }catch(e){
+        return {state:"WAIT", verdict:"Error"};
       }
-
-      await Promise.allSettled(updates);
-      saveAssets();
-      lastPriceRefresh = Date.now();
     }
 
-    async function autofillPDHPDLForNewSymbol(symbol) {
-      const mapped = normalizeAsset({
-        symbol,
-        assetClass: "auto",
-        currentPrice: 0,
-        previousPrice: 0,
-        pdh: 0,
-        pdl: 0,
-        retestBuffer: 0.03
-      });
+    function renderSummary(){
+      const el = document.getElementById("summary");
+      el.innerHTML = "";
 
-      const yahoo = await fetchYahooPDHPDL(mapped.normalizedSymbol);
-      if (yahoo) return yahoo;
-      return { high: 0, low: 0 };
-    }
+      state.assets.forEach((a,i)=>{
+        const r = evaluateAsset(a);
 
-    function evaluateAsset(asset) {
-      const a = normalizeAsset(asset);
-      const nowParts = getNYParts();
-      const session = getSessionState(nowParts);
-
-      const price = Number(a.currentPrice);
-      const prev = Number(a.previousPrice);
-      const pdh = Number(a.pdh);
-      const pdl = Number(a.pdl);
-      const buffer = Number(a.retestBuffer);
-
-      const brokeAbove = prev <= pdh && price > pdh;
-      const brokeBelow = prev >= pdl && price < pdl;
-      const failedHigh = prev > pdh && price < pdh;
-      const failedLow = prev < pdl && price > pdl;
-      const nearPDH = price >= pdh - buffer && price <= pdh + buffer;
-      const nearPDL = price >= pdl - buffer && price <= pdl + buffer;
-
-      let setupModel = "None";
-      let bias = "Range";
-      let biasColor = "glow-amber";
-      let marketState = "Inside Range";
-      let reason = "Price is still inside PDH/PDL.";
-      let plan = "Wait for expansion or clear high/low failure.";
-      let entryZone = "-";
-      let invalidation = "-";
-      let target1 = "-";
-      let target2 = "-";
-      let actionable = false;
-
-      if (price > pdh) {
-        setupModel = "Expansion";
-        bias = "Bullish Confirmed";
-        biasColor = "glow-green";
-        marketState = "Above PDH";
-        reason = "Expansion model: price is above PDH.";
-        plan = nearPDH ? `Watch for PDH hold at ${formatPrice(pdh)}.` : `Wait for pullback toward ${formatPrice(pdh)}.`;
-        entryZone = `${formatPrice(pdh - buffer)} - ${formatPrice(pdh + buffer)}`;
-        invalidation = formatPrice(pdh - buffer - 0.02);
-        target1 = formatPrice(pdh + 0.20);
-        target2 = formatPrice(pdh + 0.40);
-        actionable = nearPDH;
-      } else if (price < pdl) {
-        setupModel = "Expansion";
-        bias = "Bearish Confirmed";
-        biasColor = "glow-red";
-        marketState = "Below PDL";
-        reason = "Expansion model: price is below PDL.";
-        plan = nearPDL ? `Watch for PDL rejection at ${formatPrice(pdl)}.` : `Wait for rally toward ${formatPrice(pdl)}.`;
-        entryZone = `${formatPrice(pdl - buffer)} - ${formatPrice(pdl + buffer)}`;
-        invalidation = formatPrice(pdl + buffer + 0.02);
-        target1 = formatPrice(pdl - 0.20);
-        target2 = formatPrice(pdl - 0.40);
-        actionable = nearPDL;
-      } else if (failedHigh) {
-        setupModel = "High/Low Failure";
-        bias = "High Failure";
-        biasColor = "glow-red";
-        marketState = "Failed Above PDH";
-        reason = "Failure model: price failed above PDH and returned inside range.";
-        plan = `Short bias while price stays back below ${formatPrice(pdh)}.`;
-        entryZone = `${formatPrice(pdh - buffer)} - ${formatPrice(pdh)}`;
-        invalidation = formatPrice(pdh + buffer);
-        target1 = formatPrice((pdh + pdl) / 2);
-        target2 = formatPrice(pdl);
-        actionable = true;
-      } else if (failedLow) {
-        setupModel = "High/Low Failure";
-        bias = "Low Failure";
-        biasColor = "glow-green";
-        marketState = "Failed Below PDL";
-        reason = "Failure model: price failed below PDL and returned inside range.";
-        plan = `Long bias while price stays back above ${formatPrice(pdl)}.`;
-        entryZone = `${formatPrice(pdl)} - ${formatPrice(pdl + buffer)}`;
-        invalidation = formatPrice(pdl - buffer);
-        target1 = formatPrice((pdh + pdl) / 2);
-        target2 = formatPrice(pdh);
-        actionable = true;
-      }
-
-      let verdict = "WAIT";
-      let verdictColor = "glow-amber";
-      let riskNote = "Normal conditions.";
-
-      const { next24h } = getRedFolderStatus();
-      if (next24h.length) {
-        riskNote = "A red-folder event is within 24 hours. Use extra caution.";
-      }
-
-      if (!(session.isLondon || session.isNY)) {
-        verdict = "NO TRADE";
-        verdictColor = "glow-red";
-        riskNote = "Outside primary execution session.";
-      } else if (setupModel === "None") {
-        verdict = "NO TRADE";
-        verdictColor = "glow-red";
-      } else if (actionable) {
-        verdict = "TRADE";
-        verdictColor = "glow-green";
-      } else {
-        verdict = "WAIT";
-        verdictColor = "glow-amber";
-      }
-
-      return {
-        ...a,
-        price,
-        pdh,
-        pdl,
-        setupModel,
-        bias,
-        biasColor,
-        marketState,
-        reason,
-        plan,
-        entryZone,
-        invalidation,
-        target1,
-        target2,
-        verdict,
-        verdictColor,
-        riskNote,
-        sessionLabel: session.label
-      };
-    }
-
-    function renderStatusRibbon() {
-      const nowParts = getNYParts();
-      const session = getSessionState(nowParts);
-      document.getElementById("currentSession").textContent = session.label;
-
-      const { next24h } = getRedFolderStatus();
-      const rf = document.getElementById("redFolderBadge");
-      if (next24h.length) {
-        rf.textContent = next24h[0].name;
-        rf.className = "ribbon-value glow-red";
-      } else {
-        rf.textContent = "Clear";
-        rf.className = "ribbon-value glow-green";
-      }
-
-      const evals = ASSETS.map(a => evaluateAsset(a));
-      const trades = evals.filter(e => e.verdict === "TRADE").length;
-      const waits = evals.filter(e => e.verdict === "WAIT").length;
-      const noTrades = evals.filter(e => e.verdict === "NO TRADE").length;
-
-      document.getElementById("watchlistState").innerHTML = `
-        <span class="state-chip">Trade: ${trades}</span>
-        <span class="state-chip">Wait: ${waits}</span>
-        <span class="state-chip">No Trade: ${noTrades}</span>
-      `;
-    }
-
-    function renderSummary() {
-      const summary = document.getElementById("summary");
-      const results = ASSETS.map(a => evaluateAsset(a)).sort((a, b) => verdictRank(a.verdict) - verdictRank(b.verdict));
-
-      if (!results.length) {
-        summary.innerHTML = `<div class="muted">No assets in watchlist.</div>`;
-        return;
-      }
-
-      summary.innerHTML = "";
-      results.forEach(r => {
         const row = document.createElement("div");
         row.className = "summary-row";
+
         row.innerHTML = `
           <div>
-            <div class="summary-symbol">${escapeHtml(r.symbol)}</div>
-            <div class="summary-meta">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
+            <div class="summary-symbol">${a.symbol}</div>
+            <div class="summary-meta">${r.verdict}</div>
           </div>
-          <div class="summary-price">
-            ${formatPrice(r.price)}
-            <div class="summary-verdict ${r.verdictColor}">${escapeHtml(r.verdict)}</div>
-          </div>
+          <div class="summary-price">${a.current || "-"}</div>
+          <div class="summary-verdict">${r.state}</div>
         `;
-        row.addEventListener("click", () => toggleAsset(r.id));
-        summary.appendChild(row);
+
+        row.onclick = ()=> toggleAsset(i);
+        el.appendChild(row);
+      });
+
+      renderWatchlistState();
+    }
+
+    function renderWatchlistState(){
+      const el = document.getElementById("watchlistState");
+      el.innerHTML = "";
+
+      let trade=0, wait=0, noTrade=0;
+
+      state.assets.forEach(a=>{
+        const r = evaluateAsset(a);
+        if(r.state === "TRADE") trade++;
+        else if(r.state === "WAIT") wait++;
+        else noTrade++;
+      });
+
+      const chips = [
+        `Trade: ${trade}`,
+        `Wait: ${wait}`,
+        `No Trade: ${noTrade}`
+      ];
+
+      chips.forEach(t=>{
+        const c = document.createElement("div");
+        c.className = "state-chip";
+        c.textContent = t;
+        el.appendChild(c);
       });
     }
 
-    function renderAssets() {
+    // ================================
+    // ASSET GRID
+    // ================================
+    function toggleAsset(i){
+      const el = document.getElementById("asset-body-"+i);
+      if(!el) return;
+      el.classList.toggle("hidden");
+    }
+
+    function renderAssets(){
       const grid = document.getElementById("assetGrid");
       grid.innerHTML = "";
 
-      const sorted = [...ASSETS].sort((a, b) => verdictRank(evaluateAsset(a).verdict) - verdictRank(evaluateAsset(b).verdict));
+      state.assets.forEach((a,i)=>{
+        const r = evaluateAsset(a);
 
-      sorted.forEach(asset => {
-        const r = evaluateAsset(asset);
         const card = document.createElement("div");
         card.className = "asset-card";
 
-        const chartInterval = SETTINGS.chartInterval || "15";
+        const proxy = mapProxy(a.symbol);
 
         card.innerHTML = `
-          <button class="asset-head">
+          <button class="asset-head" onclick="toggleAsset(${i})">
             <div>
               <div class="asset-symbol">
-                <strong>${escapeHtml(r.symbol)}</strong>
-                <span class="pill ${r.verdict === "TRADE" ? "pill-trade" : r.verdict === "WAIT" ? "pill-wait" : "pill-no"}">${escapeHtml(r.verdict)}</span>
+                <strong>${a.symbol}</strong>
+                <span class="pill ${r.state==='TRADE'?'pill-trade':r.state==='WAIT'?'pill-wait':'pill-no'}">${r.state}</span>
               </div>
-              <div class="asset-bias ${r.biasColor}">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
-              <div class="asset-meta">Price: ${formatPrice(r.price)} • Source: ${escapeHtml(asset.lastSource || "Manual")} • Status: ${escapeHtml(asset.priceStatus || "Manual")}</div>
+              <div class="asset-bias">${r.verdict}</div>
+              <div class="asset-meta">PDH ${a.pdh || "-"} • PDL ${a.pdl || "-"}</div>
             </div>
-            <div class="asset-expand">${asset.expanded ? "−" : "+"}</div>
+            <div class="asset-expand">+</div>
           </button>
 
-          <div class="${asset.expanded ? "asset-body" : "asset-body hidden"}">
-            ${r.proxyNote ? `<div class="proxy-note">${escapeHtml(r.proxyNote)}</div>` : ""}
+          <div id="asset-body-${i}" class="asset-body hidden">
+            ${proxy.note ? `<div class="proxy-note">${proxy.note}</div>` : ""}
 
             <div class="mini-grid-2">
-              <div class="info-box"><div class="info-label">Market State</div><div class="info-value">${escapeHtml(r.marketState)}</div></div>
-              <div class="info-box"><div class="info-label">Session</div><div class="info-value">${escapeHtml(r.sessionLabel)}</div></div>
-              <div class="info-box"><div class="info-label">Bias</div><div class="info-value ${r.biasColor}">${escapeHtml(r.bias)}</div></div>
-              <div class="info-box"><div class="info-label">Strategy Model</div><div class="info-value">${escapeHtml(r.setupModel)}</div></div>
-            </div>
-
-            <div class="note-box">
-              <div><span class="muted">Reason:</span> ${escapeHtml(r.reason)}</div>
-              <div style="margin-top:6px;"><span class="muted">Plan:</span> ${escapeHtml(r.plan)}</div>
-              <div style="margin-top:6px;"><span class="muted">Risk Note:</span> ${escapeHtml(r.riskNote)}</div>
-            </div>
-
-            <div class="mini-grid-2">
-              <div class="info-box"><div class="info-label">Current Price</div><div class="info-value">${formatPrice(asset.currentPrice)}</div></div>
-              <div class="info-box"><div class="info-label">Previous Price</div><div class="info-value">${formatPrice(asset.previousPrice)}</div></div>
-              <div class="info-box"><div class="info-label">PDH</div><div class="info-value">${formatPrice(asset.pdh)}</div></div>
-              <div class="info-box"><div class="info-label">PDL</div><div class="info-value">${formatPrice(asset.pdl)}</div></div>
-              <div class="info-box"><div class="info-label">Entry Zone</div><div class="info-value">${escapeHtml(r.entryZone)}</div></div>
-              <div class="info-box"><div class="info-label">Invalidation</div><div class="info-value">${escapeHtml(r.invalidation)}</div></div>
-              <div class="info-box"><div class="info-label">Target 1</div><div class="info-value">${escapeHtml(r.target1)}</div></div>
-              <div class="info-box"><div class="info-label">Target 2</div><div class="info-value">${escapeHtml(r.target2)}</div></div>
+              <div class="info-box">
+                <div class="info-label">Current</div>
+                <div class="info-value">${a.current || "-"}</div>
+              </div>
+              <div class="info-box">
+                <div class="info-label">Previous</div>
+                <div class="info-value">${a.previous || "-"}</div>
+              </div>
             </div>
 
             <div class="chart-frame">
-              <iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(r.chartSymbol)}&interval=${encodeURIComponent(chartInterval)}&theme=dark&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&style=1&timezone=Etc%2FUTC&withdateranges=1&hidevolume=1&allow_symbol_change=0"></iframe>
-            </div>
-
-            <div class="note-box">
-              <div class="title" style="margin-bottom:8px;">Edit Asset</div>
-              <div class="form-grid">
-                <div>
-                  <label class="field-label">Symbol</label>
-                  <input data-id="${asset.id}" data-field="symbol" value="${escapeHtml(asset.symbol)}" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">Asset Class</label>
-                  <select data-id="${asset.id}" data-field="assetClass" class="asset-input hud-select">
-                    <option value="auto" ${asset.assetClass === "auto" ? "selected" : ""}>Auto Detect</option>
-                    <option value="forex" ${asset.assetClass === "forex" ? "selected" : ""}>Forex</option>
-                    <option value="crypto" ${asset.assetClass === "crypto" ? "selected" : ""}>Crypto</option>
-                    <option value="futures" ${asset.assetClass === "futures" ? "selected" : ""}>Futures</option>
-                    <option value="stock" ${asset.assetClass === "stock" ? "selected" : ""}>Stock</option>
-                    <option value="index" ${asset.assetClass === "index" ? "selected" : ""}>Index</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="field-label">Current Price</label>
-                  <input data-id="${asset.id}" data-field="currentPrice" value="${asset.currentPrice}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">Previous Price</label>
-                  <input data-id="${asset.id}" data-field="previousPrice" value="${asset.previousPrice}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">PDH</label>
-                  <input data-id="${asset.id}" data-field="pdh" value="${asset.pdh}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">PDL</label>
-                  <input data-id="${asset.id}" data-field="pdl" value="${asset.pdl}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">Retest Buffer</label>
-                  <input data-id="${asset.id}" data-field="retestBuffer" value="${asset.retestBuffer}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">Auto Price</label>
-                  <select data-id="${asset.id}" data-field="autoPrice" class="asset-input hud-select">
-                    <option value="true" ${asset.autoPrice ? "selected" : ""}>ON</option>
-                    <option value="false" ${!asset.autoPrice ? "selected" : ""}>OFF</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="actions" style="margin-top:12px;">
-                <button class="save-asset-btn btn green" data-id="${asset.id}">Save Asset</button>
-                <button class="copy-prev-btn btn" data-id="${asset.id}">Copy Current → Previous</button>
-                <button class="auto-pd-btn btn amber" data-id="${asset.id}">Auto PDH/PDL</button>
-                <button class="delete-asset-btn btn red" data-id="${asset.id}">Delete Asset</button>
-              </div>
+              <iframe src="https://www.tradingview.com/widgetembed/?symbol=${proxy.symbol}&interval=${settings.chartInterval}&theme=dark"></iframe>
             </div>
           </div>
         `;
 
-        card.querySelector(".asset-head").addEventListener("click", () => toggleAsset(asset.id));
         grid.appendChild(card);
       });
-
-      attachAssetButtons();
     }
 
-    function attachAssetButtons() {
-      document.querySelectorAll(".save-asset-btn").forEach(btn => {
-        btn.addEventListener("click", () => saveSingleAsset(btn.dataset.id));
-      });
-      document.querySelectorAll(".copy-prev-btn").forEach(btn => {
-        btn.addEventListener("click", () => copyCurrentToPrevious(btn.dataset.id));
-      });
-      document.querySelectorAll(".delete-asset-btn").forEach(btn => {
-        btn.addEventListener("click", () => deleteAsset(btn.dataset.id));
-      });
-      document.querySelectorAll(".auto-pd-btn").forEach(btn => {
-        btn.addEventListener("click", async () => {
-          await autoPDForAsset(btn.dataset.id);
-        });
-      });
+    function mapProxy(symbol){
+      symbol = symbol.toUpperCase();
+
+      if(symbol.includes("GC")) return {symbol:"OANDA:XAUUSD", note:"Using Gold proxy"};
+      if(symbol.includes("NQ")) return {symbol:"NASDAQ:NDX", note:"Using Nasdaq proxy"};
+      if(symbol.includes("CL")) return {symbol:"OANDA:WTICOUSD", note:"Using Oil proxy"};
+
+      return {symbol:symbol, note:null};
     }
-
-    function toggleAsset(id) {
-      ASSETS = ASSETS.map(a => a.id === id ? { ...a, expanded: !a.expanded } : a);
-      saveAssets();
-      renderAll();
-    }
-
-    function saveSingleAsset(id) {
-      const inputs = document.querySelectorAll(`.asset-input[data-id="${id}"]`);
-      const updated = {};
-
-      inputs.forEach(input => {
-        const field = input.dataset.field;
-        if (field === "symbol" || field === "assetClass") updated[field] = input.value;
-        else if (field === "autoPrice") updated[field] = input.value === "true";
-        else updated[field] = parseFloat(input.value);
-      });
-
-      ASSETS = ASSETS.map(a => a.id === id ? { ...a, ...updated } : a);
-      saveAssets();
-      renderAll();
-    }
-
-    function copyCurrentToPrevious(id) {
-      ASSETS = ASSETS.map(a => a.id === id ? { ...a, previousPrice: a.currentPrice } : a);
-      saveAssets();
-      renderAll();
-    }
-
-    async function autoPDForAsset(id) {
-      const idx = ASSETS.findIndex(a => a.id === id);
-      if (idx === -1) return;
-      ASSETS[idx] = await refreshPDHPDLForAsset(ASSETS[idx]);
-      saveAssets();
-      renderAll();
-    }
-
-    function deleteAsset(id) {
-      ASSETS = ASSETS.filter(a => a.id !== id);
-      saveAssets();
-      renderAll();
-    }
-
-    async function addAsset() {
-      const symbol = document.getElementById("newSymbol").value.trim().toUpperCase();
+// ================================
+    // ADD / EDIT ASSET
+    // ================================
+    function addAsset(){
+      const symbol = (document.getElementById("newSymbol").value || "").trim().toUpperCase();
       const assetClass = document.getElementById("newAssetClass").value;
-      let pdh = parseFloat(document.getElementById("newPDH").value);
-      let pdl = parseFloat(document.getElementById("newPDL").value);
-      const currentPrice = parseFloat(document.getElementById("newCurrentPrice").value || "0");
-      const previousPrice = parseFloat(document.getElementById("newPreviousPrice").value || "0");
+      const pdh = parseFloat(document.getElementById("newPDH").value || "");
+      const pdl = parseFloat(document.getElementById("newPDL").value || "");
+      const current = parseFloat(document.getElementById("newCurrentPrice").value || "");
+      const previous = parseFloat(document.getElementById("newPreviousPrice").value || "");
       const retestBuffer = parseFloat(document.getElementById("newRetestBuffer").value || "0.03");
 
-      if (!symbol) {
-        alert("Please enter a symbol.");
-        return;
-      }
+      if(!symbol) return;
 
-      if ((!Number.isFinite(pdh) || !Number.isFinite(pdl)) && SETTINGS.autoPD) {
-        const yahoo = await autofillPDHPDLForNewSymbol(symbol);
-        if (Number.isFinite(yahoo.high) && Number.isFinite(yahoo.low) && yahoo.high > 0 && yahoo.low > 0) {
-          pdh = yahoo.high;
-          pdl = yahoo.low;
-        }
-      }
-
-      if (!Number.isFinite(pdh) || !Number.isFinite(pdl)) {
-        alert("Please enter PDH and PDL, or use Auto PDH/PDL on a symbol Yahoo can resolve.");
-        return;
-      }
-
-      ASSETS.push({
-        id: makeId(),
+      state.assets.push({
         symbol,
         assetClass,
-        currentPrice,
-        previousPrice: previousPrice || currentPrice,
-        pdh,
-        pdl,
+        pdh: Number.isFinite(pdh) ? pdh : null,
+        pdl: Number.isFinite(pdl) ? pdl : null,
+        current: Number.isFinite(current) ? current : null,
+        previous: Number.isFinite(previous) ? previous : null,
         retestBuffer,
-        expanded: true,
-        autoPrice: true,
-        lastSource: "Manual",
-        priceStatus: "Pending"
+        autoPrice:true
       });
 
-      saveAssets();
-      clearNewAssetForm();
-      await refreshPrices();
+      saveState(state);
+      clearAddAssetForm();
       renderAll();
     }
 
-    function clearNewAssetForm() {
+    function clearAddAssetForm(){
       document.getElementById("newSymbol").value = "";
       document.getElementById("newAssetClass").value = "auto";
       document.getElementById("newPDH").value = "";
@@ -1942,243 +1117,432 @@
       document.getElementById("newRetestBuffer").value = "";
     }
 
-    function populateGlobals() {
-      document.getElementById("finnhubToken").value = GLOBALS.finnhubToken;
-      document.getElementById("weeklyEvents").value = GLOBALS.weeklyEventsText;
+    function resetAssets(){
+      state.assets = [];
+      saveState(state);
+      renderAll();
     }
 
-    function readGlobals() {
-      GLOBALS.finnhubToken = document.getElementById("finnhubToken").value.trim();
-      GLOBALS.weeklyEventsText = document.getElementById("weeklyEvents").value;
-      saveGlobals();
+    document.getElementById("addAssetBtn").addEventListener("click", addAsset);
+    document.getElementById("resetAssetsBtn").addEventListener("click", resetAssets);
+
+    // ================================
+    // NEWS ENGINE
+    // ================================
+    async function fetchRSS(url){
+      const api = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(url);
+      return await safeParseFetch(api);
     }
 
-    function scoreHeadline(title, label, watchSymbols) {
-      const t = title.toLowerCase();
-      let score = 0;
-      const keys = [
-        "cpi","inflation","fed","fomc","rates","yield","yields","jobs","nfp",
-        "recession","treasury","dollar","boj","ecb","bitcoin","etf","oil","gold",
-        "crypto","liquidity","bank","tariff","pce","ppi"
-      ];
-      keys.forEach(k => { if (t.includes(k)) score += 3; });
-
-      watchSymbols.forEach(sym => {
-        const s = sym.toLowerCase();
-        if (s && t.includes(s.replace("usd", ""))) score += 1;
-      });
-
-      if (label === "Coin Bureau" || label === "Cointelegraph") {
-        if (watchSymbols.some(sym => CRYPTO_CG_MAP[sym])) score += 2;
-      }
-
-      if (t.includes("surge") || t.includes("crash") || t.includes("plunge") || t.includes("spike")) score += 2;
-      return score;
-    }
-
-    function addNewsItem(container, label, title, link) {
-      const item = document.createElement("div");
-      item.className = "news-item";
-      item.innerHTML = `<a href="${link}" target="_blank">${escapeHtml(label)}: ${escapeHtml(title)}</a>`;
-      container.appendChild(item);
-    }
-
-    async function loadBestRssItem(feedUrl, label, watchSymbols) {
-      const url = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feedUrl);
-      const data = await safeJsonFetch(url, 5000);
-      if (!data?.items?.length) return null;
-
-      const ranked = [...data.items].sort((a, b) => scoreHeadline(b.title, label, watchSymbols) - scoreHeadline(a.title, label, watchSymbols));
-      return { label, title: ranked[0].title, link: ranked[0].link };
-    }
-
-    async function loadBestCoinBureauItem(watchSymbols) {
-      const proxiedUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://coinbureau.com/");
-      const html = await safeTextFetch(proxiedUrl, 5000);
-      if (!html) return null;
-
-      try {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const anchors = Array.from(doc.querySelectorAll("a[href]"));
-        const candidates = [];
-        const seen = new Set();
-
-        for (const a of anchors) {
-          const href = a.getAttribute("href") || "";
-          const text = (a.textContent || "").replace(/\s+/g, " ").trim();
-
-          const ok =
-            href.includes("coinbureau.com/") &&
-            !href.includes("/about") &&
-            !href.includes("/contact") &&
-            !href.includes("/careers") &&
-            !href.includes("/newsletter") &&
-            !href.includes("#") &&
-            text.length > 20;
-
-          if (!ok || seen.has(href)) continue;
-          seen.add(href);
-          candidates.push({ title: text, link: href });
-        }
-
-        if (!candidates.length) return null;
-        candidates.sort((a, b) => scoreHeadline(b.title, "Coin Bureau", watchSymbols) - scoreHeadline(a.title, "Coin Bureau", watchSymbols));
-        return { label: "Coin Bureau", title: candidates[0].title, link: candidates[0].link };
-      } catch {
+    async function safeParseFetch(url){
+      try{
+        const res = await fetch(url);
+        if(!res.ok) return null;
+        return await res.json();
+      }catch(e){
         return null;
       }
     }
 
-    async function renderNews() {
-      const news = document.getElementById("news");
-      news.innerHTML = "";
+    function scoreHeadline(text){
+      const t = (text || "").toLowerCase();
+      let s = 0;
 
-      const watchSymbols = ASSETS.map(a => (a.symbol || "").toUpperCase());
+      [
+        "cpi","inflation","fed","fomc","rates","yield","nfp","jobs","pce","ppi",
+        "bitcoin","btc","ethereum","crypto","gold","oil","recession","treasury",
+        "boj","ecb","tariff","bank","liquidity","hawkish","dovish"
+      ].forEach(k=>{
+        if(t.includes(k)) s += 3;
+      });
 
-      const results = await Promise.allSettled([
-        loadBestRssItem("https://feeds.feedburner.com/zerohedge/feed", "ZeroHedge", watchSymbols),
-        loadBestRssItem("https://www.fxstreet.com/rss/news", "FXStreet", watchSymbols),
-        loadBestRssItem("https://cointelegraph.com/rss", "Cointelegraph", watchSymbols),
-        loadBestCoinBureauItem(watchSymbols)
-      ]);
+      if(t.includes("surge") || t.includes("crash") || t.includes("spike") || t.includes("plunge")) s += 2;
+      return s;
+    }
 
-      const items = results
-        .map(r => r.status === "fulfilled" ? r.value : null)
-        .filter(Boolean);
+    async function renderNews(){
+      const el = document.getElementById("news");
+      el.innerHTML = `<div class="news-item">Loading intelligence...</div>`;
 
-      if (!items.length) {
-        news.innerHTML = `<div class="news-item">News feeds unavailable right now.</div>`;
-        lastNewsRefresh = Date.now();
+      const feeds = [
+        { label:"ZeroHedge", url:"https://feeds.feedburner.com/zerohedge/feed" },
+        { label:"FXStreet", url:"https://www.fxstreet.com/rss/news" },
+        { label:"Cointelegraph", url:"https://cointelegraph.com/rss" }
+      ];
+
+      const blocks = [];
+
+      for(const feed of feeds){
+        try{
+          const data = await fetchRSS(feed.url);
+          if(data && data.items && data.items.length){
+            const best = [...data.items].sort((a,b)=>scoreHeadline(b.title)-scoreHeadline(a.title))[0];
+            blocks.push({
+              label:feed.label,
+              title:best.title,
+              link:best.link
+            });
+          }
+        }catch(e){}
+      }
+
+      // Coin Bureau fallback scrape
+      try{
+        const proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://coinbureau.com/");
+        const html = await safeText(proxyUrl);
+        if(html){
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const anchors = [...doc.querySelectorAll("a[href]")];
+          const candidates = anchors
+            .map(a=>({
+              href:a.getAttribute("href") || "",
+              text:(a.textContent || "").replace(/\s+/g," ").trim()
+            }))
+            .filter(x=>x.href.includes("coinbureau.com/") && x.text.length > 20);
+
+          if(candidates.length){
+            candidates.sort((a,b)=>scoreHeadline(b.text)-scoreHeadline(a.text));
+            blocks.push({
+              label:"Coin Bureau",
+              title:candidates[0].text,
+              link:candidates[0].href
+            });
+          }
+        }
+      }catch(e){}
+
+      if(!blocks.length){
+        el.innerHTML = `
+          <div class="news-item"><a href="https://www.zerohedge.com/" target="_blank">ZeroHedge: Open site</a></div>
+          <div class="news-item"><a href="https://www.fxstreet.com/news" target="_blank">FXStreet: Open site</a></div>
+          <div class="news-item"><a href="https://coinbureau.com/" target="_blank">Coin Bureau: Open site</a></div>
+          <div class="news-item"><a href="https://cointelegraph.com/" target="_blank">Cointelegraph: Open site</a></div>
+        `;
         return;
       }
 
-      items.forEach(item => addNewsItem(news, item.label, item.title, item.link));
-      lastNewsRefresh = Date.now();
+      el.innerHTML = "";
+      blocks.forEach(b=>{
+        const item = document.createElement("div");
+        item.className = "news-item";
+        item.innerHTML = `<a href="${b.link}" target="_blank">${b.label}: ${b.title}</a>`;
+        el.appendChild(item);
+      });
     }
 
-    function populateSettings() {
-      document.getElementById("settingOpacity").value = SETTINGS.panelOpacity;
-      document.getElementById("settingRefreshSeconds").value = String(SETTINGS.refreshSeconds);
-      document.getElementById("settingNewsSeconds").value = String(SETTINGS.newsSeconds);
-      document.getElementById("settingChartInterval").value = SETTINGS.chartInterval;
-      document.getElementById("settingGradientStyle").value = SETTINGS.gradientStyle;
-      document.getElementById("settingAutoPD").value = SETTINGS.autoPD ? "true" : "false";
-      document.getElementById("settingRefreshPD").value = SETTINGS.refreshPD ? "true" : "false";
+    async function safeText(url){
+      try{
+        const res = await fetch(url);
+        if(!res.ok) return null;
+        return await res.text();
+      }catch(e){
+        return null;
+      }
     }
 
-    function openSettings() {
-      populateSettings();
+    // ================================
+    // RED FOLDER ENGINE
+    // ================================
+    function parseWeeklyEvents(text){
+      const lines = (text || "").split("\n").map(s=>s.trim()).filter(Boolean);
+      const out = [];
+
+      for(const line of lines){
+        const parts = line.split("|");
+        if(parts.length < 2) continue;
+
+        const dateStr = parts[0].trim();
+        const name = parts[1].trim();
+        const currency = (parts[2] || "").trim().toUpperCase();
+
+        const [datePart, timePart] = dateStr.split(" ");
+        if(!datePart || !timePart) continue;
+
+        const [y,m,d] = datePart.split("-").map(Number);
+        const [hh,mm] = timePart.split(":").map(Number);
+
+        if([y,m,d,hh,mm].some(v=>!Number.isFinite(v))) continue;
+
+        out.push({
+          name,
+          currency,
+          date:new Date(Date.UTC(y,m-1,d,hh,mm,0)),
+          dateText:`${y}-${String(m).padStart(2,"0")}-${String(d).padStart(2,"0")}`,
+          timeText:`${String(hh).padStart(2,"0")}:${String(mm).padStart(2,"0")} ET`
+        });
+      }
+
+      return out.sort((a,b)=>a.date - b.date);
+    }
+
+    function getRedFolderStatus(){
+      const now = new Date();
+      const events = parseWeeklyEvents(document.getElementById("weeklyEvents").value);
+
+      const next24h = events.filter(e=>{
+        const diffMin = (e.date - now) / 60000;
+        return diffMin >= 0 && diffMin <= 1440;
+      });
+
+      const week = events.filter(e=>{
+        const diffMin = (e.date - now) / 60000;
+        return diffMin >= -10 && diffMin <= 10080;
+      });
+
+      return { next24h, week };
+    }
+
+    function inferResolutionBias(currency){
+      if(currency === "USD"){
+        const uj = findAsset("USDJPY");
+        const eu = findAsset("EURUSD");
+        if(uj?.current && uj?.previous && eu?.current && eu?.previous){
+          const ujUp = uj.current > uj.previous;
+          const euDown = eu.current < eu.previous;
+          if(ujUp && euDown) return "USD bullish reaction";
+          if(!ujUp && !euDown) return "USD bearish reaction";
+        }
+        return "Mixed / insufficient reaction data";
+      }
+
+      if(currency === "CRYPTO" || currency === "BTC"){
+        const btc = findAsset("BTCUSD");
+        if(btc?.current && btc?.previous){
+          return btc.current > btc.previous ? "Crypto bullish reaction" : "Crypto bearish reaction";
+        }
+        return "Mixed / insufficient reaction data";
+      }
+
+      return "Awaiting release / insufficient data";
+    }
+
+    function findAsset(symbol){
+      return state.assets.find(a => (a.symbol || "").toUpperCase() === symbol);
+    }
+
+    function renderRedFolder(){
+      const { next24h, week } = getRedFolderStatus();
+      const nowBox = document.getElementById("redFolderNow");
+      const weekBox = document.getElementById("redFolderWeek");
+      const badge = document.getElementById("redFolderBadge");
+
+      if(next24h.length){
+        const e = next24h[0];
+        badge.textContent = e.name;
+
+        const diffSec = Math.floor((e.date - new Date()) / 1000);
+        let statusText = "Inside the 24-hour window.";
+        if(diffSec > 0){
+          statusText = `Release in ${Math.floor(diffSec / 60)}m ${Math.abs(diffSec % 60)}s.`;
+        } else if(diffSec >= -600){
+          statusText = "Resolution window active. Monitoring reaction.";
+        }
+
+        const quickFeel = diffSec <= 0 ? inferResolutionBias(e.currency) : "Awaiting release.";
+
+        nowBox.innerHTML = `
+          <div class="glow-red" style="font-weight:900;font-size:18px;">${e.name}</div>
+          <div style="margin-top:6px;">${e.dateText} • ${e.timeText}${e.currency ? " • " + e.currency : ""}</div>
+          <div class="muted" style="margin-top:8px;">${statusText}</div>
+          <div style="margin-top:10px;"><span class="muted">Quick feel:</span> ${quickFeel}</div>
+        `;
+      } else {
+        badge.textContent = "Clear";
+        nowBox.innerHTML = `<div class="glow-green" style="font-weight:900;">No red-folder event inside the next 24 hours.</div>`;
+      }
+
+      weekBox.innerHTML = "";
+      if(!week.length){
+        weekBox.innerHTML = `<div class="muted">No weekly events listed.</div>`;
+      } else {
+        week.forEach(e=>{
+          const row = document.createElement("div");
+          row.className = "summary-row";
+          row.innerHTML = `
+            <div>
+              <div class="summary-symbol">${e.name}</div>
+              <div class="summary-meta">${e.dateText}${e.currency ? " • " + e.currency : ""}</div>
+            </div>
+            <div class="summary-price">${e.timeText}</div>
+          `;
+          weekBox.appendChild(row);
+        });
+      }
+    }
+// ================================
+    // PRICE AUTO-FETCH (SAFE + FAST)
+    // ================================
+    async function fetchPrice(symbol){
+      try{
+        // lightweight fallback using Yahoo-style endpoint via proxy
+        const url = "https://api.allorigins.win/raw?url=" +
+          encodeURIComponent(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbol}`);
+
+        const res = await fetch(url);
+        if(!res.ok) return null;
+
+        const data = await res.json();
+        const quote = data?.quoteResponse?.result?.[0];
+
+        if(!quote) return null;
+
+        return {
+          price: quote.regularMarketPrice,
+          prev: quote.regularMarketPreviousClose,
+          high: quote.regularMarketDayHigh,
+          low: quote.regularMarketDayLow
+        };
+      }catch(e){
+        return null;
+      }
+    }
+
+    async function updatePrices(){
+      const tasks = state.assets.map(async (a)=>{
+        try{
+          if(!a.symbol) return;
+
+          const proxy = mapProxy(a.symbol);
+          const data = await fetchPrice(proxy.symbol.replace(":",""));
+
+          if(data){
+            a.previous = a.current ?? data.prev ?? null;
+            a.current = data.price ?? a.current ?? null;
+
+            // PDH/PDL auto-fill (safe)
+            if(settings.autoPD){
+              if(data.high && !a.pdh) a.pdh = data.high;
+              if(data.low && !a.pdl) a.pdl = data.low;
+            }
+          }
+        }catch(e){}
+      });
+
+      await Promise.all(tasks);
+      saveState(state);
+    }
+
+    // ================================
+    // SETTINGS ENGINE
+    // ================================
+    function openSettings(){
       document.getElementById("settingsBackdrop").style.display = "flex";
+
+      document.getElementById("settingOpacity").value = settings.opacity;
+      document.getElementById("settingRefreshSeconds").value = settings.refreshSeconds;
+      document.getElementById("settingNewsSeconds").value = settings.newsSeconds;
+      document.getElementById("settingChartInterval").value = settings.chartInterval;
+      document.getElementById("settingGradientStyle").value = settings.gradient;
+      document.getElementById("settingAutoPD").value = settings.autoPD ? "true" : "false";
+      document.getElementById("settingRefreshPD").value = settings.refreshPD ? "true" : "false";
     }
 
-    function closeSettings() {
+    function closeSettings(){
       document.getElementById("settingsBackdrop").style.display = "none";
     }
 
-    function saveSettingsFromModal() {
-      SETTINGS.panelOpacity = parseFloat(document.getElementById("settingOpacity").value || "0.68");
-      SETTINGS.refreshSeconds = parseInt(document.getElementById("settingRefreshSeconds").value || "60", 10);
-      SETTINGS.newsSeconds = parseInt(document.getElementById("settingNewsSeconds").value || "300", 10);
-      SETTINGS.chartInterval = document.getElementById("settingChartInterval").value || "15";
-      SETTINGS.gradientStyle = document.getElementById("settingGradientStyle").value || "blue";
-      SETTINGS.autoPD = document.getElementById("settingAutoPD").value === "true";
-      SETTINGS.refreshPD = document.getElementById("settingRefreshPD").value === "true";
-      saveSettings();
-      applySettingsToUI();
+    function applySettings(){
+      settings.opacity = parseFloat(document.getElementById("settingOpacity").value);
+      settings.refreshSeconds = parseInt(document.getElementById("settingRefreshSeconds").value);
+      settings.newsSeconds = parseInt(document.getElementById("settingNewsSeconds").value);
+      settings.chartInterval = document.getElementById("settingChartInterval").value;
+      settings.gradient = document.getElementById("settingGradientStyle").value;
+      settings.autoPD = document.getElementById("settingAutoPD").value === "true";
+      settings.refreshPD = document.getElementById("settingRefreshPD").value === "true";
+
+      // apply opacity immediately
+      document.documentElement.style.setProperty("--panel-opacity", settings.opacity);
+
+      saveSettings(settings);
       closeSettings();
       renderAll();
     }
 
-    async function maybeReleaseRefresh() {
-      const { next24h } = getRedFolderStatus();
-      if (!next24h.length) return;
+    document.getElementById("openSettingsBtn").onclick = openSettings;
+    document.getElementById("closeSettingsBtn").onclick = closeSettings;
+    document.getElementById("saveSettingsBtn").onclick = applySettings;
 
-      const event = next24h[0];
-      if (isReleaseWindow(event.date)) {
-        const now = Date.now();
-
-        if (now - lastPriceRefresh > 10000) {
-          await refreshPrices();
+    // ================================
+    // GLOBAL CONTROLS
+    // ================================
+    document.getElementById("refreshBtn").onclick = async ()=>{
+      try{
+        if(settings.refreshPD){
+          state.assets.forEach(a=>{
+            a.pdh = null;
+            a.pdl = null;
+          });
         }
-        if (now - lastNewsRefresh > 10000) {
-          await renderNews();
-        }
-        renderAll();
-      }
-    }
 
-    async function manualRefresh() {
-      readGlobals();
-
-      if (SETTINGS.refreshPD) {
-        const jobs = ASSETS.map(a => refreshPDHPDLForAsset(a));
-        const refreshed = await Promise.allSettled(jobs);
-        ASSETS = refreshed.map((r, i) => r.status === "fulfilled" ? r.value : ASSETS[i]);
-        saveAssets();
-      }
-
-      await Promise.allSettled([refreshPrices(), renderNews()]);
-      renderAll();
-    }
-
-    async function monitorLoop() {
-      renderClocks();
-      renderStatusRibbon();
-      renderRedFolder();
-      await maybeReleaseRefresh();
-
-      const now = Date.now();
-
-      if (now - lastPriceRefresh > SETTINGS.refreshSeconds * 1000) {
-        await refreshPrices();
-        renderAll();
-      }
-
-      if (now - lastNewsRefresh > SETTINGS.newsSeconds * 1000) {
+        await updatePrices();
         await renderNews();
+        renderRedFolder();
+        renderAll();
+      }catch(e){}
+    };
+
+    document.getElementById("saveGlobalsBtn").onclick = ()=>{
+      try{
+        localStorage.setItem("weeklyEvents", document.getElementById("weeklyEvents").value);
+        localStorage.setItem("finnhubToken", document.getElementById("finnhubToken").value);
+      }catch(e){}
+    };
+
+    // ================================
+    // MAIN RENDER PIPELINE
+    // ================================
+    function renderAll(){
+      try{
+        renderAssets();
+        renderSummary();
+        renderRedFolder();
+      }catch(e){
+        console.warn("Render error", e);
       }
     }
 
-    function renderAll() {
-      renderClocks();
-      renderStatusRibbon();
-      renderRedFolder();
-      renderSummary();
-      renderAssets();
+    // ================================
+    // INIT
+    // ================================
+    function init(){
+      try{
+        // restore globals
+        document.getElementById("weeklyEvents").value =
+          localStorage.getItem("weeklyEvents") || "";
+
+        document.getElementById("finnhubToken").value =
+          localStorage.getItem("finnhubToken") || "";
+
+        document.documentElement.style.setProperty("--panel-opacity", settings.opacity);
+
+        renderClocks();
+        updateSessionBanner();
+        renderAll();
+
+        // async systems
+        updatePrices().then(renderAll);
+        renderNews();
+
+        // loops
+        setInterval(async ()=>{
+          await updatePrices();
+          renderAll();
+        }, settings.refreshSeconds * 1000);
+
+        setInterval(()=>{
+          renderNews();
+        }, settings.newsSeconds * 1000);
+
+        setInterval(()=>{
+          renderRedFolder();
+        }, 15000);
+
+      }catch(e){
+        console.error("INIT FAIL", e);
+      }
     }
 
-    document.getElementById("saveGlobalsBtn").addEventListener("click", async () => {
-      readGlobals();
-      await refreshPrices();
-      renderAll();
-    });
-
-    document.getElementById("refreshBtn").addEventListener("click", manualRefresh);
-    document.getElementById("addAssetBtn").addEventListener("click", addAsset);
-
-    document.getElementById("resetAssetsBtn").addEventListener("click", async () => {
-      ASSETS = [...DEFAULT_ASSETS];
-      saveAssets();
-      await Promise.allSettled([refreshPrices(), renderNews()]);
-      renderAll();
-    });
-
-    document.getElementById("openSettingsBtn").addEventListener("click", openSettings);
-    document.getElementById("closeSettingsBtn").addEventListener("click", closeSettings);
-    document.getElementById("saveSettingsBtn").addEventListener("click", saveSettingsFromModal);
-    document.getElementById("settingsBackdrop").addEventListener("click", (e) => {
-      if (e.target.id === "settingsBackdrop") closeSettings();
-    });
-
-    (async function init() {
-      applySettingsToUI();
-      populateGlobals();
-      renderAll();
-      await Promise.allSettled([refreshPrices(), renderNews()]);
-      renderAll();
-      monitorTimer = setInterval(monitorLoop, 10000);
-    })();
+    init();
   </script>
 </body>
 </html>
