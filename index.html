@@ -7,14 +7,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white">
-  <div class="p-4 space-y-4 max-w-5xl mx-auto">
+  <div class="p-4 space-y-4 max-w-6xl mx-auto">
 
     <!-- HEADER -->
     <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
       <div class="flex items-center justify-between gap-3">
         <div>
           <h1 class="text-xl font-bold">Trader Decision Dashboard</h1>
-          <p class="text-xs text-zinc-500 mt-1">Multi-asset • Mobile-first • Collapsible cards • Saved locally</p>
+          <p class="text-xs text-zinc-500 mt-1">Multi-asset • Auto-price where possible • Futures proxy mapping • Collapsible cards</p>
         </div>
         <button id="notifyBtn" class="bg-blue-600 hover:bg-blue-500 text-white text-sm px-3 py-2 rounded-xl">
           Enable Alerts
@@ -53,10 +53,14 @@
       </div>
     </div>
 
-    <!-- GLOBAL CONTROLS -->
+    <!-- API + GLOBAL CONTROLS -->
     <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
       <h2 class="text-cyan-400 mb-3 text-xl font-semibold">Global Controls</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+        <div>
+          <label class="block text-zinc-400 mb-1">Finnhub Token (optional)</label>
+          <input id="inputFinnhubToken" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" placeholder="Paste free token" />
+        </div>
         <div>
           <label class="block text-zinc-400 mb-1">Red Folder Event</label>
           <input id="inputEventName" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
@@ -80,24 +84,31 @@
       </div>
       <div class="flex flex-wrap gap-3 mt-4">
         <button id="saveGlobalBtn" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-xl">Save Global Settings</button>
+        <button id="refreshPricesBtn" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl">Refresh Prices</button>
+      </div>
+      <div class="text-xs text-zinc-500 mt-3">
+        Crypto can auto-fetch without extra setup in many cases. Forex/stocks/indices use Finnhub if you provide a token. Manual fallback remains available.
       </div>
     </div>
 
     <!-- WATCHLIST CONTROLS -->
     <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
-      <h2 class="text-orange-400 mb-3 text-xl font-semibold">Watchlist Controls</h2>
+      <h2 class="text-orange-400 mb-3 text-xl font-semibold">Add Asset</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
         <div>
           <label class="block text-zinc-400 mb-1">Symbol</label>
-          <input id="newSymbol" placeholder="USDJPY" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+          <input id="newSymbol" placeholder="USDJPY, BTCUSD, GC, NQ..." class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
         </div>
         <div>
-          <label class="block text-zinc-400 mb-1">Current Price</label>
-          <input id="newCurrentPrice" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
-        </div>
-        <div>
-          <label class="block text-zinc-400 mb-1">Previous Price</label>
-          <input id="newPreviousPrice" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+          <label class="block text-zinc-400 mb-1">Asset Class</label>
+          <select id="newAssetClass" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white">
+            <option value="auto">Auto Detect</option>
+            <option value="forex">Forex</option>
+            <option value="crypto">Crypto</option>
+            <option value="futures">Futures</option>
+            <option value="stock">Stock</option>
+            <option value="index">Index</option>
+          </select>
         </div>
         <div>
           <label class="block text-zinc-400 mb-1">PDH</label>
@@ -106,6 +117,14 @@
         <div>
           <label class="block text-zinc-400 mb-1">PDL</label>
           <input id="newPDL" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">Current Price (fallback)</label>
+          <input id="newCurrentPrice" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+        </div>
+        <div>
+          <label class="block text-zinc-400 mb-1">Previous Price</label>
+          <input id="newPreviousPrice" type="number" step="0.001" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
         </div>
         <div>
           <label class="block text-zinc-400 mb-1">Retest Buffer</label>
@@ -117,11 +136,11 @@
         <button id="resetAssetsBtn" class="bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-xl">Reset Watchlist</button>
       </div>
       <div class="text-xs text-zinc-500 mt-3">
-        Each asset card is collapsible. Use the summary row to scan quickly, then expand only what matters.
+        Futures symbols are mapped to spot/proxy equivalents for pricing and chart display.
       </div>
     </div>
 
-    <!-- RED FOLDER PANEL -->
+    <!-- RED FOLDER -->
     <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
       <h2 class="text-red-400 mb-2 text-xl font-semibold">Red Folder</h2>
       <p id="redFolderEvent">USD CPI</p>
@@ -137,8 +156,8 @@
       </div>
     </div>
 
-    <!-- ASSET CARDS -->
-    <div id="assetGrid" class="grid grid-cols-1 gap-4"></div>
+    <!-- ASSET GRID -->
+    <div id="assetGrid" class="grid grid-cols-1 xl:grid-cols-2 gap-4"></div>
 
     <!-- NEWS -->
     <div class="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
@@ -147,11 +166,11 @@
         <li>Loading news...</li>
       </ul>
     </div>
-
   </div>
 
   <script>
     const DEFAULT_GLOBALS = {
+      finnhubToken: "",
       redFolderEvent: "USD CPI",
       redFolderHourET: 8,
       redFolderMinuteET: 30,
@@ -163,31 +182,70 @@
       {
         id: crypto.randomUUID(),
         symbol: "USDJPY",
+        assetClass: "forex",
         currentPrice: 159.155,
         previousPrice: 159.120,
         pdh: 159.490,
         pdl: 158.850,
         retestBuffer: 0.030,
-        expanded: true
+        expanded: true,
+        autoPrice: true
       },
       {
         id: crypto.randomUUID(),
-        symbol: "EURUSD",
-        currentPrice: 1.089,
-        previousPrice: 1.091,
-        pdh: 1.095,
-        pdl: 1.086,
-        retestBuffer: 0.001,
-        expanded: false
+        symbol: "BTCUSD",
+        assetClass: "crypto",
+        currentPrice: 83000,
+        previousPrice: 82800,
+        pdh: 83600,
+        pdl: 81800,
+        retestBuffer: 80,
+        expanded: false,
+        autoPrice: true
       }
     ];
+
+    const FUTURES_PROXY_MAP = {
+      ES: { proxySymbol: "SPY", assetClass: "stock", chartSymbol: "AMEX:SPY", note: "Using SPY as ES proxy." },
+      MES: { proxySymbol: "SPY", assetClass: "stock", chartSymbol: "AMEX:SPY", note: "Using SPY as MES proxy." },
+      NQ: { proxySymbol: "QQQ", assetClass: "stock", chartSymbol: "NASDAQ:QQQ", note: "Using QQQ as NQ proxy." },
+      MNQ: { proxySymbol: "QQQ", assetClass: "stock", chartSymbol: "NASDAQ:QQQ", note: "Using QQQ as MNQ proxy." },
+      YM: { proxySymbol: "DIA", assetClass: "stock", chartSymbol: "AMEX:DIA", note: "Using DIA as YM proxy." },
+      MYM: { proxySymbol: "DIA", assetClass: "stock", chartSymbol: "AMEX:DIA", note: "Using DIA as MYM proxy." },
+      GC: { proxySymbol: "XAUUSD", assetClass: "forex", chartSymbol: "OANDA:XAUUSD", note: "Using XAUUSD as GC proxy." },
+      MGC: { proxySymbol: "XAUUSD", assetClass: "forex", chartSymbol: "OANDA:XAUUSD", note: "Using XAUUSD as MGC proxy." },
+      SI: { proxySymbol: "XAGUSD", assetClass: "forex", chartSymbol: "OANDA:XAGUSD", note: "Using XAGUSD as SI proxy." },
+      SIL: { proxySymbol: "XAGUSD", assetClass: "forex", chartSymbol: "OANDA:XAGUSD", note: "Using XAGUSD as SIL proxy." },
+      CL: { proxySymbol: "USOIL", assetClass: "forex", chartSymbol: "OANDA:WTICOUSD", note: "Using USOIL/WTI proxy for CL." },
+      MCL: { proxySymbol: "USOIL", assetClass: "forex", chartSymbol: "OANDA:WTICOUSD", note: "Using USOIL/WTI proxy for MCL." },
+      "6E": { proxySymbol: "EURUSD", assetClass: "forex", chartSymbol: "OANDA:EURUSD", note: "Using EURUSD as 6E proxy." },
+      "6J": { proxySymbol: "USDJPY", assetClass: "forex", chartSymbol: "OANDA:USDJPY", note: "Using USDJPY as 6J proxy." },
+      "6B": { proxySymbol: "GBPUSD", assetClass: "forex", chartSymbol: "OANDA:GBPUSD", note: "Using GBPUSD as 6B proxy." },
+      "6A": { proxySymbol: "AUDUSD", assetClass: "forex", chartSymbol: "OANDA:AUDUSD", note: "Using AUDUSD as 6A proxy." },
+      "6C": { proxySymbol: "USDCAD", assetClass: "forex", chartSymbol: "OANDA:USDCAD", note: "Using USDCAD as 6C proxy." },
+      "6N": { proxySymbol: "NZDUSD", assetClass: "forex", chartSymbol: "OANDA:NZDUSD", note: "Using NZDUSD as 6N proxy." },
+      "6S": { proxySymbol: "USDCHF", assetClass: "forex", chartSymbol: "OANDA:USDCHF", note: "Using USDCHF as 6S proxy." }
+    };
+
+    const CRYPTO_CG_MAP = {
+      BTCUSD: "bitcoin",
+      ETHUSD: "ethereum",
+      SOLUSD: "solana",
+      BNBUSD: "binancecoin",
+      XRPUSD: "ripple",
+      ADAUSD: "cardano",
+      DOGEUSD: "dogecoin",
+      AVAXUSD: "avalanche-2",
+      LINKUSD: "chainlink",
+      TONUSD: "the-open-network"
+    };
 
     let GLOBALS = loadGlobals();
     let ASSETS = loadAssets();
     let lastTradeAlerts = {};
 
     function loadGlobals() {
-      const saved = localStorage.getItem("traderGlobals");
+      const saved = localStorage.getItem("traderGlobalsV2");
       if (!saved) return { ...DEFAULT_GLOBALS };
       try {
         return { ...DEFAULT_GLOBALS, ...JSON.parse(saved) };
@@ -197,7 +255,7 @@
     }
 
     function loadAssets() {
-      const saved = localStorage.getItem("traderAssets");
+      const saved = localStorage.getItem("traderAssetsV2");
       if (!saved) return [...DEFAULT_ASSETS];
       try {
         const parsed = JSON.parse(saved);
@@ -208,11 +266,20 @@
     }
 
     function saveGlobals() {
-      localStorage.setItem("traderGlobals", JSON.stringify(GLOBALS));
+      localStorage.setItem("traderGlobalsV2", JSON.stringify(GLOBALS));
     }
 
     function saveAssets() {
-      localStorage.setItem("traderAssets", JSON.stringify(ASSETS));
+      localStorage.setItem("traderAssetsV2", JSON.stringify(ASSETS));
+    }
+
+    function formatPrice(value) {
+      const num = Number(value);
+      if (!Number.isFinite(num)) return "-";
+      if (Math.abs(num) >= 1000) return num.toFixed(2);
+      if (Math.abs(num) >= 100) return num.toFixed(3);
+      if (Math.abs(num) >= 1) return num.toFixed(3);
+      return num.toFixed(5);
     }
 
     function getNYParts() {
@@ -300,34 +367,18 @@
       const minutesSinceEvent = nowMinutes - eventMinutes;
 
       if (minutesToEvent >= 0 && minutesToEvent <= GLOBALS.blackoutMinutesBefore) {
-        return {
-          level: "HIGH",
-          text: "High risk: blackout window before red-folder event",
-          color: "text-red-400"
-        };
+        return { level: "HIGH", text: "High risk: blackout window before red-folder event", color: "text-red-400" };
       }
 
       if (minutesSinceEvent >= 0 && minutesSinceEvent <= GLOBALS.waitMinutesAfter) {
-        return {
-          level: "HIGH",
-          text: "High risk: post-event wait window active",
-          color: "text-red-400"
-        };
+        return { level: "HIGH", text: "High risk: post-event wait window active", color: "text-red-400" };
       }
 
       if (minutesToEvent > GLOBALS.blackoutMinutesBefore && minutesToEvent <= 60) {
-        return {
-          level: "CAUTION",
-          text: "Caution: major event within the next hour",
-          color: "text-yellow-400"
-        };
+        return { level: "CAUTION", text: "Caution: major event within the next hour", color: "text-yellow-400" };
       }
 
-      return {
-        level: "NORMAL",
-        text: "Normal: no immediate red-folder restriction",
-        color: "text-green-400"
-      };
+      return { level: "NORMAL", text: "Normal: no immediate red-folder restriction", color: "text-green-400" };
     }
 
     function updateRedFolderPanel() {
@@ -347,24 +398,156 @@
       topEl.className = `font-semibold mt-1 ${risk.color}`;
     }
 
-    function formatPrice(value) {
-      const num = Number(value);
-      if (Math.abs(num) >= 100) return num.toFixed(3);
-      if (Math.abs(num) >= 10) return num.toFixed(3);
-      if (Math.abs(num) >= 1) return num.toFixed(3);
-      return num.toFixed(5);
+    function normalizeAsset(asset) {
+      const symbolRaw = (asset.symbol || "").toUpperCase().trim();
+      const fut = FUTURES_PROXY_MAP[symbolRaw];
+
+      if (fut) {
+        return {
+          ...asset,
+          symbol: symbolRaw,
+          normalizedSymbol: fut.proxySymbol,
+          effectiveClass: fut.assetClass,
+          chartSymbol: fut.chartSymbol,
+          proxyNote: fut.note
+        };
+      }
+
+      const cls = asset.assetClass === "auto" ? detectAssetClass(symbolRaw) : asset.assetClass;
+      return {
+        ...asset,
+        symbol: symbolRaw,
+        normalizedSymbol: symbolRaw,
+        effectiveClass: cls,
+        chartSymbol: getChartSymbol(symbolRaw, cls),
+        proxyNote: ""
+      };
+    }
+
+    function detectAssetClass(symbol) {
+      if (CRYPTO_CG_MAP[symbol]) return "crypto";
+      if (FUTURES_PROXY_MAP[symbol]) return "futures";
+      if (["EURUSD","GBPUSD","USDJPY","AUDUSD","NZDUSD","USDCHF","USDCAD","XAUUSD","XAGUSD","USOIL"].includes(symbol)) return "forex";
+      if (["SPY","QQQ","DIA"].includes(symbol)) return "stock";
+      return "forex";
+    }
+
+    function getChartSymbol(symbol, assetClass) {
+      if (assetClass === "crypto") {
+        const base = symbol.replace("USD", "");
+        return `BINANCE:${base}USDT`;
+      }
+      if (assetClass === "forex") return `OANDA:${symbol}`;
+      if (assetClass === "stock") {
+        if (symbol === "SPY") return "AMEX:SPY";
+        if (symbol === "QQQ") return "NASDAQ:QQQ";
+        if (symbol === "DIA") return "AMEX:DIA";
+        return `NASDAQ:${symbol}`;
+      }
+      if (assetClass === "index") return symbol;
+      return `OANDA:${symbol}`;
+    }
+
+    async function fetchCryptoPrices(ids) {
+      if (!ids.length) return {};
+      const uniqueIds = [...new Set(ids)].join(",");
+      const url = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(uniqueIds)}&vs_currencies=usd`;
+      const res = await fetch(url);
+      const data = await res.json();
+      const out = {};
+      Object.keys(data || {}).forEach(id => {
+        out[id] = data[id]?.usd;
+      });
+      return out;
+    }
+
+    async function fetchFinnhubQuote(symbol) {
+      if (!GLOBALS.finnhubToken) return null;
+      try {
+        const url = `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(symbol)}&token=${encodeURIComponent(GLOBALS.finnhubToken)}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data && typeof data.c === "number" && data.c > 0) return data.c;
+      } catch {}
+      return null;
+    }
+
+    async function refreshPrices() {
+      const normalizedAssets = ASSETS.map(normalizeAsset);
+
+      // Crypto batch
+      const cryptoAssets = normalizedAssets.filter(a => a.effectiveClass === "crypto" && a.autoPrice);
+      const cryptoIds = cryptoAssets
+        .map(a => CRYPTO_CG_MAP[a.normalizedSymbol])
+        .filter(Boolean);
+
+      let cgPrices = {};
+      try {
+        cgPrices = await fetchCryptoPrices(cryptoIds);
+      } catch {}
+
+      // Update crypto
+      ASSETS = ASSETS.map(asset => {
+        const n = normalizeAsset(asset);
+        if (n.effectiveClass === "crypto" && asset.autoPrice) {
+          const cgId = CRYPTO_CG_MAP[n.normalizedSymbol];
+          const fetched = cgId ? cgPrices[cgId] : null;
+          if (typeof fetched === "number" && fetched > 0) {
+            return {
+              ...asset,
+              previousPrice: asset.currentPrice,
+              currentPrice: fetched,
+              lastSource: "CoinGecko",
+              priceStatus: "Live"
+            };
+          }
+        }
+        return asset;
+      });
+
+      // Update non-crypto one-by-one via Finnhub if token exists
+      for (let i = 0; i < ASSETS.length; i++) {
+        const asset = ASSETS[i];
+        const n = normalizeAsset(asset);
+        if (n.effectiveClass !== "crypto" && asset.autoPrice && GLOBALS.finnhubToken) {
+          const price = await fetchFinnhubQuote(n.normalizedSymbol);
+          if (typeof price === "number" && price > 0) {
+            ASSETS[i] = {
+              ...ASSETS[i],
+              previousPrice: ASSETS[i].currentPrice,
+              currentPrice: price,
+              lastSource: "Finnhub",
+              priceStatus: "Live"
+            };
+          } else {
+            ASSETS[i] = {
+              ...ASSETS[i],
+              lastSource: "Manual",
+              priceStatus: "Fallback"
+            };
+          }
+        } else if (!asset.autoPrice) {
+          ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Manual" };
+        } else if (n.effectiveClass !== "crypto" && !GLOBALS.finnhubToken) {
+          ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Need Finnhub token" };
+        }
+      }
+
+      saveAssets();
+      refreshDashboard();
     }
 
     function evaluateAsset(asset) {
+      const a = normalizeAsset(asset);
       const nowParts = getNYParts();
       const session = getSessionState(nowParts);
       const risk = getEventRisk(nowParts);
 
-      const price = Number(asset.currentPrice);
-      const prev = Number(asset.previousPrice);
-      const pdh = Number(asset.pdh);
-      const pdl = Number(asset.pdl);
-      const buffer = Number(asset.retestBuffer);
+      const price = Number(a.currentPrice);
+      const prev = Number(a.previousPrice);
+      const pdh = Number(a.pdh);
+      const pdl = Number(a.pdl);
+      const buffer = Number(a.retestBuffer);
 
       const brokeAbove = prev <= pdh && price > pdh;
       const brokeBelow = prev >= pdl && price < pdl;
@@ -383,39 +566,75 @@
       let target1 = "-";
       let target2 = "-";
       let tradeReady = false;
+      let setupModel = "None";
 
+      // Expansion model
       if (price > pdh) {
         bias = "Bullish Confirmed";
         biasColor = "text-green-400";
         state = brokeAbove ? "Break Confirmed" : "Above PDH";
         marketState = "Above PDH";
         reason = brokeAbove
-          ? "Price has broken above PDH from below."
-          : "Price remains above PDH and bullish continuation is possible.";
+          ? "Expansion model: price has broken above PDH from below."
+          : "Expansion model remains valid while price stays above PDH.";
         plan = retestBull
-          ? `Price is near PDH retest zone. Watch for hold above ${formatPrice(pdh)}.`
-          : `Wait for pullback toward ${formatPrice(pdh)} for a possible long.`;
+          ? `Expansion long: watch for hold above ${formatPrice(pdh)}.`
+          : `Wait for pullback toward ${formatPrice(pdh)} for expansion continuation.`;
         entryZone = `${formatPrice(pdh - buffer)} - ${formatPrice(pdh + buffer)}`;
         invalidation = `${formatPrice(pdh - buffer - 0.02)}`;
         target1 = formatPrice(pdh + 0.20);
         target2 = formatPrice(pdh + 0.40);
         tradeReady = retestBull;
+        setupModel = "Expansion";
       } else if (price < pdl) {
         bias = "Bearish Confirmed";
         biasColor = "text-red-400";
         state = brokeBelow ? "Break Confirmed" : "Below PDL";
         marketState = "Below PDL";
         reason = brokeBelow
-          ? "Price has broken below PDL from above."
-          : "Price remains below PDL and bearish continuation is possible.";
+          ? "Expansion model: price has broken below PDL from above."
+          : "Expansion model remains valid while price stays below PDL.";
         plan = retestBear
-          ? `Price is near PDL retest zone. Watch for rejection below ${formatPrice(pdl)}.`
-          : `Wait for rally back toward ${formatPrice(pdl)} for a possible short.`;
+          ? `Expansion short: watch for rejection below ${formatPrice(pdl)}.`
+          : `Wait for rally back toward ${formatPrice(pdl)} for expansion continuation.`;
         entryZone = `${formatPrice(pdl - buffer)} - ${formatPrice(pdl + buffer)}`;
         invalidation = `${formatPrice(pdl + buffer + 0.02)}`;
         target1 = formatPrice(pdl - 0.20);
         target2 = formatPrice(pdl - 0.40);
         tradeReady = retestBear;
+        setupModel = "Expansion";
+      } else {
+        // High/Low failure model inside range
+        const failedHigh = prev > pdh && price < pdh;
+        const failedLow = prev < pdl && price > pdl;
+
+        if (failedHigh) {
+          bias = "High Failure";
+          biasColor = "text-red-400";
+          state = "Failure Back Inside Range";
+          marketState = "Failed Break Above PDH";
+          reason = "High/Low Failure model: price failed above PDH and returned inside range.";
+          plan = `Failure short favored while below ${formatPrice(pdh)}.`;
+          entryZone = `${formatPrice(pdh - buffer)} - ${formatPrice(pdh)}`;
+          invalidation = `${formatPrice(pdh + buffer)}`;
+          target1 = formatPrice((pdh + pdl) / 2);
+          target2 = formatPrice(pdl);
+          tradeReady = true;
+          setupModel = "High/Low Failure";
+        } else if (failedLow) {
+          bias = "Low Failure";
+          biasColor = "text-green-400";
+          state = "Failure Back Inside Range";
+          marketState = "Failed Break Below PDL";
+          reason = "High/Low Failure model: price failed below PDL and returned inside range.";
+          plan = `Failure long favored while above ${formatPrice(pdl)}.`;
+          entryZone = `${formatPrice(pdl)} - ${formatPrice(pdl + buffer)}`;
+          invalidation = `${formatPrice(pdl - buffer)}`;
+          target1 = formatPrice((pdh + pdl) / 2);
+          target2 = formatPrice(pdh);
+          tradeReady = true;
+          setupModel = "High/Low Failure";
+        }
       }
 
       let verdict = "WAIT";
@@ -432,14 +651,14 @@
         verdictColor = "text-red-400";
         plan = "Outside primary execution session.";
         riskNote = "Session quality is weaker outside London/NY.";
-      } else if (marketState === "Inside Range") {
+      } else if (marketState === "Inside Range" && setupModel === "None") {
         verdict = "NO TRADE";
         verdictColor = "text-red-400";
         riskNote = "No directional edge while price remains inside PDH/PDL.";
       } else if (tradeReady) {
         verdict = "TRADE";
         verdictColor = "text-green-400";
-        riskNote = "Primary session active. Level interaction is actionable.";
+        riskNote = "Primary session active. Setup location is actionable.";
       } else {
         verdict = "WAIT";
         verdictColor = "text-yellow-400";
@@ -447,7 +666,7 @@
       }
 
       return {
-        symbol: asset.symbol,
+        ...a,
         price,
         prev,
         pdh,
@@ -467,7 +686,8 @@
         riskLevel: risk.level,
         riskColor: risk.color,
         riskNote,
-        sessionLabel: session.label
+        sessionLabel: session.label,
+        setupModel
       };
     }
 
@@ -481,64 +701,74 @@
       const container = document.getElementById("watchlistSummary");
       container.innerHTML = "";
 
-      if (!ASSETS.length) {
+      const results = ASSETS.map(a => evaluateAsset(a))
+        .sort((a, b) => verdictRank(a.verdict) - verdictRank(b.verdict));
+
+      if (!results.length) {
         container.innerHTML = "<div>No assets in watchlist.</div>";
         return;
       }
 
-      ASSETS.forEach(asset => {
-        const evalResult = evaluateAsset(asset);
+      results.forEach(result => {
         const row = document.createElement("div");
         row.className = "flex items-center justify-between gap-3 bg-zinc-800 rounded-xl px-3 py-3";
-
         row.innerHTML = `
           <div class="min-w-0">
-            <div class="font-semibold">${evalResult.symbol}</div>
-            <div class="text-xs text-zinc-400 truncate">${evalResult.bias}</div>
+            <div class="font-semibold">${result.symbol}</div>
+            <div class="text-xs text-zinc-400 truncate">${result.bias} • ${result.setupModel || "None"}</div>
           </div>
           <div class="text-right">
-            <div class="text-sm">${formatPrice(evalResult.price)}</div>
-            <div class="text-xs ${evalResult.verdictColor.replace("text-", "text-")}">${evalResult.verdict}</div>
+            <div class="text-sm">${formatPrice(result.price)}</div>
+            <div class="text-xs ${result.verdictColor}">${result.verdict}</div>
           </div>
         `;
-
-        row.addEventListener("click", () => {
-          toggleAssetExpanded(asset.id);
-        });
-
+        row.addEventListener("click", () => toggleAssetExpanded(result.id));
         container.appendChild(row);
       });
+    }
+
+    function verdictRank(v) {
+      if (v === "TRADE") return 0;
+      if (v === "WAIT") return 1;
+      return 2;
     }
 
     function renderAssets() {
       const grid = document.getElementById("assetGrid");
       grid.innerHTML = "";
 
-      ASSETS.forEach(asset => {
+      const sorted = [...ASSETS].sort((a, b) => {
+        const va = verdictRank(evaluateAsset(a).verdict);
+        const vb = verdictRank(evaluateAsset(b).verdict);
+        return va - vb;
+      });
+
+      sorted.forEach(asset => {
         const result = evaluateAsset(asset);
-
-        if (lastTradeAlerts[asset.id] !== result.verdict && result.verdict === "TRADE") {
-          sendTradeAlert(`${asset.symbol}: TRADE — ${result.plan}`);
-        }
-        lastTradeAlerts[asset.id] = result.verdict;
-
         const wrapper = document.createElement("div");
         wrapper.className = "bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden";
+
+        const sourceText = asset.lastSource ? `${asset.lastSource}` : "Manual";
+        const statusText = asset.priceStatus ? `${asset.priceStatus}` : "Manual";
 
         wrapper.innerHTML = `
           <button class="w-full text-left p-4 flex items-center justify-between gap-3 asset-toggle">
             <div class="min-w-0">
               <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-xl font-bold text-yellow-400">${asset.symbol}</span>
+                <span class="text-xl font-bold text-yellow-400">${result.symbol}</span>
                 <span class="px-2 py-1 rounded-full text-xs ${verdictBadgeClass(result.verdict)}">${result.verdict}</span>
               </div>
-              <div class="text-sm mt-1 ${result.biasColor}">${result.bias}</div>
-              <div class="text-xs text-zinc-400 mt-1">Price: ${formatPrice(result.price)} | Session: ${result.sessionLabel}</div>
+              <div class="text-sm mt-1 ${result.biasColor}">${result.bias} • ${result.setupModel || "None"}</div>
+              <div class="text-xs text-zinc-400 mt-1">
+                Price: ${formatPrice(result.price)} • Source: ${sourceText} • Status: ${statusText}
+              </div>
             </div>
             <div class="text-zinc-400 text-xl">${asset.expanded ? "−" : "+"}</div>
           </button>
 
           <div class="${asset.expanded ? "block" : "hidden"} asset-body border-t border-zinc-800 p-4 space-y-4">
+            ${result.proxyNote ? `<div class="bg-yellow-900/30 border border-yellow-700 text-yellow-200 text-sm p-3 rounded-xl">${result.proxyNote}</div>` : ""}
+
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
               <div>
                 <div class="text-zinc-400">Market State</div>
@@ -553,8 +783,8 @@
                 <div class="${result.biasColor} font-semibold mt-1">${result.bias}</div>
               </div>
               <div>
-                <div class="text-zinc-400">State</div>
-                <div class="font-semibold mt-1">${result.state}</div>
+                <div class="text-zinc-400">Strategy Model</div>
+                <div class="font-semibold mt-1">${result.setupModel || "None"}</div>
               </div>
             </div>
 
@@ -599,15 +829,34 @@
               </div>
             </div>
 
+            <div class="bg-zinc-800 rounded-xl p-2">
+              <iframe
+                src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(result.chartSymbol)}&interval=15&theme=dark&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&toolbarbg=F1F3F6&style=1&timezone=Etc%2FUTC&withdateranges=1&hidevolume=1&allow_symbol_change=0"
+                style="width:100%; height:320px; border:none;"
+              ></iframe>
+            </div>
+
             <div class="bg-zinc-800 rounded-xl p-3">
               <div class="text-zinc-400 text-sm mb-3">Edit Asset</div>
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
                 <input data-field="symbol" data-id="${asset.id}" value="${asset.symbol}" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+                <select data-field="assetClass" data-id="${asset.id}" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
+                  <option value="auto" ${asset.assetClass === "auto" ? "selected" : ""}>Auto Detect</option>
+                  <option value="forex" ${asset.assetClass === "forex" ? "selected" : ""}>Forex</option>
+                  <option value="crypto" ${asset.assetClass === "crypto" ? "selected" : ""}>Crypto</option>
+                  <option value="futures" ${asset.assetClass === "futures" ? "selected" : ""}>Futures</option>
+                  <option value="stock" ${asset.assetClass === "stock" ? "selected" : ""}>Stock</option>
+                  <option value="index" ${asset.assetClass === "index" ? "selected" : ""}>Index</option>
+                </select>
                 <input data-field="currentPrice" data-id="${asset.id}" value="${asset.currentPrice}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
                 <input data-field="previousPrice" data-id="${asset.id}" value="${asset.previousPrice}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
                 <input data-field="pdh" data-id="${asset.id}" value="${asset.pdh}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
                 <input data-field="pdl" data-id="${asset.id}" value="${asset.pdl}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
                 <input data-field="retestBuffer" data-id="${asset.id}" value="${asset.retestBuffer}" type="number" step="0.001" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white" />
+                <select data-field="autoPrice" data-id="${asset.id}" class="asset-input bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-white">
+                  <option value="true" ${asset.autoPrice ? "selected" : ""}>Auto Price ON</option>
+                  <option value="false" ${!asset.autoPrice ? "selected" : ""}>Auto Price OFF</option>
+                </select>
               </div>
               <div class="flex flex-wrap gap-3 mt-3">
                 <button class="save-asset-btn bg-green-600 hover:bg-green-500 text-white px-3 py-2 rounded-xl" data-id="${asset.id}">Save Asset</button>
@@ -630,24 +879,13 @@
 
     function attachAssetButtons() {
       document.querySelectorAll(".save-asset-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = btn.dataset.id;
-          saveSingleAsset(id);
-        });
+        btn.addEventListener("click", () => saveSingleAsset(btn.dataset.id));
       });
-
       document.querySelectorAll(".copy-prev-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = btn.dataset.id;
-          copyCurrentToPrevious(id);
-        });
+        btn.addEventListener("click", () => copyCurrentToPrevious(btn.dataset.id));
       });
-
       document.querySelectorAll(".delete-asset-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = btn.dataset.id;
-          deleteAsset(id);
-        });
+        btn.addEventListener("click", () => deleteAsset(btn.dataset.id));
       });
     }
 
@@ -665,14 +903,12 @@
 
       inputs.forEach(input => {
         const field = input.dataset.field;
-        if (field === "symbol") updated[field] = input.value;
+        if (field === "symbol" || field === "assetClass") updated[field] = input.value;
+        else if (field === "autoPrice") updated[field] = input.value === "true";
         else updated[field] = parseFloat(input.value);
       });
 
-      ASSETS = ASSETS.map(asset =>
-        asset.id === id ? { ...asset, ...updated } : asset
-      );
-
+      ASSETS = ASSETS.map(asset => asset.id === id ? { ...asset, ...updated } : asset);
       saveAssets();
       refreshDashboard();
     }
@@ -692,27 +928,30 @@
     }
 
     function addAsset() {
-      const symbol = document.getElementById("newSymbol").value.trim();
-      const currentPrice = parseFloat(document.getElementById("newCurrentPrice").value);
-      const previousPrice = parseFloat(document.getElementById("newPreviousPrice").value);
+      const symbol = document.getElementById("newSymbol").value.trim().toUpperCase();
+      const assetClass = document.getElementById("newAssetClass").value;
       const pdh = parseFloat(document.getElementById("newPDH").value);
       const pdl = parseFloat(document.getElementById("newPDL").value);
-      const retestBuffer = parseFloat(document.getElementById("newRetestBuffer").value);
+      const currentPrice = parseFloat(document.getElementById("newCurrentPrice").value || "0");
+      const previousPrice = parseFloat(document.getElementById("newPreviousPrice").value || "0");
+      const retestBuffer = parseFloat(document.getElementById("newRetestBuffer").value || "0.03");
 
-      if (!symbol || Number.isNaN(currentPrice) || Number.isNaN(previousPrice) || Number.isNaN(pdh) || Number.isNaN(pdl) || Number.isNaN(retestBuffer)) {
-        alert("Fill out all new asset fields first.");
+      if (!symbol || Number.isNaN(pdh) || Number.isNaN(pdl)) {
+        alert("At minimum, enter symbol, PDH, and PDL.");
         return;
       }
 
       ASSETS.push({
         id: crypto.randomUUID(),
         symbol,
+        assetClass,
         currentPrice,
-        previousPrice,
+        previousPrice: previousPrice || currentPrice,
         pdh,
         pdl,
         retestBuffer,
-        expanded: true
+        expanded: true,
+        autoPrice: true
       });
 
       saveAssets();
@@ -722,14 +961,16 @@
 
     function clearNewAssetForm() {
       document.getElementById("newSymbol").value = "";
-      document.getElementById("newCurrentPrice").value = "";
-      document.getElementById("newPreviousPrice").value = "";
+      document.getElementById("newAssetClass").value = "auto";
       document.getElementById("newPDH").value = "";
       document.getElementById("newPDL").value = "";
+      document.getElementById("newCurrentPrice").value = "";
+      document.getElementById("newPreviousPrice").value = "";
       document.getElementById("newRetestBuffer").value = "";
     }
 
     function populateGlobals() {
+      document.getElementById("inputFinnhubToken").value = GLOBALS.finnhubToken;
       document.getElementById("inputEventName").value = GLOBALS.redFolderEvent;
       document.getElementById("inputEventHour").value = GLOBALS.redFolderHourET;
       document.getElementById("inputEventMinute").value = GLOBALS.redFolderMinuteET;
@@ -738,6 +979,7 @@
     }
 
     function readGlobals() {
+      GLOBALS.finnhubToken = document.getElementById("inputFinnhubToken").value.trim();
       GLOBALS.redFolderEvent = document.getElementById("inputEventName").value || DEFAULT_GLOBALS.redFolderEvent;
       GLOBALS.redFolderHourET = parseInt(document.getElementById("inputEventHour").value || DEFAULT_GLOBALS.redFolderHourET, 10);
       GLOBALS.redFolderMinuteET = parseInt(document.getElementById("inputEventMinute").value || DEFAULT_GLOBALS.redFolderMinuteET, 10);
@@ -790,21 +1032,13 @@
         const url = "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/zerohedge/feed";
         const res = await fetch(url);
         const data = await res.json();
-
         if (!data.items || !data.items.length) {
-          const li = document.createElement("li");
-          li.textContent = "ZeroHedge: no items returned";
-          container.appendChild(li);
+          container.innerHTML += "<li>ZeroHedge: no items returned</li>";
           return;
         }
-
-        data.items.slice(0, 3).forEach(item => {
-          addNewsItem(container, "ZeroHedge", item.title, item.link);
-        });
+        data.items.slice(0, 3).forEach(item => addNewsItem(container, "ZeroHedge", item.title, item.link));
       } catch {
-        const li = document.createElement("li");
-        li.textContent = "ZeroHedge: failed to load";
-        container.appendChild(li);
+        container.innerHTML += "<li>ZeroHedge: failed to load</li>";
       }
     }
 
@@ -823,7 +1057,6 @@
         for (const a of anchors) {
           const href = a.getAttribute("href") || "";
           const text = (a.textContent || "").replace(/\s+/g, " ").trim();
-
           const looksLikeArticle =
             href.includes("coinbureau.com/") &&
             !href.includes("/contact") &&
@@ -832,9 +1065,7 @@
             !href.includes("/newsletter") &&
             text.length > 20;
 
-          if (!looksLikeArticle) continue;
-          if (seen.has(href)) continue;
-
+          if (!looksLikeArticle || seen.has(href)) continue;
           seen.add(href);
           addNewsItem(container, "Coin Bureau", text, href);
           count++;
@@ -842,14 +1073,10 @@
         }
 
         if (count === 0) {
-          const li = document.createElement("li");
-          li.innerHTML = `<a href="https://coinbureau.com/" target="_blank" class="text-blue-400 underline">Coin Bureau: open homepage</a>`;
-          container.appendChild(li);
+          addNewsItem(container, "Coin Bureau", "Open homepage", "https://coinbureau.com/");
         }
       } catch {
-        const li = document.createElement("li");
-        li.innerHTML = `<a href="https://coinbureau.com/" target="_blank" class="text-blue-400 underline">Coin Bureau: open homepage</a>`;
-        container.appendChild(li);
+        addNewsItem(container, "Coin Bureau", "Open homepage", "https://coinbureau.com/");
       }
     }
 
@@ -872,6 +1099,11 @@
     document.getElementById("saveGlobalBtn").addEventListener("click", () => {
       readGlobals();
       refreshDashboard();
+    });
+
+    document.getElementById("refreshPricesBtn").addEventListener("click", async () => {
+      readGlobals();
+      await refreshPrices();
     });
 
     document.getElementById("addAssetBtn").addEventListener("click", addAsset);
@@ -901,11 +1133,9 @@
       updateSessionBar();
       updateRedFolderPanel();
       renderWatchlistSummary();
-      renderAssets();
       updateAlertBanner();
-      checkTradeAlerts();
     }, 1000);
     loadNews();
   </script>
 </body>
-</html>p
+</html>
