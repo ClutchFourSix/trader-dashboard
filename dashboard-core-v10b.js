@@ -25,6 +25,5 @@
   }
   window.addEventListener('load',()=>{
     restoreCharts();
-    setInterval(restoreCharts,15000);
-  });
+    });
 })();
