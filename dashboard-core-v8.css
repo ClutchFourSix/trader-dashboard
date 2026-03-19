@@ -1,0 +1,177 @@
+@import url('./dashboard-core-v7.css');
+
+/* v8: layout editing + stronger text fit */
+.layout-toolbar {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-top:10px;
+}
+
+.btn.blue {
+  border-color: rgba(96,165,250,.36);
+}
+
+.layout-badge {
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color: var(--muted);
+}
+
+body.layout-edit .draggable-section,
+body.layout-edit .draggable-tile {
+  cursor: grab;
+}
+
+body.layout-edit .draggable-section:active,
+body.layout-edit .draggable-tile:active {
+  cursor: grabbing;
+}
+
+.drag-handle {
+  display:none;
+  margin-left:auto;
+  padding:6px 8px;
+  border-radius:10px;
+  border:1px dashed var(--border-strong);
+  color: var(--muted);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  user-select:none;
+}
+
+body.layout-edit .drag-handle {
+  display:inline-flex;
+}
+
+.draggable-section.dragging,
+.draggable-tile.dragging {
+  opacity:.58;
+  transform: scale(.985);
+}
+
+.drop-target {
+  outline: 2px dashed rgba(var(--accent-rgb), .35);
+  outline-offset: 4px;
+}
+
+.section-head-inline {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.metric-grid {
+  grid-template-columns: repeat(4, minmax(0,1fr));
+}
+
+.metric,
+.metric-box {
+  min-width:0;
+}
+
+.metric-label,
+.kicker,
+.section-title,
+.row-meta,
+.asset-meta,
+.clock-label,
+.clock-city {
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+.metric-value,
+.command-value,
+.row-title,
+.asset-symbol strong,
+.asset-side .row-title,
+.asset-side .row-meta,
+.story-title,
+.story-summary {
+  min-width:0;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+.metric-value {
+  font-size: clamp(.88rem, 1.5vw, 1.02rem);
+  line-height:1.18;
+}
+
+.asset-card .metric-grid {
+  align-items:stretch;
+}
+
+.asset-card .metric {
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+.asset-side {
+  min-width: 88px;
+}
+
+.asset-actions {
+  align-items:flex-start;
+}
+
+.asset-grid {
+  align-items:start;
+}
+
+.asset-card {
+  contain: layout paint;
+}
+
+.utility-stack,
+.story-stack,
+.side-stack,
+.provider-prep-grid {
+  min-width:0;
+}
+
+.layout-tiles {
+  display:grid;
+  gap:10px;
+}
+
+.layout-tiles.cols-3 {
+  grid-template-columns: repeat(3, minmax(0,1fr));
+}
+
+.layout-tiles.cols-2 {
+  grid-template-columns: repeat(2, minmax(0,1fr));
+}
+
+.layout-note {
+  color:var(--muted);
+  font-size:12px;
+  margin-top:6px;
+}
+
+@media (max-width: 1200px) {
+  .layout-tiles.cols-3,
+  .layout-tiles.cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .asset-card .metric-grid,
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .asset-card .metric-grid,
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
