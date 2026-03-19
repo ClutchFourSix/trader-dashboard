@@ -1,0 +1,25 @@
+@import url('./dashboard-core-v12.css');
+
+/* v13 real grab-and-move support */
+body.layout-edit .draggable-section{touch-action:none;user-select:none}
+.drag-ghost{position:fixed;z-index:1200;pointer-events:none;transform-origin:top left;opacity:.96;box-shadow:0 18px 48px rgba(0,0,0,.34),0 0 40px rgba(var(--accent-rgb),.18)}
+.drag-placeholder{border:2px dashed rgba(var(--accent-rgb),.36)!important;background:rgba(255,255,255,.04)!important;min-height:160px}
+.drag-active-target{outline:2px solid rgba(var(--accent-rgb),.36);outline-offset:4px}
+body.layout-edit .section-head-inline{cursor:grab}
+body.layout-edit .section-head-inline:active{cursor:grabbing}
+
+/* v13 fuller news layout */
+.news-layout{display:grid;grid-template-columns:2.3fr 1fr;gap:12px;align-items:start}
+.story-stack{display:grid;gap:10px}
+.side-stack{display:grid;gap:10px}
+.story-source-line{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.10em;margin-bottom:8px}
+.story-link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.story-link-chip{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.05);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text);text-decoration:none}
+.social-card-grid{display:grid;gap:10px}
+.social-account{padding:12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--border)}
+.social-account .row-title{font-size:14px}
+.social-account .social-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.social-link{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.05);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text);text-decoration:none}
+.source-pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.source-pill{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.05);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:1200px){.news-layout{grid-template-columns:1fr}}
