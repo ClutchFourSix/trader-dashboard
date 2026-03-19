@@ -4,42 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trader Desk // Decision Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{
+      --bg:#060b12;
+      --panel-1:rgba(10,18,30,.78);
+      --panel-2:rgba(6,12,22,.86);
+      --panel-border:rgba(103,232,249,.20);
+      --text:#e6f7ff;
+      --muted:#8aa5bf;
       --cyan:#67e8f9;
       --blue:#38bdf8;
       --green:#4ade80;
       --red:#f87171;
       --amber:#fbbf24;
-      --text:#e6f7ff;
-      --muted:#8aa5bf;
-      --panel-grad-1:rgba(10,18,30,.82);
-      --panel-grad-2:rgba(6,12,22,.88);
-      --panel-border:rgba(103,232,249,.24);
-      --shadow:rgba(0,0,0,.28);
-      --blur:10px;
+      --ui-scale:1;
+      --panel-opacity:.78;
+      --panel-blur:10px;
+      --shadow-alpha:.24;
     }
 
     *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; }
+    html{ font-size:calc(16px * var(--ui-scale)); }
     body{
+      margin:0;
       color:var(--text);
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        linear-gradient(rgba(0,0,0,.60), rgba(0,0,0,.74)),
+        linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.74)),
         url("./world-map.jpg") center/cover no-repeat fixed,
-        #060b12;
+        var(--bg);
       min-height:100vh;
     }
 
     body.lite{
-      --panel-grad-1:#0b1220;
-      --panel-grad-2:#0b1220;
-      --panel-border:rgba(103,232,249,.12);
-      --shadow:rgba(0,0,0,.10);
-      --blur:0px;
-      background:#060b12;
+      --panel-1:#0c1220;
+      --panel-2:#0c1220;
+      --panel-border:rgba(255,255,255,.08);
+      --panel-blur:0px;
+      --shadow-alpha:.08;
+      background:#070b12;
     }
 
     .shell{
@@ -52,15 +55,19 @@
 
     .panel{
       position:relative;
-      background:linear-gradient(180deg, var(--panel-grad-1), var(--panel-grad-2));
+      background:
+        linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--panel-1) calc(var(--panel-opacity) * 100%), transparent),
+          color-mix(in srgb, var(--panel-2) calc(var(--panel-opacity) * 100%), transparent)
+        );
       border:1px solid var(--panel-border);
       border-radius:22px;
-      backdrop-filter:blur(var(--blur));
-      -webkit-backdrop-filter:blur(var(--blur));
+      backdrop-filter:blur(var(--panel-blur));
+      -webkit-backdrop-filter:blur(var(--panel-blur));
       box-shadow:
-        0 0 0 1px rgba(103,232,249,.04),
-        0 10px 30px var(--shadow),
-        inset 0 0 16px rgba(56,189,248,.03);
+        0 0 0 1px rgba(103,232,249,.03),
+        0 10px 30px rgba(0,0,0,var(--shadow-alpha));
       overflow:hidden;
     }
 
@@ -72,7 +79,7 @@
       background:linear-gradient(90deg, transparent, rgba(103,232,249,.03), transparent);
     }
 
-    .inner{ position:relative; padding:16px; z-index:1; }
+    .inner{ position:relative; z-index:1; padding:16px; }
     .title{
       font-size:12px;
       text-transform:uppercase;
@@ -94,7 +101,7 @@
 
     .hero h1{
       margin:0;
-      font-size:28px;
+      font-size:1.7rem;
       font-weight:900;
       letter-spacing:.08em;
       text-transform:uppercase;
@@ -110,7 +117,11 @@
       color:var(--muted);
     }
 
-    .actions{ display:flex; gap:10px; flex-wrap:wrap; }
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
 
     .btn{
       border:1px solid rgba(103,232,249,.28);
@@ -131,7 +142,6 @@
     .btn:hover{
       transform:translateY(-1px);
       border-color:rgba(103,232,249,.52);
-      box-shadow:0 0 20px rgba(56,189,248,.14);
     }
 
     .btn.green{ border-color:rgba(74,222,128,.32); }
@@ -174,11 +184,10 @@
     }
 
     .clock-time{
-      font-size:25px;
+      font-size:1.45rem;
       font-weight:900;
       letter-spacing:.06em;
       color:#eefbff;
-      text-shadow:0 0 12px rgba(103,232,249,.14);
       font-family:"Courier New", ui-monospace, monospace;
     }
 
@@ -230,12 +239,18 @@
     }
 
     .ribbon-value{
-      font-size:18px;
+      font-size:1.05rem;
       font-weight:900;
       color:#eefbff;
     }
 
-    .chip-row{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .chip-row{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
     .state-chip{
       white-space:nowrap;
       font-size:12px;
@@ -283,7 +298,14 @@
       text-transform:uppercase;
       letter-spacing:.12em;
     }
-    .summary-price{ text-align:right; font-size:14px; font-weight:800; min-width:90px; }
+
+    .summary-price{
+      text-align:right;
+      font-size:14px;
+      font-weight:800;
+      min-width:90px;
+    }
+
     .summary-verdict{
       margin-top:4px;
       font-size:11px;
@@ -303,10 +325,9 @@
       border:1px solid rgba(103,232,249,.14);
       background:linear-gradient(180deg, rgba(10,18,30,.86), rgba(6,12,22,.88));
       overflow:hidden;
-      box-shadow:0 12px 30px rgba(0,0,0,.20);
     }
 
-    body.lite .asset-card{ background:#0f172a; box-shadow:none; }
+    body.lite .asset-card{ background:#0f172a; }
 
     .asset-head{
       width:100%;
@@ -329,7 +350,7 @@
       flex-wrap:wrap;
     }
 
-    .asset-symbol strong{ font-size:22px; letter-spacing:.06em; }
+    .asset-symbol strong{ font-size:1.35rem; letter-spacing:.06em; }
 
     .pill{
       padding:5px 9px;
@@ -352,7 +373,6 @@
       text-transform:uppercase;
       letter-spacing:.12em;
     }
-
     .asset-expand{ font-size:22px; color:var(--muted); font-weight:900; }
 
     .asset-body{
@@ -374,14 +394,16 @@
       gap:10px;
     }
 
-    .info-box{
+    .info-box, .note-box, .news-panel{
       border-radius:16px;
       padding:12px;
       background:linear-gradient(180deg, rgba(14,22,35,.74), rgba(8,13,21,.84));
       border:1px solid rgba(103,232,249,.08);
     }
 
-    body.lite .info-box{ background:#0f172a; }
+    body.lite .info-box,
+    body.lite .note-box,
+    body.lite .news-panel{ background:#0f172a; }
 
     .info-label{
       font-size:11px;
@@ -393,17 +415,6 @@
     }
 
     .info-value{ font-size:14px; font-weight:800; }
-
-    .note-box{
-      border-radius:16px;
-      padding:12px;
-      background:linear-gradient(180deg, rgba(14,22,35,.74), rgba(8,13,21,.84));
-      border:1px solid rgba(103,232,249,.08);
-      font-size:13px;
-      line-height:1.5;
-    }
-
-    body.lite .note-box{ background:#0f172a; }
 
     .proxy-note{
       background:rgba(251,191,36,.10);
@@ -446,9 +457,7 @@
       font-weight:800;
     }
 
-    .hud-input,
-    .hud-select,
-    .hud-textarea{
+    .hud-input, .hud-select, .hud-textarea{
       width:100%;
       background:rgba(3,8,15,.88);
       border:1px solid rgba(103,232,249,.15);
@@ -461,32 +470,51 @@
 
     body.lite .hud-input,
     body.lite .hud-select,
-    body.lite .hud-textarea{
-      background:#111827;
-    }
+    body.lite .hud-textarea{ background:#111827; }
 
     .hud-textarea{ min-height:132px; resize:vertical; }
 
-    .news-item{
-      padding:12px 14px;
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(15,24,38,.70), rgba(8,14,22,.82));
-      border:1px solid rgba(103,232,249,.08);
-      font-size:13px;
+    #news-intel-root{ margin-top:4px; }
+    .news-intel-wrap{
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:14px;
     }
 
-    body.lite .news-item{ background:#0f172a; }
+    .news-header{
+      padding-bottom:10px;
+      margin-bottom:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+    }
 
-    .news-item a{ color:#93c5fd; text-decoration:none; }
-    .news-item a:hover{ text-decoration:underline; }
+    .news-title{ font-weight:700; font-size:14px; }
+    .news-sub{ font-size:11px; color:#9ca8bb; }
+    .story{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      padding:10px;
+      margin-bottom:10px;
+    }
 
-    .glow-cyan{ color:var(--cyan); text-shadow:0 0 10px rgba(103,232,249,.18); }
-    .glow-blue{ color:var(--blue); text-shadow:0 0 10px rgba(56,189,248,.18); }
-    .glow-green{ color:var(--green); text-shadow:0 0 10px rgba(74,222,128,.18); }
-    .glow-red{ color:var(--red); text-shadow:0 0 10px rgba(248,113,113,.18); }
-    .glow-amber{ color:var(--amber); text-shadow:0 0 10px rgba(251,191,36,.18); }
+    .story-title{ font-weight:700; font-size:13px; margin-bottom:6px; }
+    .story-meta{ font-size:11px; color:#9ca8bb; margin-bottom:6px; }
+    .score{ font-size:11px; font-weight:700; margin-top:6px; }
 
-    .hidden{ display:none !important; }
+    .high{ color:#35d07f; }
+    .mid{ color:#e6c15a; }
+    .low{ color:#f06a6a; }
+
+    .table{
+      width:100%;
+      font-size:12px;
+      border-collapse:collapse;
+    }
+    .table td{
+      padding:6px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
 
     .settings-backdrop{
       position:fixed;
@@ -506,11 +534,12 @@
       border-radius:22px;
       border:1px solid rgba(103,232,249,.18);
       background:linear-gradient(180deg, rgba(10,18,30,.96), rgba(6,12,22,.96));
-      box-shadow:0 18px 40px rgba(0,0,0,.42), 0 0 30px rgba(56,189,248,.08);
       padding:18px;
     }
 
     body.lite .settings-modal{ background:#0f172a; }
+
+    .hidden{ display:none !important; }
 
     @media (max-width:1200px){
       .clock-grid,
@@ -519,7 +548,8 @@
       .grid-2,
       .grid-3,
       .form-grid,
-      .mini-grid-4{
+      .mini-grid-4,
+      .news-intel-wrap{
         grid-template-columns:1fr 1fr;
       }
     }
@@ -533,17 +563,16 @@
       .grid-3,
       .form-grid,
       .mini-grid-2,
-      .mini-grid-4{
+      .mini-grid-4,
+      .news-intel-wrap{
         grid-template-columns:1fr;
       }
-      .hero h1{ font-size:23px; }
-      .chip-row{ flex-direction:column; align-items:flex-start; }
+      .hero h1{ font-size:1.35rem; }
     }
   </style>
 </head>
 <body>
   <div class="shell">
-
     <section class="panel">
       <div class="inner hero">
         <div>
@@ -571,11 +600,11 @@
         <div class="ribbon">
           <div class="ribbon-box">
             <div class="ribbon-label">Current Session</div>
-            <div id="currentSession" class="ribbon-value glow-cyan">Initializing...</div>
+            <div id="currentSession" class="ribbon-value">Initializing...</div>
           </div>
           <div class="ribbon-box">
             <div class="ribbon-label">Red Folder (24H)</div>
-            <div id="redFolderBadge" class="ribbon-value glow-red">Standby</div>
+            <div id="redFolderBadge" class="ribbon-value">Standby</div>
           </div>
           <div class="ribbon-box">
             <div class="ribbon-label">Watchlist State</div>
@@ -583,7 +612,7 @@
           </div>
           <div class="ribbon-box">
             <div class="ribbon-label">Bias</div>
-            <div id="biasBadge" class="ribbon-value glow-amber">Mixed</div>
+            <div id="biasBadge" class="ribbon-value">Mixed</div>
           </div>
           <div class="ribbon-box">
             <div class="ribbon-label">System Status</div>
@@ -646,10 +675,8 @@
     <section class="grid-2">
       <div class="panel">
         <div class="inner">
-          <div class="title">Intel Feed // Highest Impact</div>
-          <div id="news" class="news-list">
-            <div class="news-item">Loading intelligence...</div>
-          </div>
+          <div class="title">Intel Feed</div>
+          <div id="news-intel-root"></div>
         </div>
       </div>
 
@@ -745,7 +772,6 @@
         </div>
       </div>
     </section>
-
   </div>
 
   <div id="settingsBackdrop" class="settings-backdrop">
@@ -753,7 +779,7 @@
       <div class="hero" style="margin-bottom:12px;">
         <div>
           <div class="title" style="margin-bottom:4px;">Settings</div>
-          <div class="muted">Performance, visuals, refresh, data behavior</div>
+          <div class="muted">Performance, visuals, refresh, readability</div>
         </div>
         <div class="actions">
           <button id="saveSettingsBtn" class="btn green">Save Settings</button>
@@ -763,8 +789,17 @@
 
       <div class="form-grid">
         <div>
+          <label class="field-label">Font Size</label>
+          <select id="settingFontScale" class="hud-select">
+            <option value="0.9">Small</option>
+            <option value="1">Normal</option>
+            <option value="1.1">Large</option>
+            <option value="1.2">XL</option>
+          </select>
+        </div>
+        <div>
           <label class="field-label">Panel Opacity</label>
-          <input id="settingOpacity" type="range" min="0.60" max="0.90" step="0.01" class="hud-input" />
+          <input id="settingOpacity" type="range" min="0.35" max="0.95" step="0.05" class="hud-input" />
         </div>
         <div>
           <label class="field-label">Auto Refresh (seconds)</label>
@@ -792,29 +827,6 @@
           </select>
         </div>
         <div>
-          <label class="field-label">Tile Gradient Style</label>
-          <select id="settingGradientStyle" class="hud-select">
-            <option value="blue">Blue Glass</option>
-            <option value="cyan">Cyan Glass</option>
-            <option value="slate">Slate Glass</option>
-            <option value="flat">Flat Dark</option>
-          </select>
-        </div>
-        <div>
-          <label class="field-label">Auto PDH/PDL On Add</label>
-          <select id="settingAutoPD" class="hud-select">
-            <option value="true">ON</option>
-            <option value="false">OFF</option>
-          </select>
-        </div>
-        <div>
-          <label class="field-label">Refresh PDH/PDL On Manual Refresh</label>
-          <select id="settingRefreshPD" class="hud-select">
-            <option value="true">ON</option>
-            <option value="false">OFF</option>
-          </select>
-        </div>
-        <div>
           <label class="field-label">Lite Mode Default</label>
           <select id="settingLiteDefault" class="hud-select">
             <option value="false">OFF</option>
@@ -826,32 +838,6 @@
   </div>
 
   <script>
-    function makeId() {
-      return "id-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
-    }
-
-    function escapeHtml(s) {
-      return String(s ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;");
-    }
-
-    function formatPrice(value) {
-      const n = Number(value);
-      if (!Number.isFinite(n)) return "-";
-      if (Math.abs(n) >= 1000) return n.toFixed(2);
-      if (Math.abs(n) >= 100) return n.toFixed(3);
-      if (Math.abs(n) >= 1) return n.toFixed(3);
-      return n.toFixed(5);
-    }
-
-    function formatTs(ts) {
-      if (!ts) return "-";
-      try { return new Date(ts).toLocaleTimeString(); } catch { return "-"; }
-    }
-
     const DEFAULT_GLOBALS = {
       finnhubToken: "",
       weeklyEventsText:
@@ -863,13 +849,11 @@
     };
 
     const DEFAULT_SETTINGS = {
-      panelOpacity: 0.68,
+      fontScale: "1",
+      panelOpacity: 0.78,
       refreshSeconds: 60,
       newsSeconds: 300,
       chartInterval: "15",
-      gradientStyle: "blue",
-      autoPD: true,
-      refreshPD: false,
       liteDefault: false
     };
 
@@ -877,34 +861,27 @@
       BTCUSD: "bitcoin",
       ETHUSD: "ethereum",
       SOLUSD: "solana",
-      BNBUSD: "binancecoin",
       XRPUSD: "ripple",
       ADAUSD: "cardano",
-      DOGEUSD: "dogecoin",
-      AVAXUSD: "avalanche-2",
-      LINKUSD: "chainlink",
-      TONUSD: "the-open-network"
+      DOGEUSD: "dogecoin"
     };
 
     const FUTURES_PROXY_MAP = {
-      ES:  { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       quoteSymbol: "SPY", note: "Using SPY as ES proxy." },
-      MES: { proxySymbol: "SPY",    assetClass: "stock",  chartSymbol: "AMEX:SPY",       quoteSymbol: "SPY", note: "Using SPY as MES proxy." },
-      NQ:  { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     quoteSymbol: "QQQ", note: "Using QQQ as NQ proxy." },
-      MNQ: { proxySymbol: "QQQ",    assetClass: "stock",  chartSymbol: "NASDAQ:QQQ",     quoteSymbol: "QQQ", note: "Using QQQ as MNQ proxy." },
-      YM:  { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       quoteSymbol: "DIA", note: "Using DIA as YM proxy." },
-      MYM: { proxySymbol: "DIA",    assetClass: "stock",  chartSymbol: "AMEX:DIA",       quoteSymbol: "DIA", note: "Using DIA as MYM proxy." },
-      GC:  { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   quoteSymbol: "XAUUSD", note: "Using XAUUSD as GC proxy." },
-      MGC: { proxySymbol: "XAUUSD", assetClass: "forex",  chartSymbol: "OANDA:XAUUSD",   quoteSymbol: "XAUUSD", note: "Using XAUUSD as MGC proxy." },
-      CL:  { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", quoteSymbol: "USOIL", note: "Using WTI proxy for CL." },
-      MCL: { proxySymbol: "USOIL",  assetClass: "forex",  chartSymbol: "OANDA:WTICOUSD", quoteSymbol: "USOIL", note: "Using WTI proxy for MCL." },
-      "6E": { proxySymbol: "EURUSD", assetClass: "forex", chartSymbol: "OANDA:EURUSD",   quoteSymbol: "EURUSD", note: "Using EURUSD as 6E proxy." },
-      "6J": { proxySymbol: "USDJPY", assetClass: "forex", chartSymbol: "OANDA:USDJPY",   quoteSymbol: "USDJPY", note: "Using USDJPY as 6J proxy." },
-      "6B": { proxySymbol: "GBPUSD", assetClass: "forex", chartSymbol: "OANDA:GBPUSD",   quoteSymbol: "GBPUSD", note: "Using GBPUSD as 6B proxy." }
+      ES:  { proxySymbol: "SPY", chartSymbol: "AMEX:SPY", quoteSymbol: "SPY", note: "Using SPY as ES proxy." },
+      MES: { proxySymbol: "SPY", chartSymbol: "AMEX:SPY", quoteSymbol: "SPY", note: "Using SPY as MES proxy." },
+      NQ:  { proxySymbol: "QQQ", chartSymbol: "NASDAQ:QQQ", quoteSymbol: "QQQ", note: "Using QQQ as NQ proxy." },
+      MNQ: { proxySymbol: "QQQ", chartSymbol: "NASDAQ:QQQ", quoteSymbol: "QQQ", note: "Using QQQ as MNQ proxy." },
+      YM:  { proxySymbol: "DIA", chartSymbol: "AMEX:DIA", quoteSymbol: "DIA", note: "Using DIA as YM proxy." },
+      MYM: { proxySymbol: "DIA", chartSymbol: "AMEX:DIA", quoteSymbol: "DIA", note: "Using DIA as MYM proxy." },
+      GC:  { proxySymbol: "XAUUSD", chartSymbol: "OANDA:XAUUSD", quoteSymbol: "XAUUSD", note: "Using XAUUSD as GC proxy." },
+      MGC: { proxySymbol: "XAUUSD", chartSymbol: "OANDA:XAUUSD", quoteSymbol: "XAUUSD", note: "Using XAUUSD as MGC proxy." },
+      CL:  { proxySymbol: "USOIL", chartSymbol: "OANDA:WTICOUSD", quoteSymbol: "USOIL", note: "Using WTI proxy for CL." },
+      MCL: { proxySymbol: "USOIL", chartSymbol: "OANDA:WTICOUSD", quoteSymbol: "USOIL", note: "Using WTI proxy for MCL." }
     };
 
     const DEFAULT_ASSETS = [
       {
-        id: makeId(),
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + "-a",
         symbol: "USDJPY",
         assetClass: "forex",
         priceSource: "manual",
@@ -920,7 +897,7 @@
         updatedAt: null
       },
       {
-        id: makeId(),
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + "-b",
         symbol: "BTCUSD",
         assetClass: "crypto",
         priceSource: "coingecko",
@@ -938,71 +915,66 @@
     ];
 
     const CLOCKS = [
-      { city: "New York",  tz: "America/New_York", label: "NYSE / Nasdaq", open: 9, close: 16 },
-      { city: "Chicago",   tz: "America/Chicago",  label: "CME", open: 8, close: 16 },
-      { city: "London",    tz: "Europe/London",    label: "LSE", open: 8, close: 16.5 },
-      { city: "Frankfurt", tz: "Europe/Berlin",    label: "Xetra", open: 9, close: 17.5 },
-      { city: "Tokyo",     tz: "Asia/Tokyo",       label: "TSE", open: 9, close: 15 },
-      { city: "Hong Kong", tz: "Asia/Hong_Kong",   label: "HKEX", open: 9.5, close: 16 }
+      { city: "New York", tz: "America/New_York", label: "NYSE / Nasdaq", open: 9, close: 16 },
+      { city: "Chicago", tz: "America/Chicago", label: "CME", open: 8, close: 16 },
+      { city: "London", tz: "Europe/London", label: "LSE", open: 8, close: 16.5 },
+      { city: "Frankfurt", tz: "Europe/Berlin", label: "Xetra", open: 9, close: 17.5 },
+      { city: "Tokyo", tz: "Asia/Tokyo", label: "TSE", open: 9, close: 15 },
+      { city: "Hong Kong", tz: "Asia/Hong_Kong", label: "HKEX", open: 9.5, close: 16 }
     ];
 
-    let GLOBALS = loadGlobals();
-    let SETTINGS = loadSettings();
-    let ASSETS = loadAssets();
+    const NEWS_INTEL_SOURCES = {
+      lynalden:{name:"Lyn Alden",score:86},
+      hedgeye:{name:"Hedgeye",score:81},
+      fxstreet:{name:"FXStreet",score:78},
+      investinglive:{name:"investingLive",score:77},
+      kobeissi:{name:"Kobeissi",score:69},
+      coinbureau:{name:"Coin Bureau",score:71},
+      realvision:{name:"Real Vision",score:74},
+      zerohedge:{name:"ZeroHedge",score:54},
+      cointelegraph:{name:"Cointelegraph",score:66}
+    };
+
+    let GLOBALS = loadJson("td_globals_v8", DEFAULT_GLOBALS);
+    let SETTINGS = loadJson("td_settings_v8", DEFAULT_SETTINGS);
+    let ASSETS = loadJson("td_assets_v8", DEFAULT_ASSETS);
+    let NEWS_INTEL_STORIES = [];
     let lastPriceRefresh = 0;
     let lastNewsRefresh = 0;
     let priceHealth = "Unknown";
     let newsHealth = "Unknown";
+    let clockElsBuilt = false;
 
-    function loadGlobals() {
-      const saved = localStorage.getItem("td_globals_v7");
-      if (!saved) return { ...DEFAULT_GLOBALS };
-      try { return { ...DEFAULT_GLOBALS, ...JSON.parse(saved) }; }
-      catch { return { ...DEFAULT_GLOBALS }; }
-    }
-
-    function loadSettings() {
-      const saved = localStorage.getItem("td_settings_v7");
-      if (!saved) return { ...DEFAULT_SETTINGS };
-      try { return { ...DEFAULT_SETTINGS, ...JSON.parse(saved) }; }
-      catch { return { ...DEFAULT_SETTINGS }; }
-    }
-
-    function loadAssets() {
-      const saved = localStorage.getItem("td_assets_v7");
-      if (!saved) return [...DEFAULT_ASSETS];
+    function loadJson(key, fallback) {
       try {
-        const parsed = JSON.parse(saved);
-        return parsed.length ? parsed : [...DEFAULT_ASSETS];
-      } catch {
-        return [...DEFAULT_ASSETS];
-      }
+        const raw = localStorage.getItem(key);
+        return raw ? { ...fallback, ...JSON.parse(raw) } : fallback;
+      } catch { return fallback; }
     }
 
-    function saveGlobals() {
-      localStorage.setItem("td_globals_v7", JSON.stringify(GLOBALS));
+    function saveGlobals(){ localStorage.setItem("td_globals_v8", JSON.stringify(GLOBALS)); }
+    function saveSettings(){ localStorage.setItem("td_settings_v8", JSON.stringify(SETTINGS)); }
+    function saveAssets(){ localStorage.setItem("td_assets_v8", JSON.stringify(ASSETS)); }
+
+    function safeParseNum(v) {
+      const n = parseFloat(v);
+      return Number.isFinite(n) ? n : null;
     }
 
-    function saveSettings() {
-      localStorage.setItem("td_settings_v7", JSON.stringify(SETTINGS));
-    }
-
-    function saveAssets() {
-      localStorage.setItem("td_assets_v7", JSON.stringify(ASSETS));
-    }
-
-    async function safeTextFetch(url, timeoutMs = 5000) {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), timeoutMs);
-      try {
-        const res = await fetch(url, { signal: controller.signal, cache: "no-store" });
-        clearTimeout(timer);
-        if (!res.ok) return null;
-        return await res.text();
-      } catch {
-        clearTimeout(timer);
-        return null;
-      }
+    function safeTextFetch(url, timeoutMs = 5000) {
+      return new Promise(async resolve => {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), timeoutMs);
+        try {
+          const res = await fetch(url, { signal: controller.signal, cache: "no-store" });
+          clearTimeout(timer);
+          if (!res.ok) return resolve(null);
+          resolve(await res.text());
+        } catch {
+          clearTimeout(timer);
+          resolve(null);
+        }
+      });
     }
 
     async function safeJsonFetch(url, timeoutMs = 5000) {
@@ -1012,32 +984,16 @@
     }
 
     function applySettingsToUI() {
-      if (SETTINGS.liteDefault) document.body.classList.add("lite");
-      else document.body.classList.remove("lite");
-
-      if (SETTINGS.gradientStyle === "blue") {
-        document.documentElement.style.setProperty("--panel-grad-1", "rgba(10,18,30,.82)");
-        document.documentElement.style.setProperty("--panel-grad-2", "rgba(6,12,22,.88)");
-        document.documentElement.style.setProperty("--panel-border", "rgba(103,232,249,.24)");
-      } else if (SETTINGS.gradientStyle === "cyan") {
-        document.documentElement.style.setProperty("--panel-grad-1", "rgba(8,24,34,.82)");
-        document.documentElement.style.setProperty("--panel-grad-2", "rgba(4,14,24,.88)");
-        document.documentElement.style.setProperty("--panel-border", "rgba(103,232,249,.32)");
-      } else if (SETTINGS.gradientStyle === "slate") {
-        document.documentElement.style.setProperty("--panel-grad-1", "rgba(18,18,24,.84)");
-        document.documentElement.style.setProperty("--panel-grad-2", "rgba(10,10,16,.88)");
-        document.documentElement.style.setProperty("--panel-border", "rgba(148,163,184,.22)");
-      } else {
-        document.documentElement.style.setProperty("--panel-grad-1", "rgba(10,14,20,.86)");
-        document.documentElement.style.setProperty("--panel-grad-2", "rgba(10,14,20,.86)");
-        document.documentElement.style.setProperty("--panel-border", "rgba(103,232,249,.14)");
-      }
+      document.documentElement.style.setProperty("--ui-scale", SETTINGS.fontScale || "1");
+      document.documentElement.style.setProperty("--panel-opacity", SETTINGS.panelOpacity ?? 0.78);
+      document.body.classList.toggle("lite", !!SETTINGS.liteDefault);
+      document.getElementById("toggleLiteBtn").textContent = document.body.classList.contains("lite") ? "Rich Mode" : "Lite Mode";
     }
 
     function populateGlobals() {
-      document.getElementById("finnhubToken").value = GLOBALS.finnhubToken;
-      document.getElementById("weeklyEvents").value = GLOBALS.weeklyEventsText;
-      document.getElementById("manualResultNotes").value = GLOBALS.manualResultNotes;
+      document.getElementById("finnhubToken").value = GLOBALS.finnhubToken || "";
+      document.getElementById("weeklyEvents").value = GLOBALS.weeklyEventsText || "";
+      document.getElementById("manualResultNotes").value = GLOBALS.manualResultNotes || "";
     }
 
     function readGlobals() {
@@ -1047,19 +1003,13 @@
       saveGlobals();
     }
 
-    function populateSettings() {
-      document.getElementById("settingOpacity").value = SETTINGS.panelOpacity;
-      document.getElementById("settingRefreshSeconds").value = String(SETTINGS.refreshSeconds);
-      document.getElementById("settingNewsSeconds").value = String(SETTINGS.newsSeconds);
-      document.getElementById("settingChartInterval").value = SETTINGS.chartInterval;
-      document.getElementById("settingGradientStyle").value = SETTINGS.gradientStyle;
-      document.getElementById("settingAutoPD").value = SETTINGS.autoPD ? "true" : "false";
-      document.getElementById("settingRefreshPD").value = SETTINGS.refreshPD ? "true" : "false";
-      document.getElementById("settingLiteDefault").value = SETTINGS.liteDefault ? "true" : "false";
-    }
-
     function openSettings() {
-      populateSettings();
+      document.getElementById("settingFontScale").value = SETTINGS.fontScale || "1";
+      document.getElementById("settingOpacity").value = SETTINGS.panelOpacity ?? 0.78;
+      document.getElementById("settingRefreshSeconds").value = SETTINGS.refreshSeconds || 60;
+      document.getElementById("settingNewsSeconds").value = SETTINGS.newsSeconds || 300;
+      document.getElementById("settingChartInterval").value = SETTINGS.chartInterval || "15";
+      document.getElementById("settingLiteDefault").value = SETTINGS.liteDefault ? "true" : "false";
       document.getElementById("settingsBackdrop").style.display = "flex";
     }
 
@@ -1068,13 +1018,11 @@
     }
 
     function saveSettingsFromModal() {
-      SETTINGS.panelOpacity = parseFloat(document.getElementById("settingOpacity").value || "0.68");
+      SETTINGS.fontScale = document.getElementById("settingFontScale").value || "1";
+      SETTINGS.panelOpacity = parseFloat(document.getElementById("settingOpacity").value || "0.78");
       SETTINGS.refreshSeconds = parseInt(document.getElementById("settingRefreshSeconds").value || "60", 10);
       SETTINGS.newsSeconds = parseInt(document.getElementById("settingNewsSeconds").value || "300", 10);
       SETTINGS.chartInterval = document.getElementById("settingChartInterval").value || "15";
-      SETTINGS.gradientStyle = document.getElementById("settingGradientStyle").value || "blue";
-      SETTINGS.autoPD = document.getElementById("settingAutoPD").value === "true";
-      SETTINGS.refreshPD = document.getElementById("settingRefreshPD").value === "true";
       SETTINGS.liteDefault = document.getElementById("settingLiteDefault").value === "true";
       saveSettings();
       applySettingsToUI();
@@ -1084,35 +1032,24 @@
 
     function toggleLiteMode() {
       document.body.classList.toggle("lite");
+      document.getElementById("toggleLiteBtn").textContent = document.body.classList.contains("lite") ? "Rich Mode" : "Lite Mode";
     }
 
     function getTimePartsForZone(timeZone) {
       const now = new Date();
       const formatter = new Intl.DateTimeFormat("en-US", {
-        timeZone,
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-        hour12: false
+        timeZone, year:"numeric", month:"numeric", day:"numeric",
+        hour:"numeric", minute:"numeric", second:"numeric", hour12:false
       });
       const parts = formatter.formatToParts(now);
       const out = {};
-      for (const p of parts) {
-        if (p.type !== "literal") out[p.type] = parseInt(p.value, 10);
-      }
+      for (const p of parts) if (p.type !== "literal") out[p.type] = parseInt(p.value, 10);
       return out;
     }
 
     function getTimeString(timeZone) {
       return new Intl.DateTimeFormat("en-US", {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false
+        timeZone, hour:"2-digit", minute:"2-digit", second:"2-digit", hour12:false
       }).format(new Date());
     }
 
@@ -1123,14 +1060,11 @@
       return "CLOSED";
     }
 
-    function renderClocks() {
+    function ensureClockCards() {
+      if (clockElsBuilt) return;
       const grid = document.getElementById("clockGrid");
       grid.innerHTML = "";
-      CLOCKS.forEach(c => {
-        const parts = getTimePartsForZone(c.tz);
-        const status = marketStatus(parts, c.open, c.close);
-        const cls = status === "OPEN" ? "open" : status === "PRE" ? "pre" : "closed";
-
+      CLOCKS.forEach((c, i) => {
         const card = document.createElement("div");
         card.className = "clock-card";
         card.innerHTML = `
@@ -1138,12 +1072,24 @@
             <div class="clock-city">${escapeHtml(c.city)}</div>
             <div class="clock-label">${escapeHtml(c.label)}</div>
           </div>
-          <div class="clock-time">${escapeHtml(getTimeString(c.tz))}</div>
-          <div class="clock-status ${cls}">
-            <span class="dot"></span>${escapeHtml(status)}
-          </div>
+          <div class="clock-time" id="clockTime${i}">--:--:--</div>
+          <div class="clock-status" id="clockStatus${i}"><span class="dot"></span>--</div>
         `;
         grid.appendChild(card);
+      });
+      clockElsBuilt = true;
+    }
+
+    function renderClocks() {
+      ensureClockCards();
+      CLOCKS.forEach((c, i) => {
+        const parts = getTimePartsForZone(c.tz);
+        const status = marketStatus(parts, c.open, c.close);
+        const cls = status === "OPEN" ? "open" : status === "PRE" ? "pre" : "closed";
+        document.getElementById(`clockTime${i}`).textContent = getTimeString(c.tz);
+        const statusEl = document.getElementById(`clockStatus${i}`);
+        statusEl.className = `clock-status ${cls}`;
+        statusEl.innerHTML = `<span class="dot"></span>${status}`;
       });
     }
 
@@ -1165,17 +1111,15 @@
       const isLondon = totalMinutes >= 180 && totalMinutes < 480;
       const isNY = totalMinutes >= 480 && totalMinutes < 1020;
       const isAsia = totalMinutes >= 1140 || totalMinutes < 180;
-
       let label = "Reset / Between Sessions";
       if (isLondon) label = "London Session";
       else if (isNY) label = "New York Session";
       else if (isAsia) label = "Asia Session";
-
       return { isLondon, isNY, isAsia, label };
     }
 
     function parseWeeklyEvents(text) {
-      const lines = text.split("\n").map(x => x.trim()).filter(Boolean);
+      const lines = String(text || "").split("\n").map(x => x.trim()).filter(Boolean);
       const events = [];
       for (const line of lines) {
         const parts = line.split("|");
@@ -1185,7 +1129,6 @@
         const [yy, mm, dd] = datePart.split("-").map(Number);
         const [hh, mi] = timePart.split(":").map(Number);
         if (![yy, mm, dd, hh, mi].every(Number.isFinite)) continue;
-
         events.push({
           name: parts[1].trim(),
           currency: parts[2] ? parts[2].trim().toUpperCase() : "",
@@ -1200,24 +1143,16 @@
     function getRedFolderStatus() {
       const now = getNYWallClockDate();
       const events = parseWeeklyEvents(GLOBALS.weeklyEventsText);
-
       const next24h = events.filter(e => {
         const diffMin = (e.date - now) / 60000;
         return diffMin >= 0 && diffMin <= 1440;
       });
-
       const week = events.filter(e => {
         const diffMin = (e.date - now) / 60000;
         return diffMin >= -10 && diffMin <= 10080;
       });
-
-      const today = events.filter(e => {
-        const y = e.dateText;
-        const p = getNYParts();
-        const todayText = `${p.year}-${String(p.month).padStart(2, "0")}-${String(p.day).padStart(2, "0")}`;
-        return y === todayText;
-      });
-
+      const todayText = `${getNYParts().year}-${String(getNYParts().month).padStart(2, "0")}-${String(getNYParts().day).padStart(2, "0")}`;
+      const today = events.filter(e => e.dateText === todayText);
       const releasedToday = today.filter(e => e.date <= now);
       return { next24h, week, today, releasedToday };
     }
@@ -1236,14 +1171,9 @@
       if (currency === "USD") {
         const uj = getAssetMovePct("USDJPY");
         const eu = getAssetMovePct("EURUSD");
-        const xau = getAssetMovePct("XAUUSD");
         if (uj !== null && eu !== null) {
           if (uj > 0 && eu < 0) return "USD bullish reaction";
           if (uj < 0 && eu > 0) return "USD bearish reaction";
-        }
-        if (xau !== null) {
-          if (xau < 0) return "Possible USD-firm / gold-soft reaction";
-          if (xau > 0) return "Possible USD-soft / gold-firm reaction";
         }
         return "Mixed / insufficient reaction data";
       }
@@ -1274,26 +1204,20 @@
         const e = next24h[0];
         const now = getNYWallClockDate();
         const diffSec = Math.floor((e.date - now) / 1000);
-
         badge.textContent = e.name;
-        badge.className = "ribbon-value glow-red";
-
         let statusText = "Inside the 24-hour window.";
         if (diffSec > 0) statusText = `Release in ${Math.floor(diffSec / 60)}m ${Math.abs(diffSec % 60)}s.`;
         else if (diffSec >= -600) statusText = "Resolution window active. Monitoring reaction.";
-
         const quickFeel = diffSec <= 0 ? inferResolutionBias(e.currency) : "Awaiting release.";
-
         nowBox.innerHTML = `
-          <div class="glow-red" style="font-weight:900;font-size:18px;">${escapeHtml(e.name)}</div>
+          <div style="font-weight:900;font-size:18px;">${escapeHtml(e.name)}</div>
           <div style="margin-top:6px;">${escapeHtml(e.dateText)} • ${escapeHtml(e.timeText)}${e.currency ? " • " + escapeHtml(e.currency) : ""}</div>
           <div class="muted" style="margin-top:8px;">${escapeHtml(statusText)}</div>
           <div style="margin-top:10px;"><span class="muted">Quick feel:</span> ${escapeHtml(quickFeel)}</div>
         `;
       } else {
         badge.textContent = "Clear";
-        badge.className = "ribbon-value glow-green";
-        nowBox.innerHTML = `<div class="glow-green" style="font-weight:900;">No red-folder event inside the next 24 hours.</div>`;
+        nowBox.innerHTML = `<div>No red-folder event inside the next 24 hours.</div>`;
       }
 
       weekBox.innerHTML = week.length ? "" : `<div class="muted">No weekly events listed.</div>`;
@@ -1327,7 +1251,7 @@
       if (releasedToday.length) {
         const latest = releasedToday[releasedToday.length - 1];
         resultBox.innerHTML = `
-          <div class="glow-cyan" style="font-weight:900;font-size:17px;">${escapeHtml(latest.name)}</div>
+          <div style="font-weight:900;font-size:17px;">${escapeHtml(latest.name)}</div>
           <div style="margin-top:8px;"><span class="muted">Reaction:</span> ${escapeHtml(inferResolutionBias(latest.currency))}</div>
           <div style="margin-top:8px;"><span class="muted">Manual notes:</span> ${escapeHtml(GLOBALS.manualResultNotes || "None entered.")}</div>
         `;
@@ -1339,24 +1263,14 @@
     function detectAssetClass(symbol) {
       if (CRYPTO_CG_MAP[symbol]) return "crypto";
       if (FUTURES_PROXY_MAP[symbol]) return "futures";
-      if (["EURUSD","GBPUSD","USDJPY","AUDUSD","NZDUSD","USDCHF","USDCAD","XAUUSD","XAGUSD","USOIL"].includes(symbol)) return "forex";
-      if (["SPY","QQQ","DIA"].includes(symbol)) return "stock";
+      if (["EURUSD","GBPUSD","USDJPY","AUDUSD","NZDUSD","USDCHF","USDCAD","XAUUSD","USOIL"].includes(symbol)) return "forex";
       return "forex";
     }
 
     function getChartSymbol(symbol, cls) {
-      if (cls === "crypto") {
-        const base = symbol.replace("USD", "");
-        return `BINANCE:${base}USDT`;
-      }
+      if (cls === "crypto") return `BINANCE:${symbol.replace("USD", "")}USDT`;
       if (cls === "forex") return `OANDA:${symbol}`;
-      if (cls === "stock") {
-        if (symbol === "SPY") return "AMEX:SPY";
-        if (symbol === "QQQ") return "NASDAQ:QQQ";
-        if (symbol === "DIA") return "AMEX:DIA";
-        return `NASDAQ:${symbol}`;
-      }
-      return `OANDA:${symbol}`;
+      return symbol;
     }
 
     function normalizeAsset(asset) {
@@ -1367,7 +1281,7 @@
           ...asset,
           symbol: raw,
           normalizedSymbol: fut.proxySymbol,
-          effectiveClass: fut.assetClass,
+          effectiveClass: "forex",
           chartSymbol: fut.chartSymbol,
           quoteSymbol: fut.quoteSymbol,
           proxyNote: fut.note
@@ -1387,12 +1301,11 @@
 
     async function fetchCryptoPrices(ids) {
       if (!ids.length) return {};
-      const uniqueIds = [...new Set(ids)].join(",");
-      const url = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent(uniqueIds)}&vs_currencies=usd`;
+      const url = `https://api.coingecko.com/api/v3/simple/price?ids=${encodeURIComponent([...new Set(ids)].join(","))}&vs_currencies=usd`;
       const data = await safeJsonFetch(url, 4500);
       if (!data) return {};
       const out = {};
-      Object.keys(data).forEach(id => { out[id] = data[id]?.usd; });
+      Object.keys(data).forEach(id => out[id] = data[id]?.usd);
       return out;
     }
 
@@ -1410,16 +1323,11 @@
       const data = await safeJsonFetch(proxy, 5000);
       const result = data?.chart?.result?.[0];
       const quote = result?.indicators?.quote?.[0];
-      const timestamps = result?.timestamp || [];
       const highs = quote?.high || [];
       const lows = quote?.low || [];
-      if (!timestamps.length || !highs.length || !lows.length) return null;
-
       const usable = [];
-      for (let i = 0; i < timestamps.length; i++) {
-        if (typeof highs[i] === "number" && typeof lows[i] === "number") {
-          usable.push({ high: highs[i], low: lows[i] });
-        }
+      for (let i = 0; i < highs.length; i++) {
+        if (typeof highs[i] === "number" && typeof lows[i] === "number") usable.push({ high: highs[i], low: lows[i] });
       }
       if (!usable.length) return null;
       const pick = usable.length >= 2 ? usable[usable.length - 2] : usable[usable.length - 1];
@@ -1429,7 +1337,7 @@
     async function refreshPDHPDLForAsset(asset) {
       const n = normalizeAsset(asset);
       const yahoo = await fetchYahooPDHPDL(n.quoteSymbol);
-      if (yahoo && Number.isFinite(yahoo.high) && Number.isFinite(yahoo.low)) {
+      if (yahoo) {
         asset.pdh = yahoo.high;
         asset.pdl = yahoo.low;
       }
@@ -1452,14 +1360,7 @@
           const px = cgId ? cgPrices[cgId] : null;
           if (typeof px === "number" && px > 0) {
             liveCount++;
-            return {
-              ...asset,
-              previousPrice: asset.currentPrice,
-              currentPrice: px,
-              lastSource: "CoinGecko",
-              priceStatus: "Live",
-              updatedAt: Date.now()
-            };
+            return { ...asset, previousPrice: asset.currentPrice, currentPrice: px, lastSource: "CoinGecko", priceStatus: "Live", updatedAt: Date.now() };
           }
           fallbackCount++;
           return { ...asset, lastSource: "Manual", priceStatus: "Fallback" };
@@ -1470,19 +1371,11 @@
       for (let i = 0; i < ASSETS.length; i++) {
         const asset = ASSETS[i];
         const n = normalizeAsset(asset);
-
         if ((asset.priceSource === "auto" || asset.priceSource === "finnhub") && n.effectiveClass !== "crypto" && GLOBALS.finnhubToken) {
           const px = await fetchFinnhubQuote(n.quoteSymbol);
           if (typeof px === "number" && px > 0) {
             liveCount++;
-            ASSETS[i] = {
-              ...ASSETS[i],
-              previousPrice: ASSETS[i].currentPrice,
-              currentPrice: px,
-              lastSource: "Finnhub",
-              priceStatus: "Live",
-              updatedAt: Date.now()
-            };
+            ASSETS[i] = { ...ASSETS[i], previousPrice: ASSETS[i].currentPrice, currentPrice: px, lastSource: "Finnhub", priceStatus: "Live", updatedAt: Date.now() };
           } else {
             fallbackCount++;
             ASSETS[i] = { ...ASSETS[i], lastSource: "Manual", priceStatus: "Fallback" };
@@ -1495,39 +1388,21 @@
         }
       }
 
-      if (SETTINGS.autoPD) {
-        for (let i = 0; i < ASSETS.length; i++) {
-          if (!ASSETS[i].pdh || !ASSETS[i].pdl) {
-            ASSETS[i] = await refreshPDHPDLForAsset(ASSETS[i]);
-          }
-        }
-      }
-
       priceHealth = liveCount > 0 ? (fallbackCount > 0 ? "Partial Live" : "Live") : "Fallback / Manual";
       saveAssets();
       lastPriceRefresh = Date.now();
     }
 
     async function autofillPDHPDLForNewSymbol(symbol) {
-      const mapped = normalizeAsset({
-        symbol,
-        assetClass: "auto",
-        currentPrice: 0,
-        previousPrice: 0,
-        pdh: 0,
-        pdl: 0,
-        retestBuffer: 0.03
-      });
+      const mapped = normalizeAsset({ symbol, assetClass: "auto" });
       const yahoo = await fetchYahooPDHPDL(mapped.quoteSymbol);
-      if (yahoo) return yahoo;
-      return { high: 0, low: 0 };
+      return yahoo || { high: null, low: null };
     }
 
     function evaluateAsset(asset) {
       const a = normalizeAsset(asset);
       const nowParts = getNYParts();
       const session = getSessionState(nowParts);
-
       const price = Number(a.currentPrice);
       const prev = Number(a.previousPrice);
       const pdh = Number(a.pdh);
@@ -1541,119 +1416,83 @@
 
       let setupModel = "None";
       let bias = "Range";
-      let biasColor = "glow-amber";
-      let marketState = "Inside Range";
-      let reason = "Price is still inside PDH/PDL.";
-      let plan = "Wait for expansion or clear high/low failure.";
+      let verdict = "WAIT";
+      let verdictColor = "mid";
       let entryZone = "-";
       let invalidation = "-";
       let target1 = "-";
       let target2 = "-";
-      let actionable = false;
+      let reason = "Price is inside PDH/PDL.";
+      let plan = "Wait for expansion or clear high/low failure.";
 
       if (price > pdh) {
         setupModel = "Expansion";
         bias = "Bullish Confirmed";
-        biasColor = "glow-green";
-        marketState = "Above PDH";
-        reason = "Expansion model: price is above PDH.";
-        plan = nearPDH ? `Watch for PDH hold at ${formatPrice(pdh)}.` : `Wait for pullback toward ${formatPrice(pdh)}.`;
+        verdict = nearPDH ? "TRADE" : "WAIT";
+        verdictColor = nearPDH ? "high" : "mid";
         entryZone = `${formatPrice(pdh - buffer)} - ${formatPrice(pdh + buffer)}`;
         invalidation = formatPrice(pdh - buffer - 0.02);
         target1 = formatPrice(pdh + 0.20);
         target2 = formatPrice(pdh + 0.40);
-        actionable = nearPDH;
+        reason = "Expansion model above PDH.";
+        plan = nearPDH ? "Watch for PDH hold." : "Wait for pullback.";
       } else if (price < pdl) {
         setupModel = "Expansion";
         bias = "Bearish Confirmed";
-        biasColor = "glow-red";
-        marketState = "Below PDL";
-        reason = "Expansion model: price is below PDL.";
-        plan = nearPDL ? `Watch for PDL rejection at ${formatPrice(pdl)}.` : `Wait for rally toward ${formatPrice(pdl)}.`;
+        verdict = nearPDL ? "TRADE" : "WAIT";
+        verdictColor = nearPDL ? "high" : "mid";
         entryZone = `${formatPrice(pdl - buffer)} - ${formatPrice(pdl + buffer)}`;
         invalidation = formatPrice(pdl + buffer + 0.02);
         target1 = formatPrice(pdl - 0.20);
         target2 = formatPrice(pdl - 0.40);
-        actionable = nearPDL;
+        reason = "Expansion model below PDL.";
+        plan = nearPDL ? "Watch for PDL rejection." : "Wait for rally.";
       } else if (failedHigh) {
         setupModel = "High/Low Failure";
         bias = "High Failure";
-        biasColor = "glow-red";
-        marketState = "Failed Above PDH";
-        reason = "Failure model: price failed above PDH and returned inside range.";
-        plan = `Short bias while price stays back below ${formatPrice(pdh)}.`;
+        verdict = "TRADE";
+        verdictColor = "high";
         entryZone = `${formatPrice(pdh - buffer)} - ${formatPrice(pdh)}`;
         invalidation = formatPrice(pdh + buffer);
         target1 = formatPrice((pdh + pdl) / 2);
         target2 = formatPrice(pdl);
-        actionable = true;
+        reason = "Failed breakout above PDH.";
+        plan = "Short while back below PDH.";
       } else if (failedLow) {
         setupModel = "High/Low Failure";
         bias = "Low Failure";
-        biasColor = "glow-green";
-        marketState = "Failed Below PDL";
-        reason = "Failure model: price failed below PDL and returned inside range.";
-        plan = `Long bias while price stays back above ${formatPrice(pdl)}.`;
+        verdict = "TRADE";
+        verdictColor = "high";
         entryZone = `${formatPrice(pdl)} - ${formatPrice(pdl + buffer)}`;
         invalidation = formatPrice(pdl - buffer);
         target1 = formatPrice((pdh + pdl) / 2);
         target2 = formatPrice(pdh);
-        actionable = true;
+        reason = "Failed breakdown below PDL.";
+        plan = "Long while back above PDL.";
+      } else {
+        verdict = "NO TRADE";
+        verdictColor = "low";
       }
-
-      let verdict = "WAIT";
-      let verdictColor = "glow-amber";
-      let riskNote = "Normal conditions.";
-
-      const { next24h } = getRedFolderStatus();
-      if (next24h.length) riskNote = "A red-folder event is within 24 hours. Use extra caution.";
 
       if (!(session.isLondon || session.isNY)) {
         verdict = "NO TRADE";
-        verdictColor = "glow-red";
-        riskNote = "Outside primary execution session.";
-      } else if (setupModel === "None") {
-        verdict = "NO TRADE";
-        verdictColor = "glow-red";
-      } else if (actionable) {
-        verdict = "TRADE";
-        verdictColor = "glow-green";
+        verdictColor = "low";
       }
 
-      return {
-        ...a,
-        price,
-        pdh,
-        pdl,
-        setupModel,
-        bias,
-        biasColor,
-        marketState,
-        reason,
-        plan,
-        entryZone,
-        invalidation,
-        target1,
-        target2,
-        verdict,
-        verdictColor,
-        riskNote,
-        sessionLabel: session.label
-      };
+      return { ...a, price, pdh, pdl, setupModel, bias, verdict, verdictColor, entryZone, invalidation, target1, target2, reason, plan, sessionLabel: session.label };
     }
 
     function computeBias() {
       const evals = ASSETS.map(a => evaluateAsset(a));
       const longs = evals.filter(e => e.bias.includes("Bullish") || e.bias.includes("Low Failure")).length;
       const shorts = evals.filter(e => e.bias.includes("Bearish") || e.bias.includes("High Failure")).length;
-      if (longs > shorts) return { text: "Risk-On", cls: "glow-green" };
-      if (shorts > longs) return { text: "Risk-Off", cls: "glow-red" };
-      return { text: "Mixed", cls: "glow-amber" };
+      if (longs > shorts) return { text: "Risk-On" };
+      if (shorts > longs) return { text: "Risk-Off" };
+      return { text: "Mixed" };
     }
 
     function renderStatusRibbon() {
-      const nowParts = getNYParts();
-      const session = getSessionState(nowParts);
+      const session = getSessionState(getNYParts());
       document.getElementById("currentSession").textContent = session.label;
 
       const evals = ASSETS.map(a => evaluateAsset(a));
@@ -1667,11 +1506,7 @@
         <span class="state-chip">No Trade: ${noTrades}</span>
       `;
 
-      const bias = computeBias();
-      const biasBadge = document.getElementById("biasBadge");
-      biasBadge.textContent = bias.text;
-      biasBadge.className = `ribbon-value ${bias.cls}`;
-
+      document.getElementById("biasBadge").textContent = computeBias().text;
       document.getElementById("priceStatus").textContent = priceHealth;
       document.getElementById("newsStatus").textContent = newsHealth;
       document.getElementById("lastRefreshStatus").textContent = lastPriceRefresh ? new Date(lastPriceRefresh).toLocaleTimeString() : "-";
@@ -1679,10 +1514,8 @@
 
     function renderSummary() {
       const summary = document.getElementById("summary");
-      const results = ASSETS.map(a => evaluateAsset(a)).sort((a, b) => {
-        const rank = { TRADE: 0, WAIT: 1, "NO TRADE": 2 };
-        return rank[a.verdict] - rank[b.verdict];
-      });
+      const rank = { TRADE: 0, WAIT: 1, "NO TRADE": 2 };
+      const results = ASSETS.map(a => evaluateAsset(a)).sort((a, b) => rank[a.verdict] - rank[b.verdict]);
 
       if (!results.length) {
         summary.innerHTML = `<div class="muted">No assets in watchlist.</div>`;
@@ -1703,24 +1536,19 @@
             <div class="summary-verdict ${r.verdictColor}">${escapeHtml(r.verdict)}</div>
           </div>
         `;
-        row.addEventListener("click", () => toggleAsset(r.id));
+        row.onclick = () => toggleAsset(r.id);
         summary.appendChild(row);
       });
     }
 
     function renderAssets() {
       const grid = document.getElementById("assetGrid");
+      const rank = { TRADE: 0, WAIT: 1, "NO TRADE": 2 };
+      const sorted = [...ASSETS].sort((a, b) => rank[evaluateAsset(a).verdict] - rank[evaluateAsset(b).verdict]);
       grid.innerHTML = "";
-
-      const sorted = [...ASSETS].sort((a, b) => {
-        const rank = { TRADE: 0, WAIT: 1, "NO TRADE": 2 };
-        return rank[evaluateAsset(a).verdict] - rank[evaluateAsset(b).verdict];
-      });
 
       sorted.forEach(asset => {
         const r = evaluateAsset(asset);
-        const chartInterval = SETTINGS.chartInterval || "15";
-
         const card = document.createElement("div");
         card.className = "asset-card";
         card.innerHTML = `
@@ -1730,112 +1558,37 @@
                 <strong>${escapeHtml(r.symbol)}</strong>
                 <span class="pill ${r.verdict === "TRADE" ? "pill-trade" : r.verdict === "WAIT" ? "pill-wait" : "pill-no"}">${escapeHtml(r.verdict)}</span>
               </div>
-              <div class="asset-bias ${r.biasColor}">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
+              <div class="asset-bias">${escapeHtml(r.bias)} • ${escapeHtml(r.setupModel)}</div>
               <div class="asset-meta">Price: ${formatPrice(r.price)} • Source: ${escapeHtml(asset.lastSource || "Manual")} • Status: ${escapeHtml(asset.priceStatus || "Manual")} • Updated: ${escapeHtml(formatTs(asset.updatedAt))}</div>
             </div>
             <div class="asset-expand">${asset.expanded ? "−" : "+"}</div>
           </button>
-
           <div class="${asset.expanded ? "asset-body" : "asset-body hidden"}">
             ${r.proxyNote ? `<div class="proxy-note">${escapeHtml(r.proxyNote)}</div>` : ""}
-
             <div class="mini-grid-4">
               <div class="info-box"><div class="info-label">Current</div><div class="info-value">${formatPrice(asset.currentPrice)}</div></div>
               <div class="info-box"><div class="info-label">Previous</div><div class="info-value">${formatPrice(asset.previousPrice)}</div></div>
               <div class="info-box"><div class="info-label">PDH</div><div class="info-value">${formatPrice(asset.pdh)}</div></div>
               <div class="info-box"><div class="info-label">PDL</div><div class="info-value">${formatPrice(asset.pdl)}</div></div>
             </div>
-
             <div class="mini-grid-2">
-              <div class="info-box"><div class="info-label">Market State</div><div class="info-value">${escapeHtml(r.marketState)}</div></div>
               <div class="info-box"><div class="info-label">Session</div><div class="info-value">${escapeHtml(r.sessionLabel)}</div></div>
               <div class="info-box"><div class="info-label">Entry Zone</div><div class="info-value">${escapeHtml(r.entryZone)}</div></div>
               <div class="info-box"><div class="info-label">Invalidation</div><div class="info-value">${escapeHtml(r.invalidation)}</div></div>
               <div class="info-box"><div class="info-label">Target 1</div><div class="info-value">${escapeHtml(r.target1)}</div></div>
-              <div class="info-box"><div class="info-label">Target 2</div><div class="info-value">${escapeHtml(r.target2)}</div></div>
             </div>
-
             <div class="note-box">
               <div><span class="muted">Reason:</span> ${escapeHtml(r.reason)}</div>
               <div style="margin-top:6px;"><span class="muted">Plan:</span> ${escapeHtml(r.plan)}</div>
-              <div style="margin-top:6px;"><span class="muted">Risk Note:</span> ${escapeHtml(r.riskNote)}</div>
             </div>
-
             <div class="chart-frame">
-              <iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(r.chartSymbol)}&interval=${encodeURIComponent(chartInterval)}&theme=dark&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&style=1&timezone=Etc%2FUTC&withdateranges=1&hidevolume=1&allow_symbol_change=0"></iframe>
-            </div>
-
-            <div class="note-box">
-              <div class="title" style="margin-bottom:8px;">Edit Asset</div>
-              <div class="form-grid">
-                <div>
-                  <label class="field-label">Symbol</label>
-                  <input data-id="${asset.id}" data-field="symbol" value="${escapeHtml(asset.symbol)}" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">Asset Class</label>
-                  <select data-id="${asset.id}" data-field="assetClass" class="asset-input hud-select">
-                    <option value="auto" ${asset.assetClass === "auto" ? "selected" : ""}>Auto Detect</option>
-                    <option value="forex" ${asset.assetClass === "forex" ? "selected" : ""}>Forex</option>
-                    <option value="crypto" ${asset.assetClass === "crypto" ? "selected" : ""}>Crypto</option>
-                    <option value="futures" ${asset.assetClass === "futures" ? "selected" : ""}>Futures</option>
-                    <option value="stock" ${asset.assetClass === "stock" ? "selected" : ""}>Stock</option>
-                    <option value="index" ${asset.assetClass === "index" ? "selected" : ""}>Index</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="field-label">Price Source</label>
-                  <select data-id="${asset.id}" data-field="priceSource" class="asset-input hud-select">
-                    <option value="auto" ${asset.priceSource === "auto" ? "selected" : ""}>Auto</option>
-                    <option value="manual" ${asset.priceSource === "manual" ? "selected" : ""}>Manual</option>
-                    <option value="finnhub" ${asset.priceSource === "finnhub" ? "selected" : ""}>Finnhub</option>
-                    <option value="coingecko" ${asset.priceSource === "coingecko" ? "selected" : ""}>CoinGecko</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="field-label">Current</label>
-                  <input data-id="${asset.id}" data-field="currentPrice" value="${asset.currentPrice ?? ""}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">Previous</label>
-                  <input data-id="${asset.id}" data-field="previousPrice" value="${asset.previousPrice ?? ""}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">PDH</label>
-                  <input data-id="${asset.id}" data-field="pdh" value="${asset.pdh ?? ""}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">PDL</label>
-                  <input data-id="${asset.id}" data-field="pdl" value="${asset.pdl ?? ""}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-                <div>
-                  <label class="field-label">Retest Buffer</label>
-                  <input data-id="${asset.id}" data-field="retestBuffer" value="${asset.retestBuffer ?? ""}" type="number" step="0.001" class="asset-input hud-input">
-                </div>
-              </div>
-
-              <div class="actions" style="margin-top:12px;">
-                <button class="save-asset-btn btn green" data-id="${asset.id}">Save Asset</button>
-                <button class="copy-prev-btn btn" data-id="${asset.id}">Copy Current → Previous</button>
-                <button class="auto-pd-btn btn amber" data-id="${asset.id}">Auto PDH/PDL</button>
-                <button class="delete-asset-btn btn red" data-id="${asset.id}">Delete Asset</button>
-              </div>
+              <iframe src="https://s.tradingview.com/widgetembed/?symbol=${encodeURIComponent(r.chartSymbol)}&interval=${encodeURIComponent(SETTINGS.chartInterval)}&theme=dark&hidesidetoolbar=1&hidetoptoolbar=1&symboledit=0&saveimage=0&style=1&timezone=Etc%2FUTC&withdateranges=1&hidevolume=1&allow_symbol_change=0"></iframe>
             </div>
           </div>
         `;
-
-        card.querySelector(".asset-head").addEventListener("click", () => toggleAsset(asset.id));
+        card.querySelector(".asset-head").onclick = () => toggleAsset(asset.id);
         grid.appendChild(card);
       });
-
-      attachAssetButtons();
-    }
-
-    function attachAssetButtons() {
-      document.querySelectorAll(".save-asset-btn").forEach(btn => btn.addEventListener("click", () => saveSingleAsset(btn.dataset.id)));
-      document.querySelectorAll(".copy-prev-btn").forEach(btn => btn.addEventListener("click", () => copyCurrentToPrevious(btn.dataset.id)));
-      document.querySelectorAll(".auto-pd-btn").forEach(btn => btn.addEventListener("click", async () => autoPDForAsset(btn.dataset.id)));
-      document.querySelectorAll(".delete-asset-btn").forEach(btn => btn.addEventListener("click", () => deleteAsset(btn.dataset.id)));
     }
 
     function toggleAsset(id) {
@@ -1844,69 +1597,30 @@
       renderAll();
     }
 
-    function saveSingleAsset(id) {
-      const inputs = document.querySelectorAll(`.asset-input[data-id="${id}"]`);
-      const updated = {};
-      inputs.forEach(input => {
-        const field = input.dataset.field;
-        if (["symbol","assetClass","priceSource"].includes(field)) updated[field] = input.value.toUpperCase ? input.value.toUpperCase() : input.value;
-        else updated[field] = input.value === "" ? null : parseFloat(input.value);
-      });
-      ASSETS = ASSETS.map(a => a.id === id ? { ...a, ...updated } : a);
-      saveAssets();
-      renderAll();
-    }
-
-    function copyCurrentToPrevious(id) {
-      ASSETS = ASSETS.map(a => a.id === id ? { ...a, previousPrice: a.currentPrice } : a);
-      saveAssets();
-      renderAll();
-    }
-
-    async function autoPDForAsset(id) {
-      const idx = ASSETS.findIndex(a => a.id === id);
-      if (idx === -1) return;
-      ASSETS[idx] = await refreshPDHPDLForAsset(ASSETS[idx]);
-      saveAssets();
-      renderAll();
-    }
-
-    function deleteAsset(id) {
-      ASSETS = ASSETS.filter(a => a.id !== id);
-      saveAssets();
-      renderAll();
-    }
-
     async function addAsset() {
       const symbol = document.getElementById("newSymbol").value.trim().toUpperCase();
+      if (!symbol) return;
       const assetClass = document.getElementById("newAssetClass").value;
       const priceSource = document.getElementById("newPriceSource").value;
-      let pdh = parseFloat(document.getElementById("newPDH").value);
-      let pdl = parseFloat(document.getElementById("newPDL").value);
-      const currentPrice = parseFloat(document.getElementById("newCurrentPrice").value || "0");
-      const previousPrice = parseFloat(document.getElementById("newPreviousPrice").value || "0");
-      const retestBuffer = parseFloat(document.getElementById("newRetestBuffer").value || "0.03");
+      let pdh = safeParseNum(document.getElementById("newPDH").value);
+      let pdl = safeParseNum(document.getElementById("newPDL").value);
 
-      if (!symbol) return;
-
-      if ((!Number.isFinite(pdh) || !Number.isFinite(pdl)) && SETTINGS.autoPD) {
-        const yahoo = await autofillPDHPDLForNewSymbol(symbol);
-        if (Number.isFinite(yahoo.high) && Number.isFinite(yahoo.low) && yahoo.high > 0 && yahoo.low > 0) {
-          pdh = yahoo.high;
-          pdl = yahoo.low;
-        }
+      if ((!pdh || !pdl)) {
+        const autoPD = await autofillPDHPDLForNewSymbol(symbol);
+        if (!pdh) pdh = autoPD.high;
+        if (!pdl) pdl = autoPD.low;
       }
 
       ASSETS.push({
-        id: makeId(),
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
         symbol,
         assetClass,
         priceSource,
-        currentPrice: Number.isFinite(currentPrice) ? currentPrice : null,
-        previousPrice: Number.isFinite(previousPrice) ? previousPrice : (Number.isFinite(currentPrice) ? currentPrice : null),
-        pdh: Number.isFinite(pdh) ? pdh : null,
-        pdl: Number.isFinite(pdl) ? pdl : null,
-        retestBuffer,
+        currentPrice: safeParseNum(document.getElementById("newCurrentPrice").value),
+        previousPrice: safeParseNum(document.getElementById("newPreviousPrice").value),
+        pdh,
+        pdl,
+        retestBuffer: safeParseNum(document.getElementById("newRetestBuffer").value) ?? 0.03,
         expanded: true,
         autoPrice: priceSource !== "manual",
         lastSource: priceSource === "manual" ? "Manual" : "Pending",
@@ -1915,88 +1629,127 @@
       });
 
       saveAssets();
-      clearNewAssetForm();
-      await refreshPrices();
-      renderAll();
-    }
-
-    function clearNewAssetForm() {
       document.getElementById("newSymbol").value = "";
-      document.getElementById("newAssetClass").value = "auto";
-      document.getElementById("newPriceSource").value = "auto";
       document.getElementById("newPDH").value = "";
       document.getElementById("newPDL").value = "";
       document.getElementById("newCurrentPrice").value = "";
       document.getElementById("newPreviousPrice").value = "";
       document.getElementById("newRetestBuffer").value = "";
+      await refreshPrices();
+      renderAll();
     }
 
     function scoreHeadline(title, label, watchSymbols) {
-      const t = (title || "").toLowerCase();
+      const t = String(title || "").toLowerCase();
       let score = 0;
-      const keys = ["cpi","inflation","fed","fomc","rates","yield","yields","jobs","nfp","recession","treasury","dollar","boj","ecb","bitcoin","etf","oil","gold","crypto","liquidity","bank","tariff","pce","ppi","hawkish","dovish"];
+      const keys = ["cpi","inflation","fed","fomc","rates","yield","jobs","nfp","pce","ppi","bitcoin","crypto","gold","oil","treasury"];
       keys.forEach(k => { if (t.includes(k)) score += 3; });
       watchSymbols.forEach(sym => {
         const base = sym.toLowerCase().replace("usd", "");
         if (base && t.includes(base)) score += 1;
       });
-      if (["Coin Bureau","Cointelegraph"].includes(label) && watchSymbols.some(sym => CRYPTO_CG_MAP[sym])) score += 2;
-      if (["surge","crash","plunge","spike"].some(k => t.includes(k))) score += 2;
+      if (["surge","crash","spike","plunge"].some(k => t.includes(k))) score += 2;
       return score;
     }
 
-    function addNewsItem(container, label, title, link, quality) {
-      const item = document.createElement("div");
-      item.className = "news-item";
-      item.innerHTML = `<a href="${link}" target="_blank">${escapeHtml(label)} (${escapeHtml(quality)}): ${escapeHtml(title)}</a>`;
-      container.appendChild(item);
+    function newsIntelScoreStory(s) {
+      let base = 50;
+      const ageMin = (Date.now() - s.time) / 60000;
+      if (ageMin < 5) base += 20;
+      else if (ageMin < 30) base += 10;
+      else if (ageMin > 180) base -= 10;
+      if ((s.summary || "").length > 20) base += 10;
+      if (s.red) base += 20;
+      return Math.max(0, Math.min(100, Math.round(base)));
     }
 
-    async function loadBestRssItem(feedUrl, label, watchSymbols) {
+    function newsIntelFinalScore(s) {
+      const src = NEWS_INTEL_SOURCES[s.source]?.score || 50;
+      const story = newsIntelScoreStory(s);
+      return Math.round(src * 0.45 + story * 0.55);
+    }
+
+    function renderNewsIntel() {
+      const root = document.getElementById("news-intel-root");
+      const ranked = NEWS_INTEL_STORIES
+        .map(s => ({ ...s, storyScore: newsIntelScoreStory(s), final: newsIntelFinalScore(s) }))
+        .sort((a, b) => b.final - a.final);
+
+      const storiesHTML = ranked.map(s => {
+        const cls = s.final >= 80 ? "high" : s.final >= 60 ? "mid" : "low";
+        const sourceName = NEWS_INTEL_SOURCES[s.source]?.name || s.source;
+        const minsAgo = Math.max(0, Math.round((Date.now() - s.time) / 60000));
+        return `
+          <div class="story">
+            <div class="story-title">${s.link ? `<a href="${s.link}" target="_blank" style="color:#e8edf5;text-decoration:none;">${escapeHtml(s.title)}</a>` : escapeHtml(s.title)}</div>
+            <div class="story-meta">${escapeHtml(sourceName)} • ${minsAgo}m ago</div>
+            <div>${escapeHtml(s.summary || "")}</div>
+            <div class="score ${cls}">Final: ${s.final} | Source: ${NEWS_INTEL_SOURCES[s.source]?.score || 50} | Story: ${s.storyScore}</div>
+          </div>
+        `;
+      }).join("");
+
+      const leaderboard = Object.values(NEWS_INTEL_SOURCES)
+        .sort((a,b) => b.score - a.score)
+        .map((s,i) => `<tr><td>${i+1}</td><td>${escapeHtml(s.name)}</td><td>${s.score}</td></tr>`)
+        .join("");
+
+      root.innerHTML = `
+        <div class="news-intel-wrap">
+          <div class="news-panel">
+            <div class="news-header">
+              <div>
+                <div class="news-title">News Intel</div>
+                <div class="news-sub">Ranked stories</div>
+              </div>
+            </div>
+            <div>${storiesHTML || '<div class="muted">No ranked stories yet.</div>'}</div>
+          </div>
+          <div class="news-panel">
+            <div class="news-header">
+              <div>
+                <div class="news-title">Source Leaderboard</div>
+                <div class="news-sub">Reliability scores</div>
+              </div>
+            </div>
+            <table class="table">${leaderboard}</table>
+          </div>
+        </div>
+      `;
+    }
+
+    async function loadBestRssItem(feedUrl, sourceKey, watchSymbols) {
       const url = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feedUrl);
       const data = await safeJsonFetch(url, 5000);
       if (!data?.items?.length) return null;
-      const ranked = [...data.items].sort((a, b) => scoreHeadline(b.title, label, watchSymbols) - scoreHeadline(a.title, label, watchSymbols));
-      return { label, title: ranked[0].title, link: ranked[0].link, quality: "direct feed" };
+      const sourceName = NEWS_INTEL_SOURCES[sourceKey]?.name || sourceKey;
+      const ranked = [...data.items].sort((a, b) => scoreHeadline(b.title, sourceName, watchSymbols) - scoreHeadline(a.title, sourceName, watchSymbols));
+      return { label: sourceName, sourceKey, title: ranked[0].title, link: ranked[0].link };
     }
 
     async function loadBestCoinBureauItem(watchSymbols) {
       const proxiedUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://coinbureau.com/");
       const html = await safeTextFetch(proxiedUrl, 5000);
       if (!html) return null;
-
       try {
         const doc = new DOMParser().parseFromString(html, "text/html");
         const anchors = Array.from(doc.querySelectorAll("a[href]"));
-        const candidates = [];
-        const seen = new Set();
-
-        for (const a of anchors) {
-          const href = a.getAttribute("href") || "";
-          const text = (a.textContent || "").replace(/\s+/g, " ").trim();
-          const ok = href.includes("coinbureau.com/") && !href.includes("/about") && !href.includes("/contact") && !href.includes("/careers") && !href.includes("/newsletter") && !href.includes("#") && text.length > 20;
-          if (!ok || seen.has(href)) continue;
-          seen.add(href);
-          candidates.push({ title: text, link: href });
-        }
+        const candidates = anchors
+          .map(a => ({ href: a.getAttribute("href") || "", text: (a.textContent || "").replace(/\s+/g, " ").trim() }))
+          .filter(x => x.href.includes("coinbureau.com/") && x.text.length > 20);
 
         if (!candidates.length) return null;
-        candidates.sort((a, b) => scoreHeadline(b.title, "Coin Bureau", watchSymbols) - scoreHeadline(a.title, "Coin Bureau", watchSymbols));
-        return { label: "Coin Bureau", title: candidates[0].title, link: candidates[0].link, quality: "scraped" };
-      } catch {
-        return null;
-      }
+        candidates.sort((a, b) => scoreHeadline(b.text, "Coin Bureau", watchSymbols) - scoreHeadline(a.text, "Coin Bureau", watchSymbols));
+        return { label: "Coin Bureau", sourceKey: "coinbureau", title: candidates[0].text, link: candidates[0].href };
+      } catch { return null; }
     }
 
     async function renderNews() {
-      const news = document.getElementById("news");
-      news.innerHTML = "";
       const watchSymbols = ASSETS.map(a => (a.symbol || "").toUpperCase());
-
       const results = await Promise.allSettled([
-        loadBestRssItem("https://feeds.feedburner.com/zerohedge/feed", "ZeroHedge", watchSymbols),
-        loadBestRssItem("https://www.fxstreet.com/rss/news", "FXStreet", watchSymbols),
-        loadBestRssItem("https://cointelegraph.com/rss", "Cointelegraph", watchSymbols),
+        loadBestRssItem("https://feeds.feedburner.com/zerohedge/feed", "zerohedge", watchSymbols),
+        loadBestRssItem("https://www.fxstreet.com/rss/news", "fxstreet", watchSymbols),
+        loadBestRssItem("https://cointelegraph.com/rss", "cointelegraph", watchSymbols),
         loadBestCoinBureauItem(watchSymbols)
       ]);
 
@@ -2004,63 +1757,44 @@
 
       if (!items.length) {
         newsHealth = "Fallback";
-        [
-          ["ZeroHedge","https://www.zerohedge.com/"],
-          ["FXStreet","https://www.fxstreet.com/news"],
-          ["Coin Bureau","https://coinbureau.com/"],
-          ["Cointelegraph","https://cointelegraph.com/"]
-        ].forEach(([label, link]) => addNewsItem(news, label, "Open site", link, "fallback link"));
+        NEWS_INTEL_STORIES = [
+          { source:"fxstreet", title:"Open FXStreet", summary:"Direct site fallback.", time:Date.now()-60000, red:false, link:"https://www.fxstreet.com/news" },
+          { source:"coinbureau", title:"Open Coin Bureau", summary:"Direct site fallback.", time:Date.now()-120000, red:false, link:"https://coinbureau.com/" },
+          { source:"zerohedge", title:"Open ZeroHedge", summary:"Direct site fallback.", time:Date.now()-180000, red:false, link:"https://www.zerohedge.com/" }
+        ];
+        renderNewsIntel();
         lastNewsRefresh = Date.now();
         return;
       }
 
       newsHealth = "Live";
-      items.forEach(item => addNewsItem(news, item.label, item.title, item.link, item.quality));
-      lastNewsRefresh = Date.now();
-    }
+      NEWS_INTEL_STORIES = items.map(item => {
+        const t = item.title.toLowerCase();
+        let summary = "High-impact market story.";
+        if (t.includes("cpi") || t.includes("inflation")) summary = "Inflation-sensitive release with direct USD and rates implications.";
+        else if (t.includes("fed") || t.includes("fomc") || t.includes("rates")) summary = "Central-bank/rates theme with broad cross-asset implications.";
+        else if (t.includes("bitcoin") || t.includes("crypto") || t.includes("etf")) summary = "Crypto-sensitive development with potential risk sentiment effects.";
+        else if (t.includes("oil")) summary = "Energy-sensitive development with inflation and commodity implications.";
+        else if (t.includes("gold")) summary = "Gold-sensitive development tied to USD / yields / risk tone.";
 
-    async function maybeReleaseRefresh() {
-      const { next24h } = getRedFolderStatus();
-      if (!next24h.length) return;
-      const event = next24h[0];
-      const now = Date.now();
-      const eventMs = event.date.getTime();
-      if (now >= eventMs - 10000 && now <= eventMs + 120000) {
-        await refreshPrices();
-        await renderNews();
-        renderAll();
-      }
+        return {
+          source: item.sourceKey || item.label.toLowerCase(),
+          title: item.title,
+          summary,
+          time: Date.now() - 120000,
+          red: /cpi|inflation|fed|fomc|nfp|jobs|rates|pce|ppi/i.test(item.title || ""),
+          link: item.link
+        };
+      });
+
+      renderNewsIntel();
+      lastNewsRefresh = Date.now();
     }
 
     async function manualRefresh() {
       readGlobals();
-
-      if (SETTINGS.refreshPD) {
-        for (let i = 0; i < ASSETS.length; i++) {
-          ASSETS[i] = await refreshPDHPDLForAsset(ASSETS[i]);
-        }
-        saveAssets();
-      }
-
       await Promise.allSettled([refreshPrices(), renderNews()]);
       renderAll();
-    }
-
-    async function monitorLoop() {
-      renderClocks();
-      renderStatusRibbon();
-      renderRedFolder();
-      await maybeReleaseRefresh();
-
-      const now = Date.now();
-      if (now - lastPriceRefresh > SETTINGS.refreshSeconds * 1000) {
-        await refreshPrices();
-        renderAll();
-      }
-      if (now - lastNewsRefresh > SETTINGS.newsSeconds * 1000) {
-        await renderNews();
-        renderStatusRibbon();
-      }
     }
 
     function renderAll() {
@@ -2071,31 +1805,40 @@
       renderAssets();
     }
 
-    document.getElementById("refreshBtn").addEventListener("click", manualRefresh);
-    document.getElementById("saveGlobalsBtn").addEventListener("click", () => { readGlobals(); renderRedFolder(); });
-    document.getElementById("toggleLiteBtn").addEventListener("click", toggleLiteMode);
-    document.getElementById("openSettingsBtn").addEventListener("click", openSettings);
-    document.getElementById("closeSettingsBtn").addEventListener("click", closeSettings);
-    document.getElementById("saveSettingsBtn").addEventListener("click", saveSettingsFromModal);
-    document.getElementById("settingsBackdrop").addEventListener("click", e => {
-      if (e.target.id === "settingsBackdrop") closeSettings();
-    });
-    document.getElementById("addAssetBtn").addEventListener("click", addAsset);
-    document.getElementById("resetAssetsBtn").addEventListener("click", async () => {
-      ASSETS = [...DEFAULT_ASSETS];
+    document.getElementById("refreshBtn").onclick = manualRefresh;
+    document.getElementById("saveGlobalsBtn").onclick = () => { readGlobals(); renderRedFolder(); };
+    document.getElementById("toggleLiteBtn").onclick = toggleLiteMode;
+    document.getElementById("openSettingsBtn").onclick = openSettings;
+    document.getElementById("closeSettingsBtn").onclick = closeSettings;
+    document.getElementById("saveSettingsBtn").onclick = saveSettingsFromModal;
+    document.getElementById("settingsBackdrop").onclick = e => { if (e.target.id === "settingsBackdrop") closeSettings(); };
+    document.getElementById("addAssetBtn").onclick = addAsset;
+    document.getElementById("resetAssetsBtn").onclick = async () => {
+      ASSETS = JSON.parse(JSON.stringify(DEFAULT_ASSETS));
       saveAssets();
       await Promise.allSettled([refreshPrices(), renderNews()]);
       renderAll();
-    });
+    };
 
     (async function init() {
       applySettingsToUI();
       populateGlobals();
+      renderClocks();
+      renderNewsIntel();
       renderAll();
       await Promise.allSettled([refreshPrices(), renderNews()]);
       renderAll();
       setInterval(renderClocks, 1000);
-      setInterval(monitorLoop, 10000);
+      setInterval(renderStatusRibbon, 15000);
+      setInterval(renderRedFolder, 15000);
+      setInterval(async () => {
+        await refreshPrices();
+        renderAll();
+      }, (SETTINGS.refreshSeconds || 60) * 1000);
+      setInterval(async () => {
+        await renderNews();
+        renderStatusRibbon();
+      }, (SETTINGS.newsSeconds || 300) * 1000);
     })();
   </script>
 </body>
