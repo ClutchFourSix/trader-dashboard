@@ -1,6 +1,60 @@
 {
-  "generated_at": "2026-03-20T14:31:43.611Z",
+  "generated_at": "2026-03-20T17:11:36.539Z",
   "stories": [
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Gold set for third weekly loss as 'higher-for-longer' interest rate outlook weigh",
+      "url": "https://www.fxstreet.com/news/gold-remains-under-pressure-as-global-interest-rate-outlook-weighs-on-demand-202603201219",
+      "summary": "Gold (XAU/USD) extends losses on Friday following a sharp two-day decline that pushed prices to their lowest level since early February, near the $4,500 mark.",
+      "published_at": "2026-03-20T16:47:22.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Dow Jones Industrial Average slides as Iran war, hawkish Fed drive fourth losing week",
+      "url": "https://www.fxstreet.com/news/dow-jones-industrial-average-slides-as-iran-war-hawkish-fed-drive-fourth-losing-week-202603201633",
+      "summary": "The Dow Jones Industrial Average tumbled around 257 points, or 0.6%, on Friday as all three major US indices tracked toward a fourth consecutive losing week. The S&amp;P 500 fell 0.8%, while the Nasdaq Composite underperformed with a decline of 1.2%.",
+      "published_at": "2026-03-20T16:33:17.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "EUR/USD Price Forecast: Pair struggles below 1.1600 as sellers maintain control",
+      "url": "https://www.fxstreet.com/news/eur-usd-price-forecast-struggles-below-11600-as-sellers-maintain-control-202603201611",
+      "summary": "EUR/USD trades with a mild downside bias on Friday as a modest rebound in the US Dollar (USD) weighs on the Euro (EUR), with price action lacking follow-through buying after failing to sustain a break above the 1.1600 mark.",
+      "published_at": "2026-03-20T16:11:58.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "GBP/USD trips down below 1.3350 as Oil surges, Fed outlook boosts US Dollar",
+      "url": "https://www.fxstreet.com/news/gbp-usd-trips-down-below-13350-as-oil-surges-fed-outlook-boosts-usd-202603201548",
+      "summary": "GBP/USD trims some of its previous-day gains on Friday, down by 0.84%, as traders turn risk-averse amid an escalation of the Middle East war and price in no rate cuts by the Federal Reserve (Fed) in 2026. At the time of writing, the pair trades below 1.3350 after hitting a daily ",
+      "published_at": "2026-03-20T15:48:31.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "AUD/USD falls as geopolitical tensions overshadow RBA rate hike",
+      "url": "https://www.fxstreet.com/news/aud-usd-falls-as-geopolitical-tensions-overshadow-rba-rate-hike-202603201524",
+      "summary": "AUD/USD trades lower around 0.7040 on Friday at the time of writing, down 0.68% on the day, as the pair is pressured by a return of safe-haven demand despite supportive domestic factors in Australia.",
+      "published_at": "2026-03-20T15:24:15.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "USD/CAD rebounds as weak Canadian Retail Sales and firmer USD weigh on Loonie",
+      "url": "https://www.fxstreet.com/news/usd-cad-rebounds-as-weak-canadian-retail-sales-and-firmer-usd-weigh-on-loonie-202603201504",
+      "summary": "USD/CAD recovers from intraday lows on Friday as softer-than-expected Canadian Retail Sales data weighs on the Canadian Dollar (CAD), while a rebound in the US Dollar (USD) provides additional support to the pair.",
+      "published_at": "2026-03-20T15:04:37.000Z"
+    },
     {
       "source": "fxstreet",
       "source_name": "FXStreet",
@@ -18,15 +72,6 @@
       "url": "https://www.fxstreet.com/news/us-sends-thousands-of-marines-and-three-warships-to-middle-east-wsj-202603201404",
       "summary": "Citing officials, the Wall Street Journal reported on Friday that the Pentagon is sending roughly \"2,200 to 2,500 Marines from the California-based USS Boxer amphibious ready group and 11th Marine Expeditionary Unit,\" to the Middle East, alongside three warships.",
       "published_at": "2026-03-20T14:04:07.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Gold remains under pressure as global interest rate outlook weighs on demand",
-      "url": "https://www.fxstreet.com/news/gold-remains-under-pressure-as-global-interest-rate-outlook-weighs-on-demand-202603201219",
-      "summary": "Gold (XAU/USD) remains on the defensive on Friday following a sharp two-day decline that pushed prices to their lowest level since early February, near the $4,500 mark.",
-      "published_at": "2026-03-20T13:55:41.000Z"
     },
     {
       "source": "fxstreet",
@@ -137,58 +182,40 @@
       "published_at": "2026-03-20T10:08:29.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "EUR/USD: Conflict keeps downside risks in play – MUFG",
-      "url": "https://www.fxstreet.com/news/eur-usd-conflict-keeps-downside-risks-in-play-mufg-202603200949",
-      "summary": "According to MUFG’s Derek Halpenny, the ECB’s communication and achievement of its price stability goal leave it in a relatively better position than the BoE, but he is sceptical that higher front-end Euro yields will sustain Euro strength.",
-      "published_at": "2026-03-20T09:49:21.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Silver price today: Silver rises, according to FXStreet data",
-      "url": "https://www.fxstreet.com/news/silver-price-today-silver-rises-according-to-fxstreet-data-202603200930",
-      "summary": "Silver prices (XAG/USD) rose on Friday, according to FXStreet data. Silver trades at $73.17 per troy ounce, up 0.45% from the $72.84 it cost on Thursday.",
-      "published_at": "2026-03-20T09:30:48.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Scope for Dollar to extend gains further – MUFG",
-      "url": "https://www.fxstreet.com/news/scope-for-dollar-to-extend-gains-further-mufg-202603200859",
-      "summary": "MUFG’s Derek Halpenny notes that the recent retracement in Brent has eased immediate upward pressure on the Dollar, but he doubts the move will last given ongoing Middle East tensions and constrained supply.",
-      "published_at": "2026-03-20T08:59:37.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "GBP/USD: BoE hawkish tilt underpins Pound – ING",
-      "url": "https://www.fxstreet.com/news/gbp-usd-boe-hawkish-tilt-underpins-pound-ing-202603200853",
-      "summary": "ING’s Francesco Pesole notes that the Bank of England surprised markets with a unanimous hold and strong guidance that it is ready to act against any inflation spike. Markets added substantial tightening by year-end, though ING views this as too aggressive.",
-      "published_at": "2026-03-20T08:53:09.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Eurozone: ECB caution and hawkish risk – DBS",
-      "url": "https://www.fxstreet.com/news/eurozone-ecb-caution-and-hawkish-risk-dbs-202603200851",
-      "summary": "DBS Group Research economist Radhika Rao notes that the ECB kept rates unchanged but highlighted spillover risks from geopolitical tensions, with updated projections showing higher Eurozone inflation and weaker growth.",
-      "published_at": "2026-03-20T08:51:39.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "'Radical' Biden Judge Reverses RFK Jr. On Trans-Child Surgeries, Other Procedures",
+      "url": "https://www.zerohedge.com/medical/radical-biden-judge-reverses-rfk-jr-trans-child-surgeries-other-procedures",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;'Radical' Biden Judge Reverses RFK Jr. On Trans-Child Surgeries, Other Procedures&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name",
+      "published_at": "2026-03-20T15:40:00.000Z"
     },
     {
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
-      "title": "Oil Rises As Three More Warships, Thousands Of Marines Dispatched To Mideast; Trump Blasts 'Paper Tiger' NATO",
-      "url": "https://www.zerohedge.com/geopolitical/hormuz-showdown-begins-us-warplanes-apaches-launch-sea-lane-offensive-trump-eyes-high",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Oil Rises As Three More Warships, Thousands Of Marines Dispatched To Mideast; Trump Blasts 'Paper Tiger' NATO&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text",
-      "published_at": "2026-03-20T14:00:00.000Z"
+      "title": "JPMorgan Activates BTC &amp; ETH As Institutional Collateral",
+      "url": "https://www.zerohedge.com/crypto/jpmorgan-activates-btc-eth-institutional-collateral",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;JPMorgan Activates BTC &amp; ETH As Institutional Collateral&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-tex",
+      "published_at": "2026-03-20T15:25:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Bond Markets Are Beginning To Panic Over Inflation",
+      "url": "https://www.zerohedge.com/markets/bond-markets-are-beginning-panic-over-inflation",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Bond Markets Are Beginning To Panic Over Inflation&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-sum",
+      "published_at": "2026-03-20T14:40:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "IEA Chief Warns Gulf Flows May Take Six Months To Restore After Biggest-Ever Energy Shock",
+      "url": "https://www.zerohedge.com/energy/iea-chief-warns-biggest-ever-energy-shock-gulf-flows-may-take-six-months-restore",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;IEA Chief Warns Gulf Flows May Take Six Months To Restore After Biggest-Ever Energy Shock&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field fie",
+      "published_at": "2026-03-20T14:20:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -197,6 +224,15 @@
       "title": "California Moves To Rename Cesar Chavez Day Before March 31 Holiday",
       "url": "https://www.zerohedge.com/political/california-moves-rename-cesar-chavez-day-march-31-holiday",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;California Moves To Rename Cesar Chavez Day Before March 31 Holiday&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--t",
+      "published_at": "2026-03-20T14:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Oil Rises As Three More Warships, Thousands Of Marines Dispatched To Mideast; Trump Blasts 'Paper Tiger' NATO",
+      "url": "https://www.zerohedge.com/geopolitical/hormuz-showdown-begins-us-warplanes-apaches-launch-sea-lane-offensive-trump-eyes-high",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Oil Rises As Three More Warships, Thousands Of Marines Dispatched To Mideast; Trump Blasts 'Paper Tiger' NATO&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text",
       "published_at": "2026-03-20T14:00:00.000Z"
     },
     {
@@ -326,40 +362,22 @@
       "published_at": "2026-03-20T06:00:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Out Of The BDC, Into The CLO: World's Largest Private Credit Fund Repacking Loans As Bonds Hoping To Find New Investors",
-      "url": "https://www.zerohedge.com/markets/out-bdc-clo-worlds-largest-private-credit-fund-repacking-loans-bonds-hoping-find-new",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Out Of The BDC, Into The CLO: World's Largest Private Credit Fund Repacking Loans As Bonds Hoping To Find New Investors&lt;/span&gt; &lt;div property=\"schema:text\" class=\"cle",
-      "published_at": "2026-03-20T04:55:57.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Market analyst sees further Bitcoin downside, flags $60K as key level",
+      "url": "<![CDATA[https://cointelegraph.com/news/rastani-further-bitcoin-downside-60k-key-level?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "In the latest Cointelegraph interview, professional trader Alessio Rastani warns that Bitcoin could fall below $60,000 before a meaningful bottom forms.",
+      "published_at": "2026-03-20T16:25:20.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "The Ultimate Race Hoax",
-      "url": "https://www.zerohedge.com/political/ultimate-race-hoax",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The Ultimate Race Hoax&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden fie",
-      "published_at": "2026-03-20T03:30:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Pakistan Outraged At Being Called An Emerging Missile Threat To US By DNI Gabbard",
-      "url": "https://www.zerohedge.com/geopolitical/pakistan-outraged-being-called-emerging-missile-threat-us-dni-gabbard",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Pakistan Outraged At Being Called An Emerging Missile Threat To US By DNI Gabbard&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name",
-      "published_at": "2026-03-20T03:05:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Why Is Australia Not Already Rationing Fuel?",
-      "url": "https://www.zerohedge.com/energy/why-australia-not-already-rationing-fuel",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Why Is Australia Not Already Rationing Fuel?&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary f",
-      "published_at": "2026-03-20T02:40:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "What happens to Bitcoin if oil price hits $180 per barrel?",
+      "url": "<![CDATA[https://cointelegraph.com/news/what-happens-to-bitcoin-if-oil-price-hits-180-per-barrel?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "A 70% oil spike could nearly double US inflation, slash rate-cut hopes, and deepen downside risks for Bitcoin prices in the coming months.",
+      "published_at": "2026-03-20T15:53:33.000Z"
     },
     {
       "source": "cointelegraph",
@@ -392,9 +410,9 @@
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
-      "title": "Bitcoin RSI eyes 2022 repeat as analysis suggests 'time to pay attention'",
+      "title": "Bitcoin RSI signals potential bottom as analysts flag key setup",
       "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-rsi-eyes-2022-repeat-analysis-time-to-pay-attention?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Bitcoin RSI signals approached a key moment as analysis said that a higher low was needed next to allow bullish BTC price continuation.",
+      "summary": "Bitcoin’s RSI is nearing a key level, with analysts saying a higher low is needed to support a potential continuation in BTC price.",
       "published_at": "2026-03-20T13:43:55.000Z"
     },
     {
@@ -432,24 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/coinbase-expands-24-7-stock-derivatives-venue?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Coinbase has launched stock perpetual futures for non-US traders, expanding its push to offer round-the-clock access to multiple asset classes.",
       "published_at": "2026-03-20T11:57:05.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Ripple survey finds 72% of finance leaders see digital assets as essential",
-      "url": "<![CDATA[https://cointelegraph.com/news/ripple-survey-72-finance-leaders-digital-assets-key?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Stablecoins and custody lead adoption priorities, with firms focusing on how to build or source digital asset infrastructure.",
-      "published_at": "2026-03-20T11:22:28.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "South Korea tax agency seeks private crypto custodian after security lapses",
-      "url": "<![CDATA[https://cointelegraph.com/news/south-korea-tax-agency-private-crypto-custody-seed-phrase-leak?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "South Korea’s tax agency is seeking a private custodian for seized crypto after a wallet seed phrase leak exposed government-held assets.",
-      "published_at": "2026-03-20T10:47:45.000Z"
     }
   ]
 }
