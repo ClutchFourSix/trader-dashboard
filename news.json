@@ -1,6 +1,15 @@
 {
-  "generated_at": "2026-03-20T20:59:06.855Z",
+  "generated_at": "2026-03-20T21:56:37.162Z",
   "stories": [
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Banxico seen holding rates at 7% amid war-driven inflation risks",
+      "url": "https://www.fxstreet.com/news/banxico-seen-holding-rates-at-7-amid-war-driven-inflation-risks-202603201928",
+      "summary": "A Reuters poll revealed that the Bank of Mexico, also known as Banxico, is expected to keep interest rates steady at 7% at the March 26 meeting amid concerns about the Middle East war.",
+      "published_at": "2026-03-20T21:02:12.000Z"
+    },
     {
       "source": "fxstreet",
       "source_name": "FXStreet",
@@ -18,15 +27,6 @@
       "url": "https://www.fxstreet.com/news/gold-slips-near-4-500-as-oil-rally-and-us-yields-weigh-on-bullion-202603201928",
       "summary": "Gold (XAU/USD) price extended on Friday its losses for the eighth straight day, poised to end the week down by more than 8.50% as Oil prices continued to rally, boosting the haven appeal of the Greenback.",
       "published_at": "2026-03-20T19:28:41.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Banxico seen holding rates at 7% amid war-driven inflation risks",
-      "url": "https://www.fxstreet.com/news/banxico-seen-holding-rates-at-7-amid-war-driven-inflation-risks-202603201928",
-      "summary": "A Reuters poll revealed that the Bank of Mexico — also known as Banxico for its Spanish acronym — is expected to keep interest rates steady at 7% at the March 26 meeting amid concerns about the Middle East war.",
-      "published_at": "2026-03-20T19:28:16.000Z"
     },
     {
       "source": "fxstreet",
@@ -185,6 +185,51 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "What 122 Universal Basic Income Experiments Actually Show",
+      "url": "https://www.zerohedge.com/political/what-122-universal-basic-income-experiments-actually-show",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;What 122 Universal Basic Income Experiments Actually Show&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-w",
+      "published_at": "2026-03-20T21:15:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Legendary Midwest Fast-Food Icon Spirals Into Bankruptcy",
+      "url": "https://www.zerohedge.com/economics/legendary-chicago-fast-food-icon-spirals-bankruptcy",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Legendary Midwest Fast-Food Icon Spirals Into Bankruptcy&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-wi",
+      "published_at": "2026-03-20T20:50:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "\"I Think We've Won\" Trump Says As Iran Refuses Hormuz Talks, Houthis Threaten Red Sea Strait",
+      "url": "https://www.zerohedge.com/geopolitical/hormuz-showdown-begins-us-warplanes-apaches-launch-sea-lane-offensive-trump-eyes-high",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"I Think We've Won\" Trump Says As Iran Refuses Hormuz Talks, Houthis Threaten Red Sea Strait&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field ",
+      "published_at": "2026-03-20T20:30:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "And Then The World Changed...",
+      "url": "https://www.zerohedge.com/political/and-then-world-changed",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;And Then The World Changed...&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hid",
+      "published_at": "2026-03-20T20:25:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Putin Reportedly Offers To Cut Iran Intel-Sharing If US Does Same In Ukraine",
+      "url": "https://www.zerohedge.com/geopolitical/putin-reportedly-offers-cut-iran-intel-sharing-if-us-does-same-ukraine",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Putin Reportedly Offers To Cut Iran Intel-Sharing If US Does Same In Ukraine&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body",
+      "published_at": "2026-03-20T19:45:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "'TRUMP AMERICA AI Act' Repeals Section 230, Expands Liability, &amp; Establishes Centralized Federal Control Over AI Systems",
       "url": "https://www.zerohedge.com/political/trump-america-ai-act-repeals-section-230-expands-liability-and-establishes-centralized",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;'TRUMP AMERICA AI Act' Repeals Section 230, Expands Liability, &amp; Establishes Centralized Federal Control Over AI Systems&lt;/span&gt; &lt;div property=\"schema:text\" class",
@@ -198,15 +243,6 @@
       "url": "https://www.zerohedge.com/technology/will-chinese-robot-maker-unitrees-shanghai-ipo-spark-humanoid-investing-bubble",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Will Chinese Robot Maker Unitree's Shanghai IPO Spark A Humanoid-Investing Bubble&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name",
       "published_at": "2026-03-20T18:25:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Chokepoint Madness: Iran Refuses Hormuz Talks As Houthis Threaten Red Sea Strait",
-      "url": "https://www.zerohedge.com/geopolitical/hormuz-showdown-begins-us-warplanes-apaches-launch-sea-lane-offensive-trump-eyes-high",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Chokepoint Madness: Iran Refuses Hormuz Talks As Houthis Threaten Red Sea Strait&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-",
-      "published_at": "2026-03-20T17:48:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -326,40 +362,22 @@
       "published_at": "2026-03-20T12:05:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Israel Vows No More Strikes On Iranian Energy Assets After South Pars Hit Sparks Lasting Shock",
-      "url": "https://www.zerohedge.com/energy/israel-vows-no-more-strikes-iranian-energy-assets-after-south-pars-hit-sparks-last-shock",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Israel Vows No More Strikes On Iranian Energy Assets After South Pars Hit Sparks Lasting Shock&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted fiel",
-      "published_at": "2026-03-20T11:20:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Rumors emerge of a CLARITY Act deal between White House and lawmakers",
+      "url": "<![CDATA[https://cointelegraph.com/news/clarity-act-deal-white-house-lawmakers?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "The deal reportedly focuses on stablecoin yield and interest-bearing stable tokens, a major pain point for the banking industry.",
+      "published_at": "2026-03-20T21:31:14.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "New York Governor Begs Wealthy Taxpayers To Stop Leaving The State",
-      "url": "https://www.zerohedge.com/economics/new-york-governor-begs-wealthy-taxpayers-stop-leaving-state",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;New York Governor Begs Wealthy Taxpayers To Stop Leaving The State&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--ty",
-      "published_at": "2026-03-20T10:55:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "How To Transport Next-Gen Nuclear Fuel Safely? NANO Nuclear Hits Key Milestone",
-      "url": "https://www.zerohedge.com/political/how-transport-next-gen-nuclear-fuel-safely-nano-nuclear-hits-key-milestone",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;How To Transport Next-Gen Nuclear Fuel Safely? NANO Nuclear Hits Key Milestone&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-bo",
-      "published_at": "2026-03-20T10:30:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Netanyahu Declares Iran's Nuclear Program &amp; Missile Production \"Destroyed\" - Denies Israel Influenced Trump",
-      "url": "https://www.zerohedge.com/geopolitical/trump-threatens-blow-worlds-largest-gas-field-distances-us-israeli-actions-macron",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Netanyahu Declares Iran's Nuclear Program &amp; Missile Production \"Destroyed\" - Denies Israel Influenced Trump&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix te",
-      "published_at": "2026-03-20T10:00:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Bitcoin price aims to hold $70K amid rising inflation concerns",
+      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-price-aims-to-hold-70k-amid-rising-inflation-concerns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Bitcoin searches for equilibrium at $70,000 while rising crude oil prices and tanking stock markets have investors worried over the future of inflation in the US.",
+      "published_at": "2026-03-20T20:56:20.000Z"
     },
     {
       "source": "cointelegraph",
@@ -432,24 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/rastani-further-bitcoin-downside-60k-key-level?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "In the latest Cointelegraph interview, professional trader Alessio Rastani warns that Bitcoin could fall below $60,000 before a meaningful bottom forms.",
       "published_at": "2026-03-20T16:25:20.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "What happens to Bitcoin if oil price hits $180 per barrel?",
-      "url": "<![CDATA[https://cointelegraph.com/news/what-happens-to-bitcoin-if-oil-price-hits-180-per-barrel?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "A 70% oil spike could nearly double US inflation, slash rate-cut hopes, and deepen downside risks for Bitcoin prices in the coming months.",
-      "published_at": "2026-03-20T15:53:33.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "BitFuFu cuts self-mined Bitcoin in 2025, shifts focus to cloud mining",
-      "url": "<![CDATA[https://cointelegraph.com/news/bitfufu-self-mined-bitcoin-down-cloud-mining-shift?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Bitcoin miner BitFuFu decreased its revenue from self-hosted mining operations by 60% in 2025 in a push to cloud mining.",
-      "published_at": "2026-03-20T14:03:10.000Z"
     }
   ]
 }
