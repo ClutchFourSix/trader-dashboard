@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-03-20T14:20:00Z",
+  "stories": [
+    {
+      "source": "lynalden",
+      "source_name": "Lyn Alden",
+      "source_score": 86,
+      "title": "Why Most Cryptocurrencies Won’t Accrue Value",
+      "url": "https://www.lynalden.com/why-most-cryptocurrencies-wont-accrue-value/",
+      "summary": "Lyn Alden argues that while she remains bullish on bitcoin, most other cryptocurrencies are unlikely to accrue durable long-term value.",
+      "published_at": "2025-12-15T12:00:00Z"
+    },
+    {
+      "source": "lynalden",
+      "source_name": "Lyn Alden",
+      "source_score": 86,
+      "title": "The Rise of Bitcoin Stocks and Bonds",
+      "url": "https://www.lynalden.com/the-rise-of-bitcoin-stocks-and-bonds/",
+      "summary": "An overview of how bitcoin treasury strategies and related capital-market instruments are reshaping the broader Bitcoin ecosystem.",
+      "published_at": "2025-07-15T12:00:00Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Gold price surges after weak US payrolls shake US Dollar",
+      "url": "https://www.fxstreet.com/news/gold-price-surges-after-weak-us-payrolls-shake-us-dollar-202603061735",
+      "summary": "Gold climbed after a weaker-than-expected US jobs report boosted Fed easing bets and pressured the dollar while risk aversion increased.",
+      "published_at": "2026-03-06T17:35:56Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "GBP/USD rises as US Supreme Court blocks Trump's tariffs",
+      "url": "https://www.fxstreet.com/news/gbp-usd-rises-as-us-supreme-court-blocks-trump-tariffs-202602201710",
+      "summary": "Sterling strengthened after a US Supreme Court decision on tariffs dented the dollar, even as traders weighed softer GDP and hotter core PCE data.",
+      "published_at": "2026-02-20T17:10:47Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Private Credit Just Turned Into Public Panic",
+      "url": "https://www.zerohedge.com/news/2026-03-06/private-credit-just-turned-public-panic",
+      "summary": "A ZeroHedge contributor argues that redemption stress at large private credit funds could trigger broader investor panic and worsen liquidity mismatches.",
+      "published_at": "2026-03-06T17:45:00Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "BlackRock Slashes Private Loan Value From 100 To 0",
+      "url": "https://www.zerohedge.com/markets/blackrock-slashes-private-loan-value-100-0",
+      "summary": "ZeroHedge reports that BlackRock marked a private loan to zero, highlighting growing strain and valuation risk in private credit markets.",
+      "published_at": "2026-03-05T14:00:00Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Illicit stablecoin activity hit 5-year high of $141B in 2025: TRM Labs",
+      "url": "https://cointelegraph.com/news/illicit-stablecoin-activity-hits-five-year-high-at-141b-trm-labs",
+      "summary": "TRM Labs says illicit entities received roughly $141 billion via stablecoins in 2025, the highest level in five years for that channel.",
+      "published_at": "2026-02-20T12:00:00Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "AI-enabled scams rose 500% in 2025 as crypto theft goes industrial",
+      "url": "https://cointelegraph.com/news/ai-enabled-crypto-scams-rise-500-percent",
+      "summary": "TRM Labs says large language models sharply amplified scam operations in 2025 as fraudsters industrialized crypto-enabled theft.",
+      "published_at": "2026-01-29T12:00:00Z"
+    },
+    {
+      "source": "coinbureau",
+      "source_name": "Coin Bureau",
+      "source_score": 71,
+      "title": "Bitcoin Could Be Entering a New Macro Regime",
+      "url": "https://coinbureau.com/analysis/bitcoin-could-be-entering-a-new-macro-regime/",
+      "summary": "A Coin Bureau analysis examines whether macro policy shifts and liquidity conditions are setting up a fresh Bitcoin regime change.",
+      "published_at": "2026-03-03T15:00:00Z"
+    },
+    {
+      "source": "coinbureau",
+      "source_name": "Coin Bureau",
+      "source_score": 71,
+      "title": "Stablecoins, Rates and the Next Crypto Liquidity Cycle",
+      "url": "https://coinbureau.com/analysis/stablecoins-rates-and-the-next-crypto-liquidity-cycle/",
+      "summary": "Coin Bureau reviews how rates, stablecoin growth and global liquidity could influence the next phase of crypto-market expansion.",
+      "published_at": "2026-02-27T16:00:00Z"
+    }
+  ]
+}
