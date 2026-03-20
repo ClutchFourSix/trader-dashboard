@@ -1,6 +1,96 @@
 {
-  "generated_at": "2026-03-20T11:49:11.492Z",
+  "generated_at": "2026-03-20T14:31:43.611Z",
   "stories": [
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Federal Reserve: Higher-for-longer stance maintained – Nordea",
+      "url": "https://www.fxstreet.com/news/federal-reserve-higher-for-longer-stance-maintained-nordea-202603201411",
+      "summary": "Nordea’s Sara Midtgaard reports that the Federal Reserve left its policy rate unchanged and signalled only gradual easing, with one 25 bp cut projected in both 2026 and 2027.",
+      "published_at": "2026-03-20T14:11:04.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "US sends thousands of Marines and three warships to Middle East – WSJ",
+      "url": "https://www.fxstreet.com/news/us-sends-thousands-of-marines-and-three-warships-to-middle-east-wsj-202603201404",
+      "summary": "Citing officials, the Wall Street Journal reported on Friday that the Pentagon is sending roughly \"2,200 to 2,500 Marines from the California-based USS Boxer amphibious ready group and 11th Marine Expeditionary Unit,\" to the Middle East, alongside three warships.",
+      "published_at": "2026-03-20T14:04:07.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Gold remains under pressure as global interest rate outlook weighs on demand",
+      "url": "https://www.fxstreet.com/news/gold-remains-under-pressure-as-global-interest-rate-outlook-weighs-on-demand-202603201219",
+      "summary": "Gold (XAU/USD) remains on the defensive on Friday following a sharp two-day decline that pushed prices to their lowest level since early February, near the $4,500 mark.",
+      "published_at": "2026-03-20T13:55:41.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Dollar strength returns on geopolitics – Scotiabank",
+      "url": "https://www.fxstreet.com/news/dollar-strength-returns-on-geopolitics-scotiabank-202603201349",
+      "summary": "Scotiabank’s global FX strategy team reports broad Dollar strength as G10 performance realigns with early US/Iran conflict patterns. They stress fragile risk sentiment as markets reassess prolonged conflict risks, central bank paths and violent yield repricing.",
+      "published_at": "2026-03-20T13:49:51.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "USDCAD: Range holds as CAD outperforms – Scotiabank",
+      "url": "https://www.fxstreet.com/news/usdcad-range-holds-as-cad-outperforms-scotiabank-202603201347",
+      "summary": "Scotiabank’s Analyst Team notes the Canadian Dollar is modestly firmer versus the Dollar and leading G10 peers, echoing its earlier conflict-phase outperformance. They highlight narrowing yield spreads and a relatively muted Bank of Canada meeting as key drivers.",
+      "published_at": "2026-03-20T13:47:49.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "EUR/GBP rises as markets assess ECB and BoE rate decisions, inflation outlook",
+      "url": "https://www.fxstreet.com/news/eur-gbp-rises-as-markets-assess-ecb-and-boe-rate-decisions-inflation-outlook-202603201344",
+      "summary": "EUR/GBP edges higher on Friday, recovering losses recorded in the previous day after the European Central Bank (ECB) and Bank of England (BoE) monetary policy announcements.",
+      "published_at": "2026-03-20T13:44:52.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Fed’s Waller: Do not think there is a need to consider rate hikes",
+      "url": "https://www.fxstreet.com/news/feds-waller-do-not-think-there-is-a-need-to-consider-rate-hikes-202603201342",
+      "summary": "Christopher Waller, a member of the Federal Reserve (Fed), said that based on the jobs report alone, he was planning to dissent in the monetary policy decision, but inflation has become more of a concern.",
+      "published_at": "2026-03-20T13:42:12.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "USD/JPY rebounds as US Dollar strengthens, BoJ hawkishness tempers upside potential",
+      "url": "https://www.fxstreet.com/news/usd-jpy-rebounds-as-us-dollar-strengthens-boj-hawkishness-tempers-upside-potential-202603201257",
+      "summary": "USD/JPY trades around 158.70 on Friday at the time of writing, up 0.61% on the day, staging a clear rebound after Thursday’s sharp decline. The move comes as the US Dollar (USD) regains traction following a bout of volatility, with markets reassessing the outlook for US monetary ",
+      "published_at": "2026-03-20T12:57:34.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Oil: Supply response tempers geopolitical spike – OCBC",
+      "url": "https://www.fxstreet.com/news/oil-supply-response-tempers-geopolitical-spike-ocbc-202603201227",
+      "summary": "OCBC’s Sim Moh Siong highlights that crude briefly surged toward USD120/bbl on Iranian attacks before easing as US officials signalled supply support and Israel suggested faster de-escalation.",
+      "published_at": "2026-03-20T12:27:55.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Gold: Near-term pressure versus structural support – OCBC",
+      "url": "https://www.fxstreet.com/news/gold-near-term-pressure-versus-structural-support-ocbc-202603201225",
+      "summary": "OCBC’s Christopher Wong reports that Gold has come under pressure as rising global yields and renewed inflation risks reduce expectations for near-term rate cuts, prompting ETF outflows and stress-driven liquidation.",
+      "published_at": "2026-03-20T12:25:19.000Z"
+    },
     {
       "source": "fxstreet",
       "source_name": "FXStreet",
@@ -92,94 +182,58 @@
       "published_at": "2026-03-20T08:51:39.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "GBP: BoE repricing lifts Pound but risks loom – MUFG",
-      "url": "https://www.fxstreet.com/news/gbp-boe-repricing-lifts-pound-but-risks-loom-mufg-202603200847",
-      "summary": "MUFG’s Derek Halpenny highlights that the Bank of England’s unanimous hold and sharp front-end repricing have driven a notable rise in UK yields, supporting the Pound.",
-      "published_at": "2026-03-20T08:47:26.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Oil Rises As Three More Warships, Thousands Of Marines Dispatched To Mideast; Trump Blasts 'Paper Tiger' NATO",
+      "url": "https://www.zerohedge.com/geopolitical/hormuz-showdown-begins-us-warplanes-apaches-launch-sea-lane-offensive-trump-eyes-high",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Oil Rises As Three More Warships, Thousands Of Marines Dispatched To Mideast; Trump Blasts 'Paper Tiger' NATO&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text",
+      "published_at": "2026-03-20T14:00:00.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "EUR/USD: April hike risk supports Euro – ING",
-      "url": "https://www.fxstreet.com/news/eur-usd-april-hike-risk-supports-euro-ing-202603200844",
-      "summary": "ING’s Francesco Pesole highlights that the ECB’s cautious tone masks a hawkish shift, with officials reportedly considering an April rate hike if inflation overshoots. Markets now price earlier tightening and higher odds of back-to-back moves.",
-      "published_at": "2026-03-20T08:44:51.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "California Moves To Rename Cesar Chavez Day Before March 31 Holiday",
+      "url": "https://www.zerohedge.com/political/california-moves-rename-cesar-chavez-day-march-31-holiday",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;California Moves To Rename Cesar Chavez Day Before March 31 Holiday&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--t",
+      "published_at": "2026-03-20T14:00:00.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Brent: Conflict keeps upside risk in focus – MUFG",
-      "url": "https://www.fxstreet.com/news/brent-conflict-keeps-upside-risk-in-focus-mufg-202603200844",
-      "summary": "Derek Halpenny at MUFG underlines that Brent’s sharp pullback from near USD 120 to below USD 105 has been driven by hopes of conflict de-escalation, but he questions its durability.",
-      "published_at": "2026-03-20T08:44:02.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "\"Our Employees &amp; Guests Were Uncomfortable\": Arkansas Gov. Sanders Told To Leave Restaurant",
+      "url": "https://www.zerohedge.com/political/our-employees-guests-were-uncomfortable-arkansas-gov-sanders-told-leave-restaurant",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"Our Employees &amp; Guests Were Uncomfortable\": Arkansas Gov. Sanders Told To Leave Restaurant&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted fie",
+      "published_at": "2026-03-20T13:25:00.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Dollar: Fed lagging ECB and BoE – ING",
-      "url": "https://www.fxstreet.com/news/dollar-fed-lagging-ecb-and-boe-ing-202603200839",
-      "summary": "ING strategists Francesco Pesole, Frantisek Taborsky and Chris Turner note that the Dollar has weakened as hawkish shifts by the ECB and BoE overshadow Jerome Powell’s recent comments.",
-      "published_at": "2026-03-20T08:39:57.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Futures Slide Ahead Of Massive $5.7 Trillion OpEx As Iran War Shows No Signs Of Easing",
+      "url": "https://www.zerohedge.com/markets/futures-slide-ahead-massive-57-trillion-opex-iran-war-shows-no-signs-easing",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Futures Slide Ahead Of Massive $5.7 Trillion OpEx As Iran War Shows No Signs Of Easing&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field-",
+      "published_at": "2026-03-20T12:37:07.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "ECB’s Muller: Inflation will probably be a bit higher",
-      "url": "https://www.fxstreet.com/news/ecbs-muller-inflation-will-probably-be-a-bit-higher-202603200803",
-      "summary": "During European trading hours, ECB officials: François Villeroy de Galhau and Madis Muller delivers remarks on inflation and geopolitical uncertainty.",
-      "published_at": "2026-03-20T08:03:04.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "\"Lot Of Questions On Structure:\" Goldman Reacts To Old Bay Maker's Bid For Unilever Food Unit",
+      "url": "https://www.zerohedge.com/markets/lot-questions-structure-goldman-reacts-old-bay-makers-bid-unilever-food-unit",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"Lot Of Questions On Structure:\" Goldman Reacts To Old Bay Maker's Bid For Unilever Food Unit&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field",
+      "published_at": "2026-03-20T12:25:00.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Forex Today: Major pairs stabilize as markets assess central bank policy outlooks",
-      "url": "https://www.fxstreet.com/news/forex-today-major-pairs-stabilize-as-markets-assess-central-bank-policy-outlooks-202603200755",
-      "summary": "Here is what you need to know on Friday, March 20:",
-      "published_at": "2026-03-20T07:55:29.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "ECB's Nagel: Central Bank would need April hike if price outlook sours",
-      "url": "https://www.fxstreet.com/news/ecbs-nagel-central-bank-would-need-april-hike-if-price-outlook-sours-202603200752",
-      "summary": "There have been remarks from several European Central Bank (ECB) officials during the European trading session on Friday regarding the current state and outlook on inflation and interest rates.",
-      "published_at": "2026-03-20T07:52:59.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Canadian Dollar outperforms its peers despite oil prices cool down",
-      "url": "https://www.fxstreet.com/news/canadian-dollar-outperforms-its-peers-despite-oil-prices-cool-down-202603200718",
-      "summary": "The Canadian Dollar (CAD) outperforms its major currency peers, but trades flat against the US Dollar (USD) at around 1.3740 during the European trading session on Friday.",
-      "published_at": "2026-03-20T07:18:53.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Gold rebounds as Middle East tensions boost safe-haven demand, inflation concerns linger",
-      "url": "https://www.fxstreet.com/news/gold-tumbles-below-4-650-as-inflation-fears-and-liquidity-squeeze-weigh-202603192310",
-      "summary": "Gold price (XAU/USD) rebounds to near $4670, snapping the seven-day losing streak during the early European session on Friday. The precious metal edges higher as the ongoing US-Iran conflict spikes demand for safe-haven assets. Traders will closely monitor the situation in the Mi",
-      "published_at": "2026-03-20T06:46:06.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "AUD/USD Price Forecast: Posts modest gain to near 0.7100, neutral RSI signals consolidation",
-      "url": "https://www.fxstreet.com/news/aud-usd-price-forecast-posts-modest-gain-to-near-07100-neutral-rsi-signals-consolidation-202603200634",
-      "summary": "The AUD/USD pair trades with mild gains around 0.7090 during the early European session on Friday. The Australian Dollar (AUD) edges higher against the Greenback, following the hawkish stance from the Reserve Bank of Australia (RBA).",
-      "published_at": "2026-03-20T06:34:30.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "The Debt Can Is Getting Harder To Kick",
+      "url": "https://www.zerohedge.com/political/debt-can-getting-harder-kick",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The Debt Can Is Getting Harder To Kick&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--",
+      "published_at": "2026-03-20T12:05:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -308,58 +362,76 @@
       "published_at": "2026-03-20T02:40:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Comey Subpoenaed For Alleged 'Grand Conspiracy' Against Trump",
-      "url": "https://www.zerohedge.com/political/comey-subpoenaed-grand-conspiracy-investigation-against-trump",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Comey Subpoenaed For Alleged 'Grand Conspiracy' Against Trump&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-te",
-      "published_at": "2026-03-20T02:15:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Here’s what happened in crypto today",
+      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
+      "published_at": "2026-03-20T14:11:32.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Disclosure? US Government Registers Aliens.gov Domain",
-      "url": "https://www.zerohedge.com/technology/disclosure-us-government-registers-aliensgov-domain",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Disclosure? US Government Registers Aliens.gov Domain&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-",
-      "published_at": "2026-03-20T01:50:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "BitFuFu cuts self-mined Bitcoin in 2025, shifts focus to cloud mining",
+      "url": "<![CDATA[https://cointelegraph.com/news/bitfufu-self-mined-bitcoin-down-cloud-mining-shift?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Bitcoin miner BitFuFu decreased its revenue from self-hosted mining operations by 60% in 2025 in a push to cloud mining.",
+      "published_at": "2026-03-20T14:03:10.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Kent Tells Tucker: 'Imminent Threat' Was From Israel, Not Iran; Ordered To Halt Charlie Kirk Investigation",
-      "url": "https://www.zerohedge.com/political/kent-tells-tucker-imminent-threat-was-israel-not-iran-ordered-halt-charlie-kirk",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Kent Tells Tucker: 'Imminent Threat' Was From Israel, Not Iran; Ordered To Halt Charlie Kirk Investigation&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-fo",
-      "published_at": "2026-03-20T01:25:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Crypto part of Canada’s ‘core’ financial system, but risk concerns remain",
+      "url": "<![CDATA[https://cointelegraph.com/news/crypto-canada-core-financial-risk-concerns-remain?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "The crypto industry has seen a number of regulatory changes over the past year, with the Canadian government taking a risk-management, rules-first approach.",
+      "published_at": "2026-03-20T13:48:19.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "SoCal Heat-Wave Prompts Health Warning Of High Bacteria Levels At Los Angeles Beaches",
-      "url": "https://www.zerohedge.com/weather/socal-heat-wave-prompts-warning-high-bacteria-levels-los-angeles-beaches",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;SoCal Heat-Wave Prompts Health Warning Of High Bacteria Levels At Los Angeles Beaches&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--",
-      "published_at": "2026-03-20T01:00:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Bitcoin RSI eyes 2022 repeat as analysis suggests 'time to pay attention'",
+      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-rsi-eyes-2022-repeat-analysis-time-to-pay-attention?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Bitcoin RSI signals approached a key moment as analysis said that a higher low was needed next to allow bullish BTC price continuation.",
+      "published_at": "2026-03-20T13:43:55.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Bezos Plots Colossal $100 Billion Fund To Transform Companies Using AI: WSJ",
-      "url": "https://www.zerohedge.com/ai/bezos-plots-colossal-100-billion-fund-transform-companies-using-ai-wsj",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Bezos Plots Colossal $100 Billion Fund To Transform Companies Using AI: WSJ&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body ",
-      "published_at": "2026-03-20T00:35:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Bitcoin whale holding $147M wakes after 13 years, makes tiny $56 transfer",
+      "url": "<![CDATA[https://cointelegraph.com/news/dormant-bitcoin-wallet-wakes-up-after-13-years?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "A Bitcoin wallet inactive since 2012 has moved $56 worth of BTC, spotlighting a stash now valued at roughly $147 million after more than 13 years dormant.",
+      "published_at": "2026-03-20T13:40:27.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Super Micro Co-Founder Arrested In Alleged $2.5 Billion Nvidia Chip Smuggling Scheme",
-      "url": "https://www.zerohedge.com/technology/super-micro-co-founder-charged-alleged-25-billion-nvidia-chip-smuggling-scheme",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Super Micro Co-Founder Arrested In Alleged $2.5 Billion Nvidia Chip Smuggling Scheme&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--n",
-      "published_at": "2026-03-20T00:10:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Stablecoin issuers and fintechs race to own payment rails",
+      "url": "<![CDATA[https://cointelegraph.com/news/crypto-fintech-race-stablecoin-settlement?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Leading crypto and fintech companies are competing to capture growing revenue from stablecoin payments by launching their own settlement infrastructure.",
+      "published_at": "2026-03-20T13:21:15.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Morgan Stanley files amended S-1 for MSBT Bitcoin ETF",
+      "url": "<![CDATA[https://cointelegraph.com/news/morgan-stanley-msbt-spot-bitcoin-etf-s1-amendment?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "The proposed spot Bitcoin ETF outlines seed capital, listing plans and trading partners in its latest filing as it moves closer to a potential market debut.",
+      "published_at": "2026-03-20T12:34:37.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Coinbase launches 24/7 stock perps for non-US traders",
+      "url": "<![CDATA[https://cointelegraph.com/news/coinbase-expands-24-7-stock-derivatives-venue?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Coinbase has launched stock perpetual futures for non-US traders, expanding its push to offer round-the-clock access to multiple asset classes.",
+      "published_at": "2026-03-20T11:57:05.000Z"
     },
     {
       "source": "cointelegraph",
@@ -378,78 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/south-korea-tax-agency-private-crypto-custody-seed-phrase-leak?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "South Korea’s tax agency is seeking a private custodian for seized crypto after a wallet seed phrase leak exposed government-held assets.",
       "published_at": "2026-03-20T10:47:45.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Bitcoin vs gold shows potential bottom signals as BTC bulls defend $70K",
-      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-vs-gold-flashes-multiple-bottom-signals-btc-bulls-defend-70k?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Technical indicators hint at a possible reversal in BTC’s relative performance, as traders watch whether key support levels can hold.",
-      "published_at": "2026-03-20T10:38:42.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Quantum risk real, but not all crypto wallets equally vulnerable: Galaxy",
-      "url": "<![CDATA[https://cointelegraph.com/news/quantum-risk-bitcoin-wallets-not-all-vulnerable?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Galaxy Digital’s Will Owens says most crypto wallets aren’t exposed to quantum risks, with vulnerabilities limited to cases where public keys are revealed.",
-      "published_at": "2026-03-20T06:27:16.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Super Micro co-founder arrested over alleged $2.5B AI chip smuggling scheme",
-      "url": "<![CDATA[https://cointelegraph.com/news/super-micro-co-founder-arrested-in-2-5b-ai-chip-smuggling-scheme-to-china?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "US authorities say they have charged and arrested Supermicro co-founder Yih-Shyan “Wally” Liaw for allegedly funnelling $2.5 billion in AI servers to China through shell companies.",
-      "published_at": "2026-03-20T06:03:01.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Gemini sued over post-IPO strategy shift, declining stock price",
-      "url": "<![CDATA[https://cointelegraph.com/news/gemini-sued-over-post-ipo-strategy-shift-declining-stock-price?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Crypto exchange Gemini is facing a proposed class-action lawsuit over what a complaint alleges is an “abrupt corporate pivot to a prediction-market-centric business model” after its IPO.",
-      "published_at": "2026-03-20T05:58:33.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Appeals court denies Kalshi request to block Nevada enforcement action",
-      "url": "<![CDATA[https://cointelegraph.com/news/appeals-court-denies-kalshi-s-bid-to-stave-off-ban-in-nevada?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "US gaming lawyer Daniel Wallach says a Nevada state court-issued restraining order against Kalshi appears imminent, preventing it from offering sports-related contracts.",
-      "published_at": "2026-03-20T05:21:52.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Major gold trade group releases framework for tokenized gold",
-      "url": "<![CDATA[https://cointelegraph.com/news/world-gold-council-framework-tokenized-gold?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "The World Gold Council says it will develop a platform to connect physical gold to the systems used to issue and manage tokenized gold products.",
-      "published_at": "2026-03-20T04:53:26.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Gemini shares surge 6% after hours on Q4 earnings",
-      "url": "<![CDATA[https://cointelegraph.com/news/gemini-shares-up-after-hours-on-q4-earnings?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Gemini reported its fourth quarter revenues were $60.3 million, which co-founders Cameron and Tyler Winklevoss say is its highest quarterly revenue in three years.",
-      "published_at": "2026-03-20T04:15:03.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "FBI warns fake FBI token on Tron is trying to scam users",
-      "url": "<![CDATA[https://cointelegraph.com/news/fbi-warns-phishing-scam-tron-blockchain?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Scammers impersonating the FBI via a token are telling Tron users they are under investigation and must complete a check to avoid having their assets frozen.",
-      "published_at": "2026-03-20T03:19:58.000Z"
     }
   ]
 }
