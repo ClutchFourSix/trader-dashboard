@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-20T17:11:36.539Z",
+  "generated_at": "2026-03-20T19:28:41.525Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -16,7 +16,7 @@
       "source_score": 78,
       "title": "Dow Jones Industrial Average slides as Iran war, hawkish Fed drive fourth losing week",
       "url": "https://www.fxstreet.com/news/dow-jones-industrial-average-slides-as-iran-war-hawkish-fed-drive-fourth-losing-week-202603201633",
-      "summary": "The Dow Jones Industrial Average tumbled around 257 points, or 0.6%, on Friday as all three major US indices tracked toward a fourth consecutive losing week. The S&amp;P 500 fell 0.8%, while the Nasdaq Composite underperformed with a decline of 1.2%.",
+      "summary": "The Dow Jones Industrial Average (DJIA) tumbled around 257 points, or 0.6%, on Friday as all three major US indices tracked toward a fourth consecutive losing week. The S&amp;P 500 fell 0.8%, while the Nasdaq Composite underperformed with a decline of 1.2%.",
       "published_at": "2026-03-20T16:33:17.000Z"
     },
     {
@@ -185,6 +185,69 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "'TRUMP AMERICA AI Act' Repeals Section 230, Expands Liability, &amp; Establishes Centralized Federal Control Over AI Systems",
+      "url": "https://www.zerohedge.com/political/trump-america-ai-act-repeals-section-230-expands-liability-and-establishes-centralized",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;'TRUMP AMERICA AI Act' Repeals Section 230, Expands Liability, &amp; Establishes Centralized Federal Control Over AI Systems&lt;/span&gt; &lt;div property=\"schema:text\" class",
+      "published_at": "2026-03-20T18:45:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Will Chinese Robot Maker Unitree's Shanghai IPO Spark A Humanoid-Investing Bubble",
+      "url": "https://www.zerohedge.com/technology/will-chinese-robot-maker-unitrees-shanghai-ipo-spark-humanoid-investing-bubble",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Will Chinese Robot Maker Unitree's Shanghai IPO Spark A Humanoid-Investing Bubble&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name",
+      "published_at": "2026-03-20T18:25:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Chokepoint Madness: Iran Refuses Hormuz Talks As Houthis Threaten Red Sea Strait",
+      "url": "https://www.zerohedge.com/geopolitical/hormuz-showdown-begins-us-warplanes-apaches-launch-sea-lane-offensive-trump-eyes-high",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Chokepoint Madness: Iran Refuses Hormuz Talks As Houthis Threaten Red Sea Strait&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-",
+      "published_at": "2026-03-20T17:48:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "John Fetterman Reveals Who's Really The Leader Of His Party",
+      "url": "https://www.zerohedge.com/political/john-fetterman-reveals-whos-really-leader-his-party",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;John Fetterman Reveals Who's Really The Leader Of His Party&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text",
+      "published_at": "2026-03-20T17:45:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Dr. Oz Says He's Eyeing Florida In Medicaid Fraud Crackdown",
+      "url": "https://www.zerohedge.com/political/dr-oz-says-hes-eyeing-florida-medicaid-fraud-crackdown",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Dr. Oz Says He's Eyeing Florida In Medicaid Fraud Crackdown&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text",
+      "published_at": "2026-03-20T17:25:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "CBS News Announces Fresh Round Of Layoffs As Bari Weiss Buzzsaw Continues",
+      "url": "https://www.zerohedge.com/political/cbs-news-announces-fresh-round-layoffs-bari-weiss-buzzsaw-continues",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;CBS News Announces Fresh Round Of Layoffs As Bari Weiss Buzzsaw Continues&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body fi",
+      "published_at": "2026-03-20T16:45:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "These Seven Allies Concocted A 'Hormuz Coalition' Statement To Placate Trump, Which Failed",
+      "url": "https://www.zerohedge.com/geopolitical/these-seven-allies-concocted-hormuz-coalition-statement-placate-trump-which-failed",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;These Seven Allies Concocted A 'Hormuz Coalition' Statement To Placate Trump, Which Failed&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field fi",
+      "published_at": "2026-03-20T16:20:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "'Radical' Biden Judge Reverses RFK Jr. On Trans-Child Surgeries, Other Procedures",
       "url": "https://www.zerohedge.com/medical/radical-biden-judge-reverses-rfk-jr-trans-child-surgeries-other-procedures",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;'Radical' Biden Judge Reverses RFK Jr. On Trans-Child Surgeries, Other Procedures&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name",
@@ -224,15 +287,6 @@
       "title": "California Moves To Rename Cesar Chavez Day Before March 31 Holiday",
       "url": "https://www.zerohedge.com/political/california-moves-rename-cesar-chavez-day-march-31-holiday",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;California Moves To Rename Cesar Chavez Day Before March 31 Holiday&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--t",
-      "published_at": "2026-03-20T14:00:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Oil Rises As Three More Warships, Thousands Of Marines Dispatched To Mideast; Trump Blasts 'Paper Tiger' NATO",
-      "url": "https://www.zerohedge.com/geopolitical/hormuz-showdown-begins-us-warplanes-apaches-launch-sea-lane-offensive-trump-eyes-high",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Oil Rises As Three More Warships, Thousands Of Marines Dispatched To Mideast; Trump Blasts 'Paper Tiger' NATO&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text",
       "published_at": "2026-03-20T14:00:00.000Z"
     },
     {
@@ -308,58 +362,31 @@
       "published_at": "2026-03-20T10:00:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "'Explosives And Extra Blood': Denmark Planned To Blow Up Greenland's Runways If US Invaded",
-      "url": "https://www.zerohedge.com/geopolitical/explosives-and-extra-blood-denmark-planned-blow-greenlands-runways-if-us-invaded",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;'Explosives And Extra Blood': Denmark Planned To Blow Up Greenland's Runways If US Invaded&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field fi",
-      "published_at": "2026-03-20T09:45:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Ether taker volume hits 3-year high: Will ETH avoid a 19% price decline?",
+      "url": "<![CDATA[https://cointelegraph.com/news/ether-taker-volume-hits-3-year-high-will-eth-avoid-a-19percent-price-decline?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "A strong buy signal not seen since 2022 just flashed on Ether, but the altcoin needs to hold above a key price level to avoid invalidating the pattern.",
+      "published_at": "2026-03-20T18:44:02.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "NASA's Curiosity Rover Finds Evidence Of Underground Water On Mars 'That Could Have Supported Life'",
-      "url": "https://www.zerohedge.com/political/nasas-curiosity-rover-finds-evidence-underground-water-mars-could-have-supported-life",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;NASA's Curiosity Rover Finds Evidence Of Underground Water On Mars 'That Could Have Supported Life'&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted",
-      "published_at": "2026-03-20T09:00:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Traders pricing in TACO trade may be in for 'rude awakening' — Analyst",
+      "url": "<![CDATA[https://cointelegraph.com/news/traders-taco-trade-rude-awakening?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "The disruption to the oil market and critical energy effects may have long-term economic effects that investors are not pricing in.",
+      "published_at": "2026-03-20T17:35:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "RT Reporter Injured During 'On Air' Segment By Israeli Strike, Angering Moscow",
-      "url": "https://www.zerohedge.com/geopolitical/moscow-angry-after-rt-reporter-injured-during-air-segment-israeli-strike",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;RT Reporter Injured During 'On Air' Segment By Israeli Strike, Angering Moscow&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-bo",
-      "published_at": "2026-03-20T08:15:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "UK Teacher Banned For Saying Migrants Should 'Respect Our Laws Or Leave'",
-      "url": "https://www.zerohedge.com/political/uk-teacher-banned-saying-migrants-should-respect-our-laws-or-leave",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;UK Teacher Banned For Saying Migrants Should 'Respect Our Laws Or Leave'&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body fie",
-      "published_at": "2026-03-20T07:30:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Orban Announces Will Block All EU Measures For Ukraine Until Oil Transit Restored",
-      "url": "https://www.zerohedge.com/geopolitical/orban-announces-will-block-all-eu-measures-ukraine-until-oil-transit-restored",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Orban Announces Will Block All EU Measures For Ukraine Until Oil Transit Restored&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name",
-      "published_at": "2026-03-20T06:45:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Russia Benefiting From US-Iran War While Impacts On China Are 'Complicated': Analysts",
-      "url": "https://www.zerohedge.com/markets/russia-benefiting-us-iran-war-while-impacts-china-are-complicated-analysts",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Russia Benefiting From US-Iran War While Impacts On China Are 'Complicated': Analysts&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--",
-      "published_at": "2026-03-20T06:00:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "White House outlines national AI framework, calls for unified federal approach",
+      "url": "<![CDATA[https://cointelegraph.com/news/white-house-national-ai-framework-unified-federal-approach?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "The legislative recommendations highlight six policy areas, including copyright, energy and workforce development, while signaling a lighter regulatory stance.",
+      "published_at": "2026-03-20T17:13:20.000Z"
     },
     {
       "source": "cointelegraph",
@@ -423,33 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/dormant-bitcoin-wallet-wakes-up-after-13-years?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "A Bitcoin wallet inactive since 2012 has moved $56 worth of BTC, spotlighting a stash now valued at roughly $147 million after more than 13 years dormant.",
       "published_at": "2026-03-20T13:40:27.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Stablecoin issuers and fintechs race to own payment rails",
-      "url": "<![CDATA[https://cointelegraph.com/news/crypto-fintech-race-stablecoin-settlement?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Leading crypto and fintech companies are competing to capture growing revenue from stablecoin payments by launching their own settlement infrastructure.",
-      "published_at": "2026-03-20T13:21:15.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Morgan Stanley files amended S-1 for MSBT Bitcoin ETF",
-      "url": "<![CDATA[https://cointelegraph.com/news/morgan-stanley-msbt-spot-bitcoin-etf-s1-amendment?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "The proposed spot Bitcoin ETF outlines seed capital, listing plans and trading partners in its latest filing as it moves closer to a potential market debut.",
-      "published_at": "2026-03-20T12:34:37.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Coinbase launches 24/7 stock perps for non-US traders",
-      "url": "<![CDATA[https://cointelegraph.com/news/coinbase-expands-24-7-stock-derivatives-venue?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Coinbase has launched stock perpetual futures for non-US traders, expanding its push to offer round-the-clock access to multiple asset classes.",
-      "published_at": "2026-03-20T11:57:05.000Z"
     }
   ]
 }
