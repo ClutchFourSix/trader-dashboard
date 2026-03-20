@@ -1,4 +1,455 @@
 {
-  "generated_at": "2026-03-20T00:00:00Z",
-  "stories": []
+  "generated_at": "2026-03-20T10:04:27.587Z",
+  "stories": [
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Scope for Dollar to extend gains further – MUFG",
+      "url": "https://www.fxstreet.com/news/scope-for-dollar-to-extend-gains-further-mufg-202603200859",
+      "summary": "MUFG’s Derek Halpenny notes that the recent retracement in Brent has eased immediate upward pressure on the Dollar, but he doubts the move will last given ongoing Middle East tensions and constrained supply.",
+      "published_at": "2026-03-20T08:59:37.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "GBP/USD: BoE hawkish tilt underpins Pound – ING",
+      "url": "https://www.fxstreet.com/news/gbp-usd-boe-hawkish-tilt-underpins-pound-ing-202603200853",
+      "summary": "ING’s Francesco Pesole notes that the Bank of England surprised markets with a unanimous hold and strong guidance that it is ready to act against any inflation spike. Markets added substantial tightening by year-end, though ING views this as too aggressive.",
+      "published_at": "2026-03-20T08:53:09.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Eurozone: ECB caution and hawkish risk – DBS",
+      "url": "https://www.fxstreet.com/news/eurozone-ecb-caution-and-hawkish-risk-dbs-202603200851",
+      "summary": "DBS Group Research economist Radhika Rao notes that the ECB kept rates unchanged but highlighted spillover risks from geopolitical tensions, with updated projections showing higher Eurozone inflation and weaker growth.",
+      "published_at": "2026-03-20T08:51:39.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "GBP: BoE repricing lifts Pound but risks loom – MUFG",
+      "url": "https://www.fxstreet.com/news/gbp-boe-repricing-lifts-pound-but-risks-loom-mufg-202603200847",
+      "summary": "MUFG’s Derek Halpenny highlights that the Bank of England’s unanimous hold and sharp front-end repricing have driven a notable rise in UK yields, supporting the Pound.",
+      "published_at": "2026-03-20T08:47:26.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "EUR/USD: April hike risk supports Euro – ING",
+      "url": "https://www.fxstreet.com/news/eur-usd-april-hike-risk-supports-euro-ing-202603200844",
+      "summary": "ING’s Francesco Pesole highlights that the ECB’s cautious tone masks a hawkish shift, with officials reportedly considering an April rate hike if inflation overshoots. Markets now price earlier tightening and higher odds of back-to-back moves.",
+      "published_at": "2026-03-20T08:44:51.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Brent: Conflict keeps upside risk in focus – MUFG",
+      "url": "https://www.fxstreet.com/news/brent-conflict-keeps-upside-risk-in-focus-mufg-202603200844",
+      "summary": "Derek Halpenny at MUFG underlines that Brent’s sharp pullback from near USD 120 to below USD 105 has been driven by hopes of conflict de-escalation, but he questions its durability.",
+      "published_at": "2026-03-20T08:44:02.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Dollar: Fed lagging ECB and BoE – ING",
+      "url": "https://www.fxstreet.com/news/dollar-fed-lagging-ecb-and-boe-ing-202603200839",
+      "summary": "ING strategists Francesco Pesole, Frantisek Taborsky and Chris Turner note that the Dollar has weakened as hawkish shifts by the ECB and BoE overshadow Jerome Powell’s recent comments.",
+      "published_at": "2026-03-20T08:39:57.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "ECB’s Muller: Inflation will probably be a bit higher",
+      "url": "https://www.fxstreet.com/news/ecbs-muller-inflation-will-probably-be-a-bit-higher-202603200803",
+      "summary": "During European trading hours, ECB officials: François Villeroy de Galhau and Madis Muller delivers remarks on inflation and geopolitical uncertainty.",
+      "published_at": "2026-03-20T08:03:04.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Forex Today: Major pairs stabilize as markets assess central bank policy outlooks",
+      "url": "https://www.fxstreet.com/news/forex-today-major-pairs-stabilize-as-markets-assess-central-bank-policy-outlooks-202603200755",
+      "summary": "Here is what you need to know on Friday, March 20:",
+      "published_at": "2026-03-20T07:55:29.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "ECB's Nagel: Central Bank would need April hike if price outlook sours",
+      "url": "https://www.fxstreet.com/news/ecbs-nagel-central-bank-would-need-april-hike-if-price-outlook-sours-202603200752",
+      "summary": "There have been remarks from several European Central Bank (ECB) officials during the European trading session on Friday regarding the current state and outlook on inflation and interest rates.",
+      "published_at": "2026-03-20T07:52:59.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "USD/INR hits all-time highs near 94 amid consistent foreign outflows",
+      "url": "https://www.fxstreet.com/news/usd-inr-refreshes-all-time-highs-near-9370-as-indian-rupee-deteriorates-further-202603200505",
+      "summary": "The Indian Rupee (INR) extends its downfall against the US Dollar (USD) on Friday after a holiday the previous day.",
+      "published_at": "2026-03-20T07:38:33.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Canadian Dollar outperforms its peers despite oil prices cool down",
+      "url": "https://www.fxstreet.com/news/canadian-dollar-outperforms-its-peers-despite-oil-prices-cool-down-202603200718",
+      "summary": "The Canadian Dollar (CAD) outperforms its major currency peers, but trades flat against the US Dollar (USD) at around 1.3740 during the European trading session on Friday.",
+      "published_at": "2026-03-20T07:18:53.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Gold rebounds as Middle East tensions boost safe-haven demand, inflation concerns linger",
+      "url": "https://www.fxstreet.com/news/gold-tumbles-below-4-650-as-inflation-fears-and-liquidity-squeeze-weigh-202603192310",
+      "summary": "Gold price (XAU/USD) rebounds to near $4670, snapping the seven-day losing streak during the early European session on Friday. The precious metal edges higher as the ongoing US-Iran conflict spikes demand for safe-haven assets. Traders will closely monitor the situation in the Mi",
+      "published_at": "2026-03-20T06:46:06.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "AUD/USD Price Forecast: Posts modest gain to near 0.7100, neutral RSI signals consolidation",
+      "url": "https://www.fxstreet.com/news/aud-usd-price-forecast-posts-modest-gain-to-near-07100-neutral-rsi-signals-consolidation-202603200634",
+      "summary": "The AUD/USD pair trades with mild gains around 0.7090 during the early European session on Friday. The Australian Dollar (AUD) edges higher against the Greenback, following the hawkish stance from the Reserve Bank of Australia (RBA).",
+      "published_at": "2026-03-20T06:34:30.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "WTI Price Forecast: Corrects after failing to return above $100",
+      "url": "https://www.fxstreet.com/news/wti-price-forecast-corrects-after-failing-to-return-above-100-202603200622",
+      "summary": "West Texas Intermediate (WTI), futures on NYMEX, trade over 1% lower to near $93.10 during the early European trading session on Friday.",
+      "published_at": "2026-03-20T06:22:53.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "USD/CHF ticks up to near 0.7890 as US Dollar recovers",
+      "url": "https://www.fxstreet.com/news/usd-chf-ticks-up-to-near-07890-as-us-dollar-recovers-202603200530",
+      "summary": "The USD/CHF pair edges higher to near 0.7890 during the early European trading session on Friday. The Swiss Franc pair gains as the US Dollar (USD) bounces back after a sharp sell-off the previous day.",
+      "published_at": "2026-03-20T05:30:41.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "EUR/GBP declines below 0.8650 as BoE and ECB hold rates amid geopolitical uncertainty",
+      "url": "https://www.fxstreet.com/news/eur-gbp-declines-below-08650-as-boe-and-ecb-hold-rates-amid-geopolitical-uncertainty-202603200528",
+      "summary": "The EUR/GBP cross loses traction to near 0.8620 during the early European session on Friday. The Pound Sterling (GBP) edges higher against the Euro (EUR) after monetary policy decisions from both the Bank of England (BoE) and the European Central Bank (ECB).",
+      "published_at": "2026-03-20T05:28:22.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "GBP/USD Price Forecast: 38.2% Fibo retracement acts as key barrier near 1.3470",
+      "url": "https://www.fxstreet.com/news/gbp-usd-price-forecast-382-fibo-retracement-acts-as-key-barrier-near-13470-202603200502",
+      "summary": "The GBP/USD pair trades 0.2% lower to near 1.3400 during the late Asian trading session on Friday. The Cable faces selling pressure as the US Dollar Index (DXY) rebounds after an over-a-percent decline the previous day.",
+      "published_at": "2026-03-20T05:02:15.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "India Gold price today: Gold rises, according to FXStreet data",
+      "url": "https://www.fxstreet.com/news/india-gold-price-today-gold-rises-according-to-fxstreet-data-202603200437",
+      "summary": "Gold prices rose in India on Friday, according to data compiled by FXStreet.",
+      "published_at": "2026-03-20T04:37:24.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "AUD/JPY Price Forecast: Strengthens on bullish technical momentum above 100-day EMA",
+      "url": "https://www.fxstreet.com/news/aud-jpy-price-forecast-strengthens-on-bullish-technical-momentum-above-100-day-ema-202603200436",
+      "summary": "The AUD/JPY cross attracts some buyers to near 112.20 during the early European session on Friday. The Australian Dollar strengthens against the Japanese Yen (JPY) on a hawkish tone from the Reserve Bank of Australia (RBA).",
+      "published_at": "2026-03-20T04:36:01.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "NASA's Curiosity Rover Finds Evidence Of Underground Water On Mars 'That Could Have Supported Life'",
+      "url": "https://www.zerohedge.com/political/nasas-curiosity-rover-finds-evidence-underground-water-mars-could-have-supported-life",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;NASA's Curiosity Rover Finds Evidence Of Underground Water On Mars 'That Could Have Supported Life'&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted",
+      "published_at": "2026-03-20T09:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "RT Reporter Injured During 'On Air' Segment By Israeli Strike, Angering Moscow",
+      "url": "https://www.zerohedge.com/geopolitical/moscow-angry-after-rt-reporter-injured-during-air-segment-israeli-strike",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;RT Reporter Injured During 'On Air' Segment By Israeli Strike, Angering Moscow&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-bo",
+      "published_at": "2026-03-20T08:15:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "UK Teacher Banned For Saying Migrants Should 'Respect Our Laws Or Leave'",
+      "url": "https://www.zerohedge.com/political/uk-teacher-banned-saying-migrants-should-respect-our-laws-or-leave",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;UK Teacher Banned For Saying Migrants Should 'Respect Our Laws Or Leave'&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body fie",
+      "published_at": "2026-03-20T07:30:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Orban Announces Will Block All EU Measures For Ukraine Until Oil Transit Restored",
+      "url": "https://www.zerohedge.com/geopolitical/orban-announces-will-block-all-eu-measures-ukraine-until-oil-transit-restored",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Orban Announces Will Block All EU Measures For Ukraine Until Oil Transit Restored&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name",
+      "published_at": "2026-03-20T06:45:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Russia Benefiting From US-Iran War While Impacts On China Are 'Complicated': Analysts",
+      "url": "https://www.zerohedge.com/markets/russia-benefiting-us-iran-war-while-impacts-china-are-complicated-analysts",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Russia Benefiting From US-Iran War While Impacts On China Are 'Complicated': Analysts&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--",
+      "published_at": "2026-03-20T06:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Out Of The BDC, Into The CLO: World's Largest Private Credit Fund Repacking Loans As Bonds Hoping To Find New Investors",
+      "url": "https://www.zerohedge.com/markets/out-bdc-clo-worlds-largest-private-credit-fund-repacking-loans-bonds-hoping-find-new",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Out Of The BDC, Into The CLO: World's Largest Private Credit Fund Repacking Loans As Bonds Hoping To Find New Investors&lt;/span&gt; &lt;div property=\"schema:text\" class=\"cle",
+      "published_at": "2026-03-20T04:55:57.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "The Ultimate Race Hoax",
+      "url": "https://www.zerohedge.com/political/ultimate-race-hoax",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The Ultimate Race Hoax&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden fie",
+      "published_at": "2026-03-20T03:30:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Pakistan Outraged At Being Called An Emerging Missile Threat To US By DNI Gabbard",
+      "url": "https://www.zerohedge.com/geopolitical/pakistan-outraged-being-called-emerging-missile-threat-us-dni-gabbard",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Pakistan Outraged At Being Called An Emerging Missile Threat To US By DNI Gabbard&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name",
+      "published_at": "2026-03-20T03:05:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Why Is Australia Not Already Rationing Fuel?",
+      "url": "https://www.zerohedge.com/energy/why-australia-not-already-rationing-fuel",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Why Is Australia Not Already Rationing Fuel?&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary f",
+      "published_at": "2026-03-20T02:40:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Comey Subpoenaed For Alleged 'Grand Conspiracy' Against Trump",
+      "url": "https://www.zerohedge.com/political/comey-subpoenaed-grand-conspiracy-investigation-against-trump",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Comey Subpoenaed For Alleged 'Grand Conspiracy' Against Trump&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-te",
+      "published_at": "2026-03-20T02:15:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Disclosure? US Government Registers Aliens.gov Domain",
+      "url": "https://www.zerohedge.com/technology/disclosure-us-government-registers-aliensgov-domain",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Disclosure? US Government Registers Aliens.gov Domain&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-",
+      "published_at": "2026-03-20T01:50:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Netanyahu Declares Iran's Nuclear Program &amp; Missile Production \"Destroyed\" - Denies Israel Influenced Trump",
+      "url": "https://www.zerohedge.com/geopolitical/trump-threatens-blow-worlds-largest-gas-field-distances-us-israeli-actions-macron",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Netanyahu Declares Iran's Nuclear Program &amp; Missile Production \"Destroyed\" - Denies Israel Influenced Trump&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix te",
+      "published_at": "2026-03-20T01:31:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Kent Tells Tucker: 'Imminent Threat' Was From Israel, Not Iran; Ordered To Halt Charlie Kirk Investigation",
+      "url": "https://www.zerohedge.com/political/kent-tells-tucker-imminent-threat-was-israel-not-iran-ordered-halt-charlie-kirk",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Kent Tells Tucker: 'Imminent Threat' Was From Israel, Not Iran; Ordered To Halt Charlie Kirk Investigation&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-fo",
+      "published_at": "2026-03-20T01:25:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "SoCal Heat-Wave Prompts Health Warning Of High Bacteria Levels At Los Angeles Beaches",
+      "url": "https://www.zerohedge.com/weather/socal-heat-wave-prompts-warning-high-bacteria-levels-los-angeles-beaches",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;SoCal Heat-Wave Prompts Health Warning Of High Bacteria Levels At Los Angeles Beaches&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--",
+      "published_at": "2026-03-20T01:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Bezos Plots Colossal $100 Billion Fund To Transform Companies Using AI: WSJ",
+      "url": "https://www.zerohedge.com/ai/bezos-plots-colossal-100-billion-fund-transform-companies-using-ai-wsj",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Bezos Plots Colossal $100 Billion Fund To Transform Companies Using AI: WSJ&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body ",
+      "published_at": "2026-03-20T00:35:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Super Micro Co-Founder Arrested In Alleged $2.5 Billion Nvidia Chip Smuggling Scheme",
+      "url": "https://www.zerohedge.com/technology/super-micro-co-founder-charged-alleged-25-billion-nvidia-chip-smuggling-scheme",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Super Micro Co-Founder Arrested In Alleged $2.5 Billion Nvidia Chip Smuggling Scheme&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--n",
+      "published_at": "2026-03-20T00:10:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "NASA May Shrink Boeing's Moon-Mission Role While Handing SpaceX Core Rocket Responsibilities",
+      "url": "https://www.zerohedge.com/technology/nasa-may-shrink-boeings-moon-mission-role-while-handing-spacex-core-rocket",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;NASA May Shrink Boeing's Moon-Mission Role While Handing SpaceX Core Rocket Responsibilities &lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field",
+      "published_at": "2026-03-19T23:45:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Minnesota Audit: State Agency 'Accidentally' Blocked Kickback Investigation Into Autism Services",
+      "url": "https://www.zerohedge.com/political/minnesota-audit-state-agency-accidentally-blocked-kickback-investigation-autism-services",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Minnesota Audit: State Agency 'Accidentally' Blocked Kickback Investigation Into Autism Services&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted fi",
+      "published_at": "2026-03-19T23:20:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Obama Judge Strikes Down Ten Commandments In Arkansas Classrooms",
+      "url": "https://www.zerohedge.com/political/obama-judge-strikes-down-ten-commandments-arkansas-classrooms",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Obama Judge Strikes Down Ten Commandments In Arkansas Classrooms&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type",
+      "published_at": "2026-03-19T22:20:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "US Fast-Tracks Billions In 'Emergency' Arms Sales To Gulf, Bypassing Congress",
+      "url": "https://www.zerohedge.com/geopolitical/us-fast-tracks-billions-emergency-arms-sales-gulf-bypassing-congress",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;US Fast-Tracks Billions In 'Emergency' Arms Sales To Gulf, Bypassing Congress&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-bod",
+      "published_at": "2026-03-19T22:00:00.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Quantum risk real, but not all crypto wallets equally vulnerable: Galaxy",
+      "url": "<![CDATA[https://cointelegraph.com/news/quantum-risk-bitcoin-wallets-not-all-vulnerable?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Galaxy Digital’s Will Owens says most crypto wallets aren’t exposed to quantum risks, with vulnerabilities limited to cases where public keys are revealed.",
+      "published_at": "2026-03-20T06:27:16.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Super Micro co-founder arrested over alleged $2.5B AI chip smuggling scheme",
+      "url": "<![CDATA[https://cointelegraph.com/news/super-micro-co-founder-arrested-in-2-5b-ai-chip-smuggling-scheme-to-china?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "US authorities say they have charged and arrested Supermicro co-founder Yih-Shyan “Wally” Liaw for allegedly funnelling $2.5 billion in AI servers to China through shell companies.",
+      "published_at": "2026-03-20T06:03:01.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Gemini sued over post-IPO strategy shift, declining stock price",
+      "url": "<![CDATA[https://cointelegraph.com/news/gemini-sued-over-post-ipo-strategy-shift-declining-stock-price?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Crypto exchange Gemini is facing a proposed class-action lawsuit over what a complaint alleges is an “abrupt corporate pivot to a prediction-market-centric business model” after its IPO.",
+      "published_at": "2026-03-20T05:58:33.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Appeals court denies Kalshi request to block Nevada enforcement action",
+      "url": "<![CDATA[https://cointelegraph.com/news/appeals-court-denies-kalshi-s-bid-to-stave-off-ban-in-nevada?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "US gaming lawyer Daniel Wallach says a Nevada state court-issued restraining order against Kalshi appears imminent, preventing it from offering sports-related contracts.",
+      "published_at": "2026-03-20T05:21:52.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Major gold trade group releases framework for tokenized gold",
+      "url": "<![CDATA[https://cointelegraph.com/news/world-gold-council-framework-tokenized-gold?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "The World Gold Council says it will develop a platform to connect physical gold to the systems used to issue and manage tokenized gold products.",
+      "published_at": "2026-03-20T04:53:26.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Gemini shares surge 6% after hours on Q4 earnings",
+      "url": "<![CDATA[https://cointelegraph.com/news/gemini-shares-up-after-hours-on-q4-earnings?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Gemini reported its fourth quarter revenues were $60.3 million, which co-founders Cameron and Tyler Winklevoss say is its highest quarterly revenue in three years.",
+      "published_at": "2026-03-20T04:15:03.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "FBI warns fake FBI token on Tron is trying to scam users",
+      "url": "<![CDATA[https://cointelegraph.com/news/fbi-warns-phishing-scam-tron-blockchain?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Scammers impersonating the FBI via a token are telling Tron users they are under investigation and must complete a check to avoid having their assets frozen.",
+      "published_at": "2026-03-20T03:19:58.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Solana DApps revenue falls to 18-month low as SOL price risks $80 retest",
+      "url": "<![CDATA[https://cointelegraph.com/news/solana-dapps-revenue-falls-to-18-month-low-as-sol-price-risks-80-retest?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Weakening onchain activity and bearish derivatives data suggest that a SOL price recovery will take longer than most investors anticipate.",
+      "published_at": "2026-03-20T02:44:43.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Coinbase, Apex Group tokenize Bitcoin Yield Fund on Base",
+      "url": "<![CDATA[https://cointelegraph.com/news/coinbase-apex-tokenized-bitcoin-yield-fund-base?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Coinbase Asset Management’s Anthony Bassili says the Bitcoin Yield Fund’s tokenized share class checks “identity and eligibility at the token level” for compliance.",
+      "published_at": "2026-03-20T02:03:40.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Execution quality is the missing metric in Bitcoin and Ethereum markets",
+      "url": "<![CDATA[https://cointelegraph.com/news/execution-quality-missing-metric?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Crypto’s hidden trading costs demand the adoption of transaction cost analysis. Slippage, fees and fragmentation erode trust as crypto matures into institutional markets.",
+      "published_at": "2026-03-20T00:30:00.000Z"
+    }
+  ]
 }
