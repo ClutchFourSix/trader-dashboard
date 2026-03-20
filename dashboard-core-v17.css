@@ -1,0 +1,32 @@
+@import url('./dashboard-core-v14.css');
+
+/* v17 touch drag for sections and tiles */
+body.layout-edit .draggable-section,
+body.layout-edit .draggable-tile { touch-action:none; user-select:none; }
+body.layout-edit .section-head-inline,
+body.layout-edit .tile-drag-handle { cursor:grab; }
+body.layout-edit .section-head-inline:active,
+body.layout-edit .tile-drag-handle:active { cursor:grabbing; }
+.tile-drag-handle{display:none;align-items:center;justify-content:center;padding:6px 8px;border-radius:10px;border:1px dashed var(--border-strong);color:var(--muted);font-size:11px;letter-spacing:.10em;text-transform:uppercase;background:rgba(255,255,255,.04)}
+body.layout-edit .tile-drag-handle{display:inline-flex}
+.drag-ghost{position:fixed;z-index:1200;pointer-events:none;transform-origin:top left;opacity:.96;box-shadow:0 18px 48px rgba(0,0,0,.34),0 0 40px rgba(var(--accent-rgb),.18)}
+.drag-placeholder{border:2px dashed rgba(var(--accent-rgb),.36)!important;background:rgba(255,255,255,.04)!important;min-height:120px}
+.drag-placeholder.tile{min-height:80px}
+.layout-note{font-size:11px;color:var(--muted)}
+
+/* tile zones */
+#assetGrid, #clockStrip, #commandStripInner { align-items:start; }
+.draggable-tile{position:relative}
+
+/* v17 news board */
+.news-layout{display:grid;grid-template-columns:2.35fr 1fr;gap:12px;align-items:start}
+.story-stack,.side-stack,.social-card-grid,.source-link-grid{display:grid;gap:10px}
+.story-source-line{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.10em;margin-bottom:8px}
+.story-link-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.story-link-chip,.social-link,.source-link{padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.05);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text);text-decoration:none}
+.social-account{padding:12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--border)}
+.social-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.news-empty-note{font-size:12px;color:var(--muted);line-height:1.45}
+.source-link-grid{grid-template-columns:1fr}
+.source-link{display:inline-flex;justify-content:center}
+@media (max-width:1200px){.news-layout{grid-template-columns:1fr}}
