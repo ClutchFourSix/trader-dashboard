@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-20T23:00:07.841Z",
+  "generated_at": "2026-03-20T23:55:32.664Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,33 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "The Super Bowl Top Signal",
+      "url": "https://www.zerohedge.com/political/super-bowl-top-signal",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The Super Bowl Top Signal&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden ",
+      "published_at": "2026-03-20T23:45:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Murphy: \"If The Dollar Starts Sinking, It's Gonna Be Fast\"",
+      "url": "https://www.zerohedge.com/economics/murphy-if-dollar-starts-sinking-its-gonna-be-fast",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Murphy: \"If The Dollar Starts Sinking, It's Gonna Be Fast\"&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-",
+      "published_at": "2026-03-20T23:20:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Qatar Dethroned As 'LNG King' As U.S. Seizes Throne, Reshaping Future Of Gas",
+      "url": "https://www.zerohedge.com/energy/qatar-dethroned-lng-king-us-seizes-throne-reshaping-future-gas",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Qatar Dethroned As 'LNG King' As U.S. Seizes Throne, Reshaping Future Of Gas&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body",
+      "published_at": "2026-03-20T22:55:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "Milei's \"Miracle\" Faces First Cracks As Argentina's Unemployment Rises",
       "url": "https://www.zerohedge.com/markets/mileis-miracle-faces-first-cracks-argentinas-unemployment-rises",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Milei's \"Miracle\" Faces First Cracks As Argentina's Unemployment Rises&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field",
@@ -333,33 +360,6 @@
       "url": "https://www.zerohedge.com/markets/bond-markets-are-beginning-panic-over-inflation",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Bond Markets Are Beginning To Panic Over Inflation&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-sum",
       "published_at": "2026-03-20T14:40:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "IEA Chief Warns Gulf Flows May Take Six Months To Restore After Biggest-Ever Energy Shock",
-      "url": "https://www.zerohedge.com/energy/iea-chief-warns-biggest-ever-energy-shock-gulf-flows-may-take-six-months-restore",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;IEA Chief Warns Gulf Flows May Take Six Months To Restore After Biggest-Ever Energy Shock&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field fie",
-      "published_at": "2026-03-20T14:20:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "California Moves To Rename Cesar Chavez Day Before March 31 Holiday",
-      "url": "https://www.zerohedge.com/political/california-moves-rename-cesar-chavez-day-march-31-holiday",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;California Moves To Rename Cesar Chavez Day Before March 31 Holiday&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--t",
-      "published_at": "2026-03-20T14:00:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "\"Our Employees &amp; Guests Were Uncomfortable\": Arkansas Gov. Sanders Told To Leave Restaurant",
-      "url": "https://www.zerohedge.com/political/our-employees-guests-were-uncomfortable-arkansas-gov-sanders-told-leave-restaurant",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"Our Employees &amp; Guests Were Uncomfortable\": Arkansas Gov. Sanders Told To Leave Restaurant&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted fie",
-      "published_at": "2026-03-20T13:25:00.000Z"
     },
     {
       "source": "cointelegraph",
