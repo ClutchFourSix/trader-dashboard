@@ -1,6 +1,69 @@
 {
-  "generated_at": "2026-03-20T10:04:27.587Z",
+  "generated_at": "2026-03-20T11:49:11.492Z",
   "stories": [
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "GBP/USD retreats as BoE hawkish shift meets resilient US Dollar",
+      "url": "https://www.fxstreet.com/news/gbp-usd-retreats-as-boe-hawkish-shift-meets-resilient-us-dollar-202603201053",
+      "summary": "GBP/USD retreats on Friday, trading around 1.3380 at the time of writing, down 0.39% on the day, after Thursday’s strong rally following the Bank of England (BoE) decision.",
+      "published_at": "2026-03-20T10:53:45.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "USD/INR surges above 94 as INR plummets amid consistent foreign outflows",
+      "url": "https://www.fxstreet.com/news/usd-inr-refreshes-all-time-highs-near-9370-as-indian-rupee-deteriorates-further-202603200505",
+      "summary": "The Indian Rupee (INR) extends its downfall against the US Dollar (USD) on Friday after a holiday the previous day.",
+      "published_at": "2026-03-20T10:21:54.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "US Dollar: Upside risk persists in energy shock – BBH",
+      "url": "https://www.fxstreet.com/news/us-dollar-upside-risk-persists-in-energy-shock-bbh-202603201021",
+      "summary": "Brown Brothers Harriman’s Elias Haddad notes that recent political comments briefly steadied risk sentiment, but renewed risk aversion has lifted the Dollar, Oil and bond yields while pressuring equities. With no key data due, focus is on Fed speakers.",
+      "published_at": "2026-03-20T10:21:09.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Silver Price Forecast: XAG/USD sets for third straight negative weekly close",
+      "url": "https://www.fxstreet.com/news/silver-price-forecast-xag-usd-sets-for-third-straight-negative-weekly-close-202603201011",
+      "summary": "Silver price (XAG/USD) trades in a tight range around $72.80 during the European trading session on Friday. The white metal holds onto Thursday’s recovery move, which was driven by weakness in the US Dollar (USD).",
+      "published_at": "2026-03-20T10:11:38.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "ECB's Makhlouf: Don't think ECB has a tightening bias",
+      "url": "https://www.fxstreet.com/news/ecbs-makhlouf-dont-think-ecb-has-a-tightening-bias-202603201008",
+      "summary": "European Central Bank (ECB) policymaker and Governor of the Central Bank of Ireland Gabriel Makhlouf stated during European trading hours on Friday that the central bank doesn’t have a pre-determined rate path and the decision would be made meeting by meeting.",
+      "published_at": "2026-03-20T10:08:29.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "EUR/USD: Conflict keeps downside risks in play – MUFG",
+      "url": "https://www.fxstreet.com/news/eur-usd-conflict-keeps-downside-risks-in-play-mufg-202603200949",
+      "summary": "According to MUFG’s Derek Halpenny, the ECB’s communication and achievement of its price stability goal leave it in a relatively better position than the BoE, but he is sceptical that higher front-end Euro yields will sustain Euro strength.",
+      "published_at": "2026-03-20T09:49:21.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Silver price today: Silver rises, according to FXStreet data",
+      "url": "https://www.fxstreet.com/news/silver-price-today-silver-rises-according-to-fxstreet-data-202603200930",
+      "summary": "Silver prices (XAG/USD) rose on Friday, according to FXStreet data. Silver trades at $73.17 per troy ounce, up 0.45% from the $72.84 it cost on Thursday.",
+      "published_at": "2026-03-20T09:30:48.000Z"
+    },
     {
       "source": "fxstreet",
       "source_name": "FXStreet",
@@ -95,15 +158,6 @@
       "source": "fxstreet",
       "source_name": "FXStreet",
       "source_score": 78,
-      "title": "USD/INR hits all-time highs near 94 amid consistent foreign outflows",
-      "url": "https://www.fxstreet.com/news/usd-inr-refreshes-all-time-highs-near-9370-as-indian-rupee-deteriorates-further-202603200505",
-      "summary": "The Indian Rupee (INR) extends its downfall against the US Dollar (USD) on Friday after a holiday the previous day.",
-      "published_at": "2026-03-20T07:38:33.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
       "title": "Canadian Dollar outperforms its peers despite oil prices cool down",
       "url": "https://www.fxstreet.com/news/canadian-dollar-outperforms-its-peers-despite-oil-prices-cool-down-202603200718",
       "summary": "The Canadian Dollar (CAD) outperforms its major currency peers, but trades flat against the US Dollar (USD) at around 1.3740 during the European trading session on Friday.",
@@ -128,58 +182,49 @@
       "published_at": "2026-03-20T06:34:30.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "WTI Price Forecast: Corrects after failing to return above $100",
-      "url": "https://www.fxstreet.com/news/wti-price-forecast-corrects-after-failing-to-return-above-100-202603200622",
-      "summary": "West Texas Intermediate (WTI), futures on NYMEX, trade over 1% lower to near $93.10 during the early European trading session on Friday.",
-      "published_at": "2026-03-20T06:22:53.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Israel Vows No More Strikes On Iranian Energy Assets After South Pars Hit Sparks Lasting Shock",
+      "url": "https://www.zerohedge.com/energy/israel-vows-no-more-strikes-iranian-energy-assets-after-south-pars-hit-sparks-last-shock",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Israel Vows No More Strikes On Iranian Energy Assets After South Pars Hit Sparks Lasting Shock&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted fiel",
+      "published_at": "2026-03-20T11:20:00.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "USD/CHF ticks up to near 0.7890 as US Dollar recovers",
-      "url": "https://www.fxstreet.com/news/usd-chf-ticks-up-to-near-07890-as-us-dollar-recovers-202603200530",
-      "summary": "The USD/CHF pair edges higher to near 0.7890 during the early European trading session on Friday. The Swiss Franc pair gains as the US Dollar (USD) bounces back after a sharp sell-off the previous day.",
-      "published_at": "2026-03-20T05:30:41.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "New York Governor Begs Wealthy Taxpayers To Stop Leaving The State",
+      "url": "https://www.zerohedge.com/economics/new-york-governor-begs-wealthy-taxpayers-stop-leaving-state",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;New York Governor Begs Wealthy Taxpayers To Stop Leaving The State&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--ty",
+      "published_at": "2026-03-20T10:55:00.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "EUR/GBP declines below 0.8650 as BoE and ECB hold rates amid geopolitical uncertainty",
-      "url": "https://www.fxstreet.com/news/eur-gbp-declines-below-08650-as-boe-and-ecb-hold-rates-amid-geopolitical-uncertainty-202603200528",
-      "summary": "The EUR/GBP cross loses traction to near 0.8620 during the early European session on Friday. The Pound Sterling (GBP) edges higher against the Euro (EUR) after monetary policy decisions from both the Bank of England (BoE) and the European Central Bank (ECB).",
-      "published_at": "2026-03-20T05:28:22.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "How To Transport Next-Gen Nuclear Fuel Safely? NANO Nuclear Hits Key Milestone",
+      "url": "https://www.zerohedge.com/political/how-transport-next-gen-nuclear-fuel-safely-nano-nuclear-hits-key-milestone",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;How To Transport Next-Gen Nuclear Fuel Safely? NANO Nuclear Hits Key Milestone&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-bo",
+      "published_at": "2026-03-20T10:30:00.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "GBP/USD Price Forecast: 38.2% Fibo retracement acts as key barrier near 1.3470",
-      "url": "https://www.fxstreet.com/news/gbp-usd-price-forecast-382-fibo-retracement-acts-as-key-barrier-near-13470-202603200502",
-      "summary": "The GBP/USD pair trades 0.2% lower to near 1.3400 during the late Asian trading session on Friday. The Cable faces selling pressure as the US Dollar Index (DXY) rebounds after an over-a-percent decline the previous day.",
-      "published_at": "2026-03-20T05:02:15.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Netanyahu Declares Iran's Nuclear Program &amp; Missile Production \"Destroyed\" - Denies Israel Influenced Trump",
+      "url": "https://www.zerohedge.com/geopolitical/trump-threatens-blow-worlds-largest-gas-field-distances-us-israeli-actions-macron",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Netanyahu Declares Iran's Nuclear Program &amp; Missile Production \"Destroyed\" - Denies Israel Influenced Trump&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix te",
+      "published_at": "2026-03-20T10:00:00.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "India Gold price today: Gold rises, according to FXStreet data",
-      "url": "https://www.fxstreet.com/news/india-gold-price-today-gold-rises-according-to-fxstreet-data-202603200437",
-      "summary": "Gold prices rose in India on Friday, according to data compiled by FXStreet.",
-      "published_at": "2026-03-20T04:37:24.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "AUD/JPY Price Forecast: Strengthens on bullish technical momentum above 100-day EMA",
-      "url": "https://www.fxstreet.com/news/aud-jpy-price-forecast-strengthens-on-bullish-technical-momentum-above-100-day-ema-202603200436",
-      "summary": "The AUD/JPY cross attracts some buyers to near 112.20 during the early European session on Friday. The Australian Dollar strengthens against the Japanese Yen (JPY) on a hawkish tone from the Reserve Bank of Australia (RBA).",
-      "published_at": "2026-03-20T04:36:01.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "'Explosives And Extra Blood': Denmark Planned To Blow Up Greenland's Runways If US Invaded",
+      "url": "https://www.zerohedge.com/geopolitical/explosives-and-extra-blood-denmark-planned-blow-greenlands-runways-if-us-invaded",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;'Explosives And Extra Blood': Denmark Planned To Blow Up Greenland's Runways If US Invaded&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field fi",
+      "published_at": "2026-03-20T09:45:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -284,15 +329,6 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
-      "title": "Netanyahu Declares Iran's Nuclear Program &amp; Missile Production \"Destroyed\" - Denies Israel Influenced Trump",
-      "url": "https://www.zerohedge.com/geopolitical/trump-threatens-blow-worlds-largest-gas-field-distances-us-israeli-actions-macron",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Netanyahu Declares Iran's Nuclear Program &amp; Missile Production \"Destroyed\" - Denies Israel Influenced Trump&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix te",
-      "published_at": "2026-03-20T01:31:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
       "title": "Kent Tells Tucker: 'Imminent Threat' Was From Israel, Not Iran; Ordered To Halt Charlie Kirk Investigation",
       "url": "https://www.zerohedge.com/political/kent-tells-tucker-imminent-threat-was-israel-not-iran-ordered-halt-charlie-kirk",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Kent Tells Tucker: 'Imminent Threat' Was From Israel, Not Iran; Ordered To Halt Charlie Kirk Investigation&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-fo",
@@ -326,40 +362,31 @@
       "published_at": "2026-03-20T00:10:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "NASA May Shrink Boeing's Moon-Mission Role While Handing SpaceX Core Rocket Responsibilities",
-      "url": "https://www.zerohedge.com/technology/nasa-may-shrink-boeings-moon-mission-role-while-handing-spacex-core-rocket",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;NASA May Shrink Boeing's Moon-Mission Role While Handing SpaceX Core Rocket Responsibilities &lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field",
-      "published_at": "2026-03-19T23:45:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Ripple survey finds 72% of finance leaders see digital assets as essential",
+      "url": "<![CDATA[https://cointelegraph.com/news/ripple-survey-72-finance-leaders-digital-assets-key?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Stablecoins and custody lead adoption priorities, with firms focusing on how to build or source digital asset infrastructure.",
+      "published_at": "2026-03-20T11:22:28.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Minnesota Audit: State Agency 'Accidentally' Blocked Kickback Investigation Into Autism Services",
-      "url": "https://www.zerohedge.com/political/minnesota-audit-state-agency-accidentally-blocked-kickback-investigation-autism-services",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Minnesota Audit: State Agency 'Accidentally' Blocked Kickback Investigation Into Autism Services&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted fi",
-      "published_at": "2026-03-19T23:20:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "South Korea tax agency seeks private crypto custodian after security lapses",
+      "url": "<![CDATA[https://cointelegraph.com/news/south-korea-tax-agency-private-crypto-custody-seed-phrase-leak?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "South Korea’s tax agency is seeking a private custodian for seized crypto after a wallet seed phrase leak exposed government-held assets.",
+      "published_at": "2026-03-20T10:47:45.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Obama Judge Strikes Down Ten Commandments In Arkansas Classrooms",
-      "url": "https://www.zerohedge.com/political/obama-judge-strikes-down-ten-commandments-arkansas-classrooms",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Obama Judge Strikes Down Ten Commandments In Arkansas Classrooms&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type",
-      "published_at": "2026-03-19T22:20:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "US Fast-Tracks Billions In 'Emergency' Arms Sales To Gulf, Bypassing Congress",
-      "url": "https://www.zerohedge.com/geopolitical/us-fast-tracks-billions-emergency-arms-sales-gulf-bypassing-congress",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;US Fast-Tracks Billions In 'Emergency' Arms Sales To Gulf, Bypassing Congress&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-bod",
-      "published_at": "2026-03-19T22:00:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Bitcoin vs gold shows potential bottom signals as BTC bulls defend $70K",
+      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-vs-gold-flashes-multiple-bottom-signals-btc-bulls-defend-70k?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Technical indicators hint at a possible reversal in BTC’s relative performance, as traders watch whether key support levels can hold.",
+      "published_at": "2026-03-20T10:38:42.000Z"
     },
     {
       "source": "cointelegraph",
@@ -423,33 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/fbi-warns-phishing-scam-tron-blockchain?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Scammers impersonating the FBI via a token are telling Tron users they are under investigation and must complete a check to avoid having their assets frozen.",
       "published_at": "2026-03-20T03:19:58.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Solana DApps revenue falls to 18-month low as SOL price risks $80 retest",
-      "url": "<![CDATA[https://cointelegraph.com/news/solana-dapps-revenue-falls-to-18-month-low-as-sol-price-risks-80-retest?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Weakening onchain activity and bearish derivatives data suggest that a SOL price recovery will take longer than most investors anticipate.",
-      "published_at": "2026-03-20T02:44:43.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Coinbase, Apex Group tokenize Bitcoin Yield Fund on Base",
-      "url": "<![CDATA[https://cointelegraph.com/news/coinbase-apex-tokenized-bitcoin-yield-fund-base?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Coinbase Asset Management’s Anthony Bassili says the Bitcoin Yield Fund’s tokenized share class checks “identity and eligibility at the token level” for compliance.",
-      "published_at": "2026-03-20T02:03:40.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Execution quality is the missing metric in Bitcoin and Ethereum markets",
-      "url": "<![CDATA[https://cointelegraph.com/news/execution-quality-missing-metric?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Crypto’s hidden trading costs demand the adoption of transaction cost analysis. Slippage, fees and fragmentation erode trust as crypto matures into institutional markets.",
-      "published_at": "2026-03-20T00:30:00.000Z"
     }
   ]
 }
