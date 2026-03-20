@@ -1,6 +1,42 @@
 {
-  "generated_at": "2026-03-20T19:28:41.525Z",
+  "generated_at": "2026-03-20T20:59:06.855Z",
   "stories": [
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Forecasting the upcoming week: Hawkish Fed meets escalating Iran war",
+      "url": "https://www.fxstreet.com/news/forecasting-the-upcoming-week-hawkish-fed-meets-escalating-iran-war-202603202012",
+      "summary": "The US Dollar (USD)i weakened this week, with the US Dollar Index (DXY) slipping back below 100.00 to 99.60 on Friday after a surge in the middle of the week driven by the Federal Reserve's (Fed) decision to hold rates in the 3.50%-3.75% range.",
+      "published_at": "2026-03-20T20:12:11.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Gold slips near $4,500 as Oil rally and US yields weigh on bullion",
+      "url": "https://www.fxstreet.com/news/gold-slips-near-4-500-as-oil-rally-and-us-yields-weigh-on-bullion-202603201928",
+      "summary": "Gold (XAU/USD) price extended on Friday its losses for the eighth straight day, poised to end the week down by more than 8.50% as Oil prices continued to rally, boosting the haven appeal of the Greenback.",
+      "published_at": "2026-03-20T19:28:41.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Banxico seen holding rates at 7% amid war-driven inflation risks",
+      "url": "https://www.fxstreet.com/news/banxico-seen-holding-rates-at-7-amid-war-driven-inflation-risks-202603201928",
+      "summary": "A Reuters poll revealed that the Bank of Mexico — also known as Banxico for its Spanish acronym — is expected to keep interest rates steady at 7% at the March 26 meeting amid concerns about the Middle East war.",
+      "published_at": "2026-03-20T19:28:16.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "USD/CHF flat as Fed outlook and Oil-driven USD demand limit downside",
+      "url": "https://www.fxstreet.com/news/usd-chf-flat-as-fed-outlook-and-oil-driven-usd-demand-limit-downside-202603201832",
+      "summary": "The Swiss Franc (CHF) trades flat against the US Dollar (USD) on Friday, reversing part of its earlier gains as the Greenback eases slightly from daily highs. At the time of writing, USD/CHF is trading around 0.7878 after briefly touching the 0.7900 mark.",
+      "published_at": "2026-03-20T18:32:39.000Z"
+    },
     {
       "source": "fxstreet",
       "source_name": "FXStreet",
@@ -144,42 +180,6 @@
       "url": "https://www.fxstreet.com/news/gbp-usd-retreats-as-boe-hawkish-shift-meets-resilient-us-dollar-202603201053",
       "summary": "GBP/USD retreats on Friday, trading around 1.3380 at the time of writing, down 0.39% on the day, after Thursday’s strong rally following the Bank of England (BoE) decision.",
       "published_at": "2026-03-20T10:53:45.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "USD/INR surges above 94 as INR plummets amid consistent foreign outflows",
-      "url": "https://www.fxstreet.com/news/usd-inr-refreshes-all-time-highs-near-9370-as-indian-rupee-deteriorates-further-202603200505",
-      "summary": "The Indian Rupee (INR) extends its downfall against the US Dollar (USD) on Friday after a holiday the previous day.",
-      "published_at": "2026-03-20T10:21:54.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "US Dollar: Upside risk persists in energy shock – BBH",
-      "url": "https://www.fxstreet.com/news/us-dollar-upside-risk-persists-in-energy-shock-bbh-202603201021",
-      "summary": "Brown Brothers Harriman’s Elias Haddad notes that recent political comments briefly steadied risk sentiment, but renewed risk aversion has lifted the Dollar, Oil and bond yields while pressuring equities. With no key data due, focus is on Fed speakers.",
-      "published_at": "2026-03-20T10:21:09.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Silver Price Forecast: XAG/USD sets for third straight negative weekly close",
-      "url": "https://www.fxstreet.com/news/silver-price-forecast-xag-usd-sets-for-third-straight-negative-weekly-close-202603201011",
-      "summary": "Silver price (XAG/USD) trades in a tight range around $72.80 during the European trading session on Friday. The white metal holds onto Thursday’s recovery move, which was driven by weakness in the US Dollar (USD).",
-      "published_at": "2026-03-20T10:11:38.000Z"
-    },
-    {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "ECB's Makhlouf: Don't think ECB has a tightening bias",
-      "url": "https://www.fxstreet.com/news/ecbs-makhlouf-dont-think-ecb-has-a-tightening-bias-202603201008",
-      "summary": "European Central Bank (ECB) policymaker and Governor of the Central Bank of Ireland Gabriel Makhlouf stated during European trading hours on Friday that the central bank doesn’t have a pre-determined rate path and the decision would be made meeting by meeting.",
-      "published_at": "2026-03-20T10:08:29.000Z"
     },
     {
       "source": "zerohedge",
@@ -365,6 +365,42 @@
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
+      "title": "Google Threat Intel flags 'Ghostblade' crypto-stealing malware",
+      "url": "<![CDATA[https://cointelegraph.com/news/google-ghostblade-crypto-stealing-malware?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Ghostblade is one of six malware tools in the \"DarkSword\" suite of malicious software designed to steal crypto private keys and user data.",
+      "published_at": "2026-03-20T20:10:00.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Crypto Biz: Institutions aren’t waiting for the bottom",
+      "url": "<![CDATA[https://cointelegraph.com/news/crypto-biz-institutional-crypto-demand-stablecoins-abra-spac-listing?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Nearly three-quarters of institutional investors plan to increase their digital asset allocations this year, with Bitcoin, Ether, stablecoins and tokenized assets seeing the most interest.",
+      "published_at": "2026-03-20T20:00:00.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Ledger hires ex-Circle exec as CFO, opens NYC office to expand US business",
+      "url": "<![CDATA[https://cointelegraph.com/news/ledger-hires-ex-circle-executive-opens-nyc-office?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Ledger names John Andrews as chief financial officer and opens a New York office to expand its US operations and institutional business.",
+      "published_at": "2026-03-20T19:56:52.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Here’s what happened in crypto today",
+      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
+      "published_at": "2026-03-20T19:30:45.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
       "title": "Ether taker volume hits 3-year high: Will ETH avoid a 19% price decline?",
       "url": "<![CDATA[https://cointelegraph.com/news/ether-taker-volume-hits-3-year-high-will-eth-avoid-a-19percent-price-decline?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "A strong buy signal not seen since 2022 just flashed on Ether, but the altcoin needs to hold above a key price level to avoid invalidating the pattern.",
@@ -410,46 +446,10 @@
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
-      "title": "Here’s what happened in crypto today",
-      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
-      "published_at": "2026-03-20T14:11:32.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
       "title": "BitFuFu cuts self-mined Bitcoin in 2025, shifts focus to cloud mining",
       "url": "<![CDATA[https://cointelegraph.com/news/bitfufu-self-mined-bitcoin-down-cloud-mining-shift?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Bitcoin miner BitFuFu decreased its revenue from self-hosted mining operations by 60% in 2025 in a push to cloud mining.",
       "published_at": "2026-03-20T14:03:10.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Crypto part of Canada’s ‘core’ financial system, but risk concerns remain",
-      "url": "<![CDATA[https://cointelegraph.com/news/crypto-canada-core-financial-risk-concerns-remain?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "The crypto industry has seen a number of regulatory changes over the past year, with the Canadian government taking a risk-management, rules-first approach.",
-      "published_at": "2026-03-20T13:48:19.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Bitcoin RSI signals potential bottom as analysts flag key setup",
-      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-rsi-eyes-2022-repeat-analysis-time-to-pay-attention?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Bitcoin’s RSI is nearing a key level, with analysts saying a higher low is needed to support a potential continuation in BTC price.",
-      "published_at": "2026-03-20T13:43:55.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Bitcoin whale holding $147M wakes after 13 years, makes tiny $56 transfer",
-      "url": "<![CDATA[https://cointelegraph.com/news/dormant-bitcoin-wallet-wakes-up-after-13-years?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "A Bitcoin wallet inactive since 2012 has moved $56 worth of BTC, spotlighting a stash now valued at roughly $147 million after more than 13 years dormant.",
-      "published_at": "2026-03-20T13:40:27.000Z"
     }
   ]
 }
