@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T19:53:53.398Z",
+  "generated_at": "2026-03-21T20:54:42.720Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,33 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "\"Complete Other Alias\": Rep. Luna Drops Clinton-Epstein Bombshell",
+      "url": "https://www.zerohedge.com/political/complete-other-alias-rep-luna-drops-clinton-epstein-bombshell",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"Complete Other Alias\": Rep. Luna Drops Clinton-Epstein Bombshell&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--typ",
+      "published_at": "2026-03-21T20:20:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "US \"Degrades\" Threats To Hormuz Traffic As Iran's Longest-Range Missile Strike Fails; Kharg Invasion Risk Rising",
+      "url": "https://www.zerohedge.com/geopolitical/irans-longest-range-missile-strike-fails-diego-garcia-natanz-nuclear-facility-bombed",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;US \"Degrades\" Threats To Hormuz Traffic As Iran's Longest-Range Missile Strike Fails; Kharg Invasion Risk Rising&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix t",
+      "published_at": "2026-03-21T20:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Major Trade Group Releases Framework For Tokenized Gold",
+      "url": "https://www.zerohedge.com/crypto/major-trade-group-releases-framework-tokenized-gold",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Major Trade Group Releases Framework For Tokenized Gold&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-wit",
+      "published_at": "2026-03-21T19:10:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "Trevor Milton Is Back And Wants To Produce AI Powered \"Fully Autonomous Corporate Jets\"",
       "url": "https://www.zerohedge.com/markets/trevor-milton-back-and-wants-produce-ai-powered-fully-autonomous-corporate-jets",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Trevor Milton Is Back And Wants To Produce AI Powered \"Fully Autonomous Corporate Jets\"&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field",
@@ -243,15 +270,6 @@
       "url": "https://www.zerohedge.com/political/victor-hanson-what-it-fickle-europeans",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Victor Hanson: What Is It With The Fickle Europeans?&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-s",
       "published_at": "2026-03-21T14:30:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "US \"Degrades\" Threats To Hormuz Traffic As Iran's Longest-Range Missile Strike Fails; Kharg Invasion Risk Rising",
-      "url": "https://www.zerohedge.com/geopolitical/irans-longest-range-missile-strike-fails-diego-garcia-natanz-nuclear-facility-bombed",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;US \"Degrades\" Threats To Hormuz Traffic As Iran's Longest-Range Missile Strike Fails; Kharg Invasion Risk Rising&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix t",
-      "published_at": "2026-03-21T13:55:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -342,24 +360,6 @@
       "url": "https://www.zerohedge.com/military/first-ever-look-classified-rq-180-stealth-drone",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;First-Ever Look At America's Classified RQ-180 Stealth Drone? &lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-t",
       "published_at": "2026-03-21T01:50:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Tax Season Will Bring Record Refunds. Use Them Wisely",
-      "url": "https://www.zerohedge.com/personal-finance/tax-season-will-bring-record-refunds-use-them-wisely",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Tax Season Will Bring Record Refunds. Use Them Wisely&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-",
-      "published_at": "2026-03-21T01:25:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "IDF Iron Dome Operator Arrested, Charged With Spying For Iran",
-      "url": "https://www.zerohedge.com/geopolitical/idf-iron-dome-operator-arrested-charged-spying-iran",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;IDF Iron Dome Operator Arrested, Charged With Spying For Iran&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-te",
-      "published_at": "2026-03-21T01:00:00.000Z"
     },
     {
       "source": "cointelegraph",
