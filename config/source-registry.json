@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "key": "fxstreet",
+      "name": "FXStreet",
+      "type": "rss",
+      "url": "https://www.fxstreet.com/rss/news",
+      "asset_classes": ["fx", "macro", "rates"],
+      "influence_weight": 0.88,
+      "base_accuracy": 78,
+      "active": true,
+      "public": true
+    },
+    {
+      "key": "cointelegraph",
+      "name": "Cointelegraph",
+      "type": "rss",
+      "url": "https://cointelegraph.com/rss",
+      "asset_classes": ["crypto", "macro"],
+      "influence_weight": 0.76,
+      "base_accuracy": 66,
+      "active": true,
+      "public": true
+    },
+    {
+      "key": "zerohedge",
+      "name": "ZeroHedge",
+      "type": "rss",
+      "url": "https://feeds.feedburner.com/zerohedge/feed",
+      "asset_classes": ["macro", "rates", "equities"],
+      "influence_weight": 0.64,
+      "base_accuracy": 54,
+      "active": true,
+      "public": true
+    },
+    {
+      "key": "lynalden",
+      "name": "Lyn Alden",
+      "type": "site",
+      "url": "https://www.lynalden.com/",
+      "asset_classes": ["macro", "rates", "credit"],
+      "influence_weight": 0.9,
+      "base_accuracy": 86,
+      "active": true,
+      "public": true
+    },
+    {
+      "key": "realvision",
+      "name": "Real Vision",
+      "type": "site",
+      "url": "https://www.realvision.com/",
+      "asset_classes": ["macro", "crypto", "equities"],
+      "influence_weight": 0.8,
+      "base_accuracy": 74,
+      "active": true,
+      "public": false
+    }
+  ]
+}
