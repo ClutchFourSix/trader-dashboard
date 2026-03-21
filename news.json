@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T16:58:54.543Z",
+  "generated_at": "2026-03-21T17:53:57.655Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,15 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "Senate To Work Through Weekend Debating SAVE America Act",
+      "url": "https://www.zerohedge.com/political/senate-work-through-weekend-debating-save-america-act",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Senate To Work Through Weekend Debating SAVE America Act&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-wi",
+      "published_at": "2026-03-21T16:50:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "US Removes Sanctions On Iranian Oil Stranded At Sea To Boost Overall Supply",
       "url": "https://www.zerohedge.com/markets/us-removes-sanctions-iranian-oil-stranded-sea-boost-overall-supply",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;US Removes Sanctions On Iranian Oil Stranded At Sea To Boost Overall Supply&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body ",
@@ -353,13 +362,22 @@
       "published_at": "2026-03-21T00:10:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "The Super Bowl Top Signal",
-      "url": "https://www.zerohedge.com/political/super-bowl-top-signal",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The Super Bowl Top Signal&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden ",
-      "published_at": "2026-03-20T23:45:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "SEC crypto guidance puts the 'final nail' in the Gensler era: Analyst",
+      "url": "<![CDATA[https://cointelegraph.com/news/sec-crypto-guidance-final-nail-gensler-era?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "The SEC's digital asset market taxonomy, which classifies most cryptocurrencies and tokens as non-securities, is a major step for US regulators.",
+      "published_at": "2026-03-21T17:41:54.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Bitcoin options signal fear even as BTC ETF outflows remain relatively low",
+      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-options-signal-fear-even-as-btc-etf-outflows-remain-relatively-low?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Bitcoin ETF outflows are too small to signal a bearish pivot from traders, but worsening US macroeconomic conditions and high oil prices keep BTC traders on the hedge.",
+      "published_at": "2026-03-21T17:18:44.000Z"
     },
     {
       "source": "cointelegraph",
@@ -432,24 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/grayscale-files-sec-papers-for-hyperliquid-etf-joining-bitwise-21shares?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Unlike Bitwise, Grayscale doesn’t plan to incorporate staking for its Hyperliquid ETF but hasn’t ruled out integrating it in the future.",
       "published_at": "2026-03-21T00:36:00.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Rumors emerge of a CLARITY Act deal between White House and lawmakers",
-      "url": "<![CDATA[https://cointelegraph.com/news/clarity-act-deal-white-house-lawmakers?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "The deal reportedly focuses on stablecoin yield and interest-bearing stable tokens, a major pain point for the banking industry.",
-      "published_at": "2026-03-20T21:31:14.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Bitcoin price aims to hold $70K amid rising inflation concerns",
-      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-price-aims-to-hold-70k-amid-rising-inflation-concerns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Bitcoin searches for equilibrium at $70,000 while rising crude oil prices and tanking stock markets have investors worried over the future of inflation in the US.",
-      "published_at": "2026-03-20T20:56:20.000Z"
     }
   ]
 }
