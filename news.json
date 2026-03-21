@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T08:00:28.705Z",
+  "generated_at": "2026-03-21T09:51:40.410Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -365,6 +365,15 @@
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
+      "title": "Early Ethereum whale rebuilding stack with $19.5M in ETH buys",
+      "url": "<![CDATA[https://cointelegraph.com/news/ethereum-whale-thomasg-eth-buys-19-5m?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Early Ethereum whale thomasg.eth is rebuilding his position with a $19.5 million ETH purchase this week, as BitMine's Tom Lee calls the end of “crypto winter.”",
+      "published_at": "2026-03-21T09:22:44.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
       "title": "Bitcoin weakness deepens as war pushes traders to cut risk in BTC and stocks",
       "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-weakness-deepens-as-war-pushes-traders-to-cut-risk-in-btc-and-stocks?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Bitcoin price remains rocky, and BTC and equities ETF outflows soar as the US and Israel-Iran war enters a fourth week.",
@@ -441,15 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
       "published_at": "2026-03-20T19:30:45.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Ether taker volume hits 3-year high: Will ETH avoid a 19% price decline?",
-      "url": "<![CDATA[https://cointelegraph.com/news/ether-taker-volume-hits-3-year-high-will-eth-avoid-a-19percent-price-decline?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "A strong buy signal not seen since 2022 just flashed on Ether, but the altcoin needs to hold above a key price level to avoid invalidating the pattern.",
-      "published_at": "2026-03-20T18:44:02.000Z"
     }
   ]
 }
