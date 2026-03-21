@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T10:55:52.443Z",
+  "generated_at": "2026-03-21T11:45:03.421Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,15 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "You Won't Believe What The UK Green Party Wants To Teach Children...",
+      "url": "https://www.zerohedge.com/political/you-wont-believe-what-uk-green-party-wants-teach-children",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;You Won't Believe What The UK Green Party Wants To Teach Children...&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--",
+      "published_at": "2026-03-21T11:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "Smith: The Political Left, Multiculturalism, &amp; The Dark Alliance With Islam",
       "url": "https://www.zerohedge.com/political/political-left-multiculturalism-and-dark-alliance-islam",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Smith: The Political Left, Multiculturalism, &amp; The Dark Alliance With Islam&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-b",
@@ -353,19 +362,10 @@
       "published_at": "2026-03-20T19:45:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "'TRUMP AMERICA AI Act' Repeals Section 230, Expands Liability, &amp; Establishes Centralized Federal Control Over AI Systems",
-      "url": "https://www.zerohedge.com/political/trump-america-ai-act-repeals-section-230-expands-liability-and-establishes-centralized",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;'TRUMP AMERICA AI Act' Repeals Section 230, Expands Liability, &amp; Establishes Centralized Federal Control Over AI Systems&lt;/span&gt; &lt;div property=\"schema:text\" class",
-      "published_at": "2026-03-20T18:45:00.000Z"
-    },
-    {
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
-      "title": "Early Ethereum whale rebuilding stack with $19.5M in ETH buys",
+      "title": "Early Ethereum whale rebuilds stack with $19.5M in ETH buys",
       "url": "<![CDATA[https://cointelegraph.com/news/ethereum-whale-thomasg-eth-buys-19-5m?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Early Ethereum whale thomasg.eth is rebuilding his position with a $19.5 million ETH purchase this week, as BitMine's Tom Lee calls the end of “crypto winter.”",
       "published_at": "2026-03-21T09:22:44.000Z"
