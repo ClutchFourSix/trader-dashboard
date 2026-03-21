@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T21:48:56.917Z",
+  "generated_at": "2026-03-21T22:54:51.176Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,15 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "Costco Gas Lines Surge As Drivers Hunt For Cheaper Fuel",
+      "url": "https://www.zerohedge.com/markets/costco-gas-lines-surge-drivers-hunt-cheaper-fuel",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Costco Gas Lines Surge As Drivers Hunt For Cheaper Fuel&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-wit",
+      "published_at": "2026-03-21T22:05:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "Iran Ready To Let Japanese Ships Use Hormuz As Chinese, Indian Tankers Already Allowed Passage",
       "url": "https://www.zerohedge.com/markets/iran-ready-let-japanese-ships-use-hormuz-chinese-indian-tankers-already-allowed-passage",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran Ready To Let Japanese Ships Use Hormuz As Chinese, Indian Tankers Already Allowed Passage&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted fiel",
@@ -353,13 +362,22 @@
       "published_at": "2026-03-21T02:40:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Inside Iran's Internet Access Black Market Amid 3-Week Wartime Blackout",
-      "url": "https://www.zerohedge.com/geopolitical/inside-irans-internet-access-black-market-amid-3-week-blackout",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Inside Iran's Internet Access Black Market Amid 3-Week Wartime Blackout&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body fiel",
-      "published_at": "2026-03-21T02:15:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Here’s what happened in crypto today",
+      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
+      "published_at": "2026-03-21T22:37:26.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Brazil's finance minister shelves crypto tax policy due to election: Report",
+      "url": "<![CDATA[https://cointelegraph.com/news/brazil-finance-minister-shelves-crypto-tax?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "The South American country will hold its presidential election in October 2026, and incumbent Luiz Inácio Lula da Silva is running for re-election.",
+      "published_at": "2026-03-21T22:22:03.000Z"
     },
     {
       "source": "cointelegraph",
@@ -387,15 +405,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/ethereum-25-rally-richest-eth-whale-return-profitable?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "ETH price could climb toward $2,750 by June and above $3,200 by September if the historical whale-profit signal plays out again.",
       "published_at": "2026-03-21T16:22:38.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Here’s what happened in crypto today",
-      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
-      "published_at": "2026-03-21T14:08:36.000Z"
     },
     {
       "source": "cointelegraph",
@@ -441,15 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/gold-sees-biggest-weekly-fall-in-43-years?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Gold is also being impacted by rising anticipation that the US Federal Reserve won’t cut interest rates this year, while Fed chair Jerome Powell said inflation would rise.",
       "published_at": "2026-03-21T02:53:02.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Grayscale files S-1 for Hyperliquid ETF, joining Bitwise, 21Shares",
-      "url": "<![CDATA[https://cointelegraph.com/news/grayscale-files-sec-papers-for-hyperliquid-etf-joining-bitwise-21shares?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Unlike Bitwise, Grayscale doesn’t plan to incorporate staking for its Hyperliquid ETF but hasn’t ruled out integrating it in the future.",
-      "published_at": "2026-03-21T00:36:00.000Z"
     }
   ]
 }
