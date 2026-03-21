@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T15:50:30.603Z",
+  "generated_at": "2026-03-21T16:58:54.543Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,15 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "US Removes Sanctions On Iranian Oil Stranded At Sea To Boost Overall Supply",
+      "url": "https://www.zerohedge.com/markets/us-removes-sanctions-iranian-oil-stranded-sea-boost-overall-supply",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;US Removes Sanctions On Iranian Oil Stranded At Sea To Boost Overall Supply&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body ",
+      "published_at": "2026-03-21T16:15:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "The Private Credit Crisis Is Spreading",
       "url": "https://www.zerohedge.com/markets/private-credit-crisis-spreading",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The Private Credit Crisis Is Spreading&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--",
@@ -212,9 +221,9 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
-      "title": "Iran's Longest-Range Missile Strike Fails On Diego Garcia, As Natanz Nuclear Facility Bombed",
+      "title": "US \"Degrades\" Threats To Hormuz Traffic As Iran's Longest-Range Missile Strike Fails; Kharg Invasion Risk Rising",
       "url": "https://www.zerohedge.com/geopolitical/irans-longest-range-missile-strike-fails-diego-garcia-natanz-nuclear-facility-bombed",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran's Longest-Range Missile Strike Fails On Diego Garcia, As Natanz Nuclear Facility Bombed&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field ",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;US \"Degrades\" Threats To Hormuz Traffic As Iran's Longest-Range Missile Strike Fails; Kharg Invasion Risk Rising&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix t",
       "published_at": "2026-03-21T13:55:00.000Z"
     },
     {
@@ -353,13 +362,13 @@
       "published_at": "2026-03-20T23:45:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Murphy: \"If The Dollar Starts Sinking, It's Gonna Be Fast\"",
-      "url": "https://www.zerohedge.com/economics/murphy-if-dollar-starts-sinking-its-gonna-be-fast",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Murphy: \"If The Dollar Starts Sinking, It's Gonna Be Fast\"&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-",
-      "published_at": "2026-03-20T23:20:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Ethereum eyes 25% rally as richest ETH whales return to 'profitable state'",
+      "url": "<![CDATA[https://cointelegraph.com/news/ethereum-25-rally-richest-eth-whale-return-profitable?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "ETH price could climb toward $2,750 by June and above $3,200 by September if the historical whale-profit signal plays out again.",
+      "published_at": "2026-03-21T16:22:38.000Z"
     },
     {
       "source": "cointelegraph",
@@ -441,15 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-price-aims-to-hold-70k-amid-rising-inflation-concerns?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Bitcoin searches for equilibrium at $70,000 while rising crude oil prices and tanking stock markets have investors worried over the future of inflation in the US.",
       "published_at": "2026-03-20T20:56:20.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Google Threat Intel flags 'Ghostblade' crypto-stealing malware",
-      "url": "<![CDATA[https://cointelegraph.com/news/google-ghostblade-crypto-stealing-malware?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Ghostblade is one of six malware tools in the \"DarkSword\" suite of malicious software designed to steal crypto private keys and user data.",
-      "published_at": "2026-03-20T20:10:00.000Z"
     }
   ]
 }
