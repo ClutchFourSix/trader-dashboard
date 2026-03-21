@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T11:45:03.421Z",
+  "generated_at": "2026-03-21T13:55:05.542Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,42 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "UK COVID Inquiry Finds Lockdowns May Have Cost 1000s Of Lives",
+      "url": "https://www.zerohedge.com/covid-19/uk-covid-inquiry-finds-lockdowns-may-have-cost-1000s-lives",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;UK COVID Inquiry Finds Lockdowns May Have Cost 1000s Of Lives&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-te",
+      "published_at": "2026-03-21T13:20:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "\"I'd Like To Pay Their Salaries\": Elon Musk Offers Lifeline To TSA Agents As Democrats Hold Paychecks Hostage In Shutdown",
+      "url": "https://www.zerohedge.com/political/id-pay-their-salaries-elon-musk-offers-lifeline-tsa-agents-democrats-hold-paychecks",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"I'd Like To Pay Their Salaries\": Elon Musk Offers Lifeline To TSA Agents As Democrats Hold Paychecks Hostage In Shutdown&lt;/span&gt; &lt;div property=\"schema:text\" class=\"c",
+      "published_at": "2026-03-21T12:45:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Britain Once Led The World. What Happened?",
+      "url": "https://www.zerohedge.com/political/britain-once-led-world-what-happened",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Britain Once Led The World. What Happened?&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary fie",
+      "published_at": "2026-03-21T12:10:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Switzerland Halts Military Exports To US, Citing Iran War Neutrality",
+      "url": "https://www.zerohedge.com/geopolitical/switzerland-halts-all-arms-exports-us-citing-iran-war-neutrality",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Switzerland Halts Military Exports To US, Citing Iran War Neutrality &lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field-",
+      "published_at": "2026-03-21T11:35:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "You Won't Believe What The UK Green Party Wants To Teach Children...",
       "url": "https://www.zerohedge.com/political/you-wont-believe-what-uk-green-party-wants-teach-children",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;You Won't Believe What The UK Green Party Wants To Teach Children...&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--",
@@ -326,40 +362,22 @@
       "published_at": "2026-03-20T21:15:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Legendary Midwest Fast-Food Icon Spirals Into Bankruptcy",
-      "url": "https://www.zerohedge.com/economics/legendary-chicago-fast-food-icon-spirals-bankruptcy",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Legendary Midwest Fast-Food Icon Spirals Into Bankruptcy&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-wi",
-      "published_at": "2026-03-20T20:50:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Hong Kong retiree loses $840K in triple ‘crypto expert’ scam",
+      "url": "<![CDATA[https://cointelegraph.com/news/hong-kong-retiree-loses-840k-triple-scam?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Hong Kong police say a 66-year-old retiree was duped three times in six months by self-styled “crypto investment experts,” as scammers promised easy gains and help to recover losses.",
+      "published_at": "2026-03-21T13:43:41.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "\"I Think We've Won\" Trump Says As Iran Refuses Hormuz Talks, Houthis Threaten Red Sea Strait",
-      "url": "https://www.zerohedge.com/geopolitical/hormuz-showdown-begins-us-warplanes-apaches-launch-sea-lane-offensive-trump-eyes-high",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"I Think We've Won\" Trump Says As Iran Refuses Hormuz Talks, Houthis Threaten Red Sea Strait&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field ",
-      "published_at": "2026-03-20T20:30:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "And Then The World Changed...",
-      "url": "https://www.zerohedge.com/political/and-then-world-changed",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;And Then The World Changed...&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hid",
-      "published_at": "2026-03-20T20:25:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Putin Reportedly Offers To Cut Iran Intel-Sharing If US Does Same In Ukraine",
-      "url": "https://www.zerohedge.com/geopolitical/putin-reportedly-offers-cut-iran-intel-sharing-if-us-does-same-ukraine",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Putin Reportedly Offers To Cut Iran Intel-Sharing If US Does Same In Ukraine&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body",
-      "published_at": "2026-03-20T19:45:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Bitcoin mining difficulty falls 7.7% as miner pressure persists",
+      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-mining-difficulty-drops-7-7-miner-pressure?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Bitcoin’s mining difficulty just logged its second sizeable cut of 2026, easing conditions for remaining miners as competition from artificial intelligence data centers rises.",
+      "published_at": "2026-03-21T11:58:18.000Z"
     },
     {
       "source": "cointelegraph",
@@ -367,7 +385,7 @@
       "source_score": 66,
       "title": "Early Ethereum whale rebuilds stack with $19.5M in ETH buys",
       "url": "<![CDATA[https://cointelegraph.com/news/ethereum-whale-thomasg-eth-buys-19-5m?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Early Ethereum whale thomasg.eth is rebuilding his position with a $19.5 million ETH purchase this week, as BitMine's Tom Lee calls the end of “crypto winter.”",
+      "summary": "Early Ethereum whale thomasg.eth is rebuilding his position with $19.5 million in ETH purchases this week, as BitMine’s Tom Lee calls for the end of “crypto winter.”",
       "published_at": "2026-03-21T09:22:44.000Z"
     },
     {
@@ -432,24 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/crypto-biz-institutional-crypto-demand-stablecoins-abra-spac-listing?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Nearly three-quarters of institutional investors plan to increase their digital asset allocations this year, with Bitcoin, Ether, stablecoins and tokenized assets seeing the most interest.",
       "published_at": "2026-03-20T20:00:00.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Ledger hires ex-Circle exec as CFO, opens NYC office to expand US business",
-      "url": "<![CDATA[https://cointelegraph.com/news/ledger-hires-ex-circle-executive-opens-nyc-office?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Ledger names John Andrews as chief financial officer and opens a New York office to expand its US operations and institutional business.",
-      "published_at": "2026-03-20T19:56:52.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Here’s what happened in crypto today",
-      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
-      "published_at": "2026-03-20T19:30:45.000Z"
     }
   ]
 }
