@@ -1,0 +1,126 @@
+{
+  "generated_at": "2026-03-21T00:00:00Z",
+  "source": "seeded-cache",
+  "stories": [
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "title": "US Senate confirms pro-crypto Selig to lead CFTC, Hill to head FDIC",
+      "link": "https://cointelegraph.com/news/us-senate-confirms-crypto-friendly-cftc-fdic-chairs//",
+      "summary": "The US Senate confirmed crypto-friendly lawyer Mike Selig as the new CFTC chair and elevated Travis Hill to chair the FDIC.",
+      "published_at": "2025-12-19T00:00:00Z",
+      "age_minutes": 132480,
+      "source_score": 66,
+      "story_score": 73,
+      "final_score": 70
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "title": "Bitcoin, altcoins sell off as Fed chair switch-up, AI bubble fears spook markets",
+      "link": "https://cointelegraph.com/news/bitcoin-altcoins-sell-off-as-fed-chair-switch-up-ai-bubble-fears-spook-markets//",
+      "summary": "Crypto markets slid as traders turned risk-averse amid renewed Fed leadership speculation, tightening liquidity and broader macro uncertainty.",
+      "published_at": "2025-12-16T00:00:00Z",
+      "age_minutes": 136800,
+      "source_score": 66,
+      "story_score": 72,
+      "final_score": 69
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "title": "Texas grid is heating up again, this time from AI, not Bitcoin miners",
+      "link": "https://cointelegraph.com/news/texas-ai-power-demand-ercot-load-surge",
+      "summary": "ERCOT reported a record surge in large-load requests, with AI data centers surpassing Bitcoin miners and reshaping Texas grid planning and reliability outlook.",
+      "published_at": "2025-12-11T00:00:00Z",
+      "age_minutes": 144000,
+      "source_score": 66,
+      "story_score": 71,
+      "final_score": 69
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "title": "Crypto market sentiment stays in ‘Fear’ following Trump’s deal with China",
+      "link": "https://cointelegraph.com/news/crypto-market-sentiment-fear-donald-trump-trade-deal-bitcoin-ether",
+      "summary": "A widely used crypto market sentiment indicator remained in Fear territory despite improved clarity on trade relations between the US and China.",
+      "published_at": "2025-11-02T00:00:00Z",
+      "age_minutes": 200160,
+      "source_score": 66,
+      "story_score": 67,
+      "final_score": 67
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "title": "$19B crypto market crash was ‘controlled deleveraging,’ not cascade: Analyst",
+      "link": "https://cointelegraph.com/news/19b-crypto-market-crash-controlled-deleveraging-cascade-analyst",
+      "summary": "Analysts said the record $19 billion crypto liquidation was more organic deleveraging than a market cascade.",
+      "published_at": "2025-10-14T00:00:00Z",
+      "age_minutes": 227520,
+      "source_score": 66,
+      "story_score": 66,
+      "final_score": 66
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "title": "Stablecoin market boom to $300B is ‘rocket fuel’ for crypto rally",
+      "link": "https://cointelegraph.com/news/stablecoin-market-hits-300b-may-fuel-crypto-rally",
+      "summary": "The record $300 billion stablecoin supply may act as rocket fuel for crypto valuations while signaling deeper integration with global finance.",
+      "published_at": "2025-10-04T00:00:00Z",
+      "age_minutes": 241920,
+      "source_score": 66,
+      "story_score": 68,
+      "final_score": 67
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "title": "Bitcoin chases new highs as crypto market cap crosses $4.21T",
+      "link": "https://cointelegraph.com/news/bitcoin-chases-new-highs-as-crypto-market-cap-crosses-dollar4-21t",
+      "summary": "Bitcoin rallied close to $124,000 as surging US demand, shifting Federal Reserve policy and bullish Q4 hopes lifted investor sentiment.",
+      "published_at": "2025-10-03T00:00:00Z",
+      "age_minutes": 243360,
+      "source_score": 66,
+      "story_score": 69,
+      "final_score": 68
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "title": "Crypto stocks tumble alongside BTC, equities as tariff fears resurface",
+      "link": "https://cointelegraph.com/news/crypto-stocks-tumble-alongside-btc-equities-as-tariff-fears-resurface",
+      "summary": "Shares of US crypto companies fell sharply in a broader sell-off driven by weak jobs data, inflation concerns and renewed tariff threats.",
+      "published_at": "2025-08-01T00:00:00Z",
+      "age_minutes": 334080,
+      "source_score": 66,
+      "story_score": 64,
+      "final_score": 65
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "title": "Crypto market cap nears $4T, just behind the biggest company in the world",
+      "link": "https://cointelegraph.com/news/crypto-market-cap-nears-4-trillion-amid-rally-crypto-legislation",
+      "summary": "Surges in Ether and XRP drove total crypto market capitalization to record highs just shy of $4 trillion.",
+      "published_at": "2025-07-18T00:00:00Z",
+      "age_minutes": 354240,
+      "source_score": 66,
+      "story_score": 63,
+      "final_score": 65
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "title": "Montana Becomes Latest State To Ban Lab-Grown Meat",
+      "link": "https://www.zerohedge.com/food/montana-becomes-latest-state-ban-lab-grown-meat",
+      "summary": "Montana became the fifth US state to pass legislation prohibiting lab-cultivated proteins.",
+      "published_at": "2025-05-13T00:00:00Z",
+      "age_minutes": 450720,
+      "source_score": 54,
+      "story_score": 58,
+      "final_score": 56
+    }
+  ]
+}
