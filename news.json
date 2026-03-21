@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T17:53:57.655Z",
+  "generated_at": "2026-03-21T19:04:07.263Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,24 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "Trevor Milton Is Back And Wants To Produce AI Powered \"Fully Autonomous Corporate Jets\"",
+      "url": "https://www.zerohedge.com/markets/trevor-milton-back-and-wants-produce-ai-powered-fully-autonomous-corporate-jets",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Trevor Milton Is Back And Wants To Produce AI Powered \"Fully Autonomous Corporate Jets\"&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field",
+      "published_at": "2026-03-21T18:35:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Robert Mueller Dies; Trump: 'Good, I'm Glad He's Dead'",
+      "url": "https://www.zerohedge.com/political/robert-mueller-dies-trump-good-im-glad-hes-dead",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Robert Mueller Dies; Trump: 'Good, I'm Glad He's Dead'&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with",
+      "published_at": "2026-03-21T18:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "Senate To Work Through Weekend Debating SAVE America Act",
       "url": "https://www.zerohedge.com/political/senate-work-through-weekend-debating-save-america-act",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Senate To Work Through Weekend Debating SAVE America Act&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-wi",
@@ -342,24 +360,6 @@
       "url": "https://www.zerohedge.com/geopolitical/idf-iron-dome-operator-arrested-charged-spying-iran",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;IDF Iron Dome Operator Arrested, Charged With Spying For Iran&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-te",
       "published_at": "2026-03-21T01:00:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "The Scapegoat: How One Man's Career Was Ended By MeToo",
-      "url": "https://www.zerohedge.com/political/scapegoat-how-one-mans-career-was-ended-metoo",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The Scapegoat: How One Man's Career Was Ended By MeToo&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with",
-      "published_at": "2026-03-21T00:35:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "US Asian Ally Rejects Pentagon Request To Land Fighter Jets: More To Come?",
-      "url": "https://www.zerohedge.com/geopolitical/us-ally-southeast-asia-rejects-pentagon-request-land-fighter-jets-more-come",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;US Asian Ally Rejects Pentagon Request To Land Fighter Jets: More To Come?&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body f",
-      "published_at": "2026-03-21T00:10:00.000Z"
     },
     {
       "source": "cointelegraph",
