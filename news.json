@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T13:55:05.542Z",
+  "generated_at": "2026-03-21T14:56:33.594Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,24 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "Victor Hanson: What Is It With The Fickle Europeans?",
+      "url": "https://www.zerohedge.com/political/victor-hanson-what-it-fickle-europeans",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Victor Hanson: What Is It With The Fickle Europeans?&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-s",
+      "published_at": "2026-03-21T14:30:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Iran's Longest-Range Missile Strike Fails On Diego Garcia, As Natanz Nuclear Facility Bombed",
+      "url": "https://www.zerohedge.com/geopolitical/irans-longest-range-missile-strike-fails-diego-garcia-natanz-nuclear-facility-bombed",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran's Longest-Range Missile Strike Fails On Diego Garcia, As Natanz Nuclear Facility Bombed&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field ",
+      "published_at": "2026-03-21T13:55:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "UK COVID Inquiry Finds Lockdowns May Have Cost 1000s Of Lives",
       "url": "https://www.zerohedge.com/covid-19/uk-covid-inquiry-finds-lockdowns-may-have-cost-1000s-lives",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;UK COVID Inquiry Finds Lockdowns May Have Cost 1000s Of Lives&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-te",
@@ -198,6 +216,15 @@
       "url": "https://www.zerohedge.com/political/id-pay-their-salaries-elon-musk-offers-lifeline-tsa-agents-democrats-hold-paychecks",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"I'd Like To Pay Their Salaries\": Elon Musk Offers Lifeline To TSA Agents As Democrats Hold Paychecks Hostage In Shutdown&lt;/span&gt; &lt;div property=\"schema:text\" class=\"c",
       "published_at": "2026-03-21T12:45:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "\"I Think We've Won\" Trump Says As Iran Refuses Hormuz Talks, Houthis Threaten Red Sea Strait",
+      "url": "https://www.zerohedge.com/geopolitical/hormuz-showdown-begins-us-warplanes-apaches-launch-sea-lane-offensive-trump-eyes-high",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"I Think We've Won\" Trump Says As Iran Refuses Hormuz Talks, Houthis Threaten Red Sea Strait&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field ",
+      "published_at": "2026-03-21T12:30:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -335,31 +362,13 @@
       "published_at": "2026-03-20T22:30:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Fear Of The Second Wave",
-      "url": "https://www.zerohedge.com/personal-finance/fear-second-wave",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Fear Of The Second Wave&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden fi",
-      "published_at": "2026-03-20T22:05:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "EV Demand Surges Across Asia After Energy Shock Sends Consumers Into Panic Mode",
-      "url": "https://www.zerohedge.com/technology/ev-demand-surges-across-asia-after-energy-shock-sends-consumers-panic-mode",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;EV Demand Surges Across Asia After Energy Shock Sends Consumers Into Panic Mode&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-b",
-      "published_at": "2026-03-20T21:40:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "What 122 Universal Basic Income Experiments Actually Show",
-      "url": "https://www.zerohedge.com/political/what-122-universal-basic-income-experiments-actually-show",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;What 122 Universal Basic Income Experiments Actually Show&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-w",
-      "published_at": "2026-03-20T21:15:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Here’s what happened in crypto today",
+      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
+      "published_at": "2026-03-21T14:08:36.000Z"
     },
     {
       "source": "cointelegraph",
@@ -441,15 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/google-ghostblade-crypto-stealing-malware?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Ghostblade is one of six malware tools in the \"DarkSword\" suite of malicious software designed to steal crypto private keys and user data.",
       "published_at": "2026-03-20T20:10:00.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Crypto Biz: Institutions aren’t waiting for the bottom",
-      "url": "<![CDATA[https://cointelegraph.com/news/crypto-biz-institutional-crypto-demand-stablecoins-abra-spac-listing?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Nearly three-quarters of institutional investors plan to increase their digital asset allocations this year, with Bitcoin, Ether, stablecoins and tokenized assets seeing the most interest.",
-      "published_at": "2026-03-20T20:00:00.000Z"
     }
   ]
 }
