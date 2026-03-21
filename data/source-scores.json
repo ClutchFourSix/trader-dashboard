@@ -1,0 +1,55 @@
+{
+  "generated_at": null,
+  "sources": {
+    "fxstreet": {
+      "name": "FXStreet",
+      "accuracy_score": 78,
+      "influence_score": 88,
+      "consistency_score": 76,
+      "false_alarm_score": 70,
+      "rolling_score": 78,
+      "stories_evaluated": 0,
+      "last_updated": null
+    },
+    "cointelegraph": {
+      "name": "Cointelegraph",
+      "accuracy_score": 66,
+      "influence_score": 76,
+      "consistency_score": 68,
+      "false_alarm_score": 67,
+      "rolling_score": 66,
+      "stories_evaluated": 0,
+      "last_updated": null
+    },
+    "zerohedge": {
+      "name": "ZeroHedge",
+      "accuracy_score": 54,
+      "influence_score": 64,
+      "consistency_score": 58,
+      "false_alarm_score": 45,
+      "rolling_score": 54,
+      "stories_evaluated": 0,
+      "last_updated": null
+    },
+    "lynalden": {
+      "name": "Lyn Alden",
+      "accuracy_score": 86,
+      "influence_score": 90,
+      "consistency_score": 85,
+      "false_alarm_score": 84,
+      "rolling_score": 86,
+      "stories_evaluated": 0,
+      "last_updated": null
+    },
+    "realvision": {
+      "name": "Real Vision",
+      "accuracy_score": 74,
+      "influence_score": 80,
+      "consistency_score": 72,
+      "false_alarm_score": 68,
+      "rolling_score": 74,
+      "stories_evaluated": 0,
+      "last_updated": null
+    }
+  }
+}
