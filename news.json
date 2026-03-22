@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-22T20:56:05.340Z",
+  "generated_at": "2026-03-22T21:52:35.456Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,15 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "\"Our Military Is Prepared\": Havana Communists See Writing On The Wall After Trump's Iran Bombing",
+      "url": "https://www.zerohedge.com/political/our-military-prepared-havana-communists-see-writing-wall-after-trumps-iran-bombing",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"Our Military Is Prepared\": Havana Communists See Writing On The Wall After Trump's Iran Bombing&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted fi",
+      "published_at": "2026-03-22T20:30:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "Iran Issues 10 Million Rial Banknote Amid Soaring Inflation",
       "url": "https://www.zerohedge.com/economics/iran-issues-10-million-rial-banknote-amid-soaring-inflation",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran Issues 10 Million Rial Banknote Amid Soaring Inflation&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text",
@@ -353,13 +362,13 @@
       "published_at": "2026-03-22T02:10:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "New York City Is Spending $81,000 Per Year On Each Homeless Person",
-      "url": "https://www.zerohedge.com/markets/new-york-city-spending-81000-year-each-homeless-person",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;New York City Is Spending $81,000 Per Year On Each Homeless Person&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--ty",
-      "published_at": "2026-03-22T01:35:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "BTC and gold divergence reflects split between retail and central banks: Analyst",
+      "url": "<![CDATA[https://cointelegraph.com/news/divergence-between-btc-gold-retail-central-bank?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "21Shares' macro chief looks at why Bitcoin has held relatively steady since the start of Middle East hostilities, while gold has slipped below $4,500 and key support levels.",
+      "published_at": "2026-03-22T21:48:01.000Z"
     },
     {
       "source": "cointelegraph",
@@ -441,15 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/resolv-labs-stablecoin-depegs-attacker-mints-millions-of-tokens?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "An attacker has exploited the Resolv USR stablecoin to mint 80 million tokens and has reportedly been able to cash out at least $25 million.",
       "published_at": "2026-03-22T05:47:02.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Nevada judge temporarily blocks Kalshi from operating in the state",
-      "url": "<![CDATA[https://cointelegraph.com/news/nevada-judge-temporarily-blocks-kalshi-from-operating-in-the-state?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "A Nevada state judge has sided with local authorities to ban Kalshi’s sports, election and entertainment event contracts in the state for 14 days.",
-      "published_at": "2026-03-22T03:33:13.000Z"
     }
   ]
 }
