@@ -1,0 +1,44 @@
+@import url('./dashboard-core-v30.css');
+
+#assetGrid .asset-card .metric-value,
+#assetGrid .asset-card .metric .value,
+#assetGrid .asset-card [data-role='value'] {
+  font-size: clamp(.92rem, 1.25vw, 1.45rem) !important;
+  line-height: 1 !important;
+  letter-spacing: -.01em;
+}
+
+#assetGrid .asset-card .metric-box,
+#assetGrid .asset-card .metric {
+  padding: 10px 12px !important;
+}
+
+#assetGrid .asset-card .metric-label {
+  font-size: 11px !important;
+}
+
+.market-closed-weekend {
+  opacity: .92;
+}
+.market-closed-weekend .clock-status,
+.market-closed-weekend .market-status,
+.market-closed-weekend .status-pill {
+  color: #ff8f99 !important;
+}
+.market-closed-weekend .weekend-note {
+  color: #ffb2ba !important;
+}
+
+.news-stale-warning {
+  color: #ffb2ba;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.news-layout{display:grid;grid-template-columns:3fr 1fr;gap:12px;align-items:start}
+.story-stack,.side-stack{display:grid;gap:10px}
+.story-rank{font-size:12px;color:var(--muted);margin-bottom:6px}
+.story-title a{color:var(--text);text-decoration:none}
+.story-title a:hover{text-decoration:underline}
+
+@media (max-width:1200px){.news-layout{grid-template-columns:1fr}}
