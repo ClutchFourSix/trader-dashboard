@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-22T17:01:01.485167+00:00",
+  "generated_at": "2026-03-22T17:55:30.885756+00:00",
   "runs": [
     {
       "timestamp": "2026-03-22T07:52:55.725381+00:00",
@@ -63,6 +63,16 @@
     },
     {
       "timestamp": "2026-03-22T17:01:01.485167+00:00",
+      "candidate_count": 8,
+      "promoted_ready": [
+        "lyn-alden",
+        "kobeissi-letter",
+        "mishtalk",
+        "adam-tooze"
+      ]
+    },
+    {
+      "timestamp": "2026-03-22T17:55:30.885756+00:00",
       "candidate_count": 8,
       "promoted_ready": [
         "lyn-alden",
