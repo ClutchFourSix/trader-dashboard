@@ -1,0 +1,60 @@
+@import url('./dashboard-core-v24.css');
+
+/* keep numeric values on one line */
+.command-value,
+.metric-value,
+.asset-card .price,
+.asset-card .value,
+.asset-card .metric-value,
+.asset-card .metric .value,
+.asset-card [data-role='value'],
+.clock-time,
+.clock-card .time,
+#assetGrid .asset-card .metric-box,
+#assetGrid .asset-card .metric-box * {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  font-variant-numeric: tabular-nums;
+}
+
+#assetGrid .asset-card .metric-box,
+#assetGrid .asset-card .metric,
+#assetGrid .asset-card .metric-value {
+  min-width: 0;
+}
+
+#assetGrid .asset-card .metric-value,
+#assetGrid .asset-card .metric .value {
+  font-size: clamp(1rem, 1.6vw, 1.95rem);
+  line-height: 1.05;
+}
+
+#assetGrid .asset-card .row-title,
+#assetGrid .asset-card .metric-label {
+  white-space: normal;
+}
+
+/* explicit weekend closed styling */
+.market-closed-weekend .market-status,
+.market-closed-weekend .clock-status,
+.market-closed-weekend .status-pill {
+  color: #ff7b86 !important;
+}
+
+.market-closed-weekend .weekend-note {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* news board tweaks */
+.news-layout{display:grid;grid-template-columns:3fr 1fr;gap:12px;align-items:start}
+.story-stack,.side-stack{display:grid;gap:10px}
+.story-rank{font-size:12px;color:var(--muted);margin-bottom:6px}
+.story-title a{color:var(--text);text-decoration:none}
+.story-title a:hover{text-decoration:underline}
+
+@media (max-width:1200px){.news-layout{grid-template-columns:1fr}}
