@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-22T10:57:04.405Z",
+  "generated_at": "2026-03-22T11:47:59.264Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,15 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "UK House Of Lords Rams Through 'Abortion Up To Birth' Law; Only 1% Of Brits Approve",
+      "url": "https://www.zerohedge.com/markets/uk-house-lords-rams-through-abortion-birth-law-only-1-brits-approve",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;UK House Of Lords Rams Through 'Abortion Up To Birth' Law; Only 1% Of Brits Approve&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--na",
+      "published_at": "2026-03-22T11:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "\"Complete Other Alias\": Rep. Luna Drops Clinton-Epstein Bombshell",
       "url": "https://www.zerohedge.com/political/complete-other-alias-rep-luna-drops-clinton-epstein-bombshell",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"Complete Other Alias\": Rep. Luna Drops Clinton-Epstein Bombshell&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--typ",
@@ -351,15 +360,6 @@
       "url": "https://www.zerohedge.com/markets/private-credit-crisis-spreading",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The Private Credit Crisis Is Spreading&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summary field--",
       "published_at": "2026-03-21T15:40:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "US Says Iran's Threat To Hormuz Traffic \"Degraded\" As 23 Nations Signal Waterway Support",
-      "url": "https://www.zerohedge.com/markets/us-strikes-iranian-hormuz-targets-23-nations-signal-waterway-support",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;US Says Iran's Threat To Hormuz Traffic \"Degraded\" As 23 Nations Signal Waterway Support &lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field fie",
-      "published_at": "2026-03-21T15:05:00.000Z"
     },
     {
       "source": "cointelegraph",
