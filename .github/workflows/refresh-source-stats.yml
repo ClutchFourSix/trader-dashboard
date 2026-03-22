@@ -1,0 +1,32 @@
+name: Refresh Source Stats From Feed
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '11,26,41,56 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-source-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Refresh source stats
+        run: python tools/refresh_source_scores_from_feed.py
+
+      - name: Commit updated source stats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/source-scores.json
+          git diff --cached --quiet || git commit -m "Refresh source stats from feed"
+          git push
