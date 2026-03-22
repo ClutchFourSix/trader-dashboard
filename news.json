@@ -1,6 +1,33 @@
 {
-  "generated_at": "2026-03-22T21:52:35.456Z",
+  "generated_at": "2026-03-22T22:56:46.354Z",
   "stories": [
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Iran threatens to target financial entities that finance US military budget",
+      "url": "https://www.fxstreet.com/news/iran-threatens-to-target-financial-entities-that-finance-us-military-budget-202603222237",
+      "summary": "In a social media post on Sunday, Mohammad Bagher Qalibaf, Iran’s parliament speaker, threatened financial entities that fund the US military.",
+      "published_at": "2026-03-22T22:37:54.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "US Treasury Secretary Bessent: Sometimes you have to 'escalate to de-escalate'",
+      "url": "https://www.fxstreet.com/news/us-treasury-secretary-bessent-sometimes-you-have-to-escalate-to-de-escalate-202603222229",
+      "summary": "When asked in an NBS News interview on Sunday if President Donald Trump was “winding down” the war or “escalating” it, US Treasury Secretary Scott Bessent said, they are not mutually exclusive. Sometimes you have to escalate to de-escalate.”",
+      "published_at": "2026-03-22T22:29:08.000Z"
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Australian Dollar weakens as Middle East tensions escalate",
+      "url": "https://www.fxstreet.com/news/australian-dollar-weakens-as-middle-east-tensions-escalate-202603222218",
+      "summary": "The AUD/USD pair attracts some sellers to near 0.7000 during the early Asian session on Monday, pressured by risk-off sentiment. The US Dollar (USD) edges higher against the Australian Dollar (AUD) as escalating tensions in the Middle East boost safe-haven demand.",
+      "published_at": "2026-03-22T22:18:58.000Z"
+    },
     {
       "source": "fxstreet",
       "source_name": "FXStreet",
@@ -155,31 +182,31 @@
       "published_at": "2026-03-20T13:44:52.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Fed’s Waller: Do not think there is a need to consider rate hikes",
-      "url": "https://www.fxstreet.com/news/feds-waller-do-not-think-there-is-a-need-to-consider-rate-hikes-202603201342",
-      "summary": "Christopher Waller, a member of the Federal Reserve (Fed), said that based on the jobs report alone, he was planning to dissent in the monetary policy decision, but inflation has become more of a concern.",
-      "published_at": "2026-03-20T13:42:12.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Oil Up, Stocks Down To Start Week As War Escalates &amp; Gamma Unclenches",
+      "url": "https://www.zerohedge.com/markets/oil-stocks-down-start-week-war-escalates-gamma-unclenches",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Oil Up, Stocks Down To Start Week As War Escalates &amp; Gamma Unclenches&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body fi",
+      "published_at": "2026-03-22T22:04:18.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "USD/JPY rebounds as US Dollar strengthens, BoJ hawkishness tempers upside potential",
-      "url": "https://www.fxstreet.com/news/usd-jpy-rebounds-as-us-dollar-strengthens-boj-hawkishness-tempers-upside-potential-202603201257",
-      "summary": "USD/JPY trades around 158.70 on Friday at the time of writing, up 0.61% on the day, staging a clear rebound after Thursday’s sharp decline. The move comes as the US Dollar (USD) regains traction following a bout of volatility, with markets reassessing the outlook for US monetary ",
-      "published_at": "2026-03-20T12:57:34.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Georgia Governor Signs Bill Suspending State Gas Tax For 60 Days",
+      "url": "https://www.zerohedge.com/political/georgia-governor-signs-bill-suspending-state-gas-tax-60-days",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Georgia Governor Signs Bill Suspending State Gas Tax For 60 Days&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type",
+      "published_at": "2026-03-22T22:00:00.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Oil: Supply response tempers geopolitical spike – OCBC",
-      "url": "https://www.fxstreet.com/news/oil-supply-response-tempers-geopolitical-spike-ocbc-202603201227",
-      "summary": "OCBC’s Sim Moh Siong highlights that crude briefly surged toward USD120/bbl on Iranian attacks before easing as US officials signalled supply support and Israel suggested faster de-escalation.",
-      "published_at": "2026-03-20T12:27:55.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Clinton-Appointed Federal Judge Blocks Trump's Pentagon Media Access Restrictions",
+      "url": "https://www.zerohedge.com/political/federal-judge-blocks-trumps-pentagon-media-access-restrictions",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Clinton-Appointed Federal Judge Blocks Trump's Pentagon Media Access Restrictions&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name",
+      "published_at": "2026-03-22T21:00:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -203,18 +230,18 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
-      "title": "Don Lemon Claims US Does 'Very Same Things' To Protesters As Iran... Which Slaughtered 1000s",
-      "url": "https://www.zerohedge.com/political/don-lemon-claims-us-does-very-same-things-protesters-iran-which-slaughtered-30000",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Don Lemon Claims US Does 'Very Same Things' To Protesters As Iran... Which Slaughtered 1000s&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field ",
+      "title": "Iran Threatens To Destroy Region-Wide Infrastructure As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel",
+      "url": "https://www.zerohedge.com/geopolitical/iran-threatens-region-wide-infrastructure-obliteration-trumps-48-hour-ultimatum-ticks",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran Threatens To Destroy Region-Wide Infrastructure As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel&lt;/span&gt; &lt;div property=\"schema:text\" c",
       "published_at": "2026-03-22T19:00:00.000Z"
     },
     {
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
-      "title": "Iran Threatens To Destroy Region-Wide Infrastructure As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel",
-      "url": "https://www.zerohedge.com/geopolitical/iran-threatens-region-wide-infrastructure-obliteration-trumps-48-hour-ultimatum-ticks",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran Threatens To Destroy Region-Wide Infrastructure As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel&lt;/span&gt; &lt;div property=\"schema:text\" c",
+      "title": "Don Lemon Claims US Does 'Very Same Things' To Protesters As Iran... Which Slaughtered 1000s",
+      "url": "https://www.zerohedge.com/political/don-lemon-claims-us-does-very-same-things-protesters-iran-which-slaughtered-30000",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Don Lemon Claims US Does 'Very Same Things' To Protesters As Iran... Which Slaughtered 1000s&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field ",
       "published_at": "2026-03-22T19:00:00.000Z"
     },
     {
@@ -335,31 +362,13 @@
       "published_at": "2026-03-22T03:41:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "McGlinchey: America Throws Its Service Members Into An Unjust War For Israel",
-      "url": "https://www.zerohedge.com/geopolitical/has-america-thrown-its-service-members-another-unjust-war-israels-benefit",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;McGlinchey: America Throws Its Service Members Into An Unjust War For Israel&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body",
-      "published_at": "2026-03-22T03:20:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "\"Going To Cripple Our Economy\": Small Businesses Sound Alarm Over Record Diesel Price Spike",
-      "url": "https://www.zerohedge.com/energy/going-cripple-our-economy-small-businesses-sound-alarm-over-record-diesel-price-spike",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;\"Going To Cripple Our Economy\": Small Businesses Sound Alarm Over Record Diesel Price Spike&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field f",
-      "published_at": "2026-03-22T02:45:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "The Oscars Died Last Weekend...Did Anyone Even Notice?",
-      "url": "https://www.zerohedge.com/markets/oscars-died-last-weekenddid-anyone-even-notice",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The Oscars Died Last Weekend...Did Anyone Even Notice?&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with",
-      "published_at": "2026-03-22T02:10:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Here’s what happened in crypto today",
+      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
+      "published_at": "2026-03-22T21:49:43.000Z"
     },
     {
       "source": "cointelegraph",
@@ -396,15 +405,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/fidelity-letter-sec-alternative-trading-systems?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "The investment giant told the regulator's crypto task force it supports trading tokenized securities on alternative trading systems and tradfi on-chain integration.",
       "published_at": "2026-03-22T17:18:01.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Here’s what happened in crypto today",
-      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
-      "published_at": "2026-03-22T14:16:26.000Z"
     },
     {
       "source": "cointelegraph",
