@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-03-22T06:20:00Z",
+  "source": "fresh-fallback",
+  "stories": [
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "title": "Breaking: US CPI inflation holds steady at 2.4% in February as forecast",
+      "link": "https://www.fxstreet.com/news/us-cpi-data-seen-steady-in-february-as-markets-assess-fed-policy-outlook-202603110400/",
+      "summary": "US annual CPI held at 2.4% in February, matching expectations, while the core gauge rose 2.5% year over year and markets reassessed the Federal Reserve outlook.",
+      "published_at": "2026-03-11T12:35:24Z",
+      "age_minutes": 15105,
+      "source_score": 78,
+      "story_score": 82,
+      "final_score": 80
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "title": "USD: Fed cuts repriced on higher inflation – ING",
+      "link": "https://www.fxstreet.com/news/usd-fed-cuts-repriced-on-higher-inflation-ing-202603061459//",
+      "summary": "ING said Fed easing expectations for 2026 have been reduced as firmer inflation and resilient growth push likely rate cuts later into the year.",
+      "published_at": "2026-03-06T14:59:56Z",
+      "age_minutes": 22180,
+      "source_score": 78,
+      "story_score": 77,
+      "final_score": 78
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "title": "Fed: Gradual cuts and steady inflation path – Danske Bank",
+      "link": "https://www.fxstreet.com/news/fed-gradual-cuts-and-steady-inflation-path-danske-bank-202603061153/",
+      "summary": "Danske Bank expects US growth to cool modestly, inflation to remain contained near the mid-2% range, and the Fed to cut twice before holding steady.",
+      "published_at": "2026-03-06T11:53:59Z",
+      "age_minutes": 22366,
+      "source_score": 78,
+      "story_score": 75,
+      "final_score": 77
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "title": "US: Above-potential growth and steady Fed stance – BNP Paribas",
+      "link": "https://www.fxstreet.com/news/us-above-potential-growth-and-steady-fed-stance-bnp-paribas-202602091637",
+      "summary": "BNP Paribas sees US growth above potential in 2026 with inflation still above target, keeping the Fed on hold after prior cuts.",
+      "published_at": "2026-02-09T16:37:00Z",
+      "age_minutes": 61163,
+      "source_score": 78,
+      "story_score": 68,
+      "final_score": 73
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "title": "Federal Reserve set to pause after three consecutive interest-rate cuts",
+      "link": "https://www.fxstreet.com/news/federal-reserve-set-to-pause-after-three-consecutive-interest-rate-cuts-202601281100//",
+      "summary": "Markets widely expected the Federal Reserve to hold rates steady after three cuts, with focus turning to Chair Powell's guidance.",
+      "published_at": "2026-01-28T11:00:00Z",
+      "age_minutes": 91460,
+      "source_score": 78,
+      "story_score": 63,
+      "final_score": 71
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "title": "USD: Fed patience tempers 2026 easing hopes – Deutsche Bank",
+      "link": "https://www.fxstreet.com/news/usd-fed-patience-tempers-2026-easing-hopes-deutsche-bank-202602180805",
+      "summary": "Deutsche Bank said patient Fed rhetoric and sticky inflation have slightly reduced market expectations for additional rate cuts in 2026.",
+      "published_at": "2026-02-18T08:05:17Z",
+      "age_minutes": 48835,
+      "source_score": 78,
+      "story_score": 70,
+      "final_score": 74
+    },
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "title": "USD: Fed cuts and softer inflation outlook – MUFG",
+      "link": "https://www.fxstreet.com/news/usd-fed-cuts-and-softer-inflation-outlook-mufg-202602161159/",
+      "summary": "MUFG said stronger jobs data reduce immediate easing pressure, but slowing inflation still leaves room for Fed cuts and a weaker dollar outlook.",
+      "published_at": "2026-02-16T11:59:57Z",
+      "age_minutes": 51400,
+      "source_score": 78,
+      "story_score": 69,
+      "final_score": 74
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "title": "The Private Credit Collapse Accelerates",
+      "link": "https://www.zerohedge.com/news/2026-03-03/private-credit-collapse-accelerates",
+      "summary": "Private credit stress intensified as redemption pressure rose and concerns spread across leveraged and illiquid segments of the market.",
+      "published_at": "2026-03-03T14:39:00Z",
+      "age_minutes": 26421,
+      "source_score": 54,
+      "story_score": 71,
+      "final_score": 63
+    }
+  ]
+}
