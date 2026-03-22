@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-22T19:54:07.368Z",
+  "generated_at": "2026-03-22T20:56:05.340Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -185,6 +185,33 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
+      "title": "Iran Issues 10 Million Rial Banknote Amid Soaring Inflation",
+      "url": "https://www.zerohedge.com/economics/iran-issues-10-million-rial-banknote-amid-soaring-inflation",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran Issues 10 Million Rial Banknote Amid Soaring Inflation&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text",
+      "published_at": "2026-03-22T19:30:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Don Lemon Claims US Does 'Very Same Things' To Protesters As Iran... Which Slaughtered 1000s",
+      "url": "https://www.zerohedge.com/political/don-lemon-claims-us-does-very-same-things-protesters-iran-which-slaughtered-30000",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Don Lemon Claims US Does 'Very Same Things' To Protesters As Iran... Which Slaughtered 1000s&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field ",
+      "published_at": "2026-03-22T19:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Iran Threatens To Destroy Region-Wide Infrastructure As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel",
+      "url": "https://www.zerohedge.com/geopolitical/iran-threatens-region-wide-infrastructure-obliteration-trumps-48-hour-ultimatum-ticks",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran Threatens To Destroy Region-Wide Infrastructure As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel&lt;/span&gt; &lt;div property=\"schema:text\" c",
+      "published_at": "2026-03-22T19:00:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
       "title": "'Punish Iran': Saudi Arabia &amp; UAE Inch Closer To Joining US-Israeli War",
       "url": "https://www.zerohedge.com/geopolitical/punish-iran-saudi-arabia-uae-inch-closer-joining-us-israeli-war",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;'Punish Iran': Saudi Arabia &amp; UAE Inch Closer To Joining US-Israeli War&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body ",
@@ -234,15 +261,6 @@
       "url": "https://www.zerohedge.com/political/ice-agents-assist-airport-security-lines-starting-monday-trump-confirms",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Jaw-Dropping TSA Lines Continue To Hobble Major Airports; Trump Confirms ICE On The Way&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field",
       "published_at": "2026-03-22T14:25:12.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Iran Threatens To Destroy Region-Wide Infrastructure As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel",
-      "url": "https://www.zerohedge.com/geopolitical/iran-threatens-region-wide-infrastructure-obliteration-trumps-48-hour-ultimatum-ticks",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran Threatens To Destroy Region-Wide Infrastructure As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel&lt;/span&gt; &lt;div property=\"schema:text\" c",
-      "published_at": "2026-03-22T13:55:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -344,24 +362,6 @@
       "published_at": "2026-03-22T01:35:00.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "The State Will Always Socialize The Cost Of War",
-      "url": "https://www.zerohedge.com/markets/state-will-always-socialize-cost-war",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;The State Will Always Socialize The Cost Of War&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summar",
-      "published_at": "2026-03-22T01:00:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Iran's First Use Of ICBMs Raises Serious Questions About Remaining Arsenal",
-      "url": "https://www.zerohedge.com/geopolitical/iran-fires-ballistic-missiles-far-diego-garcia-military-base",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran's First Use Of ICBMs Raises Serious Questions About Remaining Arsenal&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body f",
-      "published_at": "2026-03-22T00:25:00.000Z"
-    },
-    {
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
@@ -401,7 +401,7 @@
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
-      "title": "Resolv says no assets lost as DeFi protocols respond to USR exploit",
+      "title": "Resolv says no assets lost as DeFi protocols respond to $24M USR exploit",
       "url": "<![CDATA[https://cointelegraph.com/news/resolv-says-no-assets-lost-as-defi-partners-respond-to-usr-depeg?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "USR issuer Resolv Labs says its collateral pool remains intact after an exploit on Sunday that minted 80 million unbacked tokens and drove the US dollar stablecoin as low as $0.14.",
       "published_at": "2026-03-22T14:06:37.000Z"
