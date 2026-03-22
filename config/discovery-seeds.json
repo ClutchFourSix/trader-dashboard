@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "seed_sources": [
+    {
+      "name": "FXStreet",
+      "homepage": "https://www.fxstreet.com/",
+      "rss": "https://www.fxstreet.com/rss/news",
+      "category": "fx-macro",
+      "independent_bias": 0.75,
+      "market_influence": 0.88,
+      "public": true
+    },
+    {
+      "name": "Cointelegraph",
+      "homepage": "https://cointelegraph.com/",
+      "rss": "https://cointelegraph.com/rss",
+      "category": "crypto-macro",
+      "independent_bias": 0.62,
+      "market_influence": 0.76,
+      "public": true
+    },
+    {
+      "name": "ZeroHedge",
+      "homepage": "https://www.zerohedge.com/",
+      "rss": "https://feeds.feedburner.com/zerohedge/feed",
+      "category": "macro",
+      "independent_bias": 0.93,
+      "market_influence": 0.64,
+      "public": true
+    },
+    {
+      "name": "Lyn Alden",
+      "homepage": "https://www.lynalden.com/",
+      "rss": null,
+      "category": "macro-credit",
+      "independent_bias": 0.98,
+      "market_influence": 0.90,
+      "public": true
+    },
+    {
+      "name": "Kobeissi Letter",
+      "homepage": "https://www.thekobeissiletter.com/",
+      "rss": null,
+      "category": "macro",
+      "independent_bias": 0.96,
+      "market_influence": 0.78,
+      "public": true
+    },
+    {
+      "name": "Real Vision",
+      "homepage": "https://www.realvision.com/",
+      "rss": null,
+      "category": "macro-crossasset",
+      "independent_bias": 0.84,
+      "market_influence": 0.80,
+      "public": false
+    },
+    {
+      "name": "MishTalk",
+      "homepage": "https://mishtalk.com/",
+      "rss": null,
+      "category": "macro",
+      "independent_bias": 0.97,
+      "market_influence": 0.61,
+      "public": true
+    },
+    {
+      "name": "Adam Tooze",
+      "homepage": "https://adamtooze.substack.com/",
+      "rss": null,
+      "category": "macro-history",
+      "independent_bias": 0.95,
+      "market_influence": 0.66,
+      "public": true
+    }
+  ]
+}
