@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-22T05:12:38.299Z",
+  "generated_at": "2026-03-22T07:29:50.058Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -365,6 +365,15 @@
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
+      "title": "Resolv Labs’ stablecoin depegs as attacker mints millions of tokens",
+      "url": "<![CDATA[https://cointelegraph.com/news/resolv-labs-stablecoin-depegs-attacker-mints-millions-of-tokens?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "An attacker has exploited the Resolv USR stablecoin to mint 80 million tokens and has reportedly been able to cash out at least $25 million.",
+      "published_at": "2026-03-22T05:47:02.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
       "title": "Nevada judge temporarily blocks Kalshi from operating in the state",
       "url": "<![CDATA[https://cointelegraph.com/news/nevada-judge-temporarily-blocks-kalshi-from-operating-in-the-state?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "A Nevada state judge has sided with local authorities to ban Kalshi’s sports, election and entertainment event contracts in the state for 14 days.",
@@ -441,15 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-mining-difficulty-drops-7-7-miner-pressure?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Bitcoin’s mining difficulty just logged its second sizeable cut of 2026, easing conditions for remaining miners as competition from artificial intelligence data centers rises.",
       "published_at": "2026-03-21T11:58:18.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Early Ethereum whale rebuilds stack with $19.5M in ETH buys",
-      "url": "<![CDATA[https://cointelegraph.com/news/ethereum-whale-thomasg-eth-buys-19-5m?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Early Ethereum whale thomasg.eth is rebuilding his position with $19.5 million in ETH purchases this week, as BitMine’s Tom Lee calls for the end of “crypto winter.”",
-      "published_at": "2026-03-21T09:22:44.000Z"
     }
   ]
 }
