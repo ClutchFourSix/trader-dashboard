@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-22T19:05:34.618819+00:00",
+  "generated_at": "2026-03-22T19:48:58.954938+00:00",
   "sources": {
     "fxstreet": {
       "name": "FXStreet",
@@ -9,7 +9,7 @@
       "false_alarm_score": 70,
       "rolling_score": 100,
       "stories_evaluated": 7,
-      "last_updated": "2026-03-22T19:05:34.618819+00:00"
+      "last_updated": "2026-03-22T19:48:58.954938+00:00"
     },
     "cointelegraph": {
       "name": "Cointelegraph",
@@ -19,7 +19,7 @@
       "false_alarm_score": 67,
       "rolling_score": 75,
       "stories_evaluated": 0,
-      "last_updated": "2026-03-22T19:05:34.618819+00:00"
+      "last_updated": "2026-03-22T19:48:58.954938+00:00"
     },
     "zerohedge": {
       "name": "ZeroHedge",
@@ -29,7 +29,7 @@
       "false_alarm_score": 45,
       "rolling_score": 70,
       "stories_evaluated": 1,
-      "last_updated": "2026-03-22T19:05:34.618819+00:00"
+      "last_updated": "2026-03-22T19:48:58.954938+00:00"
     },
     "lynalden": {
       "name": "Lyn Alden",
@@ -39,7 +39,7 @@
       "false_alarm_score": 84,
       "rolling_score": 87,
       "stories_evaluated": 0,
-      "last_updated": "2026-03-22T19:05:34.618819+00:00"
+      "last_updated": "2026-03-22T19:48:58.954938+00:00"
     },
     "realvision": {
       "name": "Real Vision",
@@ -49,7 +49,7 @@
       "false_alarm_score": 68,
       "rolling_score": 76,
       "stories_evaluated": 0,
-      "last_updated": "2026-03-22T19:05:34.618819+00:00"
+      "last_updated": "2026-03-22T19:48:58.954938+00:00"
     }
   }
 }
