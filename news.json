@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-22T16:58:56.218Z",
+  "generated_at": "2026-03-22T17:54:12.980Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -365,6 +365,15 @@
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
+      "title": "Fidelity urges SEC to move further on crypto activity by broker-dealers",
+      "url": "<![CDATA[https://cointelegraph.com/news/fidelity-letter-sec-alternative-trading-systems?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "The investment giant told the regulator's crypto task force it supports trading tokenized securities on alternative trading systems and tradfi on-chain integration.",
+      "published_at": "2026-03-22T17:18:01.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
       "title": "Here’s what happened in crypto today",
       "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
@@ -441,15 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/brazil-finance-minister-shelves-crypto-tax?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "The South American country will hold its presidential election in October 2026, and incumbent Luiz Inácio Lula da Silva is running for re-election.",
       "published_at": "2026-03-21T22:22:03.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "SEC crypto guidance puts the 'final nail' in the Gensler era: Analyst",
-      "url": "<![CDATA[https://cointelegraph.com/news/sec-crypto-guidance-final-nail-gensler-era?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "The SEC's digital asset market taxonomy, which classifies most cryptocurrencies and tokens as non-securities, is a major step for US regulators.",
-      "published_at": "2026-03-21T17:41:54.000Z"
     }
   ]
 }
