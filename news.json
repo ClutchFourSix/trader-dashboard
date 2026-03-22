@@ -1,6 +1,15 @@
 {
-  "generated_at": "2026-03-22T13:55:35.499Z",
+  "generated_at": "2026-03-22T14:57:01.547Z",
   "stories": [
+    {
+      "source": "fxstreet",
+      "source_name": "FXStreet",
+      "source_score": 78,
+      "title": "Middle East Conflict Latest: Trump gives Iran 48-hour ultimatum to open Strait of Hormuz",
+      "url": "https://www.fxstreet.com/news/middle-east-conflict-latest-trump-gives-iran-48-hour-ultimatum-to-open-strait-of-hormuz-202603221433",
+      "summary": "Here is a rundown of latest headlines surrounding the crisis in the Middle East as the United States (US) and Israel’s war against Iran enters the fourth week:",
+      "published_at": "2026-03-22T14:33:10.000Z"
+    },
     {
       "source": "fxstreet",
       "source_name": "FXStreet",
@@ -173,13 +182,40 @@
       "published_at": "2026-03-20T12:27:55.000Z"
     },
     {
-      "source": "fxstreet",
-      "source_name": "FXStreet",
-      "source_score": 78,
-      "title": "Gold: Near-term pressure versus structural support – OCBC",
-      "url": "https://www.fxstreet.com/news/gold-near-term-pressure-versus-structural-support-ocbc-202603201225",
-      "summary": "OCBC’s Christopher Wong reports that Gold has come under pressure as rising global yields and renewed inflation risks reduce expectations for near-term rate cuts, prompting ETF outflows and stress-driven liquidation.",
-      "published_at": "2026-03-20T12:25:19.000Z"
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "What Do Bonds Know That The Stock Market Doesn't?",
+      "url": "https://www.zerohedge.com/markets/what-do-bonds-know-stock-market-doesnt",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;What Do Bonds Know That The Stock Market Doesn't?&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with-summ",
+      "published_at": "2026-03-22T14:30:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Iran Threatens Region-Wide Infrastructure 'Obliteration' As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel",
+      "url": "https://www.zerohedge.com/geopolitical/iran-threatens-region-wide-infrastructure-obliteration-trumps-48-hour-ultimatum-ticks",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Iran Threatens Region-Wide Infrastructure 'Obliteration' As Trump's 48-Hour Ultimatum Ticks Down, Mass Casualties In Southern Israel&lt;/span&gt; &lt;div property=\"schema:tex",
+      "published_at": "2026-03-22T13:55:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "More Than 5,500 Residents Ordered To Evacuate In Hawaii Over Dodgy Dam",
+      "url": "https://www.zerohedge.com/weather/more-5500-residents-ordered-evacuate-hawaii-over-dodgy-dam",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;More Than 5,500 Residents Ordered To Evacuate In Hawaii Over Dodgy Dam&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field",
+      "published_at": "2026-03-22T13:20:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Migrant Criminal Beats Deportation Order With Chicken Nugget Defense",
+      "url": "https://www.zerohedge.com/political/migrant-criminal-beats-deportation-order-chicken-nugget-defense",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Migrant Criminal Beats Deportation Order With Chicken Nugget Defense&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--",
+      "published_at": "2026-03-22T12:45:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -189,6 +225,15 @@
       "url": "https://www.zerohedge.com/political/eu-considers-electricity-tax-cuts-subsidies-amid-iran-war-surge-energy-costs",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;EU Considers Electricity Tax Cuts, Subsidies Amid Iran War Surge In Energy Costs&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-",
       "published_at": "2026-03-22T12:10:00.000Z"
+    },
+    {
+      "source": "zerohedge",
+      "source_name": "ZeroHedge",
+      "source_score": 54,
+      "title": "Trump Warns Tehran To \"Fully Open\" Hormuz Or Face 'Obliteration' As Iran-Israel Trade Nuke-Plant Strikes",
+      "url": "https://www.zerohedge.com/geopolitical/irans-longest-range-missile-strike-fails-diego-garcia-natanz-nuclear-facility-bombed",
+      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Trump Warns Tehran To \"Fully Open\" Hormuz Or Face 'Obliteration' As Iran-Israel Trade Nuke-Plant Strikes&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-form",
+      "published_at": "2026-03-22T12:00:00.000Z"
     },
     {
       "source": "zerohedge",
@@ -275,15 +320,6 @@
       "source": "zerohedge",
       "source_name": "ZeroHedge",
       "source_score": 54,
-      "title": "Trump Warns Tehran To \"Fully Open\" Hormuz Or Face 'Obliteration' As Iran-Israel Trade Nuke-Plant Strikes",
-      "url": "https://www.zerohedge.com/geopolitical/irans-longest-range-missile-strike-fails-diego-garcia-natanz-nuclear-facility-bombed",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Trump Warns Tehran To \"Fully Open\" Hormuz Or Face 'Obliteration' As Iran-Israel Trade Nuke-Plant Strikes&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-form",
-      "published_at": "2026-03-22T00:00:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
       "title": "On The Hidden Fragility Of Our Energy-Dependent World &amp; The Cascading Consequences Of A Supply-Shock That Money Alone Can't Fix",
       "url": "https://www.zerohedge.com/geopolitical/hidden-fragility-our-energy-dependent-world-cascading-consequences-supply-shock-money",
       "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;On The Hidden Fragility Of Our Energy-Dependent World &amp; The Cascading Consequences Of A Supply-Shock That Money Alone Can't Fix&lt;/span&gt; &lt;div property=\"schema:text",
@@ -326,40 +362,22 @@
       "published_at": "2026-03-21T20:51:50.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Major Trade Group Releases Framework For Tokenized Gold",
-      "url": "https://www.zerohedge.com/crypto/major-trade-group-releases-framework-tokenized-gold",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Major Trade Group Releases Framework For Tokenized Gold&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-wit",
-      "published_at": "2026-03-21T19:10:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Here’s what happened in crypto today",
+      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
+      "published_at": "2026-03-22T14:16:26.000Z"
     },
     {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Trevor Milton Is Back And Wants To Produce AI Powered \"Fully Autonomous Corporate Jets\"",
-      "url": "https://www.zerohedge.com/markets/trevor-milton-back-and-wants-produce-ai-powered-fully-autonomous-corporate-jets",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Trevor Milton Is Back And Wants To Produce AI Powered \"Fully Autonomous Corporate Jets\"&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field",
-      "published_at": "2026-03-21T18:35:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Robert Mueller Dies; Trump: 'Good, I'm Glad He's Dead'",
-      "url": "https://www.zerohedge.com/political/robert-mueller-dies-trump-good-im-glad-hes-dead",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Robert Mueller Dies; Trump: 'Good, I'm Glad He's Dead'&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-with",
-      "published_at": "2026-03-21T18:00:00.000Z"
-    },
-    {
-      "source": "zerohedge",
-      "source_name": "ZeroHedge",
-      "source_score": 54,
-      "title": "Senate To Work Through Weekend Debating SAVE America Act",
-      "url": "https://www.zerohedge.com/political/senate-work-through-weekend-debating-save-america-act",
-      "summary": "&lt;span property=\"schema:name\" class=\"field field--name-title field--type-string field--label-hidden\"&gt;Senate To Work Through Weekend Debating SAVE America Act&lt;/span&gt; &lt;div property=\"schema:text\" class=\"clearfix text-formatted field field--name-body field--type-text-wi",
-      "published_at": "2026-03-21T16:50:00.000Z"
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "Resolv says no assets lost as DeFi protocols respond to USR exploit",
+      "url": "<![CDATA[https://cointelegraph.com/news/resolv-says-no-assets-lost-as-defi-partners-respond-to-usr-depeg?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "USR issuer Resolv Labs says its collateral pool remains intact after an exploit on Sunday that minted 80 million unbacked tokens and drove the US dollar stablecoin as low as $0.14.",
+      "published_at": "2026-03-22T14:06:37.000Z"
     },
     {
       "source": "cointelegraph",
@@ -419,15 +437,6 @@
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
-      "title": "Here’s what happened in crypto today",
-      "url": "<![CDATA[https://cointelegraph.com/news/what-happened-in-crypto-today?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Need to know what happened in crypto today? Here is the latest news on daily trends and events impacting Bitcoin price, blockchain, DeFi, NFTs, Web3 and crypto regulation.",
-      "published_at": "2026-03-21T22:37:26.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
       "title": "Brazil's finance minister shelves crypto tax policy due to election: Report",
       "url": "<![CDATA[https://cointelegraph.com/news/brazil-finance-minister-shelves-crypto-tax?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "The South American country will hold its presidential election in October 2026, and incumbent Luiz Inácio Lula da Silva is running for re-election.",
@@ -441,15 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/sec-crypto-guidance-final-nail-gensler-era?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "The SEC's digital asset market taxonomy, which classifies most cryptocurrencies and tokens as non-securities, is a major step for US regulators.",
       "published_at": "2026-03-21T17:41:54.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Bitcoin options signal fear even as BTC ETF outflows remain relatively low",
-      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-options-signal-fear-even-as-btc-etf-outflows-remain-relatively-low?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Bitcoin ETF outflows are too small to signal a bearish pivot from traders, but worsening US macroeconomic conditions and high oil prices keep BTC traders on the hedge.",
-      "published_at": "2026-03-21T17:18:44.000Z"
     }
   ]
 }
