@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-22T08:02:18.842Z",
+  "generated_at": "2026-03-22T09:53:37.488Z",
   "stories": [
     {
       "source": "fxstreet",
@@ -365,6 +365,24 @@
       "source": "cointelegraph",
       "source_name": "Cointelegraph",
       "source_score": 66,
+      "title": "Coinbase-backed CoinDCX founders questioned in fraud case: Report",
+      "url": "<![CDATA[https://cointelegraph.com/news/coinbase-backed-coindcx-founders-questioned-report?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Indian crypto exchange CoinDCX says the fraud complaint is part of a wider impersonation scam, citing more than 1,200 fake sites using its brand.",
+      "published_at": "2026-03-22T09:19:00.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
+      "title": "‘Hawk Tuah’ girl Hailey Welsh says memecoin implosion ‘traumatized’ her",
+      "url": "<![CDATA[https://cointelegraph.com/news/hawk-tuah-hailey-welsh-memecoin-traumatized?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
+      "summary": "Welsh warned others to stay away from crypto and said that she still does not understand anything about the sector more than a year later.",
+      "published_at": "2026-03-22T08:28:44.000Z"
+    },
+    {
+      "source": "cointelegraph",
+      "source_name": "Cointelegraph",
+      "source_score": 66,
       "title": "Resolv Labs’ stablecoin depegs as attacker mints millions of tokens",
       "url": "<![CDATA[https://cointelegraph.com/news/resolv-labs-stablecoin-depegs-attacker-mints-millions-of-tokens?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "An attacker has exploited the Resolv USR stablecoin to mint 80 million tokens and has reportedly been able to cash out at least $25 million.",
@@ -432,24 +450,6 @@
       "url": "<![CDATA[https://cointelegraph.com/news/ethereum-25-rally-richest-eth-whale-return-profitable?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
       "summary": "ETH price could climb toward $2,750 by June and above $3,200 by September if the historical whale-profit signal plays out again.",
       "published_at": "2026-03-21T16:22:38.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Hong Kong retiree loses $840K in triple ‘crypto expert’ scam",
-      "url": "<![CDATA[https://cointelegraph.com/news/hong-kong-retiree-loses-840k-triple-scam?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Hong Kong police say a 66-year-old retiree was duped three times in six months by self-styled “crypto investment experts,” as scammers promised easy gains and help to recover losses.",
-      "published_at": "2026-03-21T13:43:41.000Z"
-    },
-    {
-      "source": "cointelegraph",
-      "source_name": "Cointelegraph",
-      "source_score": 66,
-      "title": "Bitcoin mining difficulty falls 7.7% as miner pressure persists",
-      "url": "<![CDATA[https://cointelegraph.com/news/bitcoin-mining-difficulty-drops-7-7-miner-pressure?utm_source=rss_feed&utm_medium=rss&utm_campaign=rss_partner_inbound]]>",
-      "summary": "Bitcoin’s mining difficulty just logged its second sizeable cut of 2026, easing conditions for remaining miners as competition from artificial intelligence data centers rises.",
-      "published_at": "2026-03-21T11:58:18.000Z"
     }
   ]
 }
