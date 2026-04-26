@@ -1,61 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trader Dashboard</title>
-<style>
-body{background:#0b1220;color:white;font-family:Arial;margin:0}
-.panel{background:#16213a;margin:10px;padding:10px;border-radius:10px}
-.story{border-left:3px solid cyan;padding-left:8px;margin-bottom:10px}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trader Dashboard</title>
+  <style>
+    :root{
+      --bg:#07111f;--panel:rgba(14,26,48,.84);--panel2:rgba(20,37,66,.78);--text:#e8f6ff;--muted:#94a3b8;--cyan:#67e8f9;--green:#86efac;--amber:#fbbf24;--red:#f87171;--line:rgba(103,232,249,.23)
+    }
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 10%,rgba(103,232,249,.10),transparent 30%),radial-gradient(circle at 90% 20%,rgba(59,130,246,.10),transparent 30%),var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}.app{max-width:1500px;margin:0 auto;padding:14px}.glass{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.28);backdrop-filter:blur(10px)}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;margin-bottom:12px}.topbar h1{margin:0;font-size:1.35rem}.topbar p{margin:4px 0 0;color:var(--muted);font-size:.9rem}.actions{display:flex;flex-wrap:wrap;gap:8px}.btn{border:1px solid var(--line);border-radius:12px;background:rgba(8,18,35,.92);color:var(--text);padding:9px 12px;font-weight:700;cursor:pointer}.btn:hover{filter:brightness(1.25)}.btn.primary{background:rgba(6,182,212,.25);border-color:rgba(103,232,249,.5)}.btn.danger{background:rgba(248,113,113,.18);border-color:rgba(248,113,113,.45)}.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}.metric{padding:13px}.metric span,.kicker{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em}.metric strong{display:block;margin-top:6px;font-size:1.05rem}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.panel{padding:14px;min-height:150px}.span-8{grid-column:span 8}.span-6{grid-column:span 6}.span-4{grid-column:span 4}.span-12{grid-column:span 12}.head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.head h2{margin:0;font-size:1.05rem}.head p{margin:4px 0 0;color:var(--muted);font-size:.84rem}.drag-handle{font-size:.7rem;color:var(--cyan);border:1px solid var(--line);border-radius:999px;padding:5px 8px}.layout-controls{display:none;gap:6px;flex-wrap:wrap;margin:0 0 10px;padding:8px;border:1px dashed rgba(103,232,249,.45);border-radius:12px;background:rgba(0,0,0,.22)}body.layout-mode .layout-controls{display:flex}body.layout-mode .movable{outline:1px dashed rgba(103,232,249,.38);outline-offset:3px}.layout-controls button{font-size:.78rem;padding:6px 9px;border-radius:10px;border:1px solid var(--line);background:rgba(8,18,35,.95);color:var(--text)}.story{padding:12px;border-left:3px solid var(--cyan);background:rgba(255,255,255,.045);border-radius:12px;margin:0 0 10px}.story.top{border-left-color:var(--green)}.story-rank{font-size:.78rem;color:var(--muted);margin-bottom:5px}.story-title{font-weight:800;line-height:1.25}.story-title a{color:var(--text);text-decoration:none}.story-title a:hover{color:var(--cyan)}.story-summary{margin-top:6px;color:#cbd5e1;font-size:.88rem;line-height:1.35}.score{margin-top:8px;font-size:.78rem;font-weight:800}.high{color:var(--green)}.mid{color:var(--amber)}.low{color:var(--red)}.news-layout{display:grid;grid-template-columns:2fr 1fr;gap:12px}.table{width:100%;border-collapse:collapse;font-size:.85rem}.table th,.table td{padding:8px;border-bottom:1px solid rgba(148,163,184,.18);text-align:left}.asset-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px;border-bottom:1px solid rgba(148,163,184,.16)}.asset-row:last-child{border-bottom:0}.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-size:.72rem;border:1px solid var(--line);color:var(--cyan)}.notes{width:100%;min-height:180px;border-radius:14px;border:1px solid var(--line);background:rgba(3,8,18,.75);color:var(--text);padding:12px;resize:vertical}.status{color:var(--muted);font-size:.88rem;margin:0 0 10px}.footer-note{color:var(--muted);font-size:.82rem;line-height:1.4}.dragging{opacity:.5;transform:scale(.995)}@media(max-width:900px){.strip{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.span-8,.span-6,.span-4,.span-12{grid-column:span 1}.topbar{align-items:flex-start;flex-direction:column}.news-layout{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
+  <div class="app">
+    <header class="topbar glass">
+      <div>
+        <h1>Trader Dashboard</h1>
+        <p>Ranked market news, source scoring, movable panels, and simple trading command notes.</p>
+      </div>
+      <div class="actions">
+        <button id="refreshBtn" class="btn primary">Refresh News</button>
+        <button id="layoutBtn" class="btn">Customize Layout</button>
+        <button id="resetLayoutBtn" class="btn danger">Reset Layout</button>
+      </div>
+    </header>
 
-<h2 style="padding:10px">Trader Dashboard</h2>
-<div id="news" class="panel">Loading...</div>
+    <section class="strip">
+      <div class="metric glass"><span>Session</span><strong id="sessionValue">-</strong></div>
+      <div class="metric glass"><span>News Health</span><strong id="newsHealthValue">Loading</strong></div>
+      <div class="metric glass"><span>Risk Tone</span><strong id="riskToneValue">-</strong></div>
+      <div class="metric glass"><span>Last Refresh</span><strong id="lastRefreshValue">-</strong></div>
+    </section>
 
-<script>
-const sources=[
-{n:"ZeroHedge",s:54,u:"https://feeds.feedburner.com/zerohedge/feed"},
-{n:"FXStreet",s:78,u:"https://www.fxstreet.com/rss/news"}
-];
+    <main id="dashboardGrid" class="grid" data-zone="main">
+      <section class="panel glass movable span-8" data-panel-id="news">
+        <div class="head"><div><h2>Top Ranked Stories</h2><p>Live RSS stories scored by source quality, recency, macro relevance, urgency, and watchlist relevance.</p></div><span class="drag-handle">Move</span></div>
+        <div id="newsRoot"><div class="status">Loading ranked news...</div></div>
+      </section>
 
-function proxy(u){return "https://api.allorigins.win/raw?url="+encodeURIComponent(u)}
+      <section class="panel glass movable span-4" data-panel-id="sources">
+        <div class="head"><div><h2>Source Ratings</h2><p>Reliability inputs used by the article scoring engine.</p></div><span class="drag-handle">Move</span></div>
+        <div id="sourcesRoot"></div>
+      </section>
 
-async function load(){
-let all=[];
-for(const src of sources){
-try{
-const r=await fetch(proxy(src.u));
-const t=await r.text();
-const xml=new DOMParser().parseFromString(t,"application/xml");
-const items=[...xml.querySelectorAll("item")].slice(0,5);
+      <section class="panel glass movable span-6" data-panel-id="assets">
+        <div class="head"><div><h2>Tracked Assets</h2><p>Manual watchlist context for news relevance.</p></div><span class="drag-handle">Move</span></div>
+        <div id="assetsRoot"></div>
+      </section>
 
-items.forEach(i=>{
-all.push({
-title:i.querySelector("title")?.textContent,
-link:i.querySelector("link")?.textContent,
-score:src.s,
-src:src.n
-});
-});
-}catch{}
-}
+      <section class="panel glass movable span-6" data-panel-id="notes">
+        <div class="head"><div><h2>Levels & Bias Notes</h2><p>Saved locally on this browser.</p></div><span class="drag-handle">Move</span></div>
+        <textarea id="notesInput" class="notes" placeholder="Example: NQ above IB high; watch failed breakout into PDH. Gold reacting to USD strength..."></textarea>
+      </section>
 
-all.sort((a,b)=>b.score-a.score);
+      <section class="panel glass movable span-12" data-panel-id="rules">
+        <div class="head"><div><h2>Dashboard Rules</h2><p>How the system ranks stories.</p></div><span class="drag-handle">Move</span></div>
+        <div class="footer-note">Overall score = 45% source reliability + 55% story score. Story score rewards fresh articles, useful summaries, macro red-folder terms, urgency terms, and relevance to tracked assets. The layout works on Android/tablet through buttons and on desktop through drag/drop.</div>
+      </section>
+    </main>
+  </div>
 
-document.getElementById("news").innerHTML=
-all.slice(0,10).map(s=>`
-<div class="story">
-<b>${s.src}</b><br>
-<a href="${s.link}" target="_blank">${s.title}</a><br>
-Score: ${s.score}
-</div>
-`).join("");
-}
-
-load();
-</script>
-
+  <script>
+    const SOURCE_RATINGS={
+      lynalden:{name:'Lyn Alden',score:86,forecast:82,rss:'https://www.lynalden.com/feed/'},
+      hedgeye:{name:'Hedgeye',score:81,forecast:75,rss:'https://app.hedgeye.com/feed'},
+      fxstreet:{name:'FXStreet',score:78,forecast:72,rss:'https://www.fxstreet.com/rss/news'},
+      investing:{name:'Investing.com',score:77,forecast:71,rss:'https://www.investing.com/rss/news.rss'},
+      coinbureau:{name:'Coin Bureau',score:71,forecast:67,rss:'https://www.coinbureau.com/feed/'},
+      realvision:{name:'Real Vision',score:74,forecast:69,rss:'https://www.realvision.com/blog/rss.xml'},
+      zerohedge:{name:'ZeroHedge',score:54,forecast:45,rss:'https://feeds.feedburner.com/zerohedge/feed'},
+      cointelegraph:{name:'Cointelegraph',score:66,forecast:58,rss:'https://cointelegraph.com/rss'}
+    };
+    const NEWS_FEEDS=Object.entries(SOURCE_RATINGS).map(([key,v])=>({key,...v}));
+    const DEFAULT_ASSETS=['NQ','ES','YM','GC','XAUUSD','CL','USOIL','BTCUSD','USDJPY','EURUSD','SPY','QQQ'];
+    const IMPACT_TERMS=['cpi','inflation','fed','fomc','rates','yield','jobs','nfp','pce','ppi','bitcoin','crypto','gold','oil','treasury','recession','tariff','stocks','dollar','yen','nasdaq','s&p','sp500','earnings','liquidity','war','geopolitical'];
+    const URGENCY_TERMS=['surge','crash','spike','plunge','rally','selloff','breaks','jumps','slides','warning','risk','panic','record','shock'];
+    let STORIES=[];let layoutMode=false;
+    const $=id=>document.getElementById(id);
+    function escapeHtml(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
+    function stripHtml(html){const d=document.createElement('div');d.innerHTML=String(html||'');return(d.textContent||d.innerText||'').replace(/\s+/g,' ').trim()}
+    function proxy(url){return 'https://api.allorigins.win/raw?url='+encodeURIComponent(url)}
+    async function safeFetchText(url,timeoutMs=7500){const c=new AbortController();const t=setTimeout(()=>c.abort(),timeoutMs);try{const r=await fetch(url,{signal:c.signal,cache:'no-store'});clearTimeout(t);if(!r.ok)return null;return await r.text()}catch{clearTimeout(t);return null}}
+    function getWatchSymbols(){try{return JSON.parse(localStorage.getItem('td_assets')||'null')||DEFAULT_ASSETS}catch{return DEFAULT_ASSETS}}
+    function scoreHeadline(title,summary=''){const text=(title+' '+summary).toLowerCase();let score=0;IMPACT_TERMS.forEach(k=>{if(text.includes(k))score+=3});URGENCY_TERMS.forEach(k=>{if(text.includes(k))score+=2});getWatchSymbols().forEach(sym=>{const base=String(sym).toLowerCase().replace('usd','').replace('usdt','');if(base&&base.length>1&&text.includes(base))score+=1});return score}
+    function storyScore(s){let base=50;const mins=Math.round((Date.now()-s.time)/60000);if(mins<10)base+=18;else if(mins<60)base+=10;else if(mins>240)base-=10;if((s.summary||'').length>20)base+=10;if(s.red)base+=20;base+=Math.min(12,s.relevanceScore||0);return Math.max(0,Math.min(100,Math.round(base)))}
+    function finalScore(s){return Math.round((s.sourceScore||50)*.45+storyScore(s)*.55)}
+    function limitBySource(stories,maxTotal=10,maxPerSource=2){const counts={},out=[];for(const s of stories){counts[s.source]=counts[s.source]||0;if(counts[s.source]>=maxPerSource)continue;out.push(s);counts[s.source]++;if(out.length>=maxTotal)break}return out}
+    async function fetchFeed(feed){const text=await safeFetchText(proxy(feed.rss));if(!text)return[];const xml=new DOMParser().parseFromString(text,'application/xml');const items=[...xml.querySelectorAll('item, entry')].slice(0,8);return items.map(item=>{const title=item.querySelector('title')?.textContent?.trim()||'Untitled';const link=item.querySelector('link')?.textContent?.trim()||item.querySelector('link')?.getAttribute('href')||'#';const pub=item.querySelector('pubDate')?.textContent||item.querySelector('published')?.textContent||item.querySelector('updated')?.textContent||'';const summary=stripHtml(item.querySelector('description')?.textContent||item.querySelector('summary')?.textContent||item.querySelector('content')?.textContent||'');const relevanceScore=scoreHeadline(title,summary);const red=/\b(cpi|fomc|nfp|pce|ppi|fed|rates|jobs|inflation)\b/i.test(title+' '+summary);return{source:feed.key,sourceName:feed.name,sourceScore:feed.score,title,link,summary,time:Number.isFinite(Date.parse(pub))?Date.parse(pub):Date.now(),relevanceScore,red}})}
+    async function refreshNews(){const root=$('newsRoot');root.innerHTML='<div class="status">Loading ranked news intelligence...</div>';$('newsHealthValue').textContent='Loading';const results=await Promise.allSettled(NEWS_FEEDS.map(fetchFeed));STORIES=results.filter(r=>r.status==='fulfilled').flatMap(r=>r.value);renderNews();$('lastRefreshValue').textContent=new Date().toLocaleTimeString();$('newsHealthValue').textContent=STORIES.length?`${STORIES.length} articles`:'No feed'}
+    function formatAgo(ms){const mins=Math.max(0,Math.round((Date.now()-ms)/60000));if(mins<60)return`${mins}m ago`;const h=Math.floor(mins/60);if(h<24)return`${h}h ago`;return`${Math.floor(h/24)}d ago`}
+    function renderNews(){const ranked=STORIES.map(s=>({...s,storyScore:storyScore(s),final:finalScore(s)})).sort((a,b)=>b.final-a.final);const limited=limitBySource(ranked,10,2);const html=limited.map((s,idx)=>{const cls=s.final>=80?'high':s.final>=60?'mid':'low';return`<div class="story ${idx===0?'top':''}"><div class="story-rank">#${idx+1} • ${escapeHtml(s.sourceName)} • ${formatAgo(s.time)}</div><div class="story-title"><a href="${escapeHtml(s.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.title)}</a></div><div class="story-summary">${escapeHtml((s.summary||'').slice(0,260))}</div><div class="score ${cls}">Overall: ${s.final} | Source: ${s.sourceScore} | Story: ${s.storyScore} | Relevance: ${s.relevanceScore}</div></div>`}).join('');$('newsRoot').innerHTML=html||'<div class="status">No ranked stories loaded. Press Refresh News.</div>';renderSources(limited);renderRiskTone(limited)}
+    function renderSources(limited=[]){const rows=NEWS_FEEDS.slice().sort((a,b)=>b.score-a.score).map(f=>`<tr><td>${escapeHtml(f.name)}</td><td>${f.score}</td><td>${f.forecast}</td><td>${limited.filter(s=>s.source===f.key).length}</td></tr>`).join('');$('sourcesRoot').innerHTML=`<table class="table"><thead><tr><th>Source</th><th>Reliability</th><th>Forecast</th><th>Top 10</th></tr></thead><tbody>${rows}</tbody></table>`}
+    function renderAssets(){const assets=getWatchSymbols();$('assetsRoot').innerHTML=assets.map(a=>`<div class="asset-row"><div><strong>${escapeHtml(a)}</strong><div class="kicker">Watchlist symbol</div></div><span class="pill">tracked</span></div>`).join('')+'<div class="footer-note" style="margin-top:10px">Edit watchlist in browser console with: localStorage.setItem("td_assets", JSON.stringify(["NQ","ES","GC","BTCUSD"]))</div>'}
+    function renderRiskTone(stories){const text=stories.map(s=>(s.title+' '+s.summary).toLowerCase()).join(' ');let tone='Mixed';if(/gold|oil|war|risk|panic|selloff|plunge|inflation|rates/.test(text))tone='Defensive / Volatile';if(/rally|risk-on|bitcoin|nasdaq|stocks jump|fed cut/.test(text))tone='Risk-On Watch';$('riskToneValue').textContent=tone}
+    function renderSession(){const now=new Date();const ny=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(now);const h=Number(ny.find(p=>p.type==='hour')?.value||0),m=Number(ny.find(p=>p.type==='minute')?.value||0);const total=h*60+m;let session='After Hours';if(total>=570&&total<630)session='NY Open / IB Forming';else if(total>=630&&total<960)session='NY Main Session';else if(total>=180&&total<480)session='London';else if(total>=1140||total<180)session='Asia';$('sessionValue').textContent=session}
+    function addLayoutControls(){document.querySelectorAll('.movable').forEach(el=>{if(el.querySelector(':scope > .layout-controls'))return;const c=document.createElement('div');c.className='layout-controls';c.innerHTML='<button data-move="top">Top</button><button data-move="up">Up</button><button data-move="down">Down</button><button data-move="bottom">Bottom</button>';c.addEventListener('click',e=>{const b=e.target.closest('button[data-move]');if(!b)return;movePanel(el,b.dataset.move)});el.prepend(c)})}
+    function movePanel(el,dir){const p=el.parentElement;if(dir==='top')p.insertBefore(el,p.firstElementChild);if(dir==='up'&&el.previousElementSibling)p.insertBefore(el,el.previousElementSibling);if(dir==='down'&&el.nextElementSibling)p.insertBefore(el.nextElementSibling,el);if(dir==='bottom')p.appendChild(el);saveLayout()}
+    function saveLayout(){const order=[...document.querySelectorAll('.movable')].map(el=>el.dataset.panelId);localStorage.setItem('td_layout',JSON.stringify(order))}
+    function loadLayout(){try{const order=JSON.parse(localStorage.getItem('td_layout')||'[]');const grid=$('dashboardGrid');order.forEach(id=>{const el=document.querySelector(`[data-panel-id="${id}"]`);if(el)grid.appendChild(el)})}catch{}}
+    function enableDrag(){document.querySelectorAll('.movable').forEach(el=>{el.draggable=layoutMode;el.addEventListener('dragstart',e=>{if(!layoutMode){e.preventDefault();return}el.classList.add('dragging');e.dataTransfer.effectAllowed='move'});el.addEventListener('dragend',()=>{el.classList.remove('dragging');saveLayout()})});$('dashboardGrid').addEventListener('dragover',e=>{if(!layoutMode)return;e.preventDefault();const dragging=document.querySelector('.dragging');if(!dragging)return;const after=[...document.querySelectorAll('.movable:not(.dragging)')].reduce((closest,child)=>{const box=child.getBoundingClientRect();const offset=e.clientY-box.top-box.height/2;return offset<0&&offset>closest.offset?{offset,element:child}:closest},{offset:Number.NEGATIVE_INFINITY}).element;if(after==null)$('dashboardGrid').appendChild(dragging);else $('dashboardGrid').insertBefore(dragging,after)})}
+    function toggleLayout(){layoutMode=!layoutMode;document.body.classList.toggle('layout-mode',layoutMode);$('layoutBtn').textContent=layoutMode?'Lock Layout':'Customize Layout';addLayoutControls();enableDrag()}
+    function resetLayout(){localStorage.removeItem('td_layout');location.reload()}
+    function boot(){loadLayout();renderSession();renderSources();renderAssets();const notes=$('notesInput');notes.value=localStorage.getItem('td_notes')||'';notes.addEventListener('input',()=>localStorage.setItem('td_notes',notes.value));$('refreshBtn').addEventListener('click',refreshNews);$('layoutBtn').addEventListener('click',toggleLayout);$('resetLayoutBtn').addEventListener('click',resetLayout);refreshNews();setInterval(renderSession,30000);setInterval(refreshNews,5*60*1000)}
+    boot();
+  </script>
 </body>
 </html>
