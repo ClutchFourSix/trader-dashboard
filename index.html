@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trader Dashboard</title>
+<style>
+body{background:#0b1220;color:white;font-family:Arial;margin:0}
+.panel{background:#16213a;margin:10px;padding:10px;border-radius:10px}
+.story{border-left:3px solid cyan;padding-left:8px;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<h2 style="padding:10px">Trader Dashboard</h2>
+<div id="news" class="panel">Loading...</div>
+
+<script>
+const sources=[
+{n:"ZeroHedge",s:54,u:"https://feeds.feedburner.com/zerohedge/feed"},
+{n:"FXStreet",s:78,u:"https://www.fxstreet.com/rss/news"}
+];
+
+function proxy(u){return "https://api.allorigins.win/raw?url="+encodeURIComponent(u)}
+
+async function load(){
+let all=[];
+for(const src of sources){
+try{
+const r=await fetch(proxy(src.u));
+const t=await r.text();
+const xml=new DOMParser().parseFromString(t,"application/xml");
+const items=[...xml.querySelectorAll("item")].slice(0,5);
+
+items.forEach(i=>{
+all.push({
+title:i.querySelector("title")?.textContent,
+link:i.querySelector("link")?.textContent,
+score:src.s,
+src:src.n
+});
+});
+}catch{}
+}
+
+all.sort((a,b)=>b.score-a.score);
+
+document.getElementById("news").innerHTML=
+all.slice(0,10).map(s=>`
+<div class="story">
+<b>${s.src}</b><br>
+<a href="${s.link}" target="_blank">${s.title}</a><br>
+Score: ${s.score}
+</div>
+`).join("");
+}
+
+load();
+</script>
+
+</body>
+</html>
