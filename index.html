@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>BOLT v1.0.1</title>
+<title>BOLT v1.0.2</title>
 <style>
 :root {
     --bg: #090d16;
@@ -213,7 +213,7 @@ body.layout-mode .chart-frame::after {
 <div class="app">
 <header class="topbar glass">
     <div>
-        <h1>BOLT <span class="version-badge">v1.0.1</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
+        <h1>BOLT <span class="version-badge">v1.0.2</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
         <p>Dynamic Multi-Source Intelligence Scanner & Intraday Horizon Monitor</p>
     </div>
     <div class="actions">
@@ -240,7 +240,7 @@ body.layout-mode .chart-frame::after {
     <section class="panel glass span-12" data-panel-id="charts">
         <div class="head">
             <div>
-                <h2><span class="drag-handle">⠿</span> Live Alpha Charting Lens Deck</h2>
+                <h2><span class="drag-handle"></span> Live Alpha Charting Lens Deck</h2>
                 <p>Real-time visual index tracking for core execution metrics (NQ, ES, GC, CL).</p>
             </div>
         </div>
@@ -267,7 +267,7 @@ body.layout-mode .chart-frame::after {
     <section class="panel glass span-8" data-panel-id="news">
         <div class="head">
             <div>
-                <h2><span class="drag-handle"></span> High-Priority Macro & Sentiment Stream</h2>
+                <h2><span class="drag-handle">⠿</span> High-Priority Macro & Sentiment Stream</h2>
                 <p>Combined news and microblogging intelligence scored dynamically by prop volatility risk weightings.</p>
             </div>
         </div>
@@ -347,6 +347,12 @@ const ASSET_MAP = {
     'BTCUSD': 'BTC-USD', 'USDJPY': 'JPY=X', 'EURUSD': 'EURUSD=X'
 };
 
+// Map UI symbols to Stooq CSV tickers (Fallback)
+const STOOQ_MAP = {
+    'NQ': 'nq.f', 'ES': 'es.f', 'YM': 'ym.f', 'GC': 'gc.f', 'CL': 'cl.f',
+    'BTCUSD': 'btcusd', 'USDJPY': 'usdjpy', 'EURUSD': 'eurusd'
+};
+
 const IMPACT_TERMS=['cpi','inflation','fed','fomc','rates','yield','jobs','nfp','pce','ppi','gold','oil','treasury','recession','tariff','stocks','dollar','yen','nasdaq','s&p','sp500','liquidity','war','geopolitical','sanctions','bank','debt','volatility','crisis','trade war'];
 const URGENCY_TERMS=['surge','crash','spike','plunge','rally','selloff','breaks','jumps','slides','warning','risk','panic','record','shock','emergency','cut','hike','pivot','retaliation','duty','ban'];
 
@@ -371,9 +377,16 @@ const $=id=>document.getElementById(id);
 
 function escapeHtml(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
 function stripHtml(html){const d=document.createElement('div');d.innerHTML=String(html||'');return(d.textContent||d.innerText||'').replace(/\s+/g,' ').trim()}
-function proxies(url){return['https://api.allorigins.win/raw?url='+encodeURIComponent(url),'https://api.codetabs.com/v1/proxy/?quest='+encodeURIComponent(url)]}
 
-async function safeFetchText(url,timeoutMs=6500){
+// Updated proxies: corsproxy.io is much better for Yahoo Finance JSON
+function proxies(url){
+    return [
+        'https://corsproxy.io/?' + encodeURIComponent(url),
+        'https://api.allorigins.win/raw?url=' + encodeURIComponent(url)
+    ];
+}
+
+async function safeFetchText(url,timeoutMs=8000){
     for(const u of proxies(url)){
         const c=new AbortController();
         const t=setTimeout(()=>c.abort(),timeoutMs);
@@ -520,33 +533,61 @@ function renderSources(limited=[]){
 }
 
 /* ==========================================
-   LIVE WATCHLIST ENGINE (Item #2)
+   LIVE WATCHLIST ENGINE (v1.0.2 Fix)
    ========================================== */
 async function fetchAssetPrices() {
     const assets = getWatchSymbols();
     const promises = assets.map(async (symbol) => {
         const yahooSymbol = ASSET_MAP[symbol] || symbol;
-        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=2d`;
+        const stooqSymbol = STOOQ_MAP[symbol] || symbol.toLowerCase();
+        
+        // 1. Try Yahoo Finance (query2 is more reliable)
+        const url = `https://query2.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=5d`;
         const text = await safeFetchText(url);
-        if (!text) return { symbol, price: null, change: 0, changePercent: 0 };
-        try {
-            const data = JSON.parse(text);
-            const meta = data.chart.result[0].meta;
-            const price = meta.regularMarketPrice;
-            const prevClose = meta.chartPreviousClose || meta.previousClose;
-            const change = price - prevClose;
-            const changePercent = (change / prevClose) * 100;
-            return { symbol, price, change, changePercent };
-        } catch (e) {
-            return { symbol, price: null, change: 0, changePercent: 0 };
+        
+        if (text) {
+            try {
+                const data = JSON.parse(text);
+                if (data.chart && data.chart.result && data.chart.result.length > 0) {
+                    const meta = data.chart.result[0].meta;
+                    const price = meta.regularMarketPrice;
+                    const prevClose = meta.chartPreviousClose || meta.previousClose;
+                    if (price && prevClose) {
+                        const change = price - prevClose;
+                        const changePercent = (change / prevClose) * 100;
+                        return { symbol, price, change, changePercent };
+                    }
+                }
+            } catch (e) { /* JSON parse failed, fallback to Stooq */ }
         }
+
+        // 2. Fallback to Stooq CSV
+        const stooqUrl = `https://stooq.com/q/l/?s=${stooqSymbol}&f=sd2t2ohlcv&h&e=csv`;
+        const stooqText = await safeFetchText(stooqUrl);
+        if (stooqText && stooqText.includes(',')) {
+            try {
+                const lines = stooqText.trim().split('\n');
+                if (lines.length > 1) {
+                    const parts = lines[1].split(',');
+                    // Format: Symbol,Date,Time,Open,High,Low,Close,Volume
+                    const price = parseFloat(parts[7]); // Close
+                    const open = parseFloat(parts[3]);  // Open (used as prev close proxy for intraday)
+                    if (!isNaN(price) && !isNaN(open) && open > 0) {
+                        const change = price - open;
+                        const changePercent = (change / open) * 100;
+                        return { symbol, price, change, changePercent };
+                    }
+                }
+            } catch (e) { /* Stooq parse failed */ }
+        }
+
+        return { symbol, price: null, change: 0, changePercent: 0 };
     });
     return Promise.all(promises);
 }
 
 function formatPrice(price, symbol) {
     if (price === null) return '--';
-    // Forex gets 4 decimals, everything else gets 2
     if (['USDJPY', 'EURUSD'].includes(symbol)) return price.toFixed(4);
     return price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
 }
