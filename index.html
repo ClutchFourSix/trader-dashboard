@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>BOLT v1.0.4</title>
+<title>BOLT v1.0.5</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@10.1.2/dist/gridstack.min.css" />
 <style>
 :root {
@@ -79,14 +79,17 @@ body {
     flex-direction: column;
     overflow: hidden;
     height: 100%;
+    transition: border-color 0.2s;
 }
-body.layout-mode .grid-stack-item-content { border: 1px dashed var(--cyan); }
+/* Visual cue when layout mode is active */
+body.layout-mode .grid-stack-item-content { border: 2px dashed var(--cyan); }
 
 /* Resize Handle Styling */
 .ui-resizable-se {
-    width: 14px; height: 14px; right: 2px; bottom: 2px;
+    width: 16px; height: 16px; right: 4px; bottom: 4px;
     background: linear-gradient(135deg, transparent 50%, var(--cyan) 50%);
-    border-radius: 0 0 4px 0; cursor: se-resize; opacity: 0.3; transition: opacity 0.2s;
+    border-radius: 0 0 4px 0; cursor: se-resize; opacity: 0; transition: opacity 0.2s;
+    z-index: 100;
 }
 body.layout-mode .ui-resizable-se { opacity: 1; }
 
@@ -94,15 +97,18 @@ body.layout-mode .ui-resizable-se { opacity: 1; }
 .head h2 { font-size: 0.9rem; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.02em; display: flex; align-items: center; gap: 8px; }
 .head p { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
-/* Drag Handle - Always visible but subtle */
+/* Drag Handle - Larger and more visible */
 .drag-handle {
     cursor: grab;
     color: var(--muted);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     line-height: 1;
-    opacity: 0.4;
+    opacity: 0.5;
     transition: opacity 0.2s, color 0.2s;
     user-select: none;
+    padding: 0 4px;
+    display: inline-flex;
+    align-items: center;
 }
 .drag-handle:hover { opacity: 1; color: var(--cyan); }
 body.layout-mode .drag-handle { opacity: 1; }
@@ -153,7 +159,7 @@ body.layout-mode .drag-handle { opacity: 1; }
 <div class="app">
 <header class="topbar glass">
     <div>
-        <h1>BOLT <span class="version-badge">v1.0.4</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
+        <h1>BOLT <span class="version-badge">v1.0.5</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
         <p>Dynamic Multi-Source Intelligence Scanner & Intraday Horizon Monitor</p>
     </div>
     <div class="actions">
@@ -189,21 +195,21 @@ body.layout-mode .drag-handle { opacity: 1; }
 
     <div class="grid-stack-item" gs-w="8" gs-h="8" gs-id="news">
         <div class="grid-stack-item-content">
-            <div class="head"><div><h2><span class="drag-handle">⠿</span> High-Priority Macro & Sentiment Stream</h2><p>Combined news and microblogging intelligence scored dynamically by prop volatility risk weightings.</p></div></div>
+            <div class="head"><div><h2><span class="drag-handle"></span> High-Priority Macro & Sentiment Stream</h2><p>Combined news and microblogging intelligence scored dynamically by prop volatility risk weightings.</p></div></div>
             <div id="newsRoot" class="panel-scroll"><div class="status">Syncing real-time intelligence nodes...</div></div>
         </div>
     </div>
 
     <div class="grid-stack-item" gs-w="4" gs-h="8" gs-id="sources">
         <div class="grid-stack-item-content">
-            <div class="head"><div><h2><span class="drag-handle"></span> Source Reliability Index</h2><p>Non-corporate and alternative high-signal feeds prioritized.</p></div></div>
+            <div class="head"><div><h2><span class="drag-handle">⠿</span> Source Reliability Index</h2><p>Non-corporate and alternative high-signal feeds prioritized.</p></div></div>
             <div id="sourcesRoot" class="panel-scroll"></div>
         </div>
     </div>
 
     <div class="grid-stack-item" gs-w="6" gs-h="5" gs-id="assets">
         <div class="grid-stack-item-content">
-            <div class="head"><div><h2><span class="drag-handle">⠿</span> Anchored Execution Watchlist</h2><p>Live pricing and daily variance for core execution instruments.</p></div></div>
+            <div class="head"><div><h2><span class="drag-handle"></span> Anchored Execution Watchlist</h2><p>Live pricing and daily variance for core execution instruments.</p></div></div>
             <div id="assetsRoot" class="asset-grid panel-scroll"></div>
         </div>
     </div>
@@ -358,7 +364,7 @@ function renderMarketClocks() { const root = $('clockStrip'); root.innerHTML = M
 function renderSession() { const now = new Date(); const ny = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false}).formatToParts(now); const day = ny.find(p => p.type === 'weekday')?.value; const h = Number(ny.find(p => p.type === 'hour')?.value || 0), m = Number(ny.find(p => p.type === 'minute')?.value || 0); const total = h * 60 + m; let session = 'ETH After Hours'; if (day === 'Sat' || day === 'Sun') session = 'Weekend / Closed'; else if (total >= 510 && total < 570) session = 'RTH Pre-Market Prep'; else if (total >= 570 && total < 630) session = 'NY Open / IB Phase'; else if (total >= 630 && total < 960) session = 'NY Core Session'; else if (total >= 180 && total < 480) session = 'London Allocation'; else if (total >= 1140 || total < 180) session = 'Asia Operational Phase'; $('sessionValue').textContent = session; }
 
 /* ==========================================
-   GRIDSTACK LAYOUT ENGINE (v1.0.4)
+   GRIDSTACK LAYOUT ENGINE (v1.0.5)
    ========================================== */
 function initGrid() {
     grid = GridStack.init({
@@ -371,7 +377,7 @@ function initGrid() {
         disableDrag: true          // Start locked
     });
 
-    const savedLayout = localStorage.getItem('bolt_layout_v4');
+    const savedLayout = localStorage.getItem('bolt_layout_v5');
     if (savedLayout) {
         try { grid.load(JSON.parse(savedLayout)); } catch (e) { console.error("Layout load failed", e); }
     }
@@ -379,7 +385,7 @@ function initGrid() {
     grid.on('change', function() {
         if (layoutMode) {
             const layout = grid.save();
-            localStorage.setItem('bolt_layout_v4', JSON.stringify(layout));
+            localStorage.setItem('bolt_layout_v5', JSON.stringify(layout));
         }
     });
 }
@@ -398,7 +404,7 @@ function toggleLayout() {
     }
 }
 
-function resetLayout() { localStorage.removeItem('bolt_layout_v4'); location.reload(); }
+function resetLayout() { localStorage.removeItem('bolt_layout_v5'); location.reload(); }
 
 /* ==========================================
    TRADINGVIEW CHARTING ENGINE
