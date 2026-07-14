@@ -111,30 +111,32 @@ body {
 
 /* Layout Grid Definition */
 .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
-.panel { padding: 16px; display: flex; flex-direction: column; position: relative; }
+.panel { padding: 16px; display: flex; flex-direction: column; position: relative; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
 .span-12 { grid-column: span 12; }
 .span-8 { grid-column: span 8; }
 .span-6 { grid-column: span 6; }
 .span-4 { grid-column: span 4; }
 
 .head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
-.head h2 { font-size: 0.9rem; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.02em; }
+.head h2 { font-size: 0.9rem; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.02em; display: flex; align-items: center; gap: 8px; }
 .head p { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
-/* Fixed Layout Customizer Overlay controls */
-.layout-controls {
+/* Drag and Drop Styles */
+.drag-handle {
     display: none;
-    gap: 4px;
-    margin-bottom: 10px;
-    background: #0b0f19;
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px dashed var(--cyan);
+    cursor: grab;
+    color: var(--muted);
+    font-size: 1.4rem;
+    line-height: 1;
+    opacity: 0.6;
+    transition: opacity 0.2s;
 }
-body.layout-mode .layout-controls { display: flex; }
-body.layout-mode .panel { border: 1px dashed var(--cyan); }
-.layout-controls button { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--panel-border); background: #1f2937; color: var(--text); cursor: pointer; }
-.layout-controls button:hover { border-color: var(--cyan); color: var(--cyan); }
+.drag-handle:hover { opacity: 1; color: var(--cyan); }
+body.layout-mode .drag-handle { display: inline-block; }
+body.layout-mode .panel { cursor: grab; border: 1px dashed var(--panel-border); }
+body.layout-mode .panel:active { cursor: grabbing; }
+.panel.dragging { opacity: 0.4; border: 2px dashed var(--cyan); transform: scale(0.98); }
+.panel.drag-over { border: 2px dashed var(--green); background: rgba(16, 185, 129, 0.05); transform: scale(1.01); }
 
 /* News Streams Elements */
 .story { padding: 12px; border: 1px solid var(--panel-border); border-left: 3px solid var(--cyan); background: rgba(255, 255, 255, 0.01); border-radius: 6px; margin-bottom: 8px; }
@@ -163,7 +165,7 @@ body.layout-mode .panel { border: 1px dashed var(--cyan); }
 .chart-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; height: 520px; }
 .chart-box { background: #0b0f19; border: 1px solid var(--panel-border); border-radius: 6px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
 .chart-header { background: #111827; padding: 6px 12px; font-size: 0.72rem; font-weight: 700; border-bottom: 1px solid var(--panel-border); color: var(--cyan); display: flex; justify-content: space-between; }
-.chart-frame { flex: 1; width: 100%; border: none; background: #090d16; }
+.chart-frame { flex: 1; width: 100%; min-height: 250px; background: #090d16; }
 
 .notes { width: 100%; min-height: 140px; border-radius: 6px; border: 1px solid var(--panel-border); background: #0b0f19; color: var(--text); padding: 12px; font-family: var(--font); font-size: 0.78rem; line-height: 1.4; resize: vertical; outline: none; }
 .notes:focus { border-color: var(--cyan); }
@@ -204,46 +206,36 @@ body.layout-mode .panel { border: 1px dashed var(--cyan); }
 <main id="dashboardGrid" class="grid">
     <!-- Active Charting Matrix Deck Box -->
     <section class="panel glass span-12" data-panel-id="charts">
-        <div class="layout-controls">
-            <button onclick="shiftPanel(this,'top')">Top</button>
-            <button onclick="shiftPanel(this,'up')">Up</button>
-            <button onclick="shiftPanel(this,'down')">Down</button>
-        </div>
         <div class="head">
             <div>
-                <h2>Live Alpha Charting Lens Deck</h2>
+                <h2><span class="drag-handle">⠿</span> Live Alpha Charting Lens Deck</h2>
                 <p>Real-time visual index tracking for core execution metrics (NQ, ES, GC, CL).</p>
             </div>
         </div>
         <div class="chart-container">
             <div class="chart-box">
                 <div class="chart-header"><span>NASDAQ 100 FUTURES (NQ)</span><span>LIVE TICKER</span></div>
-                <iframe class="chart-frame" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_nq&symbol=CME_MINI%3ANQ1!&interval=5&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=America%2FNew_York&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en"></iframe>
+                <div class="chart-frame" id="chart-nq"></div>
             </div>
             <div class="chart-box">
                 <div class="chart-header"><span>S&P 500 E-MINI FUTURES (ES)</span><span>LIVE TICKER</span></div>
-                <iframe class="chart-frame" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_es&symbol=CME_MINI%3AES1!&interval=5&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=America%2FNew_York&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en"></iframe>
+                <div class="chart-frame" id="chart-es"></div>
             </div>
             <div class="chart-box">
                 <div class="chart-header"><span>COMEX GOLD FUTURES (GC)</span><span>LIVE TICKER</span></div>
-                <iframe class="chart-frame" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_gc&symbol=COMEX%3AGC1!&interval=15&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=America%2FNew_York&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en"></iframe>
+                <div class="chart-frame" id="chart-gc"></div>
             </div>
             <div class="chart-box">
                 <div class="chart-header"><span>NYMEX WTI CRUDE OIL FUTURES (CL)</span><span>LIVE TICKER</span></div>
-                <iframe class="chart-frame" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_cl&symbol=NYMEX%3ACL1!&interval=15&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=America%2FNew_York&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en"></iframe>
+                <div class="chart-frame" id="chart-cl"></div>
             </div>
         </div>
     </section>
 
     <section class="panel glass span-8" data-panel-id="news">
-        <div class="layout-controls">
-            <button onclick="shiftPanel(this,'top')">Top</button>
-            <button onclick="shiftPanel(this,'up')">Up</button>
-            <button onclick="shiftPanel(this,'down')">Down</button>
-        </div>
         <div class="head">
             <div>
-                <h2>High-Priority Macro & Sentiment Stream</h2>
+                <h2><span class="drag-handle">⠿</span> High-Priority Macro & Sentiment Stream</h2>
                 <p>Combined news and microblogging intelligence scored dynamically by prop volatility risk weightings.</p>
             </div>
         </div>
@@ -251,14 +243,9 @@ body.layout-mode .panel { border: 1px dashed var(--cyan); }
     </section>
 
     <section class="panel glass span-4" data-panel-id="sources">
-        <div class="layout-controls">
-            <button onclick="shiftPanel(this,'top')">Top</button>
-            <button onclick="shiftPanel(this,'up')">Up</button>
-            <button onclick="shiftPanel(this,'down')">Down</button>
-        </div>
         <div class="head">
             <div>
-                <h2>Source Reliability Index</h2>
+                <h2><span class="drag-handle">⠿</span> Source Reliability Index</h2>
                 <p>Non-corporate and alternative high-signal feeds prioritized.</p>
             </div>
         </div>
@@ -266,14 +253,9 @@ body.layout-mode .panel { border: 1px dashed var(--cyan); }
     </section>
 
     <section class="panel glass span-6" data-panel-id="assets">
-        <div class="layout-controls">
-            <button onclick="shiftPanel(this,'top')">Top</button>
-            <button onclick="shiftPanel(this,'up')">Up</button>
-            <button onclick="shiftPanel(this,'down')">Down</button>
-        </div>
         <div class="head">
             <div>
-                <h2>Anchored Execution Watchlist</h2>
+                <h2><span class="drag-handle">⠿</span> Anchored Execution Watchlist</h2>
                 <p>Manual watchlist context for automated news sorting algorithms.</p>
             </div>
         </div>
@@ -281,14 +263,9 @@ body.layout-mode .panel { border: 1px dashed var(--cyan); }
     </section>
 
     <section class="panel glass span-6" data-panel-id="notes">
-        <div class="layout-controls">
-            <button onclick="shiftPanel(this,'top')">Top</button>
-            <button onclick="shiftPanel(this,'up')">Up</button>
-            <button onclick="shiftPanel(this,'down')">Down</button>
-        </div>
         <div class="head">
             <div>
-                <h2>Intraday Levels & Execution Notes</h2>
+                <h2><span class="drag-handle">⠿</span> Intraday Levels & Execution Notes</h2>
                 <p>Saved locally on this browser sandbox.</p>
             </div>
         </div>
@@ -567,26 +544,76 @@ function renderSession(){
     $('sessionValue').textContent=session;
 }
 
-/* Bulletproof Structural Panel Translation Engine */
-function shiftPanel(button, direction) {
-    const panel = button.closest('.panel');
-    const grid = $('dashboardGrid');
-    if (!panel || !grid) return;
+/* ==========================================
+   DRAG AND DROP LAYOUT ENGINE
+   ========================================== */
+let draggedPanel = null;
 
-    if (direction === 'top') {
-        grid.insertBefore(panel, grid.firstElementChild);
-    } else if (direction === 'up') {
-        const prev = panel.previousElementSibling;
-        if (prev) grid.insertBefore(panel, prev);
-    } else if (direction === 'down') {
-        const next = panel.nextElementSibling;
-        if (next) grid.insertBefore(next, panel);
-    }
+function enableDragAndDrop(enable) {
+    const panels = document.querySelectorAll('#dashboardGrid .panel');
+    panels.forEach(panel => {
+        panel.draggable = enable;
+        if (enable) {
+            panel.addEventListener('dragstart', handleDragStart);
+            panel.addEventListener('dragend', handleDragEnd);
+            panel.addEventListener('dragover', handleDragOver);
+            panel.addEventListener('drop', handleDrop);
+            panel.addEventListener('dragenter', handleDragEnter);
+            panel.addEventListener('dragleave', handleDragLeave);
+        } else {
+            panel.removeEventListener('dragstart', handleDragStart);
+            panel.removeEventListener('dragend', handleDragEnd);
+            panel.removeEventListener('dragover', handleDragOver);
+            panel.removeEventListener('drop', handleDrop);
+            panel.removeEventListener('dragenter', handleDragEnter);
+            panel.removeEventListener('dragleave', handleDragLeave);
+            panel.classList.remove('dragging', 'drag-over');
+        }
+    });
+}
+
+function handleDragStart(e) {
+    draggedPanel = this;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', this.dataset.panelId);
+    setTimeout(() => this.classList.add('dragging'), 0);
+}
+
+function handleDragEnd(e) {
+    this.classList.remove('dragging');
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('drag-over'));
+    draggedPanel = null;
     saveLayout();
 }
 
+function handleDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+}
+
+function handleDragEnter(e) {
+    e.preventDefault();
+    if (this !== draggedPanel) {
+        this.classList.add('drag-over');
+    }
+}
+
+function handleDragLeave(e) {
+    this.classList.remove('drag-over');
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    this.classList.remove('drag-over');
+    if (draggedPanel && this !== draggedPanel) {
+        const grid = $('dashboardGrid');
+        grid.insertBefore(draggedPanel, this);
+        saveLayout();
+    }
+}
+
 function saveLayout(){
-    const order=[...document.querySelectorAll('.movable, .panel')].map(el=>el.dataset.panelId).filter(Boolean);
+    const order=[...document.querySelectorAll('#dashboardGrid .panel')].map(el=>el.dataset.panelId).filter(Boolean);
     localStorage.setItem('td_layout_v2',JSON.stringify(order));
 }
 
@@ -605,11 +632,62 @@ function toggleLayout(){
     layoutMode=!layoutMode;
     document.body.classList.toggle('layout-mode',layoutMode);
     $('layoutBtn').textContent=layoutMode?'Lock Layout Architecture':'Customize Layout';
+    enableDragAndDrop(layoutMode);
 }
 
 function resetLayout(){
     localStorage.removeItem('td_layout_v2');
     location.reload();
+}
+
+/* ==========================================
+   TRADINGVIEW CHARTING ENGINE
+   ========================================== */
+function initCharts() {
+    const charts = [
+        { id: 'chart-nq', symbol: 'CME:NQ1!', interval: '5' },
+        { id: 'chart-es', symbol: 'CME:ES1!', interval: '5' },
+        { id: 'chart-gc', symbol: 'COMEX:GC1!', interval: '15' },
+        { id: 'chart-cl', symbol: 'NYMEX:CL1!', interval: '15' }
+    ];
+
+    if (typeof TradingView === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://s3.tradingview.com/tv.js';
+        script.onload = () => renderCharts(charts);
+        document.head.appendChild(script);
+    } else {
+        renderCharts(charts);
+    }
+}
+
+function renderCharts(charts) {
+    charts.forEach(cfg => {
+        const container = document.getElementById(cfg.id);
+        if (!container) return;
+        container.innerHTML = ''; 
+        new TradingView.widget({
+            "autosize": true,
+            "symbol": cfg.symbol,
+            "interval": cfg.interval,
+            "timezone": "America/New_York",
+            "theme": "dark",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#111827",
+            "enable_publishing": false,
+            "hide_top_toolbar": true,
+            "hide_side_toolbar": true,
+            "allow_symbol_change": false,
+            "save_image": true,
+            "container_id": cfg.id,
+            "overrides": {
+                "paneProperties.background": "#090d16",
+                "paneProperties.vertGridProperties.color": "rgba(6, 182, 212, 0.15)",
+                "paneProperties.horzGridProperties.color": "rgba(6, 182, 212, 0.15)"
+            }
+        });
+    });
 }
 
 function boot(){
@@ -618,12 +696,16 @@ function boot(){
     renderMarketClocks();
     renderSources();
     renderAssets();
+    initCharts();
+    
     const notes=$('notesInput');
     notes.value=localStorage.getItem('td_notes')|| '';
     notes.addEventListener('input',()=>localStorage.setItem('td_notes',notes.value));
+    
     $('refreshBtn').addEventListener('click',refreshNews);
     $('layoutBtn').addEventListener('click',toggleLayout);
     $('resetLayoutBtn').addEventListener('click',resetLayout);
+    
     refreshNews();
     setInterval(()=>{renderSession();renderMarketClocks()},1000);
     setInterval(refreshNews,5*60*1000);
