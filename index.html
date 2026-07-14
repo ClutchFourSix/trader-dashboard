@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Prop Alpha Terminal</title>
+<title>Vantage Alpha</title>
 <style>
 :root {
     --bg: #090d16;
@@ -138,6 +138,16 @@ body.layout-mode .panel:active { cursor: grabbing; }
 .panel.dragging { opacity: 0.4; border: 2px dashed var(--cyan); transform: scale(0.98); }
 .panel.drag-over { border: 2px dashed var(--green); background: rgba(16, 185, 129, 0.05); transform: scale(1.01); }
 
+/* Iframe Drag Trap Fix */
+body.layout-mode .chart-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.01); /* Must have a background to capture events */
+    pointer-events: auto;
+}
+
 /* News Streams Elements */
 .story { padding: 12px; border: 1px solid var(--panel-border); border-left: 3px solid var(--cyan); background: rgba(255, 255, 255, 0.01); border-radius: 6px; margin-bottom: 8px; }
 .story.top { border-left-color: var(--green); background: rgba(16, 185, 129, 0.01); }
@@ -182,7 +192,7 @@ body.layout-mode .panel:active { cursor: grabbing; }
 <div class="app">
 <header class="topbar glass">
     <div>
-        <h1>PROP ALPHA TERMINAL</h1>
+        <h1>VANTAGE ALPHA</h1>
         <p>Dynamic Multi-Source Intelligence Scanner & Intraday Horizon Monitor</p>
     </div>
     <div class="actions">
@@ -256,7 +266,7 @@ body.layout-mode .panel:active { cursor: grabbing; }
     <section class="panel glass span-6" data-panel-id="assets">
         <div class="head">
             <div>
-                <h2><span class="drag-handle"></span> Anchored Execution Watchlist</h2>
+                <h2><span class="drag-handle">⠿</span> Anchored Execution Watchlist</h2>
                 <p>Manual watchlist context for automated news sorting algorithms.</p>
             </div>
         </div>
@@ -673,11 +683,6 @@ function createTradingViewChart(config) {
     iframe.setAttribute('frameborder', '0');
     
     container.appendChild(iframe);
-    
-    // Error handling
-    iframe.onerror = function() {
-        container.innerHTML = '<div style="padding:20px;color:var(--muted);text-align:center">Chart loading error. Refresh to retry.</div>';
-    };
 }
 
 function boot(){
