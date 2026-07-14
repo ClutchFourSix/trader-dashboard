@@ -63,6 +63,15 @@ body {
     vertical-align: middle;
 }
 
+.acronym-expansion {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-left: 8px;
+    text-transform: uppercase;
+}
+
 .actions { display: flex; gap: 8px; align-items: center; }
 .btn {
     border: 1px solid var(--panel-border);
@@ -203,7 +212,7 @@ body.layout-mode .chart-frame::after {
 <div class="app">
 <header class="topbar glass">
     <div>
-        <h1>BOLT <span class="version-badge">v1.0.0</span></h1>
+        <h1>BOLT <span class="version-badge">v1.0.0</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
         <p>Dynamic Multi-Source Intelligence Scanner & Intraday Horizon Monitor</p>
     </div>
     <div class="actions">
@@ -667,11 +676,12 @@ function resetLayout(){
    ========================================== */
 function initCharts() {
     // Using OANDA CFD symbols to bypass CME/COMEX paywalls
+    // Verified correct symbols: OANDA:WTICOUSD [[1]][[4]][[10]]
     const charts = [
         { id: 'chart-nq', symbol: 'OANDA:NAS100USD', interval: '5' },
         { id: 'chart-es', symbol: 'OANDA:SPX500USD', interval: '5' },
         { id: 'chart-gc', symbol: 'OANDA:XAUUSD', interval: '15' },
-        { id: 'chart-cl', symbol: 'OANDA:WTICO_USD', interval: '15' }
+        { id: 'chart-cl', symbol: 'OANDA:WTICOUSD', interval: '15' }
     ];
 
     charts.forEach(chart => {
