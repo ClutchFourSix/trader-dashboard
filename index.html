@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>BOLT v1.0.2</title>
+<title>BOLT v1.0.3</title>
+<!-- Gridstack CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@10.1.2/dist/gridstack.min.css" />
 <style>
 :root {
     --bg: #090d16;
@@ -129,44 +131,55 @@ body {
 .clock-status.closed { color: var(--red); background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.15); }
 .clock-close { color: var(--muted); font-size: 0.68rem; }
 
-/* Layout Grid Definition */
-.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
-.panel { padding: 16px; display: flex; flex-direction: column; position: relative; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
-.span-12 { grid-column: span 12; }
-.span-8 { grid-column: span 8; }
-.span-6 { grid-column: span 6; }
-.span-4 { grid-column: span 4; }
+/* Gridstack Overrides & Panel Styling */
+.grid-stack {
+    background: transparent;
+}
+.grid-stack-item-content {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+body.layout-mode .grid-stack-item-content {
+    border: 1px dashed var(--cyan);
+}
+.grid-stack-item.ui-resizable-autohide > .ui-resizable-handle {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+body.layout-mode .grid-stack-item > .ui-resizable-handle {
+    opacity: 1;
+}
+.ui-resizable-se {
+    width: 12px;
+    height: 12px;
+    right: 4px;
+    bottom: 4px;
+    background: linear-gradient(135deg, transparent 50%, var(--cyan) 50%);
+    border-radius: 0 0 4px 0;
+    cursor: se-resize;
+}
 
-.head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; flex-shrink: 0; }
 .head h2 { font-size: 0.9rem; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.02em; display: flex; align-items: center; gap: 8px; }
 .head p { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
-/* Drag and Drop Styles */
+/* Drag Handle */
 .drag-handle {
-    display: none;
     cursor: grab;
     color: var(--muted);
     font-size: 1.4rem;
     line-height: 1;
     opacity: 0.6;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s, color 0.2s;
 }
 .drag-handle:hover { opacity: 1; color: var(--cyan); }
-body.layout-mode .drag-handle { display: inline-block; }
-body.layout-mode .panel { cursor: grab; border: 1px dashed var(--panel-border); }
-body.layout-mode .panel:active { cursor: grabbing; }
-.panel.dragging { opacity: 0.4; border: 2px dashed var(--cyan); transform: scale(0.98); }
-.panel.drag-over { border: 2px dashed var(--green); background: rgba(16, 185, 129, 0.05); transform: scale(1.01); }
-
-/* Iframe Drag Trap Fix */
-body.layout-mode .chart-frame::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.01);
-    pointer-events: auto;
-}
+body:not(.layout-mode) .drag-handle { cursor: default; opacity: 0; pointer-events: none; }
 
 /* News Streams Elements */
 .story { padding: 12px; border: 1px solid var(--panel-border); border-left: 3px solid var(--cyan); background: rgba(255, 255, 255, 0.01); border-radius: 6px; margin-bottom: 8px; }
@@ -186,34 +199,43 @@ body.layout-mode .chart-frame::after {
 .table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
 .table th { padding: 8px; color: var(--muted); text-align: left; font-weight: 500; border-bottom: 1px solid var(--panel-border); text-transform: uppercase; font-size: 0.68rem; }
 .table td { padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.02); color: #e5e7eb; }
-.asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; overflow-y: auto; }
 .asset-card { padding: 12px; background: #0b0f19; border: 1px solid var(--panel-border); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s; }
 .asset-card:hover { border-color: var(--cyan); }
 .asset-name { font-weight: 700; font-size: 0.8rem; }
 .pill { font-size: 0.65rem; padding: 3px 6px; border-radius: 4px; border: 1px solid var(--line); text-transform: uppercase; font-weight: 700; letter-spacing: 0.02em; }
 
 /* Unified Multi-Chart Workspace Deck */
-.chart-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; height: 520px; }
+.chart-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; height: 100%; min-height: 400px; }
 .chart-box { background: #0b0f19; border: 1px solid var(--panel-border); border-radius: 6px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-.chart-header { background: #111827; padding: 6px 12px; font-size: 0.72rem; font-weight: 700; border-bottom: 1px solid var(--panel-border); color: var(--cyan); display: flex; justify-content: space-between; }
-.chart-frame { flex: 1; width: 100%; min-height: 250px; background: #090d16; position: relative; }
+.chart-header { background: #111827; padding: 6px 12px; font-size: 0.72rem; font-weight: 700; border-bottom: 1px solid var(--panel-border); color: var(--cyan); display: flex; justify-content: space-between; flex-shrink: 0; }
+.chart-frame { flex: 1; width: 100%; background: #090d16; position: relative; }
 .chart-frame iframe { width: 100%; height: 100%; border: none; }
 
-.notes { width: 100%; min-height: 140px; border-radius: 6px; border: 1px solid var(--panel-border); background: #0b0f19; color: var(--text); padding: 12px; font-family: var(--font); font-size: 0.78rem; line-height: 1.4; resize: vertical; outline: none; }
+.notes { width: 100%; flex: 1; min-height: 100px; border-radius: 6px; border: 1px solid var(--panel-border); background: #0b0f19; color: var(--text); padding: 12px; font-family: var(--font); font-size: 0.78rem; line-height: 1.4; resize: none; outline: none; }
 .notes:focus { border-color: var(--cyan); }
 .status { color: var(--muted); font-size: 0.75rem; text-align: center; padding: 20px 0; }
-.footer-note { color: var(--muted); font-size: 0.7rem; line-height: 1.45; }
 
-@media(max-width: 1400px) { .chart-container { grid-template-columns: 1fr; height: auto; } .chart-box { height: 300px; } }
+/* Scrollable content areas */
+.panel-scroll {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+.panel-scroll::-webkit-scrollbar { width: 6px; }
+.panel-scroll::-webkit-scrollbar-track { background: #0b0f19; }
+.panel-scroll::-webkit-scrollbar-thumb { background: var(--panel-border); border-radius: 3px; }
+.panel-scroll::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
 @media(max-width: 1200px) { .clock-strip { grid-template-columns: repeat(3, 1fr); } .strip { grid-template-columns: 1fr 1fr; } }
-@media(max-width: 768px) { .grid, .strip, .clock-strip { grid-template-columns: 1fr; } .span-12, .span-8, .span-6, .span-4 { grid-column: span 1; } .topbar { flex-direction: column; align-items: flex-start; gap: 12px; } }
+@media(max-width: 768px) { .strip, .clock-strip { grid-template-columns: 1fr; } .topbar { flex-direction: column; align-items: flex-start; gap: 12px; } }
 </style>
 </head>
 <body>
 <div class="app">
 <header class="topbar glass">
     <div>
-        <h1>BOLT <span class="version-badge">v1.0.2</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
+        <h1>BOLT <span class="version-badge">v1.0.3</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
         <p>Dynamic Multi-Source Intelligence Scanner & Intraday Horizon Monitor</p>
     </div>
     <div class="actions">
@@ -235,76 +257,98 @@ body.layout-mode .chart-frame::after {
 
 <section id="clockStrip" class="clock-strip"></section>
 
-<main id="dashboardGrid" class="grid">
-    <!-- Active Charting Matrix Deck Box -->
-    <section class="panel glass span-12" data-panel-id="charts">
-        <div class="head">
-            <div>
-                <h2><span class="drag-handle"></span> Live Alpha Charting Lens Deck</h2>
-                <p>Real-time visual index tracking for core execution metrics (NQ, ES, GC, CL).</p>
+<!-- Gridstack Container -->
+<div class="grid-stack" id="dashboardGrid">
+    
+    <!-- Charts Panel -->
+    <div class="grid-stack-item" gs-w="12" gs-h="10" gs-id="charts">
+        <div class="grid-stack-item-content">
+            <div class="head">
+                <div>
+                    <h2><span class="drag-handle">⠿</span> Live Alpha Charting Lens Deck</h2>
+                    <p>Real-time visual index tracking for core execution metrics (NQ, ES, GC, CL).</p>
+                </div>
+            </div>
+            <div class="panel-scroll">
+                <div class="chart-container">
+                    <div class="chart-box">
+                        <div class="chart-header"><span>NASDAQ 100 (NQ)</span><span>LIVE TICKER</span></div>
+                        <div class="chart-frame" id="chart-nq"></div>
+                    </div>
+                    <div class="chart-box">
+                        <div class="chart-header"><span>S&P 500 (ES)</span><span>LIVE TICKER</span></div>
+                        <div class="chart-frame" id="chart-es"></div>
+                    </div>
+                    <div class="chart-box">
+                        <div class="chart-header"><span>GOLD (GC)</span><span>LIVE TICKER</span></div>
+                        <div class="chart-frame" id="chart-gc"></div>
+                    </div>
+                    <div class="chart-box">
+                        <div class="chart-header"><span>WTI CRUDE OIL (CL)</span><span>LIVE TICKER</span></div>
+                        <div class="chart-frame" id="chart-cl"></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="chart-container">
-            <div class="chart-box">
-                <div class="chart-header"><span>NASDAQ 100 (NQ)</span><span>LIVE TICKER</span></div>
-                <div class="chart-frame" id="chart-nq"></div>
-            </div>
-            <div class="chart-box">
-                <div class="chart-header"><span>S&P 500 (ES)</span><span>LIVE TICKER</span></div>
-                <div class="chart-frame" id="chart-es"></div>
-            </div>
-            <div class="chart-box">
-                <div class="chart-header"><span>GOLD (GC)</span><span>LIVE TICKER</span></div>
-                <div class="chart-frame" id="chart-gc"></div>
-            </div>
-            <div class="chart-box">
-                <div class="chart-header"><span>WTI CRUDE OIL (CL)</span><span>LIVE TICKER</span></div>
-                <div class="chart-frame" id="chart-cl"></div>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <section class="panel glass span-8" data-panel-id="news">
-        <div class="head">
-            <div>
-                <h2><span class="drag-handle">⠿</span> High-Priority Macro & Sentiment Stream</h2>
-                <p>Combined news and microblogging intelligence scored dynamically by prop volatility risk weightings.</p>
+    <!-- News Panel -->
+    <div class="grid-stack-item" gs-w="8" gs-h="8" gs-id="news">
+        <div class="grid-stack-item-content">
+            <div class="head">
+                <div>
+                    <h2><span class="drag-handle">⠿</span> High-Priority Macro & Sentiment Stream</h2>
+                    <p>Combined news and microblogging intelligence scored dynamically by prop volatility risk weightings.</p>
+                </div>
             </div>
+            <div id="newsRoot" class="panel-scroll"><div class="status">Syncing real-time intelligence nodes...</div></div>
         </div>
-        <div id="newsRoot"><div class="status">Syncing real-time intelligence nodes...</div></div>
-    </section>
+    </div>
 
-    <section class="panel glass span-4" data-panel-id="sources">
-        <div class="head">
-            <div>
-                <h2><span class="drag-handle">⠿</span> Source Reliability Index</h2>
-                <p>Non-corporate and alternative high-signal feeds prioritized.</p>
+    <!-- Sources Panel -->
+    <div class="grid-stack-item" gs-w="4" gs-h="8" gs-id="sources">
+        <div class="grid-stack-item-content">
+            <div class="head">
+                <div>
+                    <h2><span class="drag-handle">⠿</span> Source Reliability Index</h2>
+                    <p>Non-corporate and alternative high-signal feeds prioritized.</p>
+                </div>
             </div>
+            <div id="sourcesRoot" class="panel-scroll"></div>
         </div>
-        <div id="sourcesRoot"></div>
-    </section>
+    </div>
 
-    <section class="panel glass span-6" data-panel-id="assets">
-        <div class="head">
-            <div>
-                <h2><span class="drag-handle">⠿</span> Anchored Execution Watchlist</h2>
-                <p>Live pricing and daily variance for core execution instruments.</p>
+    <!-- Assets Panel -->
+    <div class="grid-stack-item" gs-w="6" gs-h="5" gs-id="assets">
+        <div class="grid-stack-item-content">
+            <div class="head">
+                <div>
+                    <h2><span class="drag-handle"></span> Anchored Execution Watchlist</h2>
+                    <p>Live pricing and daily variance for core execution instruments.</p>
+                </div>
             </div>
+            <div id="assetsRoot" class="asset-grid panel-scroll"></div>
         </div>
-        <div id="assetsRoot" class="asset-grid"></div>
-    </section>
+    </div>
 
-    <section class="panel glass span-6" data-panel-id="notes">
-        <div class="head">
-            <div>
-                <h2><span class="drag-handle">⠿</span> Intraday Levels & Execution Notes</h2>
-                <p>Saved locally on this browser sandbox.</p>
+    <!-- Notes Panel -->
+    <div class="grid-stack-item" gs-w="6" gs-h="5" gs-id="notes">
+        <div class="grid-stack-item-content">
+            <div class="head">
+                <div>
+                    <h2><span class="drag-handle">⠿</span> Intraday Levels & Execution Notes</h2>
+                    <p>Saved locally on this browser sandbox.</p>
+                </div>
             </div>
+            <textarea id="notesInput" class="notes" placeholder="NQ Range Boundaries / CME Balance Nodes / Core Bias Rules..."></textarea>
         </div>
-        <textarea id="notesInput" class="notes" placeholder="NQ Range Boundaries / CME Balance Nodes / Core Bias Rules..."></textarea>
-    </section>
-</main>
+    </div>
+
 </div>
+</div>
+
+<!-- Gridstack JS -->
+<script src="https://cdn.jsdelivr.net/npm/gridstack@10.1.2/dist/gridstack-all.js"></script>
 
 <script>
 const AudioNotifier = {
@@ -341,13 +385,11 @@ const SOURCE_RATINGS={
 const NEWS_FEEDS=Object.entries(SOURCE_RATINGS).map(([key,v])=>({key,...v}));
 const DEFAULT_ASSETS=['NQ','ES','YM','GC','CL','BTCUSD','USDJPY','EURUSD'];
 
-// Map UI symbols to Yahoo Finance API tickers
 const ASSET_MAP = {
     'NQ': 'NQ=F', 'ES': 'ES=F', 'YM': 'YM=F', 'GC': 'GC=F', 'CL': 'CL=F',
     'BTCUSD': 'BTC-USD', 'USDJPY': 'JPY=X', 'EURUSD': 'EURUSD=X'
 };
 
-// Map UI symbols to Stooq CSV tickers (Fallback)
 const STOOQ_MAP = {
     'NQ': 'nq.f', 'ES': 'es.f', 'YM': 'ym.f', 'GC': 'gc.f', 'CL': 'cl.f',
     'BTCUSD': 'btcusd', 'USDJPY': 'usdjpy', 'EURUSD': 'eurusd'
@@ -373,12 +415,12 @@ const FALLBACK_STORIES=[
 let STORIES=[];
 let layoutMode=false;
 let priorTopStoryId = null;
+let grid = null;
 const $=id=>document.getElementById(id);
 
 function escapeHtml(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
 function stripHtml(html){const d=document.createElement('div');d.innerHTML=String(html||'');return(d.textContent||d.innerText||'').replace(/\s+/g,' ').trim()}
 
-// Updated proxies: corsproxy.io is much better for Yahoo Finance JSON
 function proxies(url){
     return [
         'https://corsproxy.io/?' + encodeURIComponent(url),
@@ -532,16 +574,12 @@ function renderSources(limited=[]){
     $('sourcesRoot').innerHTML=`<table class="table"><thead><tr><th>Source</th><th>Reliability</th><th>Risk Wgt</th><th>Active Grid</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
-/* ==========================================
-   LIVE WATCHLIST ENGINE (v1.0.2 Fix)
-   ========================================== */
 async function fetchAssetPrices() {
     const assets = getWatchSymbols();
     const promises = assets.map(async (symbol) => {
         const yahooSymbol = ASSET_MAP[symbol] || symbol;
         const stooqSymbol = STOOQ_MAP[symbol] || symbol.toLowerCase();
         
-        // 1. Try Yahoo Finance (query2 is more reliable)
         const url = `https://query2.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=5d`;
         const text = await safeFetchText(url);
         
@@ -558,10 +596,9 @@ async function fetchAssetPrices() {
                         return { symbol, price, change, changePercent };
                     }
                 }
-            } catch (e) { /* JSON parse failed, fallback to Stooq */ }
+            } catch (e) { }
         }
 
-        // 2. Fallback to Stooq CSV
         const stooqUrl = `https://stooq.com/q/l/?s=${stooqSymbol}&f=sd2t2ohlcv&h&e=csv`;
         const stooqText = await safeFetchText(stooqUrl);
         if (stooqText && stooqText.includes(',')) {
@@ -569,16 +606,15 @@ async function fetchAssetPrices() {
                 const lines = stooqText.trim().split('\n');
                 if (lines.length > 1) {
                     const parts = lines[1].split(',');
-                    // Format: Symbol,Date,Time,Open,High,Low,Close,Volume
-                    const price = parseFloat(parts[7]); // Close
-                    const open = parseFloat(parts[3]);  // Open (used as prev close proxy for intraday)
+                    const price = parseFloat(parts[7]); 
+                    const open = parseFloat(parts[3]);  
                     if (!isNaN(price) && !isNaN(open) && open > 0) {
                         const change = price - open;
                         const changePercent = (change / open) * 100;
                         return { symbol, price, change, changePercent };
                     }
                 }
-            } catch (e) { /* Stooq parse failed */ }
+            } catch (e) { }
         }
 
         return { symbol, price: null, change: 0, changePercent: 0 };
@@ -682,103 +718,60 @@ function renderSession(){
 }
 
 /* ==========================================
-   DRAG AND DROP LAYOUT ENGINE
+   GRIDSTACK LAYOUT ENGINE (v1.0.3)
    ========================================== */
-let draggedPanel = null;
+function initGrid() {
+    grid = GridStack.init({
+        column: 12,
+        cellHeight: 60,
+        dragHandle: '.drag-handle',
+        animate: true,
+        margin: 12,
+        disableResize: true,
+        disableDrag: true,
+        saveContent: false
+    });
 
-function enableDragAndDrop(enable) {
-    const panels = document.querySelectorAll('#dashboardGrid .panel');
-    panels.forEach(panel => {
-        panel.draggable = enable;
-        if (enable) {
-            panel.addEventListener('dragstart', handleDragStart);
-            panel.addEventListener('dragend', handleDragEnd);
-            panel.addEventListener('dragover', handleDragOver);
-            panel.addEventListener('drop', handleDrop);
-            panel.addEventListener('dragenter', handleDragEnter);
-            panel.addEventListener('dragleave', handleDragLeave);
-        } else {
-            panel.removeEventListener('dragstart', handleDragStart);
-            panel.removeEventListener('dragend', handleDragEnd);
-            panel.removeEventListener('dragover', handleDragOver);
-            panel.removeEventListener('drop', handleDrop);
-            panel.removeEventListener('dragenter', handleDragEnter);
-            panel.removeEventListener('dragleave', handleDragLeave);
-            panel.classList.remove('dragging', 'drag-over');
+    // Load saved layout
+    const savedLayout = localStorage.getItem('bolt_layout_v3');
+    if (savedLayout) {
+        try {
+            grid.load(JSON.parse(savedLayout));
+        } catch (e) {
+            console.error("Failed to load layout", e);
+        }
+    }
+
+    // Auto-save on change
+    grid.on('change', function() {
+        if (layoutMode) {
+            const layout = grid.save();
+            localStorage.setItem('bolt_layout_v3', JSON.stringify(layout));
         }
     });
 }
 
-function handleDragStart(e) {
-    draggedPanel = this;
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/plain', this.dataset.panelId);
-    setTimeout(() => this.classList.add('dragging'), 0);
-}
-
-function handleDragEnd(e) {
-    this.classList.remove('dragging');
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('drag-over'));
-    draggedPanel = null;
-    saveLayout();
-}
-
-function handleDragOver(e) {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-}
-
-function handleDragEnter(e) {
-    e.preventDefault();
-    if (this !== draggedPanel) {
-        this.classList.add('drag-over');
-    }
-}
-
-function handleDragLeave(e) {
-    this.classList.remove('drag-over');
-}
-
-function handleDrop(e) {
-    e.preventDefault();
-    this.classList.remove('drag-over');
-    if (draggedPanel && this !== draggedPanel) {
-        const grid = $('dashboardGrid');
-        grid.insertBefore(draggedPanel, this);
-        saveLayout();
-    }
-}
-
-function saveLayout(){
-    const order=[...document.querySelectorAll('#dashboardGrid .panel')].map(el=>el.dataset.panelId).filter(Boolean);
-    localStorage.setItem('td_layout_v2',JSON.stringify(order));
-}
-
-function loadLayout(){
-    try{
-        const order=JSON.parse(localStorage.getItem('td_layout_v2')||'[]');
-        const grid=$('dashboardGrid');
-        order.forEach(id=>{
-            const el=document.querySelector(`[data-panel-id="${id}"]`);
-            if(el)grid.appendChild(el);
-        });
-    }catch{}
-}
-
 function toggleLayout(){
-    layoutMode=!layoutMode;
-    document.body.classList.toggle('layout-mode',layoutMode);
-    $('layoutBtn').textContent=layoutMode?'Lock Layout Architecture':'Customize Layout';
-    enableDragAndDrop(layoutMode);
+    layoutMode = !layoutMode;
+    document.body.classList.toggle('layout-mode', layoutMode);
+    $('layoutBtn').textContent = layoutMode ? 'Lock Layout Architecture' : 'Customize Layout';
+    
+    if (layoutMode) {
+        grid.enableMove();
+        grid.enableResize();
+    } else {
+        grid.disableMove();
+        grid.disableResize();
+    }
 }
 
 function resetLayout(){
-    localStorage.removeItem('td_layout_v2');
+    localStorage.removeItem('bolt_layout_v3');
     location.reload();
 }
 
 /* ==========================================
-   TRADINGVIEW CHARTING ENGINE - CFD BYPASS
+   TRADINGVIEW CHARTING ENGINE
    ========================================== */
 function initCharts() {
     const charts = [
@@ -812,25 +805,25 @@ function createTradingViewChart(config) {
 }
 
 function boot(){
-    loadLayout();
     renderSession();
     renderMarketClocks();
     renderSources();
-    refreshAssets(); // Fetch live prices on boot
+    refreshAssets();
     initCharts();
+    initGrid(); // Initialize Gridstack
     
     const notes=$('notesInput');
     notes.value=localStorage.getItem('td_notes')|| '';
     notes.addEventListener('input',()=>localStorage.setItem('td_notes',notes.value));
     
     $('refreshBtn').addEventListener('click', () => { refreshNews(); refreshAssets(); });
-    $('layoutBtn').addEventListener('click',toggleLayout);
-    $('resetLayoutBtn').addEventListener('click',resetLayout);
+    $('layoutBtn').addEventListener('click', toggleLayout);
+    $('resetLayoutBtn').addEventListener('click', resetLayout);
     
     refreshNews();
     setInterval(()=>{renderSession();renderMarketClocks()},1000);
     setInterval(refreshNews,5*60*1000);
-    setInterval(refreshAssets, 60000); // Refresh watchlist prices every 60 seconds
+    setInterval(refreshAssets, 60000);
 }
 boot();
 </script>
