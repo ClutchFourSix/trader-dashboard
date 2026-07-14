@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>BOLT v1.0.0</title>
+<title>BOLT v1.0.1</title>
 <style>
 :root {
     --bg: #090d16;
@@ -186,10 +186,11 @@ body.layout-mode .chart-frame::after {
 .table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
 .table th { padding: 8px; color: var(--muted); text-align: left; font-weight: 500; border-bottom: 1px solid var(--panel-border); text-transform: uppercase; font-size: 0.68rem; }
 .table td { padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.02); color: #e5e7eb; }
-.asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
-.asset-card { padding: 10px; background: #0b0f19; border: 1px solid var(--panel-border); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
+.asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.asset-card { padding: 12px; background: #0b0f19; border: 1px solid var(--panel-border); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s; }
+.asset-card:hover { border-color: var(--cyan); }
 .asset-name { font-weight: 700; font-size: 0.8rem; }
-.pill { font-size: 0.62rem; padding: 1px 5px; border-radius: 4px; border: 1px solid var(--line); color: var(--cyan); background: rgba(6, 182, 212, 0.05); text-transform: uppercase; }
+.pill { font-size: 0.65rem; padding: 3px 6px; border-radius: 4px; border: 1px solid var(--line); text-transform: uppercase; font-weight: 700; letter-spacing: 0.02em; }
 
 /* Unified Multi-Chart Workspace Deck */
 .chart-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; height: 520px; }
@@ -212,7 +213,7 @@ body.layout-mode .chart-frame::after {
 <div class="app">
 <header class="topbar glass">
     <div>
-        <h1>BOLT <span class="version-badge">v1.0.0</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
+        <h1>BOLT <span class="version-badge">v1.0.1</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
         <p>Dynamic Multi-Source Intelligence Scanner & Intraday Horizon Monitor</p>
     </div>
     <div class="actions">
@@ -266,7 +267,7 @@ body.layout-mode .chart-frame::after {
     <section class="panel glass span-8" data-panel-id="news">
         <div class="head">
             <div>
-                <h2><span class="drag-handle">⠿</span> High-Priority Macro & Sentiment Stream</h2>
+                <h2><span class="drag-handle"></span> High-Priority Macro & Sentiment Stream</h2>
                 <p>Combined news and microblogging intelligence scored dynamically by prop volatility risk weightings.</p>
             </div>
         </div>
@@ -287,7 +288,7 @@ body.layout-mode .chart-frame::after {
         <div class="head">
             <div>
                 <h2><span class="drag-handle">⠿</span> Anchored Execution Watchlist</h2>
-                <p>Manual watchlist context for automated news sorting algorithms.</p>
+                <p>Live pricing and daily variance for core execution instruments.</p>
             </div>
         </div>
         <div id="assetsRoot" class="asset-grid"></div>
@@ -339,6 +340,13 @@ const SOURCE_RATINGS={
 
 const NEWS_FEEDS=Object.entries(SOURCE_RATINGS).map(([key,v])=>({key,...v}));
 const DEFAULT_ASSETS=['NQ','ES','YM','GC','CL','BTCUSD','USDJPY','EURUSD'];
+
+// Map UI symbols to Yahoo Finance API tickers
+const ASSET_MAP = {
+    'NQ': 'NQ=F', 'ES': 'ES=F', 'YM': 'YM=F', 'GC': 'GC=F', 'CL': 'CL=F',
+    'BTCUSD': 'BTC-USD', 'USDJPY': 'JPY=X', 'EURUSD': 'EURUSD=X'
+};
+
 const IMPACT_TERMS=['cpi','inflation','fed','fomc','rates','yield','jobs','nfp','pce','ppi','gold','oil','treasury','recession','tariff','stocks','dollar','yen','nasdaq','s&p','sp500','liquidity','war','geopolitical','sanctions','bank','debt','volatility','crisis','trade war'];
 const URGENCY_TERMS=['surge','crash','spike','plunge','rally','selloff','breaks','jumps','slides','warning','risk','panic','record','shock','emergency','cut','hike','pivot','retaliation','duty','ban'];
 
@@ -511,9 +519,66 @@ function renderSources(limited=[]){
     $('sourcesRoot').innerHTML=`<table class="table"><thead><tr><th>Source</th><th>Reliability</th><th>Risk Wgt</th><th>Active Grid</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
-function renderAssets(){
-    const assets=getWatchSymbols();
-    $('assetsRoot').innerHTML=assets.map(a=>`<div class="asset-card"><span class="asset-name">${escapeHtml(a)}</span><span class="pill">active</span></div>`).join('');
+/* ==========================================
+   LIVE WATCHLIST ENGINE (Item #2)
+   ========================================== */
+async function fetchAssetPrices() {
+    const assets = getWatchSymbols();
+    const promises = assets.map(async (symbol) => {
+        const yahooSymbol = ASSET_MAP[symbol] || symbol;
+        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=2d`;
+        const text = await safeFetchText(url);
+        if (!text) return { symbol, price: null, change: 0, changePercent: 0 };
+        try {
+            const data = JSON.parse(text);
+            const meta = data.chart.result[0].meta;
+            const price = meta.regularMarketPrice;
+            const prevClose = meta.chartPreviousClose || meta.previousClose;
+            const change = price - prevClose;
+            const changePercent = (change / prevClose) * 100;
+            return { symbol, price, change, changePercent };
+        } catch (e) {
+            return { symbol, price: null, change: 0, changePercent: 0 };
+        }
+    });
+    return Promise.all(promises);
+}
+
+function formatPrice(price, symbol) {
+    if (price === null) return '--';
+    // Forex gets 4 decimals, everything else gets 2
+    if (['USDJPY', 'EURUSD'].includes(symbol)) return price.toFixed(4);
+    return price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+
+function renderAssets(prices = []) {
+    const assets = getWatchSymbols();
+    const priceMap = new Map(prices.map(p => [p.symbol, p]));
+
+    $('assetsRoot').innerHTML = assets.map(a => {
+        const data = priceMap.get(a) || { price: null, change: 0, changePercent: 0 };
+        const isUp = data.change >= 0;
+        const pillColor = data.price === null ? 'var(--muted)' : (isUp ? 'var(--green)' : 'var(--red)');
+        const pillBg = data.price === null ? 'rgba(156,163,175,0.05)' : (isUp ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)');
+        const sign = isUp ? '+' : '';
+        const formattedChange = data.price === null ? '...' : `${sign}${data.changePercent.toFixed(2)}%`;
+
+        return `
+        <div class="asset-card">
+            <div style="display:flex; flex-direction:column;">
+                <span class="asset-name">${escapeHtml(a)}</span>
+                <span style="font-size: 0.75rem; font-weight: 600; color: var(--text); margin-top: 2px;">${formatPrice(data.price, a)}</span>
+            </div>
+            <span class="pill" style="color: ${pillColor}; border-color: ${pillColor}; background: ${pillBg};">
+                ${formattedChange}
+            </span>
+        </div>`;
+    }).join('');
+}
+
+async function refreshAssets() {
+    const prices = await fetchAssetPrices();
+    renderAssets(prices);
 }
 
 function renderRiskTone(stories){
@@ -675,8 +740,6 @@ function resetLayout(){
    TRADINGVIEW CHARTING ENGINE - CFD BYPASS
    ========================================== */
 function initCharts() {
-    // Using OANDA CFD symbols to bypass CME/COMEX paywalls
-    // Verified correct symbols: OANDA:WTICOUSD [[1]][[4]][[10]]
     const charts = [
         { id: 'chart-nq', symbol: 'OANDA:NAS100USD', interval: '5' },
         { id: 'chart-es', symbol: 'OANDA:SPX500USD', interval: '5' },
@@ -712,20 +775,21 @@ function boot(){
     renderSession();
     renderMarketClocks();
     renderSources();
-    renderAssets();
+    refreshAssets(); // Fetch live prices on boot
     initCharts();
     
     const notes=$('notesInput');
     notes.value=localStorage.getItem('td_notes')|| '';
     notes.addEventListener('input',()=>localStorage.setItem('td_notes',notes.value));
     
-    $('refreshBtn').addEventListener('click',refreshNews);
+    $('refreshBtn').addEventListener('click', () => { refreshNews(); refreshAssets(); });
     $('layoutBtn').addEventListener('click',toggleLayout);
     $('resetLayoutBtn').addEventListener('click',resetLayout);
     
     refreshNews();
     setInterval(()=>{renderSession();renderMarketClocks()},1000);
     setInterval(refreshNews,5*60*1000);
+    setInterval(refreshAssets, 60000); // Refresh watchlist prices every 60 seconds
 }
 boot();
 </script>
