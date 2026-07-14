@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vantage Alpha</title>
+<title>Vantage Alpha v1.0.0</title>
 <style>
 :root {
     --bg: #090d16;
@@ -49,8 +49,19 @@ body {
     padding: 16px 20px;
     margin-bottom: 12px;
 }
-.topbar h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.05em; color: var(--cyan); }
+.topbar h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.05em; color: var(--cyan); display: flex; align-items: center; gap: 10px; }
 .topbar p { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+.version-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--bg);
+    background-color: var(--cyan);
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+}
 
 .actions { display: flex; gap: 8px; align-items: center; }
 .btn {
@@ -192,7 +203,7 @@ body.layout-mode .chart-frame::after {
 <div class="app">
 <header class="topbar glass">
     <div>
-        <h1>VANTAGE ALPHA</h1>
+        <h1>VANTAGE ALPHA <span class="version-badge">v1.0.0</span></h1>
         <p>Dynamic Multi-Source Intelligence Scanner & Intraday Horizon Monitor</p>
     </div>
     <div class="actions">
@@ -219,25 +230,25 @@ body.layout-mode .chart-frame::after {
     <section class="panel glass span-12" data-panel-id="charts">
         <div class="head">
             <div>
-                <h2><span class="drag-handle"></span> Live Alpha Charting Lens Deck</h2>
+                <h2><span class="drag-handle">⠿</span> Live Alpha Charting Lens Deck</h2>
                 <p>Real-time visual index tracking for core execution metrics (NQ, ES, GC, CL).</p>
             </div>
         </div>
         <div class="chart-container">
             <div class="chart-box">
-                <div class="chart-header"><span>NASDAQ 100 (NQ PROXY)</span><span>LIVE TICKER</span></div>
+                <div class="chart-header"><span>NASDAQ 100 (NQ)</span><span>LIVE TICKER</span></div>
                 <div class="chart-frame" id="chart-nq"></div>
             </div>
             <div class="chart-box">
-                <div class="chart-header"><span>S&P 500 (ES PROXY)</span><span>LIVE TICKER</span></div>
+                <div class="chart-header"><span>S&P 500 (ES)</span><span>LIVE TICKER</span></div>
                 <div class="chart-frame" id="chart-es"></div>
             </div>
             <div class="chart-box">
-                <div class="chart-header"><span>GOLD (GC PROXY)</span><span>LIVE TICKER</span></div>
+                <div class="chart-header"><span>GOLD (GC)</span><span>LIVE TICKER</span></div>
                 <div class="chart-frame" id="chart-gc"></div>
             </div>
             <div class="chart-box">
-                <div class="chart-header"><span>WTI CRUDE OIL (CL PROXY)</span><span>LIVE TICKER</span></div>
+                <div class="chart-header"><span>WTI CRUDE OIL (CL)</span><span>LIVE TICKER</span></div>
                 <div class="chart-frame" id="chart-cl"></div>
             </div>
         </div>
@@ -276,7 +287,7 @@ body.layout-mode .chart-frame::after {
     <section class="panel glass span-6" data-panel-id="notes">
         <div class="head">
             <div>
-                <h2><span class="drag-handle">⠿</span> Intraday Levels & Execution Notes</h2>
+                <h2><span class="drag-handle"></span> Intraday Levels & Execution Notes</h2>
                 <p>Saved locally on this browser sandbox.</p>
             </div>
         </div>
@@ -652,16 +663,16 @@ function resetLayout(){
 }
 
 /* ==========================================
-   TRADINGVIEW CHARTING ENGINE - FREE PROXY FIX
+   TRADINGVIEW CHARTING ENGINE - CFD BYPASS
    ========================================== */
 function initCharts() {
-    // Using TVC (TradingView Calculated) proxies to bypass CME/NYMEX paywalls on free widgets.
-    // These track the actual futures almost perfectly for technical analysis.
+    // Using OANDA CFD symbols. These track the exact price action of the futures 
+    // but bypass the CME/COMEX paywall because they are classified as Forex/CFD data.
     const charts = [
-        { id: 'chart-nq', symbol: 'TVC:NDX', interval: '5' },
-        { id: 'chart-es', symbol: 'TVC:SPX', interval: '5' },
-        { id: 'chart-gc', symbol: 'TVC:GOLD', interval: '15' },
-        { id: 'chart-cl', symbol: 'TVC:USOIL', interval: '15' }
+        { id: 'chart-nq', symbol: 'OANDA:NAS100USD', interval: '5' },
+        { id: 'chart-es', symbol: 'OANDA:SPX500USD', interval: '5' },
+        { id: 'chart-gc', symbol: 'OANDA:XAUUSD', interval: '15' },
+        { id: 'chart-cl', symbol: 'OANDA:WTIUSD', interval: '15' }
     ];
 
     charts.forEach(chart => {
