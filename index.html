@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Prop Alpha Dashboard</title>
+<title>Prop Alpha Terminal</title>
 <style>
 :root {
     --bg: #090d16;
@@ -31,18 +31,17 @@ body {
 }
 
 .app {
-    max-width: 1650px;
+    max-width: 1750px;
     margin: 0 auto;
 }
 
-/* Glassmorphic/Terminal Structural Container Panels */
 .glass {
     background: var(--panel);
     border: 1px solid var(--panel-border);
     border-radius: 12px;
 }
 
-/* Header/Top Navigation */
+/* Header & Control Bars */
 .topbar {
     display: flex;
     align-items: center;
@@ -70,7 +69,6 @@ body {
 .btn.primary { background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.4); color: var(--cyan); }
 .btn.danger { background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.4); color: var(--red); }
 
-/* Audio Trigger Selector Badge */
 .audio-toggle {
     display: flex;
     align-items: center;
@@ -83,18 +81,17 @@ body {
     background: #0b0f19;
 }
 
-/* Dynamic Performance Ribbon */
+/* Stat & Clock Tickers */
 .strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     margin-bottom: 12px;
 }
-.metric { padding: 14px 16px; position: relative; overflow: hidden; }
+.metric { padding: 14px 16px; }
 .metric span { display: block; color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .metric strong { display: block; margin-top: 4px; font-size: 0.95rem; font-weight: 700; }
 
-/* Global Execution Time Clocks Matrix */
 .clock-strip {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -112,20 +109,34 @@ body {
 .clock-status.closed { color: var(--red); background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.15); }
 .clock-close { color: var(--muted); font-size: 0.68rem; }
 
-/* Layout Workspaces Architecture */
+/* Layout Grid Definition */
 .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
-.panel { padding: 16px; display: flex; flex-direction: column; }
+.panel { padding: 16px; display: flex; flex-direction: column; position: relative; }
+.span-12 { grid-column: span 12; }
 .span-8 { grid-column: span 8; }
 .span-6 { grid-column: span 6; }
 .span-4 { grid-column: span 4; }
-.span-12 { grid-column: span 12; }
 
 .head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
 .head h2 { font-size: 0.9rem; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.02em; }
 .head p { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
-.drag-handle { font-size: 0.65rem; color: var(--cyan); border: 1px solid var(--line); border-radius: 4px; padding: 3px 6px; cursor: move; }
 
-/* Structural Feed Elements */
+/* Fixed Layout Customizer Overlay controls */
+.layout-controls {
+    display: none;
+    gap: 4px;
+    margin-bottom: 10px;
+    background: #0b0f19;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px dashed var(--cyan);
+}
+body.layout-mode .layout-controls { display: flex; }
+body.layout-mode .panel { border: 1px dashed var(--cyan); }
+.layout-controls button { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--panel-border); background: #1f2937; color: var(--text); cursor: pointer; }
+.layout-controls button:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* News Streams Elements */
 .story { padding: 12px; border: 1px solid var(--panel-border); border-left: 3px solid var(--cyan); background: rgba(255, 255, 255, 0.01); border-radius: 6px; margin-bottom: 8px; }
 .story.top { border-left-color: var(--green); background: rgba(16, 185, 129, 0.01); }
 .story.trump-card { border-left-color: var(--amber); background: rgba(245, 158, 11, 0.02); border-color: rgba(245, 158, 11, 0.15); }
@@ -139,7 +150,7 @@ body {
 .mid { color: var(--amber); }
 .low { color: var(--muted); }
 
-/* Tables & Watchlists modules */
+/* Table & Asset Component styling */
 .table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
 .table th { padding: 8px; color: var(--muted); text-align: left; font-weight: 500; border-bottom: 1px solid var(--panel-border); text-transform: uppercase; font-size: 0.68rem; }
 .table td { padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.02); color: #e5e7eb; }
@@ -148,22 +159,20 @@ body {
 .asset-name { font-weight: 700; font-size: 0.8rem; }
 .pill { font-size: 0.62rem; padding: 1px 5px; border-radius: 4px; border: 1px solid var(--line); color: var(--cyan); background: rgba(6, 182, 212, 0.05); text-transform: uppercase; }
 
-/* Scratchpad Module */
-.notes { width: 100%; min-height: 160px; border-radius: 6px; border: 1px solid var(--panel-border); background: #0b0f19; color: var(--text); padding: 12px; font-family: var(--font); font-size: 0.78rem; line-height: 1.4; resize: vertical; outline: none; }
-.notes:focus { border-color: var(--cyan); }
+/* Unified Multi-Chart Workspace Deck */
+.chart-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; height: 520px; }
+.chart-box { background: #0b0f19; border: 1px solid var(--panel-border); border-radius: 6px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.chart-header { background: #111827; padding: 6px 12px; font-size: 0.72rem; font-weight: 700; border-bottom: 1px solid var(--panel-border); color: var(--cyan); display: flex; justify-content: space-between; }
+.chart-frame { flex: 1; width: 100%; border: none; background: #090d16; }
 
+.notes { width: 100%; min-height: 140px; border-radius: 6px; border: 1px solid var(--panel-border); background: #0b0f19; color: var(--text); padding: 12px; font-family: var(--font); font-size: 0.78rem; line-height: 1.4; resize: vertical; outline: none; }
+.notes:focus { border-color: var(--cyan); }
 .status { color: var(--muted); font-size: 0.75rem; text-align: center; padding: 20px 0; }
 .footer-note { color: var(--muted); font-size: 0.7rem; line-height: 1.45; }
 
-/* Personal Customization Framework Overlays */
-.layout-controls { display: none; gap: 4px; margin-bottom: 8px; }
-body.layout-mode .layout-controls { display: flex; }
-body.layout-mode .movable { border: 1px dashed var(--cyan); }
-.layout-controls button { font-size: 0.65rem; padding: 3px 6px; border-radius: 4px; border: 1px solid var(--panel-border); background: #0b0f19; color: var(--text); cursor: pointer; }
-.dragging { opacity: 0.4; }
-
+@media(max-width: 1400px) { .chart-container { grid-template-columns: 1fr; height: auto; } .chart-box { height: 300px; } }
 @media(max-width: 1200px) { .clock-strip { grid-template-columns: repeat(3, 1fr); } .strip { grid-template-columns: 1fr 1fr; } }
-@media(max-width: 768px) { .grid, .strip, .clock-strip { grid-template-columns: 1fr; } .span-8, .span-6, .span-4, .span-12 { grid-column: span 1; } .topbar { flex-direction: column; align-items: flex-start; gap: 12px; } }
+@media(max-width: 768px) { .grid, .strip, .clock-strip { grid-template-columns: 1fr; } .span-12, .span-8, .span-6, .span-4 { grid-column: span 1; } .topbar { flex-direction: column; align-items: flex-start; gap: 12px; } }
 </style>
 </head>
 <body>
@@ -193,65 +202,102 @@ body.layout-mode .movable { border: 1px dashed var(--cyan); }
 <section id="clockStrip" class="clock-strip"></section>
 
 <main id="dashboardGrid" class="grid">
-    <section class="panel glass movable span-8" data-panel-id="news">
+    <!-- Active Charting Matrix Deck Box -->
+    <section class="panel glass span-12" data-panel-id="charts">
+        <div class="layout-controls">
+            <button onclick="shiftPanel(this,'top')">Top</button>
+            <button onclick="shiftPanel(this,'up')">Up</button>
+            <button onclick="shiftPanel(this,'down')">Down</button>
+        </div>
+        <div class="head">
+            <div>
+                <h2>Live Alpha Charting Lens Deck</h2>
+                <p>Real-time visual index tracking for core execution metrics (NQ, ES, GC, CL).</p>
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart-box">
+                <div class="chart-header"><span>NASDAQ 100 FUTURES (NQ)</span><span>LIVE TICKER</span></div>
+                <iframe class="chart-frame" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_nq&symbol=CME_MINI%3ANQ1!&interval=5&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=America%2FNew_York&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en"></iframe>
+            </div>
+            <div class="chart-box">
+                <div class="chart-header"><span>S&P 500 E-MINI FUTURES (ES)</span><span>LIVE TICKER</span></div>
+                <iframe class="chart-frame" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_es&symbol=CME_MINI%3AES1!&interval=5&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=America%2FNew_York&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en"></iframe>
+            </div>
+            <div class="chart-box">
+                <div class="chart-header"><span>COMEX GOLD FUTURES (GC)</span><span>LIVE TICKER</span></div>
+                <iframe class="chart-frame" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_gc&symbol=COMEX%3AGC1!&interval=15&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=America%2FNew_York&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en"></iframe>
+            </div>
+            <div class="chart-box">
+                <div class="chart-header"><span>NYMEX WTI CRUDE OIL FUTURES (CL)</span><span>LIVE TICKER</span></div>
+                <iframe class="chart-frame" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_cl&symbol=NYMEX%3ACL1!&interval=15&hidesidetoolbar=1&symboledit=0&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=America%2FNew_York&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel glass span-8" data-panel-id="news">
+        <div class="layout-controls">
+            <button onclick="shiftPanel(this,'top')">Top</button>
+            <button onclick="shiftPanel(this,'up')">Up</button>
+            <button onclick="shiftPanel(this,'down')">Down</button>
+        </div>
         <div class="head">
             <div>
                 <h2>High-Priority Macro & Sentiment Stream</h2>
                 <p>Combined news and microblogging intelligence scored dynamically by prop volatility risk weightings.</p>
             </div>
-            <span class="drag-handle">Move</span>
         </div>
         <div id="newsRoot"><div class="status">Syncing real-time intelligence nodes...</div></div>
     </section>
 
-    <section class="panel glass movable span-4" data-panel-id="sources">
+    <section class="panel glass span-4" data-panel-id="sources">
+        <div class="layout-controls">
+            <button onclick="shiftPanel(this,'top')">Top</button>
+            <button onclick="shiftPanel(this,'up')">Up</button>
+            <button onclick="shiftPanel(this,'down')">Down</button>
+        </div>
         <div class="head">
             <div>
                 <h2>Source Reliability Index</h2>
                 <p>Non-corporate and alternative high-signal feeds prioritized.</p>
             </div>
-            <span class="drag-handle">Move</span>
         </div>
         <div id="sourcesRoot"></div>
     </section>
 
-    <section class="panel glass movable span-6" data-panel-id="assets">
+    <section class="panel glass span-6" data-panel-id="assets">
+        <div class="layout-controls">
+            <button onclick="shiftPanel(this,'top')">Top</button>
+            <button onclick="shiftPanel(this,'up')">Up</button>
+            <button onclick="shiftPanel(this,'down')">Down</button>
+        </div>
         <div class="head">
             <div>
                 <h2>Anchored Execution Watchlist</h2>
                 <p>Manual watchlist context for automated news sorting algorithms.</p>
             </div>
-            <span class="drag-handle">Move</span>
         </div>
         <div id="assetsRoot" class="asset-grid"></div>
     </section>
 
-    <section class="panel glass movable span-6" data-panel-id="notes">
+    <section class="panel glass span-6" data-panel-id="notes">
+        <div class="layout-controls">
+            <button onclick="shiftPanel(this,'top')">Top</button>
+            <button onclick="shiftPanel(this,'up')">Up</button>
+            <button onclick="shiftPanel(this,'down')">Down</button>
+        </div>
         <div class="head">
             <div>
                 <h2>Intraday Levels & Execution Notes</h2>
                 <p>Saved locally on this browser sandbox.</p>
             </div>
-            <span class="drag-handle">Move</span>
         </div>
         <textarea id="notesInput" class="notes" placeholder="NQ Range Boundaries / CME Balance Nodes / Core Bias Rules..."></textarea>
-    </section>
-
-    <section class="panel glass movable span-12" data-panel-id="rules">
-        <div class="head">
-            <div>
-                <h2>Dashboard Automation Rules</h2>
-                <p>How the system ranks stories and marks clocks.</p>
-            </div>
-            <span class="drag-handle">Move</span>
-        </div>
-        <div class="footer-note">Market clocks utilize native localization per designated node. On Saturday/Sunday in that market’s home timezone, execution is marked CLOSED. Overall news score = 45% source reliability + 55% story score. System fires an audio alert trigger if a new narrative item punches through the baseline alpha velocity filter threshold.</div>
     </section>
 </main>
 </div>
 
 <script>
-// Web Audio Context Synthesis Engine for Alerts
 const AudioNotifier = {
     ctx: null,
     playSpike() {
@@ -261,7 +307,7 @@ const AudioNotifier = {
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(587.33, this.ctx.currentTime); // D5 Note
+            osc.frequency.setValueAtTime(587.33, this.ctx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(880, this.ctx.currentTime + 0.12);
             gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.25);
@@ -298,9 +344,8 @@ const MARKET_CLOCKS=[
 ];
 
 const FALLBACK_STORIES=[
-    {source:'kobeissi',sourceName:'Kobeissi Letter',sourceScore:82,title:'Macro watch: Fed policy, inflation, and liquidity remain the key market drivers',link:'#',summary:'Fallback scanner note: track Fed language, inflation data, yields, liquidity, and equity reaction for NQ and ES bias.',time:Date.now()-1000*60*20,relevanceScore:12,red:true},
-    {source:'zerohedge',sourceName:'ZeroHedge',sourceScore:65,title:'Risk watch: Treasury yields, dollar strength, and geopolitical risk can pressure equities',link:'#',summary:'Fallback scanner note: defensive tone strengthens when yields rise, dollar firms, oil/gold move, or geopolitical headlines intensify.',time:Date.now()-1000*60*35,relevanceScore:11,red:false},
-    {source:'trump_feed',sourceName:'Trump Sentiment',sourceScore:95,title:'Policy Alert: Comprehensive tariff adjustment guidelines under final structural review',link:'#',summary:'Automated mirror fallback note: Watch for sudden shifts in futures index premiums, dollar pricing matrices, and global margin rates.',time:Date.now()-1000*60*5,relevanceScore:15,red:true}
+    {source:'kobeissi',sourceName:'Kobeissi Letter',sourceScore:82,title:'Macro watch: Fed policy, inflation, and liquidity remain the key drivers',link:'#',summary:'Track key language variations, yield targets, macro liquidity models, and equity volatility loops across indices.',time:Date.now()-1000*60*20,relevanceScore:12,red:true},
+    {source:'zerohedge',sourceName:'ZeroHedge',sourceScore:65,title:'Risk framework: Treasury yields, dollar strength, and commodity curves hold technical baselines',link:'#',summary:'Defensive allocation strategies firm up when the dollar expands and sovereign debt curves experience sudden variance parameters.',time:Date.now()-1000*60*35,relevanceScore:11,red:false}
 ];
 
 let STORIES=[];
@@ -335,10 +380,6 @@ function scoreHeadline(title,summary=''){
     let score=0;
     IMPACT_TERMS.forEach(k=>{if(text.includes(k))score+=3});
     URGENCY_TERMS.forEach(k=>{if(text.includes(k))score+=2});
-    getWatchSymbols().forEach(sym=>{
-        const base=String(sym).toLowerCase().replace('usd','');
-        if(base&&base.length>1&&text.includes(base))score+=1;
-    });
     return score;
 }
 
@@ -446,7 +487,7 @@ function renderNews(mode='Active Network'){
     }
 
     const html=limited.map((s,idx)=>{
-        const cls=s.final roll>=80?'high':s.final>=60?'mid':'low';
+        const cls=s.final>=80?'high':s.final>=60?'mid':'low';
         const isTrump=s.source==='trump_feed';
         const link=s.link&&s.link!=='#'?`<a href="${escapeHtml(s.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.title)}</a>`:escapeHtml(s.title);
         return`<div class="story ${idx===0?'top':''} ${isTrump?'trump-card':''}"><div class="story-rank">#${idx+1} • ${escapeHtml(s.sourceName)} • ${formatAgo(s.time)}</div><div class="story-title">${link}</div><div class="story-summary">${escapeHtml((s.summary||'').slice(0,280))}</div><div class="score ${cls}">Alpha Velocity: ${s.final} | Base Source: ${s.sourceScore} | Core Narrative: ${s.storyScore}</div></div>`
@@ -526,38 +567,32 @@ function renderSession(){
     $('sessionValue').textContent=session;
 }
 
-function addLayoutControls(){
-    document.querySelectorAll('.movable').forEach(el=>{
-        if(el.querySelector(':scope > .layout-controls'))return;
-        const c=document.createElement('div');
-        c.className='layout-controls';
-        c.innerHTML='<button data-move="top">Top</button><button data-move="up">Up</button><button data-move="down">Down</button><button data-move="bottom">Bottom</button>';
-        c.addEventListener('click',e=>{
-            const b=e.target.closest('button[data-move]');
-            if(!b)return;
-            movePanel(el,b.dataset.move);
-        });
-        el.prepend(c);
-    });
-}
+/* Bulletproof Structural Panel Translation Engine */
+function shiftPanel(button, direction) {
+    const panel = button.closest('.panel');
+    const grid = $('dashboardGrid');
+    if (!panel || !grid) return;
 
-function movePanel(el,dir){
-    const p=el.parentElement;
-    if(dir==='top')p.insertBefore(el,p.firstElementChild);
-    if(dir==='up'&&el.previousElementSibling)p.insertBefore(el,el.previousElementSibling);
-    if(dir==='down'&&el.nextElementSibling)p.insertBefore(el.nextElementSibling,el);
-    if(dir==='bottom')p.appendChild(el);
+    if (direction === 'top') {
+        grid.insertBefore(panel, grid.firstElementChild);
+    } else if (direction === 'up') {
+        const prev = panel.previousElementSibling;
+        if (prev) grid.insertBefore(panel, prev);
+    } else if (direction === 'down') {
+        const next = panel.nextElementSibling;
+        if (next) grid.insertBefore(next, panel);
+    }
     saveLayout();
 }
 
 function saveLayout(){
-    const order=[...document.querySelectorAll('.movable')].map(el=>el.dataset.panelId);
-    localStorage.setItem('td_layout',JSON.stringify(order));
+    const order=[...document.querySelectorAll('.movable, .panel')].map(el=>el.dataset.panelId).filter(Boolean);
+    localStorage.setItem('td_layout_v2',JSON.stringify(order));
 }
 
 function loadLayout(){
     try{
-        const order=JSON.parse(localStorage.getItem('td_layout')||'[]');
+        const order=JSON.parse(localStorage.getItem('td_layout_v2')||'[]');
         const grid=$('dashboardGrid');
         order.forEach(id=>{
             const el=document.querySelector(`[data-panel-id="${id}"]`);
@@ -566,44 +601,14 @@ function loadLayout(){
     }catch{}
 }
 
-function enableDrag(){
-    document.querySelectorAll('.movable').forEach(el=>{
-        el.draggable=layoutMode;
-        el.addEventListener('dragstart',e=>{
-            if(!layoutMode){e.preventDefault();return;}
-            el.classList.add('dragging');
-            e.dataTransfer.effectAllowed='move';
-        });
-        el.addEventListener('dragend',()=>{
-            el.classList.remove('dragging');
-            saveLayout();
-        });
-    });
-    $('dashboardGrid').addEventListener('dragover',e=>{
-        if(!layoutMode)return;
-        e.preventDefault();
-        const dragging=document.querySelector('.dragging');
-        if(!dragging)return;
-        const after=[...document.querySelectorAll('.movable:not(.dragging)')].reduce((closest,child)=>{
-            const box=child.getBoundingClientRect();
-            const offset=e.clientY-box.top-box.height/2;
-            return offset<0&&offset>closest.offset?{offset,element:child}:closest;
-        },{offset:Number.NEGATIVE_INFINITY}).element;
-        if(after==null)$('dashboardGrid').appendChild(dragging);
-        else $('dashboardGrid').insertBefore(dragging,after);
-    });
-}
-
 function toggleLayout(){
     layoutMode=!layoutMode;
     document.body.classList.toggle('layout-mode',layoutMode);
-    $('layoutBtn').textContent=layoutMode?'Lock Layout':'Customize Layout';
-    addLayoutControls();
-    enableDrag();
+    $('layoutBtn').textContent=layoutMode?'Lock Layout Architecture':'Customize Layout';
 }
 
 function resetLayout(){
-    localStorage.removeItem('td_layout');
+    localStorage.removeItem('td_layout_v2');
     location.reload();
 }
 
@@ -614,7 +619,7 @@ function boot(){
     renderSources();
     renderAssets();
     const notes=$('notesInput');
-    notes.value=localStorage.getItem('td_notes')||'';
+    notes.value=localStorage.getItem('td_notes')|| '';
     notes.addEventListener('input',()=>localStorage.setItem('td_notes',notes.value));
     $('refreshBtn').addEventListener('click',refreshNews);
     $('layoutBtn').addEventListener('click',toggleLayout);
