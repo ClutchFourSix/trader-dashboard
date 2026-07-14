@@ -225,19 +225,19 @@ body.layout-mode .chart-frame::after {
         </div>
         <div class="chart-container">
             <div class="chart-box">
-                <div class="chart-header"><span>NASDAQ 100 FUTURES (NQ)</span><span>LIVE TICKER</span></div>
+                <div class="chart-header"><span>NASDAQ 100 (NQ PROXY)</span><span>LIVE TICKER</span></div>
                 <div class="chart-frame" id="chart-nq"></div>
             </div>
             <div class="chart-box">
-                <div class="chart-header"><span>S&P 500 E-MINI FUTURES (ES)</span><span>LIVE TICKER</span></div>
+                <div class="chart-header"><span>S&P 500 (ES PROXY)</span><span>LIVE TICKER</span></div>
                 <div class="chart-frame" id="chart-es"></div>
             </div>
             <div class="chart-box">
-                <div class="chart-header"><span>COMEX GOLD FUTURES (GC)</span><span>LIVE TICKER</span></div>
+                <div class="chart-header"><span>GOLD (GC PROXY)</span><span>LIVE TICKER</span></div>
                 <div class="chart-frame" id="chart-gc"></div>
             </div>
             <div class="chart-box">
-                <div class="chart-header"><span>NYMEX WTI CRUDE OIL FUTURES (CL)</span><span>LIVE TICKER</span></div>
+                <div class="chart-header"><span>WTI CRUDE OIL (CL PROXY)</span><span>LIVE TICKER</span></div>
                 <div class="chart-frame" id="chart-cl"></div>
             </div>
         </div>
@@ -652,14 +652,16 @@ function resetLayout(){
 }
 
 /* ==========================================
-   TRADINGVIEW CHARTING ENGINE - ADVANCED WIDGET
+   TRADINGVIEW CHARTING ENGINE - FREE PROXY FIX
    ========================================== */
 function initCharts() {
+    // Using TVC (TradingView Calculated) proxies to bypass CME/NYMEX paywalls on free widgets.
+    // These track the actual futures almost perfectly for technical analysis.
     const charts = [
-        { id: 'chart-nq', symbol: 'NASDAQ:NQ1!', interval: '5', name: 'NQ' },
-        { id: 'chart-es', symbol: 'CME:ES1!', interval: '5', name: 'ES' },
-        { id: 'chart-gc', symbol: 'COMEX:GC1!', interval: '15', name: 'GC' },
-        { id: 'chart-cl', symbol: 'NYMEX:CL1!', interval: '15', name: 'CL' }
+        { id: 'chart-nq', symbol: 'TVC:NDX', interval: '5' },
+        { id: 'chart-es', symbol: 'TVC:SPX', interval: '5' },
+        { id: 'chart-gc', symbol: 'TVC:GOLD', interval: '15' },
+        { id: 'chart-cl', symbol: 'TVC:USOIL', interval: '15' }
     ];
 
     charts.forEach(chart => {
@@ -674,7 +676,6 @@ function createTradingViewChart(config) {
     container.innerHTML = '';
     
     const iframe = document.createElement('iframe');
-    // Using Advanced Chart widget which has better symbol support
     iframe.src = `https://s.tradingview.com/embed-widget/advanced-chart/?symbol=${encodeURIComponent(config.symbol)}&interval=${config.interval}&timezone=America%2FNew_York&theme=dark&style=1&locale=en&enable_publishing=false&hide_top_toolbar=true&hide_side_toolbar=true&allow_symbol_change=false&save_image=true&calendar=false&support_host=https%3A%2F%2Fwww.tradingview.com`;
     iframe.style.width = '100%';
     iframe.style.height = '100%';
