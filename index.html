@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@10.1.2/dist/gridstack.min.css" />
 <style>
 :root {
-    --bg: #090d16;
+    --bg: #071a33;
     --panel: #111827;
     --panel-border: #1f2937;
     --text: #f3f4f6;
@@ -85,18 +85,18 @@ body {
     height: 100%;
     transition: border-color 0.2s;
 }
-body.layout-mode .grid-stack-item-content { border: 2px dashed var(--cyan); cursor: move; }
+body.layout-mode .grid-stack-item-content { border: 2px dashed var(--red); cursor: move; }
 
 .ui-resizable-se {
     width: 20px; height: 20px; right: 0; bottom: 0;
-    background: linear-gradient(135deg, transparent 50%, var(--cyan) 50%);
+    background: linear-gradient(135deg, transparent 50%, var(--red) 50%);
     border-radius: 0 0 8px 0; cursor: se-resize;
     opacity: 0;
     transition: opacity 0.2s;
     z-index: 100;
 }
 body.layout-mode .ui-resizable-se { opacity: 1; }
-body.layout-mode .ui-resizable-se:hover { background: var(--green); }
+body.layout-mode .ui-resizable-se:hover { background: #f87171; }
 
 .head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; flex-shrink: 0; gap: 8px; flex-wrap: wrap; }
 .head h2 { font-size: 0.9rem; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.02em; display: flex; align-items: center; gap: 8px; }
@@ -116,7 +116,7 @@ body.layout-mode .ui-resizable-se:hover { background: var(--green); }
     align-items: center;
 }
 .drag-handle:hover { opacity: 1; color: var(--cyan); }
-body.layout-mode .drag-handle { opacity: 1; color: var(--cyan); }
+body.layout-mode .drag-handle { opacity: 1; color: var(--red); }
 
 .panel-scroll { flex: 1; overflow-y: auto; min-height: 0; }
 .panel-scroll::-webkit-scrollbar { width: 6px; }
@@ -220,6 +220,7 @@ label.field { display: flex; flex-direction: column; gap: 4px; font-size: 0.68re
     <div class="actions">
         <label class="audio-toggle"><input type="checkbox" id="audioAlertsToggle" checked> Audio on Alpha Spike</label>
         <label class="audio-toggle"><input type="checkbox" id="squawkToggle"> Squawk (TTS)</label>
+        <button id="squawkTestBtn" class="btn small">Test Squawk</button>
         <button id="notifyBtn" class="btn">Enable Alerts</button>
         <button id="refreshBtn" class="btn primary">Force Refresh</button>
         <button id="layoutBtn" class="btn">Customize Layout</button>
@@ -450,7 +451,8 @@ const FALLBACK_STORIES = [
     {source:'zerohedge', sourceName:'ZeroHedge', sourceScore:65, title:'Risk framework: Treasury yields, dollar strength, and commodity curves hold technical baselines', link:'#', summary:'Defensive allocation strategies firm up when the dollar expands and sovereign debt curves experience sudden variance parameters.', time:Date.now()-1000*60*35, relevanceScore:11, red:false}
 ];
 
-let STORIES = [], layoutMode = false, priorTopStoryId = null, grid = null, notifyEnabled = false;
+let STORIES = [], layoutMode = false, grid = null, notifyEnabled = false, firstNewsLoad = true;
+const ALERTED_STORY_IDS = new Set();
 const SUMMARY_CACHE = {};
 const $ = id => document.getElementById(id);
 
@@ -570,7 +572,21 @@ function renderBottomLine(id, text) {
 
 function renderNews(mode = 'Active Network') {
     const ranked = STORIES.map(s => ({...s, storyScore: storyScore(s), final: finalScore(s)})).sort((a, b) => b.final - a.final); const limited = limitBySource(ranked, 15, 4);
-    if (limited.length > 0) { const currentTopId = limited[0].id; if (priorTopStoryId && priorTopStoryId !== currentTopId) maybeAlertOnTopStory(limited[0]); priorTopStoryId = currentTopId; }
+    if (limited.length > 0) {
+        if (firstNewsLoad) {
+            // Seed the seen-ids set on the very first load so we don't blast alerts for
+            // every pre-existing high-scoring story the moment the page opens.
+            limited.forEach(s => ALERTED_STORY_IDS.add(s.id));
+            firstNewsLoad = false;
+        } else {
+            limited.slice(0, 5).forEach(s => {
+                if (!ALERTED_STORY_IDS.has(s.id) && s.final >= 75) {
+                    maybeAlertOnTopStory(s);
+                    ALERTED_STORY_IDS.add(s.id);
+                }
+            });
+        }
+    }
     const html = limited.map((s, idx) => {
         const cls = s.final >= 80 ? 'high' : s.final >= 60 ? 'mid' : 'low'; const isTrump = s.source === 'trump_feed';
         const link = s.link && s.link !== '#' ? `<a href="${escapeHtml(s.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.title)}</a>` : escapeHtml(s.title);
@@ -844,6 +860,17 @@ function applyChartLayout() {
    ========================================== */
 function boot() {
     renderSession(); renderMarketClocks(); renderSources(); refreshAssets(); initCharts(); initGrid(); setupNotifications();
+
+    $('squawkTestBtn').addEventListener('click', () => {
+        if (!('speechSynthesis' in window)) { alert('Speech synthesis is not supported in this browser.'); return; }
+        speechSynthesis.cancel();
+        speechSynthesis.speak(new SpeechSynthesisUtterance('This is a test of the BOLT squawk box. If you can hear this, text to speech is working.'));
+    });
+    $('squawkToggle').addEventListener('change', (e) => {
+        if (!('speechSynthesis' in window)) return;
+        speechSynthesis.cancel();
+        if (e.target.checked) speechSynthesis.speak(new SpeechSynthesisUtterance('Squawk box enabled. I will read headlines above alpha velocity 85.'));
+    });
     populateInstrumentSelect();
 
     const notes = $('notesInput'); notes.value = localStorage.getItem('td_notes') || '';
