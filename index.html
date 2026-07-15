@@ -367,17 +367,18 @@ function renderMarketClocks() { const root = $('clockStrip'); root.innerHTML = M
 function renderSession() { const now = new Date(); const ny = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false}).formatToParts(now); const day = ny.find(p => p.type === 'weekday')?.value; const h = Number(ny.find(p => p.type === 'hour')?.value || 0), m = Number(ny.find(p => p.type === 'minute')?.value || 0); const total = h * 60 + m; let session = 'ETH After Hours'; if (day === 'Sat' || day === 'Sun') session = 'Weekend / Closed'; else if (total >= 510 && total < 570) session = 'RTH Pre-Market Prep'; else if (total >= 570 && total < 630) session = 'NY Open / IB Phase'; else if (total >= 630 && total < 960) session = 'NY Core Session'; else if (total >= 180 && total < 480) session = 'London Allocation'; else if (total >= 1140 || total < 180) session = 'Asia Operational Phase'; $('sessionValue').textContent = session; }
 
 /* ==========================================
-   GRIDSTACK LAYOUT ENGINE (v1.0.6 - FIXED)
+   GRIDSTACK LAYOUT ENGINE (v1.0.7 - FIXED)
    ========================================== */
 function initGrid() {
-    // Initialize with static=true (locked) by default
+    // Initialize with staticGrid=true (locked) by default
     grid = GridStack.init({
         column: 12,
         cellHeight: 60,
         animate: true,
         margin: 12,
-        static: true,  // LOCKED by default
-        resizable: { handles: 'se' }
+        staticGrid: true,                      // FIXED: was "static", which GridStack doesn't recognize
+        resizable: { handles: 'se' },
+        draggable: { handle: '.drag-handle' }  // ADDED: drag only from the ⠿ icon, avoids iframe/textarea capture
     });
 
     const savedLayout = localStorage.getItem('bolt_layout_v6');
@@ -390,6 +391,14 @@ function initGrid() {
             const layout = grid.save();
             localStorage.setItem('bolt_layout_v6', JSON.stringify(layout));
         }
+    });
+
+    // ADDED: prevent the live TradingView iframes from swallowing mouse events mid-drag/resize
+    grid.on('resizestart dragstart', () => {
+        document.querySelectorAll('.chart-frame iframe').forEach(f => f.style.pointerEvents = 'none');
+    });
+    grid.on('resizestop dragstop', () => {
+        document.querySelectorAll('.chart-frame iframe').forEach(f => f.style.pointerEvents = '');
     });
 }
 
