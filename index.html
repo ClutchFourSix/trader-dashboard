@@ -916,4 +916,66 @@ function boot() {
     notes.addEventListener('input', () => { localStorage.setItem('td_notes', notes.value); if ($('notesPreview').style.display !== 'none') $('notesPreview').innerHTML = renderNotesPreview(notes.value); });
     $('notesToggleBtn').addEventListener('click', () => {
         const preview = $('notesPreview'); const showing = preview.style.display !== 'none';
-        if (showing) { preview.style.display = 'none'; notes.style.display =
+        if (showing) { preview.style.display = 'none'; notes.style.display = 'block'; $('notesToggleBtn').textContent = 'Preview'; }
+        else { preview.innerHTML = renderNotesPreview(notes.value); preview.style.display = 'block'; notes.style.display = 'none'; $('notesToggleBtn').textContent = 'Edit'; }
+    });
+
+    $('proxyWorkerUrl').value = localStorage.getItem('bolt_proxy_worker') || '';
+    $('proxyWorkerUrl').addEventListener('change', (e) => localStorage.setItem('bolt_proxy_worker', e.target.value.trim()));
+    $('anthropicKey').value = localStorage.getItem('bolt_anthropic_key') || '';
+    $('anthropicKey').addEventListener('change', (e) => localStorage.setItem('bolt_anthropic_key', e.target.value.trim()));
+
+    $('chartLayoutSelect').addEventListener('change', applyChartLayout);
+    $('chartFocusSelect').addEventListener('change', applyChartLayout);
+
+    $('econAddBtn').addEventListener('click', addEconEvent);
+    renderCalendar();
+
+    ['calcBalance','calcRiskPct','calcInstrument','calcStopTicks'].forEach(id => $(id).addEventListener('input', runPositionCalc));
+    runPositionCalc();
+
+    refreshCorrelations();
+
+    $('refreshBtn').addEventListener('click', fullRefreshCycle);
+    $('layoutBtn').addEventListener('click', toggleLayout);
+    $('resetLayoutBtn').addEventListener('click', resetLayout);
+
+    refreshNews();
+    setInterval(() => { renderSession(); renderMarketClocks(); renderCalendar(); }, 1000);
+    // Browsers throttle setInterval heavily in background tabs, so we don't trust a
+    // single 5-minute timer to fire on schedule. Instead we poll every 30s and check
+    // elapsed real time, and also force a catch-up refresh the moment the tab becomes
+    // visible again after being backgrounded past the 5-minute mark.
+    setInterval(() => {
+        if (Date.now() - lastFullRefreshAt >= REFRESH_INTERVAL_MS) fullRefreshCycle();
+    }, 30 * 1000);
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && Date.now() - lastFullRefreshAt >= REFRESH_INTERVAL_MS) {
+            fullRefreshCycle();
+        }
+    });
+    setInterval(refreshAssets, 60000);
+    setInterval(refreshCorrelations, 15 * 60 * 1000);
+}
+
+// Runs on Force Refresh, on the 5-minute auto-cycle, and on tab-visibility catch-up:
+// news, prices, correlations, AND an explicit re-check of which markets are open/closed.
+const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
+let lastFullRefreshAt = Date.now();
+async function fullRefreshCycle() {
+    lastFullRefreshAt = Date.now();
+    const btn = $('refreshBtn');
+    const original = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Refreshing...';
+    renderSession();
+    renderMarketClocks();
+    try {
+        await Promise.allSettled([refreshNews(), refreshAssets(), refreshCorrelations()]);
+    } finally {
+        btn.disabled = false; btn.textContent = original;
+    }
+}
+boot();
+</script>
+</body>
+</html>
