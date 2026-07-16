@@ -76,7 +76,7 @@ body {
 .grid-stack { background: transparent; min-height: 100px; }
 .grid-stack-item-content {
     background: var(--panel);
-    border: 2px solid var(--red);
+    border: 2px solid var(--panel-border);
     border-radius: 12px;
     padding: 16px;
     display: flex;
@@ -222,7 +222,7 @@ label.field { display: flex; flex-direction: column; gap: 4px; font-size: 0.68re
 <div class="app">
 <header class="topbar glass">
     <div>
-        <h1>BOLT <span class="version-badge">v1.1.0</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
+        <h1>BOLT <span class="version-badge">v1.1.1</span><span class="acronym-expansion">Bias • Odds • Level • Trigger</span></h1>
         <p>Dynamic Multi-Source Intelligence Scanner & Intraday Horizon Monitor</p>
     </div>
     <div class="actions">
@@ -389,6 +389,7 @@ const AudioNotifier = {
         if (!document.getElementById('audioAlertsToggle').checked) return;
         try {
             if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+            if (this.ctx.state === 'suspended') this.ctx.resume();
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
             osc.type = 'sine';
@@ -458,8 +459,8 @@ const MARKET_CLOCKS = [
 ];
 
 const FALLBACK_STORIES = [
-    {source:'kobeissi', sourceName:'Kobeissi Letter', sourceScore:82, title:'Macro watch: Fed policy, inflation, and liquidity remain the key drivers', link:'#', summary:'Track key language variations, yield targets, macro liquidity models, and equity volatility loops across indices.', time:Date.now()-1000*60*20, relevanceScore:12, red:true},
-    {source:'zerohedge', sourceName:'ZeroHedge', sourceScore:65, title:'Risk framework: Treasury yields, dollar strength, and commodity curves hold technical baselines', link:'#', summary:'Defensive allocation strategies firm up when the dollar expands and sovereign debt curves experience sudden variance parameters.', time:Date.now()-1000*60*35, relevanceScore:11, red:false}
+    {source:'kobeissi', id:'fallback-kobeissi-1', sourceName:'Kobeissi Letter', sourceScore:82, title:'Macro watch: Fed policy, inflation, and liquidity remain the key drivers', link:'#', summary:'Track key language variations, yield targets, macro liquidity models, and equity volatility loops across indices.', time:Date.now()-1000*60*20, relevanceScore:12, red:true},
+    {source:'zerohedge', id:'fallback-zerohedge-1', sourceName:'ZeroHedge', sourceScore:65, title:'Risk framework: Treasury yields, dollar strength, and commodity curves hold technical baselines', link:'#', summary:'Defensive allocation strategies firm up when the dollar expands and sovereign debt curves experience sudden variance parameters.', time:Date.now()-1000*60*35, relevanceScore:11, red:false}
 ];
 
 function setDataHealthBanner(isLive) {
@@ -549,7 +550,7 @@ function setupNotifications() {
         if (!('Notification' in window)) return;
         const perm = await Notification.requestPermission();
         refreshBtnState();
-        if (perm === 'granted') new Notification('BOLT', { body: 'Push alerts are now active for Alpha Velocity spikes >= 85.' });
+        if (perm === 'granted') { try { new Notification('BOLT', { body: 'Push alerts are now active for Alpha Velocity spikes >= 85.' }); } catch (e) { console.error(e); } }
     });
     refreshBtnState();
 }
@@ -734,8 +735,8 @@ async function refreshCorrelations() {
 /* ==========================================
    RISK TONE / CLOCKS / SESSION / KILLZONES
    ========================================== */
-function renderRiskTone(stories) { const text = stories.map(s => (s.title + ' ' + s.summary).toLowerCase()).join(' '); let tone = 'Mixed Horizons'; if (/gold|oil|war|panic|selloff|plunge|inflation|rates|tariff|duties/.test(text)) tone = 'Defensive / Volatile'; if (/rally|risk-on|bitcoin|nasdaq|liquidity/.test(text)) tone = 'Risk-On Expansion'; $('riskToneValue').textContent = tone; }
-function getZoneParts(tz) { const parts = new Intl.DateTimeFormat('en-US', {timeZone: tz, weekday: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).formatToParts(new Date()); const obj = {}; for (const p of parts) { if (p.type !== 'literal') obj[p.type] = p.value } return obj; }
+function renderRiskTone(stories) { const text = stories.map(s => (s.title + ' ' + s.summary).toLowerCase()).join(' '); let tone = 'Mixed Horizons'; if (/rally|risk-on|bitcoin|nasdaq|liquidity/.test(text)) tone = 'Risk-On Expansion'; if (/gold|oil|war|panic|selloff|plunge|inflation|rates|tariff|duties/.test(text)) tone = 'Defensive / Volatile'; $('riskToneValue').textContent = tone; }
+function getZoneParts(tz) { const parts = new Intl.DateTimeFormat('en-US', {timeZone: tz, weekday: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'}).formatToParts(new Date()); const obj = {}; for (const p of parts) { if (p.type !== 'literal') obj[p.type] = p.value } if (obj.hour) obj.hour = String(Number(obj.hour) % 24).padStart(2, '0'); return obj; }
 function decimalTime(parts) { return Number(parts.hour) + (Number(parts.minute) / 60) + (Number(parts.second) / 3600) }
 function clockStatus(market, parts) { const day = parts.weekday; if (day === 'Sat' || day === 'Sun') return {label: 'CLOSED', cls: 'closed', note: 'Weekend Wrap'}; const t = decimalTime(parts); if (t >= market.open && t < market.close) return {label: 'OPEN', cls: 'open', note: `Closes ${formatMarketHour(market.close)}`}; if (t >= market.open - 1 && t < market.open) return {label: 'PRE', cls: 'pre', note: `Opens ${formatMarketHour(market.open)}`}; return {label: 'CLOSED', cls: 'closed', note: `Opens ${formatMarketHour(market.open)}`}; }
 function formatMarketHour(decimal) { const h = Math.floor(decimal); const m = Math.round((decimal - h) * 60); return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`; }
@@ -751,7 +752,7 @@ function renderMarketClocks() {
         return `<div class="clock-card glass">${kz ? '<span class="killzone-tag">Killzone</span>' : ''}<div class="clock-city">${escapeHtml(m.city)} <span class="clock-home" style="float:right; font-weight:normal;">${escapeHtml(m.home)}</span></div><div class="clock-time">${time}</div><div class="clock-meta"><span class="clock-status ${st.cls}">${st.label}</span><span class="clock-close">${escapeHtml(p.weekday)} • ${escapeHtml(st.note)}</span></div></div>`;
     }).join('');
 }
-function renderSession() { const now = new Date(); const ny = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false}).formatToParts(now); const day = ny.find(p => p.type === 'weekday')?.value; const h = Number(ny.find(p => p.type === 'hour')?.value || 0), m = Number(ny.find(p => p.type === 'minute')?.value || 0); const total = h * 60 + m; let session = 'ETH After Hours'; if (day === 'Sat' || day === 'Sun') session = 'Weekend / Closed'; else if (total >= 510 && total < 570) session = 'RTH Pre-Market Prep'; else if (total >= 570 && total < 630) session = 'NY Open / IB Phase'; else if (total >= 630 && total < 960) session = 'NY Core Session'; else if (total >= 180 && total < 480) session = 'London Allocation'; else if (total >= 1140 || total < 180) session = 'Asia Operational Phase'; $('sessionValue').textContent = session; }
+function renderSession() { const now = new Date(); const ny = new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23'}).formatToParts(now); const day = ny.find(p => p.type === 'weekday')?.value; const h = Number(ny.find(p => p.type === 'hour')?.value || 0) % 24, m = Number(ny.find(p => p.type === 'minute')?.value || 0); const total = h * 60 + m; let session = 'ETH After Hours'; if (day === 'Sat' || day === 'Sun') session = 'Weekend / Closed'; else if (total >= 510 && total < 570) session = 'RTH Pre-Market Prep'; else if (total >= 570 && total < 630) session = 'NY Open / IB Phase'; else if (total >= 630 && total < 960) session = 'NY Core Session'; else if (total >= 180 && total < 480) session = 'London Allocation'; else if (total >= 1140 || total < 180) session = 'Asia Operational Phase'; $('sessionValue').textContent = session; }
 
 /* ==========================================
    ECONOMIC CALENDAR
@@ -768,12 +769,27 @@ function renderCalendar() {
     const root = $('calendarRoot');
     if (!events.length) { root.innerHTML = '<div class="status">No events yet — add CPI, FOMC, NFP, or PCE dates above to get live countdowns.</div>'; return; }
     root.innerHTML = events.map((e, idx) => {
-        const t = new Date(e.time).getTime(); const isPast = t < Date.now();
-        return `<div class="econ-row ${isPast ? 'past' : ''}">
+        const t = new Date(e.time).getTime();
+        return `<div class="econ-row" data-time="${t}">
             <div><div class="econ-name">${escapeHtml(e.name)} <span class="econ-impact ${e.impact}">${e.impact}</span></div><div class="econ-time">${new Date(e.time).toLocaleString()}</div></div>
-            <div style="display:flex; align-items:center; gap:10px;"><span class="econ-countdown">${isPast ? 'Passed' : formatCountdown(t - Date.now())}</span><button class="btn small danger" data-idx="${idx}" onclick="removeEconEvent(${idx})">✕</button></div>
+            <div style="display:flex; align-items:center; gap:10px;"><span class="econ-countdown"></span><button class="btn small danger" data-idx="${idx}" onclick="removeEconEvent(${idx})">✕</button></div>
         </div>`;
     }).join('');
+    updateCalendarCountdowns();
+}
+// Called on the 1s tick instead of re-rendering the whole list: rebuilding the
+// innerHTML every second reset the scroll position and interrupted the delete
+// buttons, making a long event list impossible to scroll.
+function updateCalendarCountdowns() {
+    const root = $('calendarRoot');
+    if (!root) return;
+    const now = Date.now();
+    root.querySelectorAll('.econ-row').forEach(row => {
+        const t = Number(row.dataset.time); const isPast = t < now;
+        row.classList.toggle('past', isPast);
+        const cd = row.querySelector('.econ-countdown');
+        if (cd) cd.textContent = isPast ? 'Passed' : formatCountdown(t - now);
+    });
 }
 function removeEconEvent(idx) { const events = getEconEvents().slice().sort((a, b) => new Date(a.time) - new Date(b.time)); events.splice(idx, 1); saveEconEvents(events); renderCalendar(); }
 function addEconEvent() {
@@ -874,8 +890,27 @@ function initCharts() {
     ];
     charts.forEach(chart => {
         const container = document.getElementById(chart.id); if (!container) return; container.innerHTML = '';
+        // TradingView's documented direct-iframe format for this endpoint takes the
+        // widget options as URL-encoded JSON in the fragment — plain query params
+        // (?symbol=...&interval=...) are ignored and the widget fails to configure.
+        const options = {
+            autosize: true,
+            symbol: chart.symbol,
+            interval: chart.interval,
+            timezone: 'America/New_York',
+            theme: 'dark',
+            style: '1',
+            locale: 'en',
+            enable_publishing: false,
+            hide_top_toolbar: true,
+            hide_side_toolbar: true,
+            allow_symbol_change: false,
+            save_image: true,
+            calendar: false,
+            support_host: 'https://www.tradingview.com'
+        };
         const iframe = document.createElement('iframe');
-        iframe.src = `https://s.tradingview.com/embed-widget/advanced-chart/?symbol=${encodeURIComponent(chart.symbol)}&interval=${chart.interval}&timezone=America%2FNew_York&theme=dark&style=1&locale=en&enable_publishing=false&hide_top_toolbar=true&hide_side_toolbar=true&allow_symbol_change=false&save_image=true&calendar=false&support_host=https%3A%2F%2Fwww.tradingview.com`;
+        iframe.src = 'https://s.tradingview.com/embed-widget/advanced-chart/?locale=en#' + encodeURIComponent(JSON.stringify(options));
         iframe.style.width = '100%'; iframe.style.height = '100%'; iframe.style.border = 'none';
         container.appendChild(iframe);
     });
@@ -941,7 +976,7 @@ function boot() {
     $('resetLayoutBtn').addEventListener('click', resetLayout);
 
     refreshNews();
-    setInterval(() => { renderSession(); renderMarketClocks(); renderCalendar(); }, 1000);
+    setInterval(() => { renderSession(); renderMarketClocks(); updateCalendarCountdowns(); }, 1000);
     // Browsers throttle setInterval heavily in background tabs, so we don't trust a
     // single 5-minute timer to fire on schedule. Instead we poll every 30s and check
     // elapsed real time, and also force a catch-up refresh the moment the tab becomes
