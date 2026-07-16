@@ -76,7 +76,7 @@ body {
 .grid-stack { background: transparent; min-height: 100px; }
 .grid-stack-item-content {
     background: var(--panel);
-    border: 2px solid var(--panel-border);
+    border: 2px solid var(--red);
     border-radius: 12px;
     padding: 16px;
     display: flex;
@@ -392,6 +392,7 @@ const AudioNotifier = {
 };
 
 const SOURCE_RATINGS = {
+    financialjuice: {name:'FinancialJuice', score:90, forecast:88, rss:'https://www.financialjuice.com/feed.ashx?xy=rss'},
     zerohedge: {name:'ZeroHedge', score:65, forecast:55, rss:'https://feeds.feedburner.com/zerohedge/feed'},
     kobeissi: {name:'Kobeissi Letter', score:82, forecast:78, rss:'https://thekobeissiletter.com/feed/'},
     fxstreet: {name:'FXStreet', score:70, forecast:65, rss:'https://www.fxstreet.com/rss/news'},
@@ -859,7 +860,10 @@ function applyChartLayout() {
    BOOT
    ========================================== */
 function boot() {
-    renderSession(); renderMarketClocks(); renderSources(); refreshAssets(); initCharts(); initGrid(); setupNotifications();
+    renderSession(); renderMarketClocks(); renderSources(); refreshAssets();
+    try { initCharts(); } catch (e) { console.error('initCharts failed, continuing without charts', e); }
+    try { initGrid(); } catch (e) { console.error('GridStack failed to initialize (CDN issue?) — layout drag/resize will be unavailable, but the rest of the dashboard (news, prices, refresh cycle) will continue normally.', e); }
+    try { setupNotifications(); } catch (e) { console.error(e); }
 
     $('squawkTestBtn').addEventListener('click', () => {
         if (!('speechSynthesis' in window)) { alert('Speech synthesis is not supported in this browser.'); return; }
@@ -897,15 +901,25 @@ function boot() {
 
     refreshCorrelations();
 
-    $('refreshBtn').addEventListener('click', () => { refreshNews(); refreshAssets(); refreshCorrelations(); });
+    $('refreshBtn').addEventListener('click', fullRefreshCycle);
     $('layoutBtn').addEventListener('click', toggleLayout);
     $('resetLayoutBtn').addEventListener('click', resetLayout);
 
     refreshNews();
     setInterval(() => { renderSession(); renderMarketClocks(); renderCalendar(); }, 1000);
-    setInterval(refreshNews, 5 * 60 * 1000);
+    setInterval(fullRefreshCycle, 5 * 60 * 1000);
     setInterval(refreshAssets, 60000);
     setInterval(refreshCorrelations, 15 * 60 * 1000);
+}
+
+// Runs on Force Refresh and on every 5-minute auto-cycle: news, prices, correlations,
+// AND an explicit re-check of which markets are currently open/closed.
+function fullRefreshCycle() {
+    renderSession();
+    renderMarketClocks();
+    refreshNews();
+    refreshAssets();
+    refreshCorrelations();
 }
 boot();
 </script>
