@@ -144,6 +144,14 @@ label.field { display: flex; flex-direction: column; gap: 4px; font-size: 0.68re
 .high { color: var(--green); } .mid { color: var(--amber); } .low { color: var(--muted); }
 .story-actions { margin-top: 8px; display: flex; gap: 6px; }
 
+/* Compact watchlist table (replaces the old card grid — same info, ~70% less vertical space) */
+.watchlist-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+.watchlist-table td { padding: 5px 8px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.watchlist-table tr:last-child td { border-bottom: none; }
+.watchlist-table .wl-symbol { font-weight: 700; width: 30%; }
+.watchlist-table .wl-price { color: var(--text); text-align: right; width: 35%; }
+.watchlist-table .wl-chg { text-align: right; width: 35%; font-weight: 700; }
+
 /* Tables & Assets */
 .table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
 .table th { padding: 8px; color: var(--muted); text-align: left; font-weight: 500; border-bottom: 1px solid var(--panel-border); text-transform: uppercase; font-size: 0.68rem; }
@@ -228,6 +236,8 @@ label.field { display: flex; flex-direction: column; gap: 4px; font-size: 0.68re
     </div>
 </header>
 
+<div id="dataHealthBanner" style="display:none; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.4); color: var(--red); padding: 10px 16px; border-radius: 8px; margin-bottom: 12px; font-size: 0.78rem; font-weight: 600;"></div>
+
 <section class="strip">
     <div class="metric glass"><span>Intraday Horizon</span><strong id="sessionValue">-</strong></div>
     <div class="metric glass"><span>Data Feeds Pipeline</span><strong id="newsHealthValue">Loading</strong></div>
@@ -281,7 +291,7 @@ label.field { display: flex; flex-direction: column; gap: 4px; font-size: 0.68re
         </div>
     </div>
 
-    <div class="grid-stack-item" gs-w="6" gs-h="5" gs-id="assets">
+    <div class="grid-stack-item" gs-w="6" gs-h="3" gs-id="assets">
         <div class="grid-stack-item-content">
             <div class="head"><div><h2><span class="drag-handle">⠿</span> Anchored Execution Watchlist</h2><p>Live pricing and daily variance for core execution instruments.</p></div></div>
             <div id="assetsRoot" class="asset-grid panel-scroll"></div>
@@ -452,6 +462,17 @@ const FALLBACK_STORIES = [
     {source:'zerohedge', sourceName:'ZeroHedge', sourceScore:65, title:'Risk framework: Treasury yields, dollar strength, and commodity curves hold technical baselines', link:'#', summary:'Defensive allocation strategies firm up when the dollar expands and sovereign debt curves experience sudden variance parameters.', time:Date.now()-1000*60*35, relevanceScore:11, red:false}
 ];
 
+function setDataHealthBanner(isLive) {
+    const el = $('dataHealthBanner');
+    if (!el) return;
+    if (isLive) {
+        el.style.display = 'none';
+    } else {
+        el.style.display = 'block';
+        el.textContent = '⚠ Live data unavailable right now — showing fallback/cached content. The public CORS proxies (corsproxy.io / allorigins.win) may be down or rate-limited. Set a private proxy URL in Data & Integrations to fix this permanently.';
+    }
+}
+
 let STORIES = [], layoutMode = false, grid = null, notifyEnabled = false, firstNewsLoad = true;
 const ALERTED_STORY_IDS = new Set();
 const SUMMARY_CACHE = {};
@@ -468,7 +489,7 @@ function proxies(url) {
     const worker = getProxyWorkerUrl();
     const list = [];
     if (worker) list.push(worker + encodeURIComponent(url));
-    list.push('https://corsproxy.io/?' + encodeURIComponent(url), 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url));
+    list.push('https://corsproxy.io/?url=' + encodeURIComponent(url), 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url));
     return list;
 }
 
@@ -498,6 +519,7 @@ async function refreshNews() {
     const results = await Promise.allSettled(NEWS_FEEDS.map(fetchFeed)); const live = results.filter(r => r.status === 'fulfilled').flatMap(r => r.value).filter(s => s && s.title);
     STORIES = live.length ? live : FALLBACK_STORIES; renderNews(live.length ? 'Active Network' : 'Fallback Mode');
     $('lastRefreshValue').textContent = new Date().toLocaleTimeString(); $('newsHealthValue').textContent = live.length ? `${live.length} active indicators` : `Fallback Mode`;
+    setDataHealthBanner(live.length > 0);
 }
 
 function formatAgo(ms) { const mins = Math.max(0, Math.round((Date.now() - ms) / 60000)); if (mins < 60) return `${mins}m ago`; const h = Math.floor(mins / 60); if (h < 24) return `${h}h ago`; return `${Math.floor(h / 24)}d ago`; }
@@ -639,10 +661,23 @@ function renderAssetCards(rootId, symbols, prices) {
     }).join('');
 }
 
+// Compact dense-table renderer for the main watchlist — same data as renderAssetCards,
+// far less vertical space (one line per symbol instead of a padded card each).
+function renderAssetTable(rootId, symbols, prices) {
+    const priceMap = new Map(prices.map(p => [p.symbol, p]));
+    const rows = symbols.map(a => {
+        const data = priceMap.get(a) || { price: null, change: 0, changePercent: 0 }; const isUp = data.change >= 0;
+        const color = data.price === null ? 'var(--muted)' : (isUp ? 'var(--green)' : 'var(--red)');
+        const sign = isUp ? '+' : ''; const formattedChange = data.price === null ? '...' : `${sign}${data.changePercent.toFixed(2)}%`;
+        return `<tr><td class="wl-symbol">${escapeHtml(a)}</td><td class="wl-price">${formatPrice(data.price, a)}</td><td class="wl-chg" style="color:${color};">${formattedChange}</td></tr>`;
+    }).join('');
+    $(rootId).innerHTML = `<table class="watchlist-table"><tbody>${rows}</tbody></table>`;
+}
+
 async function refreshAssets() {
     const watch = getWatchSymbols();
     const [watchPrices, macroPrices] = await Promise.all([fetchAssetPrices(watch), fetchAssetPrices(MACRO_ASSETS)]);
-    renderAssetCards('assetsRoot', watch, watchPrices);
+    renderAssetTable('assetsRoot', watch, watchPrices);
     renderAssetCards('macroRoot', MACRO_ASSETS, macroPrices);
 }
 
@@ -881,47 +916,4 @@ function boot() {
     notes.addEventListener('input', () => { localStorage.setItem('td_notes', notes.value); if ($('notesPreview').style.display !== 'none') $('notesPreview').innerHTML = renderNotesPreview(notes.value); });
     $('notesToggleBtn').addEventListener('click', () => {
         const preview = $('notesPreview'); const showing = preview.style.display !== 'none';
-        if (showing) { preview.style.display = 'none'; notes.style.display = 'block'; $('notesToggleBtn').textContent = 'Preview'; }
-        else { preview.innerHTML = renderNotesPreview(notes.value); preview.style.display = 'block'; notes.style.display = 'none'; $('notesToggleBtn').textContent = 'Edit'; }
-    });
-
-    $('proxyWorkerUrl').value = localStorage.getItem('bolt_proxy_worker') || '';
-    $('proxyWorkerUrl').addEventListener('change', (e) => localStorage.setItem('bolt_proxy_worker', e.target.value.trim()));
-    $('anthropicKey').value = localStorage.getItem('bolt_anthropic_key') || '';
-    $('anthropicKey').addEventListener('change', (e) => localStorage.setItem('bolt_anthropic_key', e.target.value.trim()));
-
-    $('chartLayoutSelect').addEventListener('change', applyChartLayout);
-    $('chartFocusSelect').addEventListener('change', applyChartLayout);
-
-    $('econAddBtn').addEventListener('click', addEconEvent);
-    renderCalendar();
-
-    ['calcBalance','calcRiskPct','calcInstrument','calcStopTicks'].forEach(id => $(id).addEventListener('input', runPositionCalc));
-    runPositionCalc();
-
-    refreshCorrelations();
-
-    $('refreshBtn').addEventListener('click', fullRefreshCycle);
-    $('layoutBtn').addEventListener('click', toggleLayout);
-    $('resetLayoutBtn').addEventListener('click', resetLayout);
-
-    refreshNews();
-    setInterval(() => { renderSession(); renderMarketClocks(); renderCalendar(); }, 1000);
-    setInterval(fullRefreshCycle, 5 * 60 * 1000);
-    setInterval(refreshAssets, 60000);
-    setInterval(refreshCorrelations, 15 * 60 * 1000);
-}
-
-// Runs on Force Refresh and on every 5-minute auto-cycle: news, prices, correlations,
-// AND an explicit re-check of which markets are currently open/closed.
-function fullRefreshCycle() {
-    renderSession();
-    renderMarketClocks();
-    refreshNews();
-    refreshAssets();
-    refreshCorrelations();
-}
-boot();
-</script>
-</body>
-</html>
+        if (showing) { preview.style.display = 'none'; notes.style.display =
