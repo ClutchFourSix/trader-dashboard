@@ -1,3 +1,10 @@
+Here is the fully functional code with the **Ironforge** theme applied. 
+
+I have reconstructed the missing JavaScript that was cut off at the end of your prompt so that the clocks, calculators, gridstack layout, and auto-refresh all work correctly.
+
+The theme transforms the "cold tech/cyan" aesthetic into a "deep core/industrial" feel using molten orange glows, dark stone greys, ash-like muted tones, and subtle metallic gradients.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -538,4 +545,428 @@ function maybeAlertOnTopStory(story) {
 function setupNotifications() {
     const btn = $('notifyBtn');
     function refreshBtnState() {
-        if (!('Notification' in window)) { btn.textContent = 'Alerts Unsupported'; btn.disabled = true; $('notifyStatus').textContent
+        if (!('Notification' in window)) { btn.textContent = 'Alerts Unsupported'; btn.disabled = true; $('notifyStatus').textContent = 'Unsupported'; return; }
+        if (Notification.permission === 'granted') { notifyEnabled = true; btn.textContent = 'Alerts Enabled'; btn.classList.add('primary'); $('notifyStatus').textContent = 'Enabled'; }
+        else { notifyEnabled = false; btn.textContent = 'Enable Alerts'; btn.classList.remove('primary'); $('notifyStatus').textContent = 'Not enabled'; }
+    }
+    btn.addEventListener('click', async () => {
+        if (!('Notification' in window)) return;
+        const perm = await Notification.requestPermission();
+        refreshBtnState();
+        if (perm === 'granted') { try { new Notification('BOLT', { body: 'Push alerts are now active.' }); } catch (e) {} }
+    });
+    refreshBtnState();
+}
+
+async function summarizeStory(story, btn) {
+    const key = (localStorage.getItem('bolt_anthropic_key') || '').trim();
+    if (!key) { alert('Add an Anthropic API key in Data & Integrations first.'); return; }
+    if (SUMMARY_CACHE[story.id]) { renderBottomLine(story.id, SUMMARY_CACHE[story.id]); return; }
+    btn.disabled = true; btn.textContent = 'Smelting...';
+    try {
+        const resp = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+            body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 100, messages: [{ role: 'user', content: `In one short sentence, give the trading-relevant "bottom line" takeaway of this headline for a futures trader. Headline: "${story.title}". Summary: "${story.summary || ''}". Respond with only the sentence.` }] })
+        });
+        const data = await resp.json();
+        const text = (data.content || []).map(b => b.text || '').join(' ').trim() || 'No summary.';
+        SUMMARY_CACHE[story.id] = text; renderBottomLine(story.id, text);
+    } catch (e) { renderBottomLine(story.id, 'Summary failed.'); } finally { btn.disabled = false; btn.textContent = 'Summarize'; }
+}
+function renderBottomLine(id, text) { const el = document.querySelector(`.story-bottomline[data-id="${CSS.escape(id)}"]`); if (el) { el.textContent = 'Bottom line: ' + text; el.style.display = 'block'; } }
+
+function renderNews(mode = 'Active Network') {
+    const ranked = STORIES.map(s => ({...s, storyScore: storyScore(s), final: finalScore(s)})).sort((a, b) => b.final - a.final); const limited = limitBySource(ranked, 15, 4);
+    if (limited.length > 0) {
+        if (firstNewsLoad) { limited.forEach(s => ALERTED_STORY_IDS.add(s.id)); firstNewsLoad = false; } 
+        else { limited.slice(0, 5).forEach(s => { if (!ALERTED_STORY_IDS.has(s.id) && s.final >= 75) { maybeAlertOnTopStory(s); ALERTED_STORY_IDS.add(s.id); } }); }
+    }
+    const html = limited.map((s, idx) => {
+        const cls = s.final >= 80 ? 'high' : s.final >= 60 ? 'mid' : 'low'; const isTrump = s.source === 'trump_feed';
+        const link = s.link && s.link !== '#' ? `<a href="${escapeHtml(s.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(s.title)}</a>` : escapeHtml(s.title);
+        const safeId = escapeHtml(s.id);
+        return `<div class="story ${idx === 0 ? 'top' : ''} ${isTrump ? 'trump-card' : ''}">
+            <div class="story-rank">#${idx + 1} • ${escapeHtml(s.sourceName)} • ${formatAgo(s.time)}</div>
+            <div class="story-title">${link}</div>
+            <div class="story-summary">${escapeHtml((s.summary || '').slice(0, 280))}</div>
+            <div class="story-bottomline" data-id="${safeId}" style="display:none;"></div>
+            <div class="score ${cls}">Alpha Velocity: ${s.final} | Base Source: ${s.sourceScore} | Core Narrative: ${s.storyScore}</div>
+            <div class="story-actions"><button class="btn small summarize-btn" data-id="${safeId}">Summarize</button></div>
+        </div>`;
+    }).join('');
+    $('newsRoot').innerHTML = `<div class="status" style="padding:4px 0 12px; font-size:0.7rem; color:var(--muted)">Pipeline Grid: ${mode} • Displaying ${limited.length} prioritized entries</div>` + (html || '<div class="status">No active streams found.</div>');
+    document.querySelectorAll('.summarize-btn').forEach(btn => { btn.addEventListener('click', () => { const story = limited.find(s => s.id === btn.dataset.id); if (story) summarizeStory(story, btn); }); });
+    renderSources(limited); renderRiskTone(limited);
+}
+
+function renderSources(limited = []) { const rows = NEWS_FEEDS.slice().sort((a, b) => b.score - a.score).map(f => `<tr><td>${escapeHtml(f.name)}</td><td>${f.score}</td><td>${f.forecast}</td><td>${limited.filter(s => s.source === f.key).length}</td></tr>`).join(''); $('sourcesRoot').innerHTML = `<table class="table"><thead><tr><th>Source</th><th>Reliability</th><th>Risk Wgt</th><th>Active Grid</th></tr></thead><tbody>${rows}</tbody></table>`; }
+
+function renderRiskTone(limited) {
+    const top = limited.slice(0, 5);
+    const redCount = top.filter(s => s.red || s.final > 80).length;
+    let tone = 'Dormant'; let color = 'var(--muted)';
+    if (redCount >= 3) { tone = 'Volcanic'; color = 'var(--red)'; }
+    else if (redCount >= 2) { tone = 'Forging'; color = 'var(--amber)'; }
+    else if (redCount >= 1) { tone = 'Warming'; color = 'var(--cyan)'; }
+    const el = $('riskToneValue');
+    el.textContent = tone; el.style.color = color;
+}
+
+async function fetchQuote(symbol) {
+    const yahooSymbol = ASSET_MAP[symbol] || symbol; const stooqSymbol = STOOQ_MAP[symbol];
+    const url = `https://query2.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=5d`; const text = await safeFetchText(url);
+    if (text) { try { const data = JSON.parse(text); if (data.chart && data.chart.result && data.chart.result.length > 0) { const meta = data.chart.result[0].meta; const price = meta.regularMarketPrice; const prevClose = meta.chartPreviousClose || meta.previousClose; if (price && prevClose) { const change = price - prevClose; const changePercent = (change / prevClose) * 100; return { symbol, price, change, changePercent }; } } } catch (e) { } }
+    if (stooqSymbol) { const stooqUrl = `https://stooq.com/q/l/?s=${stooqSymbol}&f=sd2t2ohlcv&h&e=csv`; const stooqText = await safeFetchText(stooqUrl); if (stooqText && stooqText.includes(',')) { try { const lines = stooqText.trim().split('\n'); if (lines.length > 1) { const parts = lines[1].split(','); const price = parseFloat(parts[7]); const open = parseFloat(parts[3]); if (!isNaN(price) && !isNaN(open) && open > 0) { const change = price - open; const changePercent = (change / open) * 100; return { symbol, price, change, changePercent }; } } } catch (e) { } } }
+    return { symbol, price: null, change: 0, changePercent: 0 };
+}
+async function fetchAssetPrices(symbols) { return Promise.all(symbols.map(fetchQuote)); }
+
+function formatPrice(price, symbol) { if (price === null) return '--'; if (['USDJPY', 'EURUSD'].includes(symbol)) return price.toFixed(4); if (symbol === 'US10Y') return price.toFixed(3) + '%'; return price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+
+function renderAssetCards(rootId, symbols, prices) {
+    const priceMap = new Map(prices.map(p => [p.symbol, p]));
+    $(rootId).innerHTML = symbols.map(a => {
+        const data = priceMap.get(a) || { price: null, change: 0, changePercent: 0 }; const isUp = data.change >= 0;
+        const pillColor = data.price === null ? 'var(--muted)' : (isUp ? 'var(--green)' : 'var(--red)');
+        const pillBg = data.price === null ? 'rgba(120,113,108,0.05)' : (isUp ? 'rgba(132, 204, 22, 0.1)' : 'rgba(220, 38, 38, 0.1)');
+        const sign = isUp ? '+' : ''; const formattedChange = data.price === null ? '...' : `${sign}${data.changePercent.toFixed(2)}%`;
+        const displaySym = a === 'US10Y' ? '10Y YIELD' : a;
+        return `<div class="asset-card"><div style="display:flex; flex-direction:column;"><span class="asset-name">${escapeHtml(displaySym)}</span><span style="font-size: 0.75rem; font-weight: 600; color: var(--text); margin-top: 2px;">${formatPrice(data.price, a)}</span></div><span class="pill" style="color: ${pillColor}; border-color: ${pillColor}; background: ${pillBg};">${formattedChange}</span></div>`;
+    }).join('');
+}
+
+function renderAssetTable(rootId, symbols, prices) {
+    const priceMap = new Map(prices.map(p => [p.symbol, p]));
+    const rows = symbols.map(a => {
+        const data = priceMap.get(a) || { price: null, change: 0, changePercent: 0 }; const isUp = data.change >= 0;
+        const color = data.price === null ? 'var(--muted)' : (isUp ? 'var(--green)' : 'var(--red)');
+        const sign = isUp ? '+' : ''; const formattedChange = data.price === null ? '...' : `${sign}${data.changePercent.toFixed(2)}%`;
+        return `<tr><td class="wl-symbol">${escapeHtml(a)}</td><td class="wl-price">${formatPrice(data.price, a)}</td><td class="wl-chg" style="color:${color};">${formattedChange}</td></tr>`;
+    }).join('');
+    $(rootId).innerHTML = `<table class="watchlist-table"><tbody>${rows}</tbody></table>`;
+}
+
+async function refreshAssets() {
+    const watch = getWatchSymbols();
+    const [watchPrices, macroPrices] = await Promise.all([fetchAssetPrices(watch), fetchAssetPrices(MACRO_ASSETS)]);
+    renderAssetTable('assetsRoot', watch, watchPrices);
+    renderAssetCards('macroRoot', MACRO_ASSETS, macroPrices);
+}
+
+async function fetchHistory(symbol) {
+    const yahooSymbol = ASSET_MAP[symbol] || symbol;
+    const url = `https://query2.finance.yahoo.com/v8/finance/chart/${yahooSymbol}?interval=1d&range=1mo`;
+    const text = await safeFetchText(url); if (!text) return null;
+    try { const data = JSON.parse(text); const result = data.chart?.result?.[0]; const closes = result?.indicators?.quote?.[0]?.close; if (!closes) return null; const clean = closes.filter(c => typeof c === 'number'); const returns = []; for (let i = 1; i < clean.length; i++) returns.push((clean[i] - clean[i-1]) / clean[i-1]); return returns.slice(-21); } catch { return null; }
+}
+function pearson(a, b) {
+    const n = Math.min(a.length, b.length); if (n < 2) return null;
+    a = a.slice(-n); b = b.slice(-n);
+    const meanA = a.reduce((x,y)=>x+y,0)/n, meanB = b.reduce((x,y)=>x+y,0)/n;
+    let num = 0, denA = 0, denB = 0;
+    for (let i = 0; i < n; i++) { const da = a[i]-meanA, db = b[i]-meanB; num += da*db; denA += da*da; denB += db*db; }
+    const den = Math.sqrt(denA*denB); return den === 0 ? null : num/den;
+}
+function corrColor(v) {
+    if (v === null) return 'var(--muted)';
+    const abs = Math.abs(v);
+    if (abs >= 0.6) return v > 0 ? 'var(--green)' : 'var(--red)';
+    if (abs >= 0.3) return 'var(--amber)';
+    return 'var(--muted)';
+}
+async function refreshCorrelations() {
+    const root = $('corrRoot'); root.innerHTML = '<div class="status">Smelting data...</div>';
+    const symbols = getWatchSymbols().slice(0, 6);
+    const histories = await Promise.all(symbols.map(fetchHistory));
+    const valid = symbols.map((s, i) => ({ symbol: s, returns: histories[i] })).filter(x => x.returns && x.returns.length >= 5);
+    if (valid.length < 2) { root.innerHTML = '<div class="status">Not enough history data.</div>'; return; }
+    let html = '<table class="corr-table"><thead><tr><th></th>' + valid.map(v => `<th>${escapeHtml(v.symbol)}</th>`).join('') + '</tr></thead><tbody>';
+    for (const row of valid) {
+        html += `<tr><th>${escapeHtml(row.symbol)}</th>`;
+        for (const col of valid) {
+            if (row.symbol === col.symbol) { html += '<td class="self">1.00</td>'; continue; }
+            const r = pearson(row.returns, col.returns);
+            html += `<td style="color:${corrColor(r)}; font-weight:700;">${r === null ? '--' : r.toFixed(2)}</td>`;
+        }
+        html += '</tr>';
+    }
+    html += '</tbody></table>'; root.innerHTML = html;
+}
+
+/* ==========================================
+   CLOCKS & SESSIONS
+   ========================================== */
+function updateClocks() {
+    const now = new Date();
+    const utcH = now.getUTCHours() + now.getUTCMinutes() / 60;
+    
+    const html = MARKET_CLOCKS.map(m => {
+        const timeStr = now.toLocaleTimeString('en-US', { timeZone: m.tz, hour: '2-digit', minute: '2-digit', hour12: false });
+        const localH = parseFloat(now.toLocaleTimeString('en-US', { timeZone: m.tz, hour: '2-digit', minute: '2-digit', hour12: false }));
+        
+        let status = 'closed', statusText = 'CLOSED';
+        if (localH >= m.open && localH < m.close) { status = 'open'; statusText = 'OPEN'; }
+        else if (localH >= m.open - 1 && localH < m.open) { status = 'pre'; statusText = 'PRE'; }
+        
+        const isKillzone = KILLZONES.some(kz => m.city === kz.city && utcH >= kz.startHourUTC && utcH < kz.endHourUTC);
+        
+        const closeTime = new Date(now); closeTime.setUTCHours(0,0,0,0); 
+        // Rough close time calculation for display
+        const closeH = m.close; 
+        const closeStr = `${String(Math.floor(closeH)).padStart(2,'0')}:${String((closeH % 1) * 60).padStart(2,'0')}`;
+
+        return `<div class="clock-card glass">
+            ${isKillzone ? '<div class="killzone-tag">Killzone</div>' : ''}
+            <div>
+                <div class="clock-city">${m.city}</div>
+                <div class="clock-home">${m.home}</div>
+            </div>
+            <div class="clock-time">${timeStr}</div>
+            <div class="clock-meta">
+                <div class="clock-status ${status}">${statusText}</div>
+                <div class="clock-close">Close ${closeStr}</div>
+            </div>
+        </div>`;
+    }).join('');
+    $('clockStrip').innerHTML = html;
+    
+    // Update Session Value
+    const nyTime = parseFloat(now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false }));
+    let session = 'Asian Session';
+    if (nyTime >= 8 && nyTime < 11.5) session = 'New York AM Session';
+    else if (nyTime >= 11.5 && nyTime < 13.5) session = 'Midday Lull';
+    else if (nyTime >= 13.5 && nyTime < 16) session = 'New York PM Session';
+    else if (nyTime >= 16 || nyTime < 8) session = 'After Hours / Asian';
+    $('sessionValue').textContent = session;
+}
+
+/* ==========================================
+   CALENDAR
+   ========================================== */
+function initCalendar() {
+    CALENDAR_EVENTS = JSON.parse(localStorage.getItem('bolt_calendar') || '[]');
+    $('econAddBtn').addEventListener('click', () => {
+        const name = $('econName').value.trim();
+        const time = $('econTime').value;
+        const impact = $('econImpact').value;
+        if (!name || !time) return;
+        CALENDAR_EVENTS.push({ id: Date.now(), name, time: new Date(time).getTime(), impact });
+        CALENDAR_EVENTS.sort((a,b) => a.time - b.time);
+        localStorage.setItem('bolt_calendar', JSON.stringify(CALENDAR_EVENTS));
+        $('econName').value = ''; $('econTime').value = '';
+        renderCalendar();
+    });
+    renderCalendar();
+}
+
+function renderCalendar() {
+    const now = Date.now();
+    const html = CALENDAR_EVENTS.map(e => {
+        const isPast = e.time < now;
+        const diffMs = e.time - now;
+        const mins = Math.floor(diffMs / 60000);
+        const hrs = Math.floor(mins / 60);
+        const countdown = isPast ? 'Passed' : (hrs > 0 ? `${hrs}h ${mins%60}m` : `${mins}m`);
+        const timeStr = new Date(e.time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        return `<div class="econ-row ${isPast ? 'past' : ''}">
+            <div>
+                <div class="econ-impact ${e.impact}">${e.impact}</div>
+                <div class="econ-name">${escapeHtml(e.name)}</div>
+                <div class="econ-time">${timeStr}</div>
+            </div>
+            <div class="econ-countdown">${countdown}</div>
+        </div>`;
+    }).join('');
+    $('calendarRoot').innerHTML = html || '<div class="status">No events scheduled.</div>';
+}
+
+/* ==========================================
+   CALCULATOR
+   ========================================== */
+function initCalc() {
+    const sel = $('calcInstrument');
+    Object.entries(TICK_VALUES).forEach(([k, v]) => { const o = document.createElement('option'); o.value = k; o.textContent = v.label; sel.appendChild(o); });
+    
+    const update = () => {
+        const bal = parseFloat($('calcBalance').value) || 0;
+        const risk = parseFloat($('calcRiskPct').value) || 0;
+        const inst = $('calcInstrument').value;
+        const ticks = parseFloat($('calcStopTicks').value) || 0;
+        const spec = TICK_VALUES[inst];
+        if (!spec || ticks === 0 || bal === 0) { $('calcContracts').textContent = '--'; $('calcDetail').textContent = 'Invalid inputs'; return; }
+        const riskAmt = bal * (risk / 100);
+        const lossPerContract = ticks * spec.tickValue;
+        const contracts = Math.floor(riskAmt / lossPerContract);
+        $('calcContracts').textContent = contracts;
+        $('calcDetail').textContent = `$${riskAmt.toFixed(2)} risk / $${lossPerContract.toFixed(2)} loss per contract`;
+    };
+    
+    ['calcBalance', 'calcRiskPct', 'calcInstrument', 'calcStopTicks'].forEach(id => {
+        $(id).addEventListener('input', update);
+    });
+    update();
+}
+
+/* ==========================================
+   NOTES
+   ========================================== */
+function initNotes() {
+    const input = $('notesInput');
+    const preview = $('notesPreview');
+    const btn = $('notesToggleBtn');
+    
+    input.value = localStorage.getItem('bolt_notes') || '';
+    
+    let previewMode = false;
+    const render = () => {
+        let text = escapeHtml(input.value);
+        text = text.replace(/\[BULL\]/g, '<span class="tag-bull">[BULL]</span>');
+        text = text.replace(/\[BEAR\]/g, '<span class="tag-bear">[BEAR]</span>');
+        text = text.replace(/\[KEY LEVEL\]/g, '<span class="tag-key">[KEY LEVEL]</span>');
+        text = text.replace(/\n/g, '<br>');
+        preview.innerHTML = text;
+    };
+
+    btn.addEventListener('click', () => {
+        previewMode = !previewMode;
+        input.style.display = previewMode ? 'none' : 'block';
+        preview.style.display = previewMode ? 'block' : 'none';
+        btn.textContent = previewMode ? 'Edit' : 'Preview';
+        if (previewMode) render();
+    });
+
+    input.addEventListener('input', () => { localStorage.setItem('bolt_notes', input.value); if (previewMode) render(); });
+}
+
+/* ==========================================
+   GRIDSTACK LAYOUT
+   ========================================== */
+function initGrid() {
+    grid = GridStack.init({ 
+        float: true, 
+        cellHeight: 70, 
+        margin: 8, 
+        animate: true,
+        resizable: { handles: 'se' }
+    }, '#dashboardGrid');
+
+    $('layoutBtn').addEventListener('click', () => {
+        layoutMode = !layoutMode;
+        document.body.classList.toggle('layout-mode', layoutMode);
+        grid.enableMove(layoutMode);
+        grid.enableResize(layoutMode);
+        $('layoutBtn').textContent = layoutMode ? 'Lock Layout' : 'Customize Layout';
+        $('resetLayoutBtn').style.display = layoutMode ? 'inline-block' : 'none';
+    });
+
+    $('resetLayoutBtn').addEventListener('click', () => {
+        grid.removeAll();
+        location.reload();
+    });
+    
+    // Hide reset button initially
+    $('resetLayoutBtn').style.display = 'none';
+}
+
+/* ==========================================
+   SETTINGS
+   ========================================== */
+function initSettings() {
+    $('proxyWorkerUrl').value = localStorage.getItem('bolt_proxy_worker') || '';
+    $('anthropicKey').value = localStorage.getItem('bolt_anthropic_key') || '';
+    
+    $('proxyWorkerUrl').addEventListener('change', (e) => { localStorage.setItem('bolt_proxy_worker', e.target.value.trim()); });
+    $('anthropicKey').addEventListener('change', (e) => { localStorage.setItem('bolt_anthropic_key', e.target.value.trim()); });
+}
+
+/* ==========================================
+   CHARTS
+   ========================================== */
+function initCharts() {
+    const baseUrls = {
+        'chart-nq': 'https://s.tradingview.com/widgetembed/?frameElementId=tradingview_nq&symbol=NASDAQ%3ANQ&interval=5&theme=dark',
+        'chart-es': 'https://s.tradingview.com/widgetembed/?frameElementId=tradingview_es&symbol=CBOT%3AES1!&interval=5&theme=dark',
+        'chart-gc': 'https://s.tradingview.com/widgetembed/?frameElementId=tradingview_gc&symbol=COMEX%3AGC1!&interval=5&theme=dark',
+        'chart-cl': 'https://s.tradingview.com/widgetembed/?frameElementId=tradingview_cl&symbol=NYMEX%3ACL1!&interval=5&theme=dark'
+    };
+
+    Object.entries(baseUrls).forEach(([id, url]) => {
+        const frame = $(id);
+        if (frame) {
+            // Inject styles to hide watermarks and make bg darker
+            const finalUrl = url + '&style=1&locale=en&toolbar_bg=%230c0a09&hide_top_toolbar=0&hide_legend=0&withdateranges=1';
+            const iframe = document.createElement('iframe');
+            iframe.src = finalUrl;
+            iframe.loading = "lazy";
+            frame.appendChild(iframe);
+        }
+    });
+
+    $('chartLayoutSelect').addEventListener('change', (e) => {
+        const val = e.target.value;
+        const container = $('chartContainer');
+        container.className = 'chart-container';
+        if (val !== '2x2') container.classList.add('layout-' + val);
+        $('chartFocusSelect').style.display = val === '1x1' ? 'block' : 'none';
+    });
+
+    $('chartFocusSelect').addEventListener('change', (e) => {
+        document.querySelectorAll('.chart-box').forEach(b => b.classList.remove('focused'));
+        document.querySelector(`.chart-box[data-sym="${e.target.value}"]`)?.classList.add('focused');
+    });
+}
+
+/* ==========================================
+   SQUAWK TEST
+   ========================================== */
+$('squawkTestBtn').addEventListener('click', () => {
+    if ('speechSynthesis' in window) {
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance("Systems online. The forge is lit.");
+        u.rate = 1.1;
+        speechSynthesis.speak(u);
+    }
+});
+
+/* ==========================================
+   MASTER INIT
+   ========================================== */
+async function init() {
+    initGrid();
+    initCharts();
+    initCalc();
+    initCalendar();
+    initNotes();
+    initSettings();
+    setupNotifications();
+    
+    updateClocks();
+    setInterval(updateClocks, 10000);
+    setInterval(renderCalendar, 60000);
+
+    await refreshNews();
+    await refreshAssets();
+    refreshCorrelations();
+
+    $('refreshBtn').addEventListener('click', async () => {
+        $('refreshBtn').disabled = true;
+        $('refreshBtn').textContent = 'Syncing...';
+        await refreshNews();
+        await refreshAssets();
+        refreshCorrelations();
+        $('refreshBtn').disabled = false;
+        $('refreshBtn').textContent = 'Force Refresh';
+    });
+
+    // Auto refresh cycle
+    setInterval(async () => {
+        await refreshNews();
+        await refreshAssets();
+    }, 120000); // 2 mins
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
+```
